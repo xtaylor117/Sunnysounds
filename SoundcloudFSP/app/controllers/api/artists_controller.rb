@@ -1,5 +1,5 @@
-class ArtistsController < ApplicationController
-    
+class Api::ArtistsController < ApplicationController
+       
     def new
         @artist = Artist.new
         render :new
@@ -10,7 +10,7 @@ class ArtistsController < ApplicationController
 
         if @artist.save
             login!(@artist)
-            redirect_to artist_url(@artist)
+            redirect_to api_artist_url(@artist)
         else
             flash.now[:errors] = @artist.errors.full_messages
             render :new
@@ -36,7 +36,7 @@ class ArtistsController < ApplicationController
         @artist = Artist.find(params[:id])
 
         if @artist.update(artist_params)
-            redirect_to artist_url(@artist)
+            redirect_to api_artist_url(@artist)
         else
             render json: @artist.errors.full_messages, status: 422
         end
@@ -46,7 +46,7 @@ class ArtistsController < ApplicationController
         @artist = Artist.find(params[:id])
 
         if @artist.destroy
-            redirect_to artists_url
+            redirect_to api_artists_url
         else
             render plain: 'This artists does not exist!'
         end
@@ -56,5 +56,4 @@ class ArtistsController < ApplicationController
     def artist_params
         params.require(:artist).permit(:username, :email, :password)
     end
-    
 end

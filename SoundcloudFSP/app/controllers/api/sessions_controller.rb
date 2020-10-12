@@ -1,5 +1,5 @@
-class SessionsController < ApplicationController
-
+class Api::SessionsController < ApplicationController
+    
     def new 
         render :new
     end
@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
 
     def destroy
         logout!
-        redirect_to new_session_url
+        redirect_to
     end
-
 end
