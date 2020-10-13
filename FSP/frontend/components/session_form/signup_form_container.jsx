@@ -12,9 +12,15 @@ const mSTP = ({ errors }) => {
 }
 
 const mDTP = dispatch => {
-    return ({
-        processForm: (user) => dispatch(signup(user))
-    })
-}
+    return {
+        processForm: (user) => dispatch(signup(user)),
+        otherForm: (
+            <button onClick={() => dispatch(openModal('login'))}>
+                Login
+            </button>
+        ),
+        closeModal: () => dispatch(closeModal())
+    };
+};
 
 export default connect(mSTP, mDTP)(SessionForm);
