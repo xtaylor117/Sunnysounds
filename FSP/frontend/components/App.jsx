@@ -1,11 +1,17 @@
 import React from 'react'
-import NavContainer from './nav_container'
+import NavContainer from './nav/nav_container'
+import LoginFormContainer from './session_form/login_form_container'
+import SignupFormContainer from './session_form/signup_form_container'
+import { Route } from 'react-router-dom'
 
 const App = () => (
     <div>
         <header>
             <NavContainer />
         </header>
+
+        <Route path='/login' component={ LoginFormContainer } />
+        <Route path='/signup' component={ SignupFormContainer } />
     </div>
 )
 

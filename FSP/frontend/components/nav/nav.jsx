@@ -25,4 +25,4 @@ const Nav = ({ currentUser, logout }) => {
     );
 };
 
-export default Nav
+export default Nav;
