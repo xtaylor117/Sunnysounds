@@ -34,7 +34,7 @@ export const login = artist => dispatch => {
         )
 }
  
-export const logout = artist => dispatch => {
-    return APIUtil.logout(artist)
+export const logout = () => dispatch => {
+    return APIUtil.logout()
         .then(user => (dispatch(logoutCurrentUser())))
 }
