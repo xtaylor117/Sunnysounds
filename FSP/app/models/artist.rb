@@ -9,10 +9,10 @@ class Artist < ApplicationRecord
     #SPIRE
 
     def self.find_by_credentials(un, pw)
-        @user = user.find_by(username: username)
+        @artist = Artist.find_by(username: un)
 
-        if @user && user.is_password?(pw)
-            return @user
+        if @artist && @artist.is_password?(pw)
+            return @artist
         else
             return nil
         end

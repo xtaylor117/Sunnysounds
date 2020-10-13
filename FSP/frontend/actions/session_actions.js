@@ -1,4 +1,4 @@
-import * as APIUtils from '../utils/session_api_util'
+import * as APIUtil from '../utils/session_api_util'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
@@ -18,23 +18,23 @@ const receiveErrors = errors => ({
     errors
 });
 
-export const signup = user => dispatch => {
-    return APIUtil.signup(user)
+export const signup = artist => dispatch => {
+    return APIUtil.signup(artist)
         .then(
             user => (dispatch(receiveCurrentUser(user))), 
             err => (dispatch(receiveErrors(err.responseJSON)))
         )
 }
    
-export const login = user => dispatch => {
-    return APIUtil.login(user)
+export const login = artist => dispatch => {
+    return APIUtil.login(artist)
         .then(
             user => (dispatch(receiveCurrentUser(user))),
             err => (dispatch(receiveErrors(err.responseJSON)))
         )
 }
-
-export const logout = user => dispatch => {
-    return APIUtil.logout(user)
+ 
+export const logout = artist => dispatch => {
+    return APIUtil.logout(artist)
         .then(user => (dispatch(logoutCurrentUser())))
 }

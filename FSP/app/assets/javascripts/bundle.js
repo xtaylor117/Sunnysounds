@@ -127,27 +127,27 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
-var signup = function signup(user) {
+var signup = function signup(artist) {
   return function (dispatch) {
-    return APIUtil.signup(user).then(function (user) {
+    return _utils_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](artist).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
-var login = function login(user) {
+var login = function login(artist) {
   return function (dispatch) {
-    return APIUtil.login(user).then(function (user) {
+    return _utils_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](artist).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
-var logout = function logout(user) {
+var logout = function logout(artist) {
   return function (dispatch) {
-    return APIUtil.logout(user).then(function (user) {
+    return _utils_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"](artist).then(function (user) {
       return dispatch(logoutCurrentUser());
     });
   };
@@ -331,20 +331,20 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 
+var _nullSession = {
+  currentUser: null
+};
 
 var sessionReducer = function sessionReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
-  var newState = Object.assign({}, oldState);
-  var _nullSession = {
-    currentUser: null
-  };
+  var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      newState.currentUser = action.currentUser;
-      return newState;
+      nextState.currentUser = action.currentUser;
+      return nextState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return _nullSession;
@@ -398,21 +398,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
-var login = function login(user) {
+var login = function login(artist) {
   return $.ajax({
     method: 'POST',
     url: '/api/session',
     data: {
-      user: user
+      artist: artist
     }
   });
 };
-var signup = function signup(user) {
+var signup = function signup(artist) {
   return $.ajax({
     method: 'POST',
     url: '/api/artists',
     data: {
-      user: user
+      artist: artist
     }
   });
 };
