@@ -27,21 +27,17 @@ const Nav = ({ currentUser, logout, openModal }) => {
         );
 
     return (
-        <header className="nav-bar">
-            <nav>
-                <ul className="nav-links">
-                    <Link to='/' className='header-link'>
-                        Sunnysounds
-                    </Link>
-                    <div className="left-nav">
-                        <li className="home"><a href="#">Home</a></li>
-                        <li className="stream"><a href="#">Stream</a></li>
-                        <li className="library"><a href="#">Library</a></li>
-                    </div>
-                    {display}
-                </ul>
-            </nav>
-        </header>
+        <nav className="nav-bar">
+            <ul className="nav-links">
+                <div className="left-nav">
+                    <Link to='/'> Sunnysounds </Link>
+                    <li className="home"><a href="#">Home</a></li>
+                    <li className="stream"><a href="#">Stream</a></li>
+                    <li className="library"><a href="#">Library</a></li>
+                </div>
+                {display}
+            </ul>
+        </nav>
     );
 };
 
