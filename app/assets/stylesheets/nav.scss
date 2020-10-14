@@ -10,6 +10,17 @@
     
 }
 
+.header-link {
+    position: absolute;
+    top: 13px;
+    left: 19px;
+    display: flex;
+    justify-content: flex-start;
+    width: 184px;
+    height: 46px;
+    margin: 0;
+    
+}
 
 .login-signup button {
     background: transparent;
@@ -24,6 +35,8 @@
 }
 
 .login-signup {
+    display: flex;
+    justify-content: flex-end;
     margin-right: 100px;
     border-right: 1px solid forestgreen;
     line-height: 46px;
@@ -31,19 +44,15 @@
 
 .greeting {
     display: flex;
-    justify-content: space-between;
-}
-
-.greeting * {
-    padding: 5px;
-    margin-left: 2px;
-    margin-right: 2px;
-    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin-right: 100px;
+    border-right: 1px solid forestgreen;
+    line-height: 46px;
 }
 
 
-.header-button {
-    margin-right: 60px;
+.greeting button {
     background: transparent;
     padding: 2px 11px 2px 11px;
     border-radius: 3px;
@@ -52,7 +61,9 @@
     font-weight: 100;
     line-height: 20px;
     border: 1px solid #e5e5e5;
+    margin-right: 10px;
 }
+
 
 .left-nav a {
   display: block;
@@ -79,11 +90,12 @@ li a:hover {
 
 
 input.search-bar[type="text"], select {
-    height: 30px;
+    height: auto;
     width: 300px;
     color: #666;
     outline: 0;
     border: 0;
+    margin-left: 15px;
     padding: 5px 7px;
     padding-right: 2px;
     background-attachment: #e5e5e5;
@@ -92,13 +104,18 @@ input.search-bar[type="text"], select {
 
 
 .search-button {
+    position: relative;
     border: none;
-    margin-left: -20px;
+    top: 3px;
+    margin-left: -18px;
     background: transparent;
     cursor: pointer;
 }
 
+
 .search-bar-container { 
-    width: 40%;
-    margin-left: 15px;
+    width: 45%;
+    height: 46px;
+    display: flex;
+    align-items: center;
 }

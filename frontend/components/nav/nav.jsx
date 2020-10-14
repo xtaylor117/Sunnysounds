@@ -6,12 +6,13 @@ const Nav = ({ currentUser, logout, openModal }) => {
     const display = currentUser ? (
         <div className="greeting">
             <li>
-                <h2 className="header-name">{currentUser.username}</h2>
+                <button>{currentUser.username}</button>
             </li>
             <li>
-                <button className="header-button" onClick={logout}>Log Out</button>
+                <button onClick={logout}>Log Out</button>
             </li>
         </div>
+
 
     ) :
         (
@@ -34,9 +35,11 @@ const Nav = ({ currentUser, logout, openModal }) => {
                     <li className="stream"><a href="#">Stream</a></li>
                     <li className="library"><a href="#">Library</a></li>
                 </div>
-                <div className="search-bar-container">     
-                    <input type="text" className="search-bar" placeholder='Search for Artists and Songs'/>
-                    <input type="image" src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" className="search-button"/>
+                <div className="search-bar-container">
+                    <li>     
+                        <input type="text" className="search-bar" placeholder='Search for Artists and Songs'/>
+                        <input type="image" src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" className="search-button"/>
+                    </li>
                 </div>
                 {display}
             </ul>
