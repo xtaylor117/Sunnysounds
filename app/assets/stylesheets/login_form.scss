@@ -28,3 +28,20 @@ input[type=password], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.login-form {
+    width: 450px;
+    left: 117px;
+    margin-top: 76px;
+    height: auto;
+}
+
+.login-form-box {
+    border-radius: 25px;
+}
+
+.login-errors {
+    color: red;
+    font-family: Lucida Grande, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
