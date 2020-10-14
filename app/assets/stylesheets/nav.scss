@@ -10,6 +10,7 @@
     
 }
 
+
 .login-signup button {
     background: transparent;
     padding: 2px 11px 2px 11px;
@@ -18,6 +19,8 @@
     font-family: Lucida Grande;
     font-weight: 100;
     line-height: 20px;
+    border: 1px solid #e5e5e5;
+    margin-right: 10px;
 }
 
 
@@ -42,7 +45,7 @@
     font-family: Lucida Grande;
     font-weight: 100;
     line-height: 20px;
-
+    border: 1px solid #e5e5e5;
 }
 
 .left-nav a {
@@ -59,18 +62,6 @@
 
 .left-nav * {
     float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  width: 104px;
-  height: 46px;
-  text-align: center;
-  padding: 12px 0px;
-  text-decoration: none;
-  border-right: 1px solid forestgreen;
-  box-sizing: border-box;
 }
 
 li a:hover {

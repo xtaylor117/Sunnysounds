@@ -19,7 +19,6 @@ const Nav = ({ currentUser, logout, openModal }) => {
                 <li>
                     <button onClick={() => openModal('login')}>Login</button>
                 </li>
-                &nbsp;or&nbsp;
                 <li>
                     <button onClick={() => openModal('signup')}>Signup</button>
                 </li>
