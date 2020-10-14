@@ -1,1 +1,3 @@
-json.partial! 'artist', artist: @artist
+json.extract! @artist,
+    :id,
+    :username
