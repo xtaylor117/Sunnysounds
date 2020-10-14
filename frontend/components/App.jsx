@@ -16,7 +16,8 @@ const App = () => (
             </Link>
             <NavContainer />
             <AuthRoute path='/signup' component={SignupFormContainer} />
-            
+            <AuthRoute path='/login' component={LoginFormContainer} />
+
         </header>
 
     </div>

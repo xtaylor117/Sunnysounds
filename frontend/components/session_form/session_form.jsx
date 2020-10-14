@@ -38,26 +38,28 @@ class SessionForm extends React.Component {
 
     render() {
         return (
+            
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit} className="login-form-box">
-                    Welcome to Soundcloud FSP!
             <br />
                     {this.renderErrors()}
                     <div className="login-form">
                         <br />
-                        <label>Username:
+                        <label for='username'>
                 <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
                                 className="login-input"
+                                placeholder="Enter Username"
                             />
                         </label>
                         <br />
-                        <label>Password:
+                        <label for='password'>
                 <input type="password"
                                 value={this.state.password}
                                 onChange={this.update('password')}
                                 className="login-input"
+                                placeholder="Enter Password"
                             />
                         </label>
                         <br />
