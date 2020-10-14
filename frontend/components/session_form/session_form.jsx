@@ -8,7 +8,7 @@ class SessionForm extends React.Component {
             username: '',
             password: ''
         }
-
+ 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -47,7 +47,7 @@ class SessionForm extends React.Component {
                 <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
-                                className="login-input"
+                                className={this.props.errors.length ? "errors" : "login-input"}
                                 placeholder="Enter Username"
                             />
                         </label>
@@ -56,7 +56,7 @@ class SessionForm extends React.Component {
                 <input type="password"
                                 value={this.state.password}
                                 onChange={this.update('password')}
-                                className="login-input"
+                                className={this.props.errors.length ? "errors" : "login-input"}
                                 placeholder="Enter Password"
                             />
                         </label>
