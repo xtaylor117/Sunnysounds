@@ -32,36 +32,46 @@
     line-height: 20px;
     border: 1px solid #e5e5e5;
     margin-right: 10px;
+    color: white;
 }
 
 .login-signup {
     display: flex;
     justify-content: flex-end;
+    margin-left: 15px;
     margin-right: 100px;
     border-right: 1px solid forestgreen;
     line-height: 46px;
 }
 
-.greeting {
+.right-nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-shrink: 0;
+    margin-left: 15px;
     margin-right: 100px;
     border-right: 1px solid forestgreen;
     line-height: 46px;
 }
 
 
-.greeting button {
+.right-nav button {
     background: transparent;
-    padding: 2px 11px 2px 11px;
-    border-radius: 3px;
     cursor: pointer;
     font-family: Lucida Grande;
     font-weight: 100;
-    line-height: 20px;
-    border: 1px solid #e5e5e5;
-    margin-right: 10px;
+    border: none;
+    margin-right: 3px;
+    color: white;
+}
+
+.right-nav button:hover {
+    color: yellowgreen;
+}
+
+.login-signup li:last-child button {
+    background: salmon;
+    width: 100px;
 }
 
 
@@ -90,6 +100,7 @@ li a:hover {
 
 
 input.search-bar[type="text"], select {
+    align-items: center;
     height: auto;
     width: 300px;
     color: #666;
@@ -114,8 +125,7 @@ input.search-bar[type="text"], select {
 
 
 .search-bar-container { 
-    width: 45%;
     height: 46px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }

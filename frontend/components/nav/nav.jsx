@@ -4,12 +4,21 @@ import { Link } from 'react-router-dom';
 const Nav = ({ currentUser, logout, openModal }) => {
 
     const display = currentUser ? (
-        <div className="greeting">
+        <div className="right-nav">
+            <li>
+                <button>Upload</button>
+            </li>
             <li>
                 <button>{currentUser.username}</button>
             </li>
             <li>
-                <button onClick={logout}>Log Out</button>
+                <button>Notifications</button>
+            </li>
+            <li>
+                <button>Messages</button>
+            </li>
+            <li>
+                <button onClick={logout}>•••</button>
             </li>
         </div>
 
