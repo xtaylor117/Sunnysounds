@@ -28,7 +28,9 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
 
     
     return (
+
         <div className="modal-background" onClick={handleClick}>
+            <button className='close-modal-button' onClick={handleClick} />
             <div className="modal-child" onClick={e => e.stopPropagation()}>
                 {component}
             </div>

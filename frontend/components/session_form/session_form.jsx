@@ -63,7 +63,7 @@ class SessionForm extends React.Component {
                     <div className="login-form">
                         <br />
                         <label>
-                <input type="text"
+                            <input autoFocus type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
                                 className={this.props.errors.length ? "errors" : "login-input"}
@@ -72,7 +72,7 @@ class SessionForm extends React.Component {
                         </label>
                         <br />
                         <label>
-                <input type="password"
+                            <input type="password"
                                 value={this.state.password}
                                 onChange={this.update('password')}
                                 className={this.props.errors.length ? "errors" : "login-input"}

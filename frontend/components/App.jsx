@@ -11,15 +11,9 @@ const App = () => (
     <div>
         <Modal />
         <header>
-            <nav>
-                <Link to='/' className='header-link'>
-                    <h1>Sunny Sounds</h1>
-                </Link>
-            </nav>
             <NavContainer />
             <AuthRoute path='/signup' component={SignupFormContainer} />
             <AuthRoute path='/login' component={LoginFormContainer} />
-
         </header>
 
     </div>
