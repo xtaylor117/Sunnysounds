@@ -1451,3 +1451,263 @@ Processing by StaticPagesController#root as HTML
 Completed 200 OK in 130ms (Views: 129.9ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/users" for ::1 at 2020-10-13 16:46:27 -0700
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/TLEE/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+actionpack (5.2.4.4) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.4) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.4) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.4) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.4) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.4) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-10-13 16:46:30 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 3173ms (Views: 3173.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:46:40 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"George", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (4.0ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "George"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "ORTWpbNAmbazuHJPRiEohQ"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (1.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+Completed 422 Unprocessable Entity in 434ms (Views: 0.3ms | ActiveRecord: 26.3ms)
+
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:46:48 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"George", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "George"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "sKQZmcljvLGB1ZRbIp1TAA"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Create (2.7ms)[0m  [1m[32mINSERT INTO "artists" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "George"], ["password_digest", "$2a$12$ZdIzWC4yJhaZalxWR9zoku4seG1jKMHsCMEQwdvHTTJU/Jr2tBnje"], ["session_token", "sKQZmcljvLGB1ZRbIp1TAA"], ["created_at", "2020-10-13 23:46:48.517973"], ["updated_at", "2020-10-13 23:46:48.517973"]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 AND "artists"."id" != $2 LIMIT $3[0m  [["username", "George"], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Exists (3.0ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 AND "artists"."id" != $2 LIMIT $3[0m  [["session_token", "nDLYV2I2Jr8BlQ-qRzYm3g"], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Update (2.8ms)[0m  [1m[33mUPDATE "artists" SET "session_token" = $1, "updated_at" = $2 WHERE "artists"."id" = $3[0m  [["session_token", "nDLYV2I2Jr8BlQ-qRzYm3g"], ["updated_at", "2020-10-13 23:46:48.534246"], ["id", 8]]
+  ↳ app/models/artist.rb:32
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/artist.rb:32
+Redirected to http://localhost:3000/api/artists/8
+Completed 302 Found in 347ms (ActiveRecord: 16.6ms)
+
+
+Started GET "/api/artists/8" for ::1 at 2020-10-13 16:46:48 -0700
+Processing by Api::ArtistsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mArtist Load (0.5ms)[0m  [1m[34mSELECT  "artists".* FROM "artists" WHERE "artists"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:19
+  Rendering api/artists/show.json.jbuilder
+  Rendered api/artists/show.json.jbuilder (4.5ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.8ms)
+
+
+
+ActionView::MissingTemplate - Missing partial api/artist/_artist with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:jbuilder]}. Searched in:
+  * "/Users/TLEE/Desktop/APP ACADEMY/Fullstack/app/views":
+  app/views/api/artists/show.json.jbuilder:1:in `_app_views_api_artists_show_json_jbuilder__2216191020736594532_70283539025680'
+  app/controllers/api/artists_controller.rb:22:in `show'
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:46:50 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"George", "password"=>"[FILTERED]"}}
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "George"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "SuKvctBwPL5aB9hi0QHEdg"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+Completed 422 Unprocessable Entity in 333ms (Views: 0.3ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:47:05 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"break", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "break"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "CyYdCCllck75yZC9lbmvig"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Create (1.8ms)[0m  [1m[32mINSERT INTO "artists" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "break"], ["password_digest", "$2a$12$B/9xjSdlZw6jxvkEhJ4Xye1ijkaxXQBj2UP.lV2iCOMPI3V3rpR4W"], ["session_token", "CyYdCCllck75yZC9lbmvig"], ["created_at", "2020-10-13 23:47:05.409548"], ["updated_at", "2020-10-13 23:47:05.409548"]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 AND "artists"."id" != $2 LIMIT $3[0m  [["username", "break"], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 AND "artists"."id" != $2 LIMIT $3[0m  [["session_token", "x9Cr9NM2fjB1SOo6lP880Q"], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Update (0.6ms)[0m  [1m[33mUPDATE "artists" SET "session_token" = $1, "updated_at" = $2 WHERE "artists"."id" = $3[0m  [["session_token", "x9Cr9NM2fjB1SOo6lP880Q"], ["updated_at", "2020-10-13 23:47:05.419690"], ["id", 9]]
+  ↳ app/models/artist.rb:32
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/artist.rb:32
+Redirected to http://localhost:3000/api/artists/9
+Completed 302 Found in 340ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/api/artists/9" for ::1 at 2020-10-13 16:47:05 -0700
+Processing by Api::ArtistsController#show as JSON
+  Parameters: {"id"=>"9"}
+  [1m[36mArtist Load (0.4ms)[0m  [1m[34mSELECT  "artists".* FROM "artists" WHERE "artists"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:19
+  Rendering api/artists/show.json.jbuilder
+  Rendered api/artists/show.json.jbuilder (3.8ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.4ms)
+
+
+
+ActionView::MissingTemplate - Missing partial api/artist/_artist with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:jbuilder]}. Searched in:
+  * "/Users/TLEE/Desktop/APP ACADEMY/Fullstack/app/views":
+  app/views/api/artists/show.json.jbuilder:1:in `_app_views_api_artists_show_json_jbuilder__2216191020736594532_70283554365180'
+  app/controllers/api/artists_controller.rb:22:in `show'
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:47:06 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"break", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "break"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "HXkyQ32OB_MF8Nj-hw_AJA"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+Completed 422 Unprocessable Entity in 331ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:47:11 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"break", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "break"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "94v2YNMUB5NLoLYpmSrsXw"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+Completed 422 Unprocessable Entity in 347ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2020-10-13 16:47:16 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 70ms (Views: 69.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:47:23 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"testuser", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (3.0ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "testuser"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "g8Aa2y5TC1lP6d5QEra4Yw"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Create (1.1ms)[0m  [1m[32mINSERT INTO "artists" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "testuser"], ["password_digest", "$2a$12$u60pe9LPfgP8wEC1vBmVt.7icvNQzXjAHjI1JSrNPsUZK2lyVoULm"], ["session_token", "g8Aa2y5TC1lP6d5QEra4Yw"], ["created_at", "2020-10-13 23:47:23.643497"], ["updated_at", "2020-10-13 23:47:23.643497"]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Exists (3.2ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 AND "artists"."id" != $2 LIMIT $3[0m  [["username", "testuser"], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 AND "artists"."id" != $2 LIMIT $3[0m  [["session_token", "H9ZfhCIO6iTxZDB_Y5yW-A"], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/artist.rb:32
+  [1m[36mArtist Update (1.6ms)[0m  [1m[33mUPDATE "artists" SET "session_token" = $1, "updated_at" = $2 WHERE "artists"."id" = $3[0m  [["session_token", "H9ZfhCIO6iTxZDB_Y5yW-A"], ["updated_at", "2020-10-13 23:47:23.653971"], ["id", 10]]
+  ↳ app/models/artist.rb:32
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/artist.rb:32
+Redirected to http://localhost:3000/api/artists/10
+Completed 302 Found in 335ms (ActiveRecord: 13.7ms)
+
+
+Started GET "/api/artists/10" for ::1 at 2020-10-13 16:47:23 -0700
+Processing by Api::ArtistsController#show as JSON
+  Parameters: {"id"=>"10"}
+  [1m[36mArtist Load (2.5ms)[0m  [1m[34mSELECT  "artists".* FROM "artists" WHERE "artists"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:19
+  Rendering api/artists/show.json.jbuilder
+  Rendered api/artists/show.json.jbuilder (5.2ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 2.5ms)
+
+
+
+ActionView::MissingTemplate - Missing partial api/artist/_artist with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:jbuilder]}. Searched in:
+  * "/Users/TLEE/Desktop/APP ACADEMY/Fullstack/app/views":
+  app/views/api/artists/show.json.jbuilder:1:in `_app_views_api_artists_show_json_jbuilder__2216191020736594532_70283545386560'
+  app/controllers/api/artists_controller.rb:22:in `show'
+
+Started POST "/api/artists" for ::1 at 2020-10-13 16:47:24 -0700
+Processing by Api::ArtistsController#create as JSON
+  Parameters: {"artist"=>{"username"=>"testuser", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."username" = $1 LIMIT $2[0m  [["username", "testuser"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[36mArtist Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "artists" WHERE "artists"."session_token" = $1 LIMIT $2[0m  [["session_token", "x7D8iEAGzVNPeGtE7qpQUg"], ["LIMIT", 1]]
+  ↳ app/controllers/api/artists_controller.rb:5
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/artists_controller.rb:5
+Completed 422 Unprocessable Entity in 324ms (Views: 0.2ms | ActiveRecord: 1.5ms)
+
+
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (11.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (8705.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "FSP_development"[0m
+  ↳ bin/rails:9
