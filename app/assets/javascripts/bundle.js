@@ -382,7 +382,17 @@ var Nav = function Nav(_ref) {
     className: "library"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#"
-  }, "Library"))), display));
+  }, "Library"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "search-bar-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "search-bar",
+    placeholder: "Search for Artists and Songs"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "image",
+    src: "https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg",
+    className: "search-button"
+  })), display));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Nav);

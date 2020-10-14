@@ -23,6 +23,11 @@
     margin-right: 10px;
 }
 
+.login-signup {
+    margin-right: 100px;
+    border-right: 1px solid forestgreen;
+    line-height: 46px;
+}
 
 .greeting {
     display: flex;
@@ -38,6 +43,7 @@
 
 
 .header-button {
+    margin-right: 60px;
     background: transparent;
     padding: 2px 11px 2px 11px;
     border-radius: 3px;
@@ -60,8 +66,11 @@
   box-sizing: border-box;
 }
 
-.left-nav * {
-    float: left;
+
+.left-nav {
+    margin-left: 100px;
+    display: flex;
+    border-left: 1px solid forestgreen;
 }
 
 li a:hover {
@@ -69,3 +78,27 @@ li a:hover {
 }
 
 
+input.search-bar[type="text"], select {
+    height: 30px;
+    width: 300px;
+    color: #666;
+    outline: 0;
+    border: 0;
+    padding: 5px 7px;
+    padding-right: 2px;
+    background-attachment: #e5e5e5;
+    box-sizing: border-box;
+}
+
+
+.search-button {
+    border: none;
+    margin-left: -20px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search-bar-container { 
+    width: 40%;
+    margin-left: 15px;
+}
