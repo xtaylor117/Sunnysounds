@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { login } from '../../actions/session_actions'
+import { closeModal } from '../../actions/modal_actions'
 
 class SessionForm extends React.Component {
     constructor(props){
@@ -8,7 +10,8 @@ class SessionForm extends React.Component {
             username: '',
             password: ''
         }
- 
+        
+        this.loginDemo = this.loginDemo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -17,6 +20,7 @@ class SessionForm extends React.Component {
             [field]: e.currentTarget.value
         });
     }
+
 
     handleSubmit(e) {
         e.preventDefault();
@@ -36,11 +40,26 @@ class SessionForm extends React.Component {
         );
     }
 
+    loginDemo() {
+        let user = {
+            username: "Demo",
+            password: "password"
+        }
+        closeModal();
+        this.props.processForm(user).then(this.props.closeModal);
+    }
+
     render() {
         return ( 
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit} className="login-form-box">
             <br />
+                    <button className="demo-button" onClick={this.loginDemo}>
+                        Demo User!
+                    </button>
+                    <div className="auth-separator">
+                        <span>or</span>
+                    </div>
                     <div className="login-form">
                         <br />
                         <label>
@@ -65,6 +84,9 @@ class SessionForm extends React.Component {
                         </div>
                         <br />
                         <input className="session-submit" type="submit" value={this.props.formType} />
+                        <div className='privacy-policy'>
+                            <p>We may use your email and devices for updates and tips on SunnySounds' products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings. We may use information you provide us in order to show you targeted ads as described in our Privacy Policy.</p>
+                        </div>
                     </div>
                 </form>
             </div>

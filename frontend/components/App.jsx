@@ -11,9 +11,11 @@ const App = () => (
     <div>
         <Modal />
         <header>
-            <Link to='/' className='header-link'>
-                <h1>Soundcloud FSP</h1>
-            </Link>
+            <nav>
+                <Link to='/' className='header-link'>
+                    <h1>Sunny Sounds</h1>
+                </Link>
+            </nav>
             <NavContainer />
             <AuthRoute path='/signup' component={SignupFormContainer} />
             <AuthRoute path='/login' component={LoginFormContainer} />
