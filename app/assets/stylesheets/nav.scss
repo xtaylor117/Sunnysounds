@@ -30,20 +30,30 @@ body {
     display: flex;
     flex-shrink: 0;
     margin-right: 75px;
+    margin-left: 10px;
     border-right: 1px solid forestgreen;
     line-height: 46px;
 }
 
-
 .right-nav a {
+    height: 46px;
+    align-items: center;
     background: transparent;
     cursor: pointer;
     font-family: Lucida Grande;
     font-weight: 100;
     border: none;
-    margin-right: 25px;
     color: white;
     text-decoration: none;
+}
+
+.right-nav li {
+    text-align: center;
+    padding-right: 12px;
+}
+
+.right-nav li:active {
+    background: forestgreen;
 }
 
 .right-nav li:last-child {
@@ -56,6 +66,9 @@ body {
     color: gold;
 }
 
+.right-nav li a {
+    padding-left: 8px;
+}
 
 .left-nav a {
   display: block;
