@@ -47,6 +47,18 @@ body {
     text-decoration: none;
 }
 
+.right-nav p {
+    height: 46px;
+    align-items: center;
+    background: transparent;
+    cursor: pointer;
+    font-family: Lucida Grande;
+    font-weight: 100;
+    border: none;
+    color: white;
+    text-decoration: none;
+}
+
 .right-nav li {
     text-align: center;
     padding-right: 12px;
@@ -66,8 +78,20 @@ body {
     color: gold;
 }
 
+.right-nav li:last-child {
+    padding-left: 12px;
+}
+
+.right-nav li:last-child:active {
+    background: forestgreen;
+}
+
 .right-nav li a {
     padding-left: 8px;
+}
+
+.right-nav li p {
+    padding-left: 8px
 }
 
 .left-nav a {
