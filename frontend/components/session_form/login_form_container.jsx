@@ -5,11 +5,10 @@ import { openModal, closeModal } from '../../actions/modal_actions'
 import SessionForm from './session_form'
 import { Link } from 'react-router-dom'
 
-const mSTP = ({ errors }) => {
+const mSTP = (state, ownProps) => {
     return({
-        errors: errors.session,
+        errors: state.errors.session,
         formType: 'login',
-        oppositeType: 'signup'
     })
 }
 

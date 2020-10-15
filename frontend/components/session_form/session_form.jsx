@@ -13,6 +13,7 @@ class SessionForm extends React.Component {
         
         this.loginDemo = this.loginDemo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.showButtons = this.showButtons.bind(this);
     }
 
     update(field) {
@@ -42,6 +43,25 @@ class SessionForm extends React.Component {
         );
     }
 
+    showButtons() {
+        if (this.props.formType === 'login') {
+            return (
+                <div class="login-form">
+                    <button className="demo-button" onClick={this.loginDemo} >
+                        Create a User!
+                    </button>
+                    <button className="demo-button" onClick={this.loginDemo}>
+                        Demo a User!
+                    </button>
+                    <div className="auth-separator">
+                        <div>or</div>
+                    </div>
+                </div>
+            )
+        }
+    }
+    
+
     loginDemo() {
         let user = {
             username: "Demo",
@@ -57,17 +77,8 @@ class SessionForm extends React.Component {
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit} className="login-form-box">
             <br />
-                    <button className="demo-button" onClick={this.loginDemo}>
-                        Sign Up!
-                    </button>
-                    <button className="demo-button" onClick={this.loginDemo}>
-                        Demo User!
-                    </button>
-
-                    <div className="auth-separator">
-                        <span>or</span>
-                    </div>
                     <div className="login-form">
+                        {this.showButtons()}
                         <br />
                         <label>
                             <input autoFocus type="text"

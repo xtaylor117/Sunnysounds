@@ -9,6 +9,7 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
     if (!modal) {
         return null;
     }
+    
     let component;
     switch (modal) {
         case 'login':
