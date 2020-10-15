@@ -28,7 +28,7 @@ class Nav extends React.Component {
                             <button>Upload</button>
                         </li>
                         <li>
-                            <button>{currentUser.username}</button>
+                            <button>{this.props.currentUser.username}</button>
                         </li>
                         <li>
                             <button>Notifications</button>

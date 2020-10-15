@@ -43,6 +43,7 @@ class SessionForm extends React.Component {
         );
     }
 
+
     showButtons() {
         if (this.props.formType === 'login') {
             return (
@@ -59,13 +60,14 @@ class SessionForm extends React.Component {
         }
     }
     
-
+    
+    // IS IT THIS?
+    
     loginDemo() {
         let user = {
             username: "Demo",
             password: "password"
         }
-        closeModal();
         this.props.processForm(user)
             .then(this.props.closeModal)
     }
