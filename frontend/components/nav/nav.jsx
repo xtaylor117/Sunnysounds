@@ -24,21 +24,11 @@ class Nav extends React.Component {
                         </li>
                     </div>
                     <div className="right-nav">
-                        <li>
-                            <button>Upload</button>
-                        </li>
-                        <li>
-                            <button>{this.props.currentUser.username}</button>
-                        </li>
-                        <li>
-                            <button>Notifications</button>
-                        </li>
-                        <li>
-                            <button>Messages</button>
-                        </li>
-                        <li>
-                            <button onClick={this.props.logout}>•••</button>
-                        </li>
+                        <li className="upload"><a href="#">Upload</a></li>
+                        <li className="user-actions"><a href="#">{this.props.currentUser.username}</a></li>
+                        <li className="notifications"><a href="#">Notifications</a></li>
+                        <li className="messages"><a href="#">Messages</a></li>
+                        <li onClick={this.props.logout}>•••</li>
                     </div>
                 </ul>
             </nav>

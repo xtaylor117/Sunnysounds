@@ -26,28 +26,34 @@ body {
 }
 
 .right-nav {
+    width: auto;
     display: flex;
-    justify-content: flex-start;
     flex-shrink: 0;
-    margin-left: 15px;
-    margin-right: 100px;
+    margin-right: 75px;
     border-right: 1px solid forestgreen;
     line-height: 46px;
 }
 
 
-.right-nav button {
+.right-nav a {
     background: transparent;
     cursor: pointer;
     font-family: Lucida Grande;
     font-weight: 100;
     border: none;
-    margin-right: 3px;
+    margin-right: 25px;
     color: white;
+    text-decoration: none;
 }
 
-.right-nav button:hover {
-    color: yellowgreen;
+.right-nav li:last-child {
+    background: transparent;
+    cursor: pointer;
+    font-family: Lucida Grande;
+    font-weight: 100;
+    border: none;
+    margin-right: 10px;
+    color: gold;
 }
 
 
@@ -65,13 +71,17 @@ body {
 
 
 .left-nav {
-    margin-left: 100px;
+    margin-left: 75px;
     display: flex;
     border-left: 1px solid forestgreen;
 }
 
 li a:hover {
     color: yellowgreen;
+}
+
+li a:active {
+  background-color: forestgreen;
 }
 
 
