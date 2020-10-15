@@ -13,14 +13,13 @@ body {
     background: forestgreen;
     height: 46px;
     margin: 0px 100px 0px 100px;
-    height: 450px;
+    height: 350px;
     background-image: url(https://a-v2.sndcdn.com/assets/images/hp_image_creator_slide@2x-ba610881.jpg);
     background-size: cover;
 }
 
 .splash-header-top {
     display: inline-flex;
-    width: 100%;
     justify-content: space-between;
 }
 
@@ -33,16 +32,15 @@ body {
 }
 
 
-
 .splash-header-description {
     position: relative;
-    top: 200px;
+    top: 150px;
 }
 
 .splash-header-description h1 {
     display: flex;
     justify-content: center;
-    font-size: 45px;
+    font-size: 32px;
     font-family: Lucida Grande;
     font-weight: 100;
     color: white;
@@ -55,7 +53,6 @@ body {
     font-weight: 100;
     color: white;
 }
-
 
 
 .login-signup li {
@@ -86,7 +83,7 @@ body {
 }
 
 .login-signup li:last-child button {
-    background: salmon;
+    background: gold;
     width: 100px;
 }
 

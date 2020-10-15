@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 const mSTP = ({ errors }) => {
     return({
         errors: errors.session,
-        formType: 'login'
+        formType: 'login',
+        oppositeType: 'signup'
     })
 }
 

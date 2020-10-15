@@ -50,7 +50,6 @@ class SessionForm extends React.Component {
         closeModal();
         this.props.processForm(user)
             .then(this.props.closeModal)
-            .then(this.props.history.push('/discovery'))
     }
 
     render() {
@@ -59,8 +58,12 @@ class SessionForm extends React.Component {
                 <form onSubmit={this.handleSubmit} className="login-form-box">
             <br />
                     <button className="demo-button" onClick={this.loginDemo}>
+                        Sign Up!
+                    </button>
+                    <button className="demo-button" onClick={this.loginDemo}>
                         Demo User!
                     </button>
+
                     <div className="auth-separator">
                         <span>or</span>
                     </div>

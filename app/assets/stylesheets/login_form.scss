@@ -33,7 +33,7 @@ input[type=password], select {
 
 .demo-button {
   width: 100%;
-  background-color: salmon;
+  background-color: gold;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -86,6 +86,7 @@ input.errors[type="password"], select {
   font-family: Lucida Grande;
   font-size: 16px;
   font-weight: 400;
+  color: salmon;
 }
 
 .auth-separator::before {
@@ -98,7 +99,7 @@ input.errors[type="password"], select {
 .auth-separator::after, .auth-separator::before {
   display: inline-block;
   width:43%;
-  border-top: 1px solid #333333;
+  border-top: 1px solid salmon;
   content: "";
   position: absolute;
   top: .7em;
