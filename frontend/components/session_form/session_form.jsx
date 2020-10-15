@@ -8,7 +8,7 @@ class SessionForm extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
         }
         
         this.loginDemo = this.loginDemo.bind(this);
@@ -28,7 +28,7 @@ class SessionForm extends React.Component {
         const user = Object.assign({}, this.state);
         this.props.processForm(user)
             .then(this.props.closeModal)
-            .then(this.props.history.push('/discovery'));
+            .then(this.props.history.push('/discovery'))
     }
 
     renderErrors() {
@@ -47,21 +47,34 @@ class SessionForm extends React.Component {
     showButtons() {
         if (this.props.formType === 'login') {
             return (
-                <div className="login-form">
+                <>
                     {this.props.otherForm}
-                    <button className="demo-button" onClick={this.loginDemo}>
-                        Demo a User!
-                    </button>
-                    <div className="auth-separator">
-                        <div>or</div>
+                    <div className="login-form">
+                        <button className="demo-button" onClick={this.loginDemo}>
+                            Demo a User!
+                        </button>
+                        <div className="auth-separator">
+                            <div>or</div>
+                        </div>
                     </div>
-                </div>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <div className="login-form">
+                        {this.props.otherForm}
+                        <div className="auth-separator">
+                            <div>or</div>
+                        </div>
+                    </div>
+                </>
+                
             )
         }
     }
     
     
-    // IS IT THIS?
     
     loginDemo() {
         let user = {
@@ -69,6 +82,7 @@ class SessionForm extends React.Component {
             password: "password"
         }
         this.props.processForm(user)
+            .then()
             .then(this.props.closeModal)
     }
 

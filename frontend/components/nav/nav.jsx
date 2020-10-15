@@ -7,6 +7,14 @@ class Nav extends React.Component {
     }
 
     
+    redirectAuth() {
+        if (!this.props.splashPath && !this.props.authPath) {
+            return this.props.history.push('/discovery')
+        }
+    }
+    
+    
+
     render(){
         return (
             <nav className="nav-bar">

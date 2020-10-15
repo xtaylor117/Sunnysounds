@@ -23,8 +23,8 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
     }
 
     const handleClick= () => {
-        closeModal();
         clearSessionErrors();
+        closeModal();
     }
 
     
