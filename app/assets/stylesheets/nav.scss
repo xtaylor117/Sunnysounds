@@ -1,4 +1,9 @@
 
+body {
+    background: gainsboro;
+}
+
+
 .nav-links {
     display: flex;
     justify-content: space-between;
@@ -19,29 +24,6 @@
     width: 184px;
     height: 46px;
     margin: 0;
-    
-}
-
-.login-signup button {
-    background: transparent;
-    padding: 2px 11px 2px 11px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: Lucida Grande;
-    font-weight: 100;
-    line-height: 20px;
-    border: 1px solid #e5e5e5;
-    margin-right: 10px;
-    color: white;
-}
-
-.login-signup {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 15px;
-    margin-right: 100px;
-    border-right: 1px solid forestgreen;
-    line-height: 46px;
 }
 
 .right-nav {
@@ -67,11 +49,6 @@
 
 .right-nav button:hover {
     color: yellowgreen;
-}
-
-.login-signup li:last-child button {
-    background: salmon;
-    width: 100px;
 }
 
 

@@ -1,21 +1,24 @@
 import React from 'react'
 import NavContainer from './nav/nav_container'
+import SplashContainer from './splash/splash_container'
 import Modal from './modal'
 import LoginFormContainer from './session_form/login_form_container'
 import SignupFormContainer from './session_form/signup_form_container'
-import { Route, Link } from 'react-router-dom'
-import { AuthRoute } from '../utils/route_utils'
+import { Switch, Redirect } from 'react-router-dom'
+import { AuthRoute, ProtectedRoute } from '../utils/route_utils'
 
 
 const App = () => (
     <div>
         <Modal />
         <header>
-            <NavContainer />
+            <ProtectedRoute exact path='/discovery' component={NavContainer} />
+        </header>
+        <Switch>
+            <AuthRoute path='/' component={SplashContainer} />
             <AuthRoute path='/signup' component={SignupFormContainer} />
             <AuthRoute path='/login' component={LoginFormContainer} />
-        </header>
-
+        </Switch>
     </div>
 )
 

@@ -1,4 +1,4 @@
-# Ignore bundler config. 
+# Ignore bundler config.
 /.bundle
 
 # Ignore all logfiles and tempfiles.
@@ -23,5 +23,6 @@
 node_modules/
 bundle.js
 bundle.js.map
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key

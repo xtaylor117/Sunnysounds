@@ -1,0 +1,68 @@
+body {
+    height: 100%;
+}
+
+.splash-container {
+    margin: 0px 100px 0px 100px;
+    background: white;
+}
+
+.splash-header {
+    display: flex;
+    flex-shrink: 0;
+    background: forestgreen;
+    height: 46px;
+    margin: 0px 100px 0px 100px;
+    height: 450px;
+    background-image: url(https://a-v2.sndcdn.com/assets/images/hp_image_creator_slide@2x-ba610881.jpg);
+    background-size: cover;
+}
+
+.splash-header a {
+    margin-left: 30px;
+    margin-top: 15px;
+    text-decoration: none;
+    color: white;
+    font: 100 20px/1.5 Lucida Grande;
+}
+
+.login-signup button {
+    background: transparent;
+    padding: 2px 11px 2px 11px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: Lucida Grande;
+    font-weight: 100;
+    line-height: 20px;
+    border: 1px solid #e5e5e5;
+    margin-right: 10px;
+    margin-top: 15px;
+    color: white;
+}
+
+.login-signup {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.login-signup li:last-child button {
+    background: salmon;
+    width: 100px;
+}
+
+.splash-header .splash-header-title {
+
+    font-family: Lucida Grande;
+    font-weight: 100;
+    color: white;
+}
+
+// .splash-header .splash-header-description {
+//     position: relative;
+//     font-family: Lucida Grande;
+//     font-weight: 100;
+//     color: white;
+// }

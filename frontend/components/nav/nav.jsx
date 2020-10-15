@@ -21,8 +21,6 @@ const Nav = ({ currentUser, logout, openModal }) => {
                 <button onClick={logout}>•••</button>
             </li>
         </div>
-
-
     ) :
         (
             <div className="login-signup">
