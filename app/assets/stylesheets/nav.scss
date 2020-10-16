@@ -67,7 +67,6 @@
     cursor: pointer;
     font-family: Overpass;
     font-weight: 100;
-    border: none;
     margin-right: 10px;
     color: orange;
 }
@@ -78,6 +77,7 @@
 
 .right-nav li:last-child:active {
     background: transparent;
+    color: orange;
 }
 
 .right-nav li a {
@@ -98,7 +98,12 @@
 }
 
 .right-nav li p {
-    padding-left: 6px;
+    padding-left: 6px;   
+}
+
+.right-nav li p:last-child {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .left-nav a {
@@ -166,7 +171,14 @@ input.search-bar[type="text"], select {
     max-width: 100px;
 }
 
-.right-nav li:nth-child(2)::-webkit-scrollbar {
+
+.this-user {
+    white-space: nowrap;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+.this-user::-webkit-scrollbar {
   display: none;
 }
 
@@ -182,13 +194,15 @@ input.search-bar[type="text"], select {
     display: none;
     z-index: 15;
     position: absolute;
-    width: 100px;
+    width: 99px;
     white-space: nowrap;
     padding-right: 6px;
     text-align: center;
     font-size: 12px;
     color: rgb(230, 195, 0);
     background: lemonchiffon;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .user-dropdown p {
@@ -212,6 +226,8 @@ input.search-bar[type="text"], select {
     text-align: center;
     font-size: 12px;
     background: lemonchiffon;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .notifications-dropdown p {
@@ -241,6 +257,8 @@ input.search-bar[type="text"], select {
     text-align: center;
     font-size: 12px;
     background: lemonchiffon;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .messages-dropdown p {
@@ -265,7 +283,8 @@ input.search-bar[type="text"], select {
     padding-right: 6px;
     font-size: 12px;
     background: lemonchiffon;
-
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .settings-dropdown p {
@@ -289,7 +308,7 @@ input.search-bar[type="text"], select {
 
 .right-nav li:hover .messages-dropdown {
     display: block;
-    transform: translateX(-72.5%);
+    transform: translateX(-72.4%);
 }
 
 .right-nav li:hover .settings-dropdown {

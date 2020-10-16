@@ -27,7 +27,7 @@ class Nav extends React.Component {
                         <div className="right-nav">
                             <li className="upload"><a href="#">Upload</a></li>
                             <li>
-                                <p>{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
+                                <p className="this-user">{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
                                 <div className="user-dropdown">
                                     <p>Profile</p>
                                     <p>Likes</p>
