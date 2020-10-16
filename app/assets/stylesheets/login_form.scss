@@ -49,10 +49,6 @@ input[type=password], select {
     height: auto;
 }
 
-.login-form-box {
-    border-radius: 25px;
-}
-
 .login-errors {
     color: red;
     font-family: Lucida Grande, Arial, Helvetica, sans-serif;
@@ -112,5 +108,25 @@ input.errors[type="password"], select {
 }
 
 .show-buttons {
-  
+  padding-top: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-left:  1px solid #e5e5e5;
+  border-right:  1px solid #e5e5e5;
+  border-top:  1px solid #e5e5e5;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.show-buttons * {
+  z-index: 20;
+}
+
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }

@@ -14,11 +14,6 @@
   transform: translate(-50%, -50%);
 }
 
-.login-form-container {
-   display: flex;
-   justify-content: center;
-}
-
 .login-form {
    display: flex;
    justify-content: center;
@@ -30,9 +25,13 @@
 }
 
 .login-form-box {
-    margin-top: 25px;
+    margin-top: -50px;
     border-radius: 25px;
-    border: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-left:  1px solid #e5e5e5;
+    border-right:  1px solid #e5e5e5;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     padding: 20px;
     background: white;
     position: relative;
