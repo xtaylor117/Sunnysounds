@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { login } from '../../actions/session_actions'
+import { clearSessionErrors, login } from '../../actions/session_actions'
 import { closeModal } from '../../actions/modal_actions'
 
 class SessionForm extends React.Component {
@@ -14,6 +14,7 @@ class SessionForm extends React.Component {
         this.loginDemo = this.loginDemo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showButtons = this.showButtons.bind(this);
+        // this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     update(field) {
@@ -73,7 +74,11 @@ class SessionForm extends React.Component {
         }
     }
     
-    
+    // handleKeyDown(e) {
+    //     if (e.key === 'Enter') {
+    //         this.handleSubmit(e)
+    //     }
+    // }
     
     loginDemo() {
         let user = {
@@ -81,8 +86,8 @@ class SessionForm extends React.Component {
             password: "password"
         }
         this.props.processForm(user)
-            .then()
-            .then(this.props.closeModal)
+        .then(this.props.closeModal())
+        .then(this.props.clearSessionErrors(this.props.errors))
     }
 
     render() {
@@ -99,6 +104,7 @@ class SessionForm extends React.Component {
                                 onChange={this.update('username')}
                                 className={this.props.errors.length ? "errors" : "login-input"}
                                 placeholder="Enter Username"
+                                // onKeyDown={this.handleKeyDown}
                             />
                         </label>
                         <br />
@@ -108,6 +114,7 @@ class SessionForm extends React.Component {
                                 onChange={this.update('password')}
                                 className={this.props.errors.length ? "errors" : "login-input"}
                                 placeholder="Enter Password"
+                                // onKeyDown={this.handleKeyDown}
                             />
                         </label>
                         <div className='login-errors'>

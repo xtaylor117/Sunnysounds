@@ -6,7 +6,7 @@ import SessionForm from './session_form'
 import { Link } from 'react-router-dom'
 
 
-const mSTP = (state, ownProps) => {
+const mSTP = (state) => {
     return({
         errors: state.errors.session,
         formType: 'login',
@@ -21,7 +21,8 @@ const mDTP = dispatch => {
                 Sign Up!
             </button>
         ),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+        clearSessionErrors: (errors) => dispatch(clearSessionErrors(errors))
     };
 };
 

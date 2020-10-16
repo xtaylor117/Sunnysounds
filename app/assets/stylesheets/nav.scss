@@ -62,10 +62,6 @@
     color: yellowgreen;
 }
 
-.right-nav li:active {
-    background: forestgreen;
-    color:#e8d880;
-}
 
 .right-nav li:last-child {
     background: transparent;
@@ -86,11 +82,14 @@
 }
 
 .right-nav li a {
-    padding-left: 6px;
+    padding-left: 4px;
     height: 46px;
 }
 
-
+.right-nav li:active {
+    background: forestgreen;
+    color:#e8d880;
+}
 .right-nav li a:active {
     color: #fff4b6;
 }

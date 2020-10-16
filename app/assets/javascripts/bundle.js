@@ -537,7 +537,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(state, ownProps) {
+var mSTP = function mSTP(state) {
   return {
     errors: state.errors.session,
     formType: 'login'
@@ -557,6 +557,9 @@ var mDTP = function mDTP(dispatch) {
     }, "Sign Up!"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    },
+    clearSessionErrors: function clearSessionErrors(errors) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])(errors));
     }
   };
 };
@@ -625,7 +628,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.loginDemo = _this.loginDemo.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.showButtons = _this.showButtons.bind(_assertThisInitialized(_this));
+    _this.showButtons = _this.showButtons.bind(_assertThisInitialized(_this)); // this.handleKeyDown = this.handleKeyDown.bind(this);
+
     return _this;
   }
 
@@ -673,7 +677,12 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
           className: "auth-separator"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "or"))));
       }
-    }
+    } // handleKeyDown(e) {
+    //     if (e.key === 'Enter') {
+    //         this.handleSubmit(e)
+    //     }
+    // }
+
   }, {
     key: "loginDemo",
     value: function loginDemo() {
@@ -681,7 +690,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         username: "Demo",
         password: "password"
       };
-      this.props.processForm(user).then().then(this.props.closeModal);
+      this.props.processForm(user).then(this.props.closeModal()).then(this.props.clearSessionErrors(this.props.errors));
     }
   }, {
     key: "render",
@@ -699,13 +708,15 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.username,
         onChange: this.update('username'),
         className: this.props.errors.length ? "errors" : "login-input",
-        placeholder: "Enter Username"
+        placeholder: "Enter Username" // onKeyDown={this.handleKeyDown}
+
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.update('password'),
         className: this.props.errors.length ? "errors" : "login-input",
-        placeholder: "Enter Password"
+        placeholder: "Enter Password" // onKeyDown={this.handleKeyDown}
+
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-errors"
       }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
