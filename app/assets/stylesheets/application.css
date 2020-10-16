@@ -23,5 +23,9 @@
 }
 
 body {
-    background: gainsboro;
+  background: gainsboro;
+}
+
+button:active {
+  outline: 0;
 }
