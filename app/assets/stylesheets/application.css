@@ -14,3 +14,10 @@
  *= require_self
  */
 
+#root {
+    overflow: scroll;
+}
+
+body {
+    background: gainsboro;
+}

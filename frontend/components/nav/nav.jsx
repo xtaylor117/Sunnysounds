@@ -25,10 +25,30 @@ class Nav extends React.Component {
                     </div>
                     <div className="right-nav">
                         <li className="upload"><a href="#">Upload</a></li>
-                        <li className="user-actions-dropdown"><p>{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p></li>
-                        <li className="notifications-dropdown"><p>Notifications</p></li>
-                        <li className="messages-dropdown"><p>Messages</p></li>
-                        <li onClick={this.props.logout}>•••</li>
+                        <li>
+                            <p>{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
+                            <div className="user-dropdown">
+
+                            </div>
+                        </li>
+                        <li>
+                            <p>Notifications</p>
+                            <div className="notification-dropdown">
+
+                            </div>
+                        </li>
+                        <li>
+                            <p>Messages</p>
+                            <div className="message-dropdown">
+
+                            </div>
+                        </li>
+                        <li onClick={this.props.logout}>
+                            •••
+                            <div className="logout-dropdown">
+
+                            </div>
+                        </li>
                     </div>
                 </ul>
             </nav>

@@ -1,14 +1,8 @@
-
-body {
-    background: gainsboro;
-}
-
-
 .nav-links {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     background: #4CAF50;
     font: 100 14px/1.5 Lucida Grande;
     height:46px;
@@ -70,6 +64,7 @@ body {
 
 .right-nav li:active {
     background: forestgreen;
+    color:#e8d880;
 }
 
 .right-nav li:last-child {
@@ -79,11 +74,11 @@ body {
     font-weight: 100;
     border: none;
     margin-right: 10px;
-    color: gold;
+    color: #fff4b6;
 }
 
 .right-nav li:last-child {
-    padding-left: 12px;
+    padding-left: 6px;
 }
 
 .right-nav li:last-child:active {
@@ -91,11 +86,21 @@ body {
 }
 
 .right-nav li a {
-    padding-left: 8px;
+    padding-left: 6px;
+    height: 46px;
+}
+
+
+.right-nav li a:active {
+    color: #fff4b6;
+}
+
+.right-nav li a:hover {
+    color: #fff4b6;
 }
 
 .right-nav li p {
-    padding-left: 8px
+    padding-left: 6px
 }
 
 .left-nav a {
@@ -123,6 +128,7 @@ li a:hover {
 
 li a:active {
   background-color: forestgreen;
+  color: yellowgreen;
 }
 
 
