@@ -628,8 +628,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.loginDemo = _this.loginDemo.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.showButtons = _this.showButtons.bind(_assertThisInitialized(_this)); // this.handleKeyDown = this.handleKeyDown.bind(this);
-
+    _this.showButtons = _this.showButtons.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -678,12 +677,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
           className: "auth-separator"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "or")));
       }
-    } // handleKeyDown(e) {
-    //     if (e.key === 'Enter') {
-    //         this.handleSubmit(e)
-    //     }
-    // }
-
+    }
   }, {
     key: "loginDemo",
     value: function loginDemo() {
@@ -709,15 +703,13 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.username,
         onChange: this.update('username'),
         className: this.props.errors.length ? "errors" : "login-input",
-        placeholder: "Enter Username" // onKeyDown={this.handleKeyDown}
-
+        placeholder: "Enter Username"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.update('password'),
         className: this.props.errors.length ? "errors" : "login-input",
-        placeholder: "Enter Password" // onKeyDown={this.handleKeyDown}
-
+        placeholder: "Enter Password"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-errors"
       }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {

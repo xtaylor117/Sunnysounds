@@ -6,6 +6,10 @@ class Artist < ApplicationRecord
     attr_reader :password
     after_initialize :ensure_session_token
 
+    has_many :songs,
+    foreign_key: :artist_id,
+    class_name: :Song
+
     #SPIRE
 
     def self.find_by_credentials(un, pw)

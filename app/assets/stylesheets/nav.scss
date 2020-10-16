@@ -8,7 +8,7 @@
     align-items: center;
     width: 100vw;
     background: #4CAF50;
-    font: 100 14px/1.5 Lucida Grande;
+    font: 100 14px/1.5 Overpass;
     height:46px;
 }
 
@@ -38,7 +38,7 @@
     align-items: center;
     background: transparent;
     cursor: pointer;
-    font-family: Lucida Grande;
+    font-family: Overpass;
     font-weight: 100;
     border: none;
     color: white;
@@ -50,7 +50,7 @@
     align-items: center;
     background: transparent;
     cursor: pointer;
-    font-family: Lucida Grande;
+    font-family: Overpass;
     font-weight: 100;
     border: none;
     color: white;
@@ -65,7 +65,7 @@
 .right-nav li:last-child {
     background: transparent;
     cursor: pointer;
-    font-family: Lucida Grande;
+    font-family: Overpass;
     font-weight: 100;
     border: none;
     margin-right: 10px;
@@ -290,17 +290,17 @@ input.search-bar[type="text"], select {
 
 .right-nav li:hover .notifications-dropdown {
     display: block;
-    transform: translateX(-46%);
+    transform: translateX(-49.9%);
 }
 
 .right-nav li:hover .messages-dropdown {
     display: block;
-    transform: translateX(-70%);
+    transform: translateX(-72.5%);
 }
 
 .right-nav li:hover .settings-dropdown {
     display: block;
-    transform: translateX(-51%);
+    transform: translateX(-60%);
 }
 
 

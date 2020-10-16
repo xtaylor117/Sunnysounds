@@ -14,7 +14,6 @@ class SessionForm extends React.Component {
         this.loginDemo = this.loginDemo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showButtons = this.showButtons.bind(this);
-        // this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     update(field) {
@@ -71,12 +70,6 @@ class SessionForm extends React.Component {
         }
     }
     
-    // handleKeyDown(e) {
-    //     if (e.key === 'Enter') {
-    //         this.handleSubmit(e)
-    //     }
-    // }
-    
     loginDemo() {
         let user = {
             username: "Demo",
@@ -102,7 +95,6 @@ class SessionForm extends React.Component {
                                     onChange={this.update('username')}
                                     className={this.props.errors.length ? "errors" : "login-input"}
                                     placeholder="Enter Username"
-                                    // onKeyDown={this.handleKeyDown}
                                 />
                             </label>
                             <br />
@@ -112,7 +104,6 @@ class SessionForm extends React.Component {
                                     onChange={this.update('password')}
                                     className={this.props.errors.length ? "errors" : "login-input"}
                                     placeholder="Enter Password"
-                                    // onKeyDown={this.handleKeyDown}
                                 />
                             </label>
                             <div className='login-errors'>

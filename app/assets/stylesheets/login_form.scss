@@ -17,7 +17,7 @@ input[type=text], select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font: 12px/1.4 Lucida Grande
+  font: 12px/1.4 Overpass
 }
 
 input[type=password], select {
@@ -28,7 +28,7 @@ input[type=password], select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font: 12px/1.4 Lucida Grande
+  font: 12px/1.4 Overpass
 }
 
 .demo-button {
@@ -51,8 +51,7 @@ input[type=password], select {
 
 .login-errors {
     color: red;
-    font-family: Lucida Grande, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: Overpass;
 }
 
 input.errors[type="text"], select {
@@ -79,7 +78,7 @@ input.errors[type="password"], select {
   margin: 1em;
   position: relative;
   text-align: center;
-  font-family: Lucida Grande;
+  font-family: Overpass;
   font-size: 16px;
   font-weight: 400;
   color: salmon;
@@ -102,7 +101,7 @@ input.errors[type="password"], select {
 }
 
 .privacy-policy {
-  font-family: Lucida Grande;
+  font-family: Overpass;
   font-size: 12px;
   color: #999999;
 }
