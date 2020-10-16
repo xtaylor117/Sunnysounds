@@ -64,6 +64,10 @@ body {
     padding-right: 12px;
 }
 
+.right-nav li p:hover {
+    color: yellowgreen;
+}
+
 .right-nav li:active {
     background: forestgreen;
 }

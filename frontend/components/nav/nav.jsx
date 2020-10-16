@@ -5,14 +5,6 @@ class Nav extends React.Component {
     constructor(props) {
         super(props)
     }
-
-    
-    redirectAuth() {
-        if (!this.props.splashPath && !this.props.authPath) {
-            return this.props.history.push('/discovery')
-        }
-    }
-    
     
 
     render(){
@@ -42,6 +34,7 @@ class Nav extends React.Component {
             </nav>
         );
     }
+    
 }  
 
 export default Nav;

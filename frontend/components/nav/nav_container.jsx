@@ -4,11 +4,12 @@ import Nav from './nav'
 import { logout } from '../../actions/session_actions'
 import { openModal } from '../../actions/modal_actions';
 
+
 const mSTP = (state, ownProps) => {
     return({
         currentUser: state.session.currentUser,
-        authPath: ownProps.location.pathname === "/login" || ownProps.location.pathname === "/signup",
-        path: ownProps.location.pathname === '/'
+        // authPath: ownProps.location.pathname === "/login" || ownProps.location.pathname === "/signup",
+        // path: ownProps.location.pathname === '/discovery'
     })
 }
 

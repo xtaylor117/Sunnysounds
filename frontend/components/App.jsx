@@ -12,11 +12,14 @@ const App = () => (
     <div>
         <Modal />
         <header>
-            <ProtectedRoute exact path='/discovery' component={NavContainer} />
         </header>
+
         <Switch>
+            <ProtectedRoute exact path='/discovery' component={NavContainer} />
             <AuthRoute path='/' component={SplashContainer} />
+            <Redirect to='/' />
         </Switch>
+
     </div>
 )
 
