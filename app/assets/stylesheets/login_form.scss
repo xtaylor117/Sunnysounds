@@ -42,6 +42,10 @@ input[type=password], select {
   cursor: pointer;
 }
 
+.demo-button:active {
+  outline: none;
+}
+
 .login-form {
     width: 450px;
     left: 117px;
@@ -123,6 +127,11 @@ input.errors[type="password"], select {
 
 .show-buttons * {
   z-index: 20;
+}
+
+.show-buttons *:active {
+  outline: none;
+  border: none;
 }
 
 .login-form-container {

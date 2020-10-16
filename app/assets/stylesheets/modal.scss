@@ -41,6 +41,10 @@
     text-transform: capitalize;
 }
 
+.session-submit:focus {
+  outline: none;
+}
+
 .close-x {
     position: absolute;
     top: 5px;
