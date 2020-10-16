@@ -61,7 +61,7 @@ body {
 
 .right-nav li {
     text-align: center;
-    padding-right: 12px;
+    padding-right: 5px;
 }
 
 .right-nav li p:hover {
@@ -127,15 +127,16 @@ li a:active {
 
 
 input.search-bar[type="text"], select {
+    overflow: scroll;
     align-items: center;
-    height: auto;
+    height: 30px;
     width: 300px;
     color: #666;
     outline: 0;
     border: 0;
-    margin-left: 15px;
+    margin-left: 5px;
     padding: 5px 7px;
-    padding-right: 2px;
+    padding-right: 25px;
     background-attachment: #e5e5e5;
     box-sizing: border-box;
 }
@@ -145,7 +146,7 @@ input.search-bar[type="text"], select {
     position: relative;
     border: none;
     top: 3px;
-    margin-left: -18px;
+    margin-left: -20px;
     background: transparent;
     cursor: pointer;
 }
@@ -155,4 +156,13 @@ input.search-bar[type="text"], select {
     height: 46px;
     display: inline-flex;
     align-items: center;
+}
+
+.right-nav li:nth-child(2) {
+    max-width: 100px;
+    overflow-x: scroll;
+}
+
+.right-nav li:nth-child(2)::-webkit-scrollbar {
+  display: none;
 }
