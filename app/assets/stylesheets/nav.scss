@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    background: #4CAF50;
+    background: gold;
     font: 100 14px/1.5 Overpass;
     height:46px;
 }
@@ -29,7 +29,7 @@
     flex-shrink: 0;
     margin-right: 75px;
     margin-left: 10px;
-    border-right: 1px solid forestgreen;
+    border-right: 1px solid rgb(230, 195, 0);
     line-height: 46px;
 }
 
@@ -41,7 +41,7 @@
     font-family: Overpass;
     font-weight: 100;
     border: none;
-    color: white;
+    color: orange;
     text-decoration: none;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .right-nav li p:hover {
-    color: yellowgreen;
+    color: orange;
 }
 
 
@@ -69,7 +69,7 @@
     font-weight: 100;
     border: none;
     margin-right: 10px;
-    color: #fff4b6;
+    color: orange;
 }
 
 .right-nav li:last-child {
@@ -77,7 +77,7 @@
 }
 
 .right-nav li:last-child:active {
-    background: forestgreen;
+    background: transparent;
 }
 
 .right-nav li a {
@@ -86,15 +86,15 @@
 }
 
 .right-nav li:active {
-    background: forestgreen;
+    background: lemonchiffon;
     color:#e8d880;
 }
 .right-nav li a:active {
-    color: #fff4b6;
+    color: orange;
 }
 
 .right-nav li a:hover {
-    color: #fff4b6;
+    color: orange;
 }
 
 .right-nav li p {
@@ -109,7 +109,7 @@
   text-align: center;
   padding: 12px 0px;
   text-decoration: none;
-  border-right: 1px solid forestgreen;
+  border-right: 1px solid rgb(230, 195, 0);
   box-sizing: border-box;
 }
 
@@ -117,16 +117,16 @@
 .left-nav {
     margin-left: 75px;
     display: flex;
-    border-left: 1px solid forestgreen;
+    border-left: 1px solid rgb(230, 195, 0);
 }
 
 li a:hover {
-    color: yellowgreen;
+    color: orange;
 }
 
 li a:active {
-  background-color: forestgreen;
-  color: yellowgreen;
+  background-color: lemonchiffon;
+  color: orange;
 }
 
 
@@ -187,7 +187,7 @@ input.search-bar[type="text"], select {
     padding-right: 6px;
     text-align: center;
     font-size: 12px;
-    color: forestgreen;
+    color: rgb(230, 195, 0);
     background: lemonchiffon;
 }
 
@@ -211,7 +211,6 @@ input.search-bar[type="text"], select {
     padding-right: 4px;
     text-align: center;
     font-size: 12px;
-    color: forestgreen;
     background: lemonchiffon;
 }
 
@@ -241,7 +240,6 @@ input.search-bar[type="text"], select {
     padding-right: 4px;
     text-align: center;
     font-size: 12px;
-    color: forestgreen;
     background: lemonchiffon;
 }
 
@@ -266,7 +264,6 @@ input.search-bar[type="text"], select {
     white-space: nowrap;
     padding-right: 6px;
     font-size: 12px;
-    color: forestgreen;
     background: lemonchiffon;
 
 }
