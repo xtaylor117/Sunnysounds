@@ -18,6 +18,10 @@
     overflow: scroll;
 }
 
+#root::-webkit-scrollbar {
+  display: none;
+}
+
 body {
     background: gainsboro;
 }

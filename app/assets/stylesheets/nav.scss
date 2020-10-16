@@ -1,3 +1,7 @@
+.nav-bar {
+    position: fixed;
+}
+
 .nav-links {
     display: flex;
     justify-content: space-between;
@@ -53,11 +57,6 @@
     text-decoration: none;
 }
 
-.right-nav li {
-    text-align: center;
-    padding-right: 5px;
-}
-
 .right-nav li p:hover {
     color: yellowgreen;
 }
@@ -99,7 +98,7 @@
 }
 
 .right-nav li p {
-    padding-left: 6px
+    padding-left: 6px;
 }
 
 .left-nav a {
@@ -171,3 +170,138 @@ input.search-bar[type="text"], select {
 .right-nav li:nth-child(2)::-webkit-scrollbar {
   display: none;
 }
+
+
+.right-nav li {
+    text-align: center;
+    padding-right: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown {
+    display: none;
+    z-index: 15;
+    position: absolute;
+    width: 100px;
+    white-space: nowrap;
+    padding-right: 4px;
+    text-align: center;
+    font-size: 12px;
+    color: forestgreen;
+    background: lemonchiffon;
+}
+
+.user-dropdown p {
+    color: salmon;
+    width: 100%;
+}
+
+.user-dropdown p:hover {
+    background: rgb(242, 237, 194);
+}
+
+.notifications-dropdown {
+    display: none;
+    z-index: 15;
+    position: absolute;
+    width: 300px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    padding-right: 4px;
+    text-align: center;
+    font-size: 12px;
+    color: forestgreen;
+    background: lemonchiffon;
+}
+
+.notifications-dropdown p {
+    color: salmon;
+    width: 100%;
+}
+
+.notifications-dropdown p:hover {
+    background: rgb(242, 237, 194);
+}
+
+.notifications-dropdown::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.messages-dropdown {
+    display: none;
+    z-index: 15;
+    position: absolute;
+    width: 200px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    padding-right: 4px;
+    text-align: center;
+    font-size: 12px;
+    color: forestgreen;
+    background: lemonchiffon;
+}
+
+.messages-dropdown p {
+    color: salmon;
+    width: 100%;
+}
+
+.messages-dropdown p:hover {
+    background: rgb(242, 237, 194);
+}
+
+.messages-dropdown::-webkit-scrollbar {
+  display: none;  
+}
+
+.settings-dropdown {
+    display: none;
+    z-index: 15;
+    position: absolute;
+    width: 75px;
+    white-space: nowrap;
+    // overflow-x: scroll;
+    // text-overflow: ellipsis;
+    padding-right: 6px;
+    font-size: 12px;
+    color: forestgreen;
+    background: lemonchiffon;
+
+}
+
+.settings-dropdown p {
+    color: salmon;
+    width: 100%;
+}
+
+
+.settings-dropdown p:hover {
+    background: rgb(242, 237, 194);
+}
+
+.right-nav li:hover .user-dropdown {
+    display: block;
+}
+
+.right-nav li:hover .notifications-dropdown {
+    display: block;
+    right: 0;
+}
+
+.right-nav li:hover .messages-dropdown {
+    display: block;
+    right: 0;
+}
+
+.right-nav li:hover .settings-dropdown {
+    display: block;
+    right: 0;
+}
+
+
+

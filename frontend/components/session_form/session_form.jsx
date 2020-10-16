@@ -26,6 +26,7 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        e.stopPropagation();
         const user = Object.assign({}, this.state);
         this.props.processForm(user)
             .then(this.props.closeModal)
@@ -47,28 +48,24 @@ class SessionForm extends React.Component {
     showButtons() {
         if (this.props.formType === 'login') {
             return (
-                <>
+                <div className='show-buttons'>  
                     {this.props.otherForm}
-                    <div className="login-form">
-                        <button className="demo-button" onClick={this.loginDemo}>
-                            Demo a User!
-                        </button>
-                        <div className="auth-separator">
-                            <div>or</div>
-                        </div>
+                    <button className="demo-button" onClick={this.loginDemo}>
+                        Demo a User!
+                    </button>
+                    <div className="auth-separator">
+                        <div>or</div>
                     </div>
-                </>
+                </div>
             )
         } else {
             return (
-                <>
-                    <div className="login-form">
-                        {this.props.otherForm}
-                        <div className="auth-separator">
-                            <div>or</div>
-                        </div>
+                <div className='show-buttons'>
+                    {this.props.otherForm}
+                    <div className="auth-separator">
+                        <div>or</div>
                     </div>
-                </>
+                </div>
                 
             )
         }
@@ -92,42 +89,44 @@ class SessionForm extends React.Component {
 
     render() {
         return ( 
-            <div className="login-form-container">
-                <form onSubmit={this.handleSubmit} className="login-form-box">
-            <br />
-                    <div className="login-form">
-                        {this.showButtons()}
-                        <br />
-                        <label>
-                            <input autoFocus type="text"
-                                value={this.state.username}
-                                onChange={this.update('username')}
-                                className={this.props.errors.length ? "errors" : "login-input"}
-                                placeholder="Enter Username"
-                                // onKeyDown={this.handleKeyDown}
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            <input type="password"
-                                value={this.state.password}
-                                onChange={this.update('password')}
-                                className={this.props.errors.length ? "errors" : "login-input"}
-                                placeholder="Enter Password"
-                                // onKeyDown={this.handleKeyDown}
-                            />
-                        </label>
-                        <div className='login-errors'>
-                            {this.renderErrors()}
+            <>
+                <div className="login-form-container">
+                    {this.showButtons()}
+                    <form onSubmit={this.handleSubmit} className="login-form-box">
+                <br />
+                        <div className="login-form">
+                            <br />
+                            <label>
+                                <input autoFocus type="text"
+                                    value={this.state.username}
+                                    onChange={this.update('username')}
+                                    className={this.props.errors.length ? "errors" : "login-input"}
+                                    placeholder="Enter Username"
+                                    // onKeyDown={this.handleKeyDown}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                <input type="password"
+                                    value={this.state.password}
+                                    onChange={this.update('password')}
+                                    className={this.props.errors.length ? "errors" : "login-input"}
+                                    placeholder="Enter Password"
+                                    // onKeyDown={this.handleKeyDown}
+                                />
+                            </label>
+                            <div className='login-errors'>
+                                {this.renderErrors()}
+                            </div>
+                            <br />
+                            <input className="session-submit" type="submit" value={this.props.formType} />
+                            <div className='privacy-policy'>
+                                <p>We may use your email and devices for updates and tips on SunnySounds' products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings. We may use information you provide us in order to show you targeted ads as described in our Privacy Policy.</p>
+                            </div>
                         </div>
-                        <br />
-                        <input className="session-submit" type="submit" value={this.props.formType} />
-                        <div className='privacy-policy'>
-                            <p>We may use your email and devices for updates and tips on SunnySounds' products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings. We may use information you provide us in order to show you targeted ads as described in our Privacy Policy.</p>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            </>
         );
     }
 }

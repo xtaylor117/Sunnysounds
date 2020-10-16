@@ -25,6 +25,7 @@ body {
 .splash-header-top {
     display: inline-flex;
     justify-content: space-between;
+    width: 100vw;
 }
 
 .splash-header a {
@@ -34,7 +35,6 @@ body {
     color: white;
     font: 100 20px/1.5 Lucida Grande;
 }
-
 
 .splash-header-description {
     position: relative;
