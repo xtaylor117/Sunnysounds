@@ -13,9 +13,9 @@ class Splash extends React.Component {
                     <div className="splash-header-top">
                         <Link to='/'> Sunnysounds </Link>
                         <div className="splash-header-description">
-                            <h1>Discover more with SunnySounds!</h1>
+                            <h1>Discover more with Sunnysounds!</h1>
                             <h2>
-                                SunnySounds brightens up your day no matter what time it is.
+                                Sunnysounds brightens up your day no matter what time it is.
                                 Upload, discover, and share music to your heart's content!
                             </h2>
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { signup } from '../../actions/session_actions'
+import { signup, clearSessionErrors } from '../../actions/session_actions'
 import SessionForm from './session_form'
 import { Link } from 'react-router-dom'
 import { openModal, closeModal } from '../../actions/modal_actions'
@@ -21,6 +21,7 @@ const mDTP = dispatch => {
             </button>
         ),
         closeModal: () => dispatch(closeModal()), 
+        clearSessionErrors: () => dispatch(clearSessionErrors())
     };
 };
 

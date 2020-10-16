@@ -32,7 +32,7 @@ body {
     margin-left: 30px;
     margin-top: 15px;
     text-decoration: none;
-    color: white;
+    color: gold;
     font: 100 20px/1.5 Overpass;
 }
 
@@ -47,12 +47,13 @@ body {
     font-size: 32px;
     font-family: Overpass;
     font-weight: 100;
-    color: white;
+    color: gold;
 }
 
 .splash-header-description h2 {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-family: Overpass;
     font-weight: 100;
     color: white;
@@ -97,10 +98,3 @@ body {
     font-weight: 100;
     color: white;
 }
-
-// .splash-header .splash-header-description {
-//     position: relative;
-//     font-family: Overpass;
-//     font-weight: 100;
-//     color: white;
-// }

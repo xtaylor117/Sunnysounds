@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { clearSessionErrors, login } from '../../actions/session_actions'
+import { login } from '../../actions/session_actions'
 import { closeModal } from '../../actions/modal_actions'
 
 class SessionForm extends React.Component {
@@ -20,6 +20,10 @@ class SessionForm extends React.Component {
         return e => this.setState({
             [field]: e.currentTarget.value
         });
+    }
+
+    componentWillUnmount() {
+        this.props.clearSessionErrors();
     }
 
 

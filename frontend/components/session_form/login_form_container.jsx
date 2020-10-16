@@ -22,7 +22,7 @@ const mDTP = dispatch => {
             </button>
         ),
         closeModal: () => dispatch(closeModal()),
-        clearSessionErrors: (errors) => dispatch(clearSessionErrors(errors))
+        clearSessionErrors: () => dispatch(clearSessionErrors())
     };
 };
 

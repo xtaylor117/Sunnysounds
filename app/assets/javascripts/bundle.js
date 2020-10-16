@@ -191,9 +191,9 @@ var logout = function logout() {
     });
   };
 };
-var clearSessionErrors = function clearSessionErrors(errors) {
+var clearSessionErrors = function clearSessionErrors() {
   return function (dispatch) {
-    return dispatch(clearErrors(errors));
+    return dispatch(clearErrors());
   };
 };
 
@@ -558,8 +558,8 @@ var mDTP = function mDTP(dispatch) {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     },
-    clearSessionErrors: function clearSessionErrors(errors) {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])(errors));
+    clearSessionErrors: function clearSessionErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])());
     }
   };
 };
@@ -640,6 +640,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearSessionErrors();
     }
   }, {
     key: "handleSubmit",
@@ -773,6 +778,9 @@ var mDTP = function mDTP(dispatch) {
     }, "Login!"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
+    },
+    clearSessionErrors: function clearSessionErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])());
     }
   };
 };
@@ -844,7 +852,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, " Sunnysounds "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-header-description"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Discover more with SunnySounds!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "SunnySounds brightens up your day no matter what time it is. Upload, discover, and share music to your heart's content!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Discover more with Sunnysounds!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sunnysounds brightens up your day no matter what time it is. Upload, discover, and share music to your heart's content!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-signup"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
