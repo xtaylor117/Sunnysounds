@@ -641,7 +641,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.processForm(user).then(this.props.closeModal).then(this.props.history.push('/discovery'));
+      this.props.processForm(user).then(this.props.closeModal);
     }
   }, {
     key: "renderErrors",
