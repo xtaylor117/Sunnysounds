@@ -299,6 +299,8 @@ input.search-bar[type="text"], select {
 
 .right-nav li:hover .user-dropdown {
     display: block;
+    left: 0;
+    transform: translateX(-22.5%)
 }
 
 .right-nav li:hover .notifications-dropdown {
