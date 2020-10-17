@@ -26,7 +26,7 @@ class Api::SongsController < ApplicationController
     end
 
     def update
-        @song = Song.where(artist_id: params[:artist_id]).where(id: params[:id])
+        @song = Song.where(artist_id: params[:artist_id]).find_by(id: params[:id])
 
         if @song.update(song_params)
             render :show
@@ -37,7 +37,7 @@ class Api::SongsController < ApplicationController
     end
 
     def destroy
-        @song = Song.where(artist_id: params[:artist_id]).where(id: params[:id])
+        @song = Song.where(artist_id: params[:artist_id]).find_by(id: params[:id])
         @song.destroy
         render :index
     end

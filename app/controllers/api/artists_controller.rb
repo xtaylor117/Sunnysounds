@@ -4,14 +4,15 @@ class Api::ArtistsController < ApplicationController
 
         if @artist.save
             login!(@artist)
-            redirect_to api_artist_url(@artist)
+            render :show
         else
             render json: @artist.errors.full_messages, status: 422
         end
     end
 
     def show
-        @artist = Artist.find(params[:id]).includes(:songs)
+        @artist = Artist.find(params[:id])
+        #.includes(:songs)
         
         if @artist
             render :show
