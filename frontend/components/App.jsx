@@ -1,7 +1,8 @@
 import React from 'react'
+import Modal from './modal'
 import NavContainer from './nav/nav_container'
 import SplashContainer from './splash/splash_container'
-import Modal from './modal'
+import SongIndexContainer from './search/song_index_container'
 import LoginFormContainer from './session_form/login_form_container'
 import SignupFormContainer from './session_form/signup_form_container'
 import { Switch, Redirect } from 'react-router-dom'
@@ -12,10 +13,11 @@ const App = () => (
     <div>
         <Modal />
         <header>
+            <ProtectedRoute exact path='/discovery' component={NavContainer} />
         </header>
 
         <Switch>
-            <ProtectedRoute exact path='/discovery' component={NavContainer} />
+            <ProtectedRoute exact path='/discovery' component={SongIndexContainer} />
             <AuthRoute path='/' component={SplashContainer} />
             <Redirect to='/' />
         </Switch>
