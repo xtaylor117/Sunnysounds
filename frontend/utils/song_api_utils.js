@@ -9,12 +9,12 @@ export const fetchSong = (songId) => {
     return $.ajax({
         url: `/api/songs/${songId}`,
         method: 'GET'
-    })
+    }) 
 }
 
-export const createSong = (artistId, song) => {
+export const createSong = (song) => {
     return $.ajax({
-        url: `/api/artists/${artistId}/songs`,
+        url: '/api/songs',
         method: 'POST',
         data: {
             song: song,
@@ -30,7 +30,7 @@ export const deleteSong = (songId) => {
 }
 
 export const updateSong = (song) => {
-    retirm $.ajax({
+    return $.ajax({
         url: `/api/songs/${song.id}`,
         method: 'PATCH',
         data: {

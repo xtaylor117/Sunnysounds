@@ -7,62 +7,67 @@ export const DELETE_SONG = "DELETE_SONG"
 export const RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS"
 export const CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS"
 
-const receiveAllSongs = songs => ({
+const fetchAllSongs = (songs) => ({
     type: RECEIVE_ALL_SONGS,
     songs
 })
 
-const receiveSong = song => ({
+const fetchSong = (song) => ({
     type: RECEIVE_SONG,
     song
 })
 
-const deleteSong = song => ({
+const removeSong = (song) => ({
     type: DELETE_SONG,
     song
 })
 
-const receiveSongErrors = errors => ({
+const receiveSongErrors = (errors) => ({
     type: RECEIVE_SONG_ERRORS,
     errors
 })
 
-const clearSongErrors = errors => ({
+const removeSongErrors = (errors) => ({
     type: CLEAR_SONG_ERRORS,
     errors
 })
 
-export const createSong = (artistId, song) => {
-    return songUtil.createSong(artistId, song)
+export const receiveAllSongs = (artistId) => dispatch => {
+    return songUtil.fetchAllSongs(artistId)
+        .then(
+            songs => (dispatch(fetchAllSongs(songs)))
+        )
+}
+
+export const receiveSong = (songId) => dispatch => {
+    return songUtil.fetchSong(songId)
+        .then(
+            song => (dispatch(fetchSong(song)))
+        )
+}
+
+export const createSong = (song) => dispatch => {
+    return songUtil.createSong(song)
         .then( 
-            createdSong => (dispatch(receiveSong(createdSong))),
+            createdSong => (dispatch(fetchSong(createdSong))),
             err => (dispatch(receiveSongErrors(err.responseJSON)))
         )
 }
 
-export const editSong = song => {
+export const editSong = (song) => dispatch => {
     return songUtil.updateSong(song)
         .then( 
-            editedSong => (dispatch(receiveSong(editedSong))),
+            editedSong => (dispatch(fetchSong(editedSong))),
             err => (dispatch(receiveSongErrors(err.responseJSON)))
         )
 }
 
-export const deleteSong = songId => {
-    return songUtil.updateSong(songId)
-        .then( song => dispatch(deleteSong(song)))
+export const deleteSong = (songId) => dispatch => {
+    return songUtil.deleteSong(songId)
+        .then( song => dispatch(removeSong(song)))
 }
 
-export const receiveAllSongs = artistId => {
-    return songUtil.fetchAllSongs(artistId)
-        .then( songs => dispatch(receiveAllSongs(songs)))
-}
-
-export const receiveSong = songId => {
-    return songUtil.fetchSong(songId)
-        .then( song => dispatch(receiveSong(song)))
-}
 
 export const clearSongErrors = () => dispatch => {
-    return dispatch(clearSongErrors())
+    return dispatch(removeSongErrors())
 }
