@@ -253,7 +253,8 @@ var receiveSongErrors = function receiveSongErrors(errors) {
     type: RECEIVE_SONG_ERRORS,
     errors: errors
   };
-};
+}; // 
+
 
 var removeSongErrors = function removeSongErrors(errors) {
   return {
@@ -688,7 +689,9 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Songs: "), this.props.songs.map(function (song) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "discovery-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Songs: "), this.props.songs.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           song: song,
           key: song.id

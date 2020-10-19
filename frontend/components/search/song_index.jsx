@@ -12,7 +12,7 @@ class SongIndex extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className='discovery-container'>
                 <h1>Songs: </h1>
                 {this.props.songs.map(song => (
                     <SongIndexItem
