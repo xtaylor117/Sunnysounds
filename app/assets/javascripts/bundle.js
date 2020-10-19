@@ -199,6 +199,17 @@ var clearSessionErrors = function clearSessionErrors() {
 
 /***/ }),
 
+/***/ "./frontend/actions/song_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/song_actions.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/TLEE/Desktop/APP ACADEMY/Fullstack/frontend/actions/song_actions.js: Identifier 'deleteSong' has already been declared (51:13)\n\n\u001b[0m \u001b[90m 49 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 50 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 51 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m deleteSong \u001b[33m=\u001b[39m songId \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 52 | \u001b[39m    \u001b[36mreturn\u001b[39m songUtil\u001b[33m.\u001b[39mupdateSong(songId)\u001b[0m\n\u001b[0m \u001b[90m 53 | \u001b[39m        \u001b[33m.\u001b[39mthen( song \u001b[33m=>\u001b[39m dispatch(deleteSong(song)))\u001b[0m\n\u001b[0m \u001b[90m 54 | \u001b[39m}\u001b[0m\n    at Object._raise (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:766:17)\n    at Object.raiseWithData (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:759:17)\n    at Object.raise (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:753:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:4873:12)\n    at ScopeHandler.declareName (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:4839:12)\n    at Object.checkLVal (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:9422:22)\n    at Object.parseVarId (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:12119:10)\n    at Object.parseVar (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:12094:12)\n    at Object.parseVarStatement (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11906:10)\n    at Object.parseStatementContent (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11498:21)\n    at Object.parseStatement (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11431:17)\n    at Object.parseExportDeclaration (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:12627:17)\n    at Object.maybeParseExportDeclaration (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:12583:31)\n    at Object.parseExport (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:12521:29)\n    at Object.parseStatementContent (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11537:27)\n    at Object.parseStatement (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11431:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:12013:25)\n    at Object.parseBlockBody (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11999:10)\n    at Object.parseTopLevel (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:11362:10)\n    at Object.parse (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:13045:10)\n    at parse (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/parser/lib/index.js:13098:38)\n    at parser (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/core/lib/transformation/normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/@babel/core/lib/transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (/Users/TLEE/Desktop/APP ACADEMY/Fullstack/node_modules/gensync/index.js:254:32)");
+
+/***/ }),
+
 /***/ "./frontend/components/App.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/App.jsx ***!
@@ -942,7 +953,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_actions_song_actions__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -966,7 +978,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }), rootEl);
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
+  window.createSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__["createSong"];
+  window.editSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__["editSong"];
+  window.deleteSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__["deleteSong"];
+  window.receiveAllSongs = _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__["receiveAllSongs"];
+  window.receiveSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__["receiveSong"];
 });
 
 /***/ }),

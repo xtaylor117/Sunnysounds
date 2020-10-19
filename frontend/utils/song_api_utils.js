@@ -5,6 +5,13 @@ export const fetchAllSongs = (artistId) => {
     })
 }
 
+export const fetchSong = (songId) => {
+    return $.ajax({
+        url: `/api/songs/${songId}`,
+        method: 'GET'
+    })
+}
+
 export const createSong = (artistId, song) => {
     return $.ajax({
         url: `/api/artists/${artistId}/songs`,
