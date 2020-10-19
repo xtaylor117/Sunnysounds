@@ -1,7 +1,7 @@
 class Api::SongsController < ApplicationController
 
     def index 
-        @songs = Song.where(artist_id: params[:artist_id])
+        @songs = Song.all
         render :index
     end
 

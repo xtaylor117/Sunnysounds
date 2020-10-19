@@ -32,11 +32,11 @@ const removeSongErrors = (errors) => ({
     errors
 })
 
-export const receiveAllSongs = (artistId) => dispatch => {
-    return songUtil.fetchAllSongs(artistId)
+export const receiveAllSongs = () => dispatch => {
+    return songUtil.fetchAllSongs()
         .then(
             songs => (dispatch(fetchAllSongs(songs)))
-        )
+        ) 
 }
 
 export const receiveSong = (songId) => dispatch => {

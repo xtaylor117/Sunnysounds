@@ -2,7 +2,12 @@
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
     height: 100vh;
-    background: rgb(255, 252, 220);
+    background: white;
     border: 1px;
     border-style: ridge;
+    overflow: auto;
+}
+
+.discovery-container::-webkit-scrollbar {
+  display: none;
 }

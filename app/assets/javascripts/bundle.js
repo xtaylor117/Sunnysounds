@@ -263,9 +263,9 @@ var removeSongErrors = function removeSongErrors(errors) {
   };
 };
 
-var receiveAllSongs = function receiveAllSongs(artistId) {
+var receiveAllSongs = function receiveAllSongs() {
   return function (dispatch) {
-    return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["fetchAllSongs"](artistId).then(function (songs) {
+    return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["fetchAllSongs"]().then(function (songs) {
       return dispatch(fetchAllSongs(songs));
     });
   };
@@ -684,7 +684,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(SongIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.receiveAllSongs(this.props.currentUser.id);
+      this.props.receiveAllSongs();
     }
   }, {
     key: "render",
@@ -1735,9 +1735,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSong", function() { return deleteSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSong", function() { return updateSong; });
-var fetchAllSongs = function fetchAllSongs(artistId) {
+var fetchAllSongs = function fetchAllSongs() {
   return $.ajax({
-    url: "/api/artists/".concat(artistId, "/songs"),
+    url: '/api/songs',
     method: 'GET'
   });
 };

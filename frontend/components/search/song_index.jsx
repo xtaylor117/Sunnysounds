@@ -7,7 +7,7 @@ class SongIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.receiveAllSongs(this.props.currentUser.id);
+        this.props.receiveAllSongs();
     }
 
     render() {
