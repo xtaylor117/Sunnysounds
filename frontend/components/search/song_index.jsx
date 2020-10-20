@@ -12,6 +12,9 @@ class SongIndex extends React.Component {
 
     render() {
 
+        const currentUser = this.props.currentUser
+        const openModal = () => this.props.openModal
+
         return(
             <div className='discovery-container'>
                 {/* <h1>Search Results: </h1> */}
@@ -20,6 +23,8 @@ class SongIndex extends React.Component {
                         <SongIndexItem
                             song={song}
                             key={song.id}
+                            currentUser={currentUser}
+                            openModal={openModal}
                         />
                     ))}
                 </div>

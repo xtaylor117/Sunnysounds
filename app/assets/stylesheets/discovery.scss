@@ -17,7 +17,8 @@
 .discovery-left {
     margin-left: 25px;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
+    flex-direction: column-reverse;
     width: 70%;
 }
 
@@ -35,7 +36,9 @@
 .discovery-sidebar {
     display: flex;
     flex-direction: column;
+    // position: fixed;
     width: 30%;
+    height: 100vh;
     border-left: 1px;
     border-style: ridge;
     padding: 15px 15px 15px 15px;
@@ -49,7 +52,7 @@
 }
 
 .discovery-sidebar h3 {
-    color: Gold;
+    color: orange;
     margin-top: 15px;
     padding-bottom: 5px;
     border-bottom: 1px;
@@ -64,7 +67,7 @@
 
 .affiliate-links li a {
     text-decoration: none;
-    color: orange;
+    color: salmon;
 }
 
 

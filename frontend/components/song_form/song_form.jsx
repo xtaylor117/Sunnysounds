@@ -8,11 +8,14 @@ class SongForm extends React.Component {
             title: '',
             genre: '',
             artist_id: this.props.currentUser.id,
-            audio_url: ''
+            audioUrl: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFile = this.handleFile.bind(this);
     }
+
+    
 
     update(field) {
         return e => this.setState({
@@ -23,12 +26,34 @@ class SongForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
-        const song = Object.assign({}, this.state);
-        this.props.processForm(song)
+        
+        const formData = new FormData();
+        formData.append('song[title]', this.state.title);
+        formData.append('song[genre]', this.state.genre);
+        formData.append('song[artist_id]', this.state.artist_id);
+        if (this.state.audioFile) {
+            formData.append('song[audiofile]', this.state.audioFile);
+        }
+        
+        this.props.processForm(formData)
             .then(this.props.closeModal)
     }
 
-    renderErrors() {
+    handleFile(e) {
+        e.stopPropagation();
+        const reader = new FileReader();
+        const file = e.currentTarget.files[0];
+        reader.onloadend = () =>
+            this.setState({audioUrl: reader.result, audioFile: file });
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            this.setState({audioUrl: "", audioFile: null });
+        }
+    }
+
+    renderErrors() {            
         return (
             <ul>
                 {this.props.errors.map((error, i) => (
@@ -41,6 +66,7 @@ class SongForm extends React.Component {
     }
 
     render(){
+        
         return(
             <>
                 <div className="login-form-container">
@@ -49,7 +75,7 @@ class SongForm extends React.Component {
                         <div className="login-form">
                             <br />
                             <label>
-                                <input type="file"/>
+                                <input onChange={this.handleFile} type="file"/>
                             </label>
                             <br />
                             <label>

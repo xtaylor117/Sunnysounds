@@ -5,6 +5,12 @@ class Song < ApplicationRecord
     foreign_key: :artist_id,
     class_name: :Artist
     
-    has_one_attached :audio_url
+    has_one_attached :audiofile
+    has_one_attached :photo
 
+    def ensure_audiofile
+        unless self.audiofile.attached?
+        errors[:audiofile] << "must be attached"
+        end
+    end
 end

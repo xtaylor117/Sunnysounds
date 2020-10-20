@@ -84,16 +84,17 @@
     padding-left: 4px;
     height: 46px;
     background: transparent;
-    color: white;
+    color: orange;
     border: none;
+    font-size: 14px;
 }
 
 .right-nav li button:focus {
-    color: orange;
+    color: white;
 }
 
 .right-nav li button:hover {
-    color: orange;
+    color: white;
 }
 
 .right-nav li:active {

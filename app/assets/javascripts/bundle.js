@@ -458,6 +458,12 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      var currentUser = this.props.currentUser;
+
+      var openModal = function openModal() {
+        return _this.props.openModal;
+      };
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -467,7 +473,9 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       }).map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           song: song,
-          key: song.id
+          key: song.id,
+          currentUser: currentUser,
+          openModal: openModal
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -511,10 +519,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  var currentUser = state.session.currentUser;
   var artistId = parseInt(ownProps.match.params.artistId);
   var artist = Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["selectArtist"])(state.entities, artistId);
   var songs = Object.values(state.entities.songs);
   return {
+    currentUser: currentUser,
     songs: songs,
     artistId: artistId,
     artist: artist
@@ -553,6 +563,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
 /* harmony import */ var _components_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.jsx");
 /* harmony import */ var _components_song_form_create_song_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/song_form/create_song_form_container */ "./frontend/components/song_form/create_song_form_container.jsx");
+/* harmony import */ var _components_song_form_edit_song_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/song_form/edit_song_form_container */ "./frontend/components/song_form/edit_song_form_container.jsx");
+
 
 
 
@@ -583,6 +595,10 @@ function Modal(_ref) {
 
     case 'create':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_song_form_create_song_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+      break;
+
+    case 'edit':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_song_form_edit_song_form_container__WEBPACK_IMPORTED_MODULE_7__["default"], null);
       break;
 
     default:
@@ -879,6 +895,14 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
+      var currentUser = this.props.currentUser;
+
+      var openModal = function openModal() {
+        return _this.props.openModal;
+      };
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -886,7 +910,9 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
       }, this.props.songs.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           song: song,
-          key: song.id
+          key: song.id,
+          currentUser: currentUser,
+          openModal: openModal
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -925,7 +951,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _song_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./song_index */ "./frontend/components/search/song_index.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _song_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./song_index */ "./frontend/components/search/song_index.jsx");
+
 
 
 
@@ -943,11 +971,14 @@ var mDTP = function mDTP(dispatch) {
   return {
     receiveAllSongs: function receiveAllSongs(artistId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllSongs"])(artistId));
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_song_index__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_song_index__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -994,12 +1025,33 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(SongIndexItem);
 
   function SongIndexItem(props) {
+    var _this;
+
     _classCallCheck(this, SongIndexItem);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(SongIndexItem, [{
+    key: "settingsAuth",
+    value: function settingsAuth() {
+      var _this2 = this;
+
+      if (this.props.currentUser.id === this.props.song.artist_id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "song-edit-button"
+        }, "\u2022\u2022\u2022", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "song-dropdown"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.props.openModal('edit');
+          }
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Delete")));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props$song = this.props.song,
@@ -1016,7 +1068,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         to: "/artists/".concat(artist_id)
       }, "Artist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-genre"
-      }, "Genre: ", genre)));
+      }, "Genre: ", genre)), this.settingsAuth());
     }
   }]);
 
@@ -1345,6 +1397,53 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/song_form/edit_song_form_container.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/song_form/edit_song_form_container.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _song_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./song_form */ "./frontend/components/song_form/song_form.jsx");
+
+
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  return {
+    currentUser: state.session.currentUser,
+    errors: state.errors.session,
+    formType: 'edit'
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    processForm: function processForm(song) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_3__["editSong"])(song));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
+    },
+    clearSongErrors: function clearSongErrors() {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_3__["clearSongErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_song_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/song_form/song_form.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/song_form/song_form.jsx ***!
@@ -1399,9 +1498,10 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       title: '',
       genre: '',
       artist_id: _this.props.currentUser.id,
-      audio_url: ''
+      audioUrl: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1419,8 +1519,41 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       e.stopPropagation();
-      var song = Object.assign({}, this.state);
-      this.props.processForm(song).then(this.props.closeModal);
+      var formData = new FormData();
+      formData.append('song[title]', this.state.title);
+      formData.append('song[genre]', this.state.genre);
+      formData.append('song[artist_id]', this.state.artist_id);
+
+      if (this.state.audioFile) {
+        formData.append('song[audiofile]', this.state.audioFile);
+      }
+
+      this.props.processForm(formData).then(this.props.closeModal);
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this3 = this;
+
+      e.stopPropagation();
+      var reader = new FileReader();
+      var file = e.currentTarget.files[0];
+
+      reader.onloadend = function () {
+        return _this3.setState({
+          audioUrl: reader.result,
+          audioFile: file
+        });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({
+          audioUrl: "",
+          audioFile: null
+        });
+      }
     }
   }, {
     key: "renderErrors",
@@ -1442,6 +1575,7 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleFile,
         type: "file"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         autoFocus: true,
@@ -2137,9 +2271,9 @@ var createSong = function createSong(song) {
   return $.ajax({
     url: '/api/songs',
     method: 'POST',
-    data: {
-      song: song
-    }
+    contentType: false,
+    processData: false,
+    data: song
   });
 };
 var deleteSong = function deleteSong(songId) {

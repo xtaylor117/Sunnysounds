@@ -4,11 +4,13 @@ import { receiveArtist } from '../../actions/session_actions'
 import ArtistShow from './artist_show'
 
 const mSTP = (state, ownProps) => {
+    const currentUser = state.session.currentUser;
     const artistId = parseInt(ownProps.match.params.artistId);
     const artist = selectArtist(state.entities, artistId);
     const songs = Object.values(state.entities.songs)
 
     return {
+        currentUser,
         songs,
         artistId,
         artist

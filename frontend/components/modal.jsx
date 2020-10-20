@@ -5,6 +5,7 @@ import { clearSessionErrors } from '../actions/session_actions'
 import LoginFormContainer from '../components/session_form/login_form_container';
 import SignupFormContainer from '../components/session_form/signup_form_container';
 import CreateSongFormContainer from '../components/song_form/create_song_form_container'
+import EditSongFormContainer from '../components/song_form/edit_song_form_container'
 
 function Modal({ modal, closeModal, clearSessionErrors }) {
     if (!modal) {
@@ -21,6 +22,9 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
             break;
         case 'create':
             component = <CreateSongFormContainer />;
+            break;
+        case 'edit':
+            component = <EditSongFormContainer />;
             break;
         default:
             return null;

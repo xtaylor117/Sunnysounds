@@ -16,7 +16,8 @@
 .profile-left {
   margin-left: 25px;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
   width: 70%;
 }
 
@@ -42,14 +43,15 @@
   color: #4CAF50;
 }
 
-// .profile-sidebar {
-//     display: flex;
-//     flex-direction: column;
-//     width: 30%;
-//     border-left: 1px;
-//     border-style: ridge;
-//     padding: 15px 15px 15px 15px;
-//     margin: 0px 15px 0px 15px;
-//     font-family: Overpass;
-//     align-items: left;
-// }
+.song-edit-button {
+  display: inline-block;
+}
+
+.song-dropdown {
+  position: absolute;
+  display: none;
+}
+
+.song-edit-button:hover .song-dropdown {
+  display: block;
+}

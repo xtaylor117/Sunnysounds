@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { receiveAllSongs } from '../../actions/song_actions'
 import { receiveArtist } from '../../actions/session_actions'
+import { openModal } from '../../actions/modal_actions'
 import SongIndex from './song_index'
 
 const mSTP = (state, ownProps) => {
@@ -13,7 +14,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = dispatch => {
     return({
-        receiveAllSongs: artistId => dispatch(receiveAllSongs(artistId))
+        receiveAllSongs: artistId => dispatch(receiveAllSongs(artistId)),
+        openModal: (modal) => dispatch(openModal(modal))
     })
 }
 
