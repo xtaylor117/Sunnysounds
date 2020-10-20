@@ -11,6 +11,7 @@ class SongIndex extends React.Component {
     }
 
     render() {
+
         return(
             <div className='discovery-container'>
                 {/* <h1>Search Results: </h1> */}

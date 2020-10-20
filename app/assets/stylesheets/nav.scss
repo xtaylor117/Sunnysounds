@@ -80,15 +80,32 @@
     color: orange;
 }
 
-.right-nav li a {
+.right-nav li button {
     padding-left: 4px;
     height: 46px;
+    background: transparent;
+    color: white;
+    border: none;
+}
+
+.right-nav li button:focus {
+    color: orange;
+}
+
+.right-nav li button:hover {
+    color: orange;
 }
 
 .right-nav li:active {
     background: lemonchiffon;
     color:#e8d880;
 }
+
+.right-nav li a {
+    padding-left: 4px;
+    height: 46px;
+}
+
 .right-nav li a:active {
     color: orange;
 }
@@ -96,6 +113,8 @@
 .right-nav li a:hover {
     color: orange;
 }
+
+
 
 .right-nav li p {
     padding-left: 6px;   
@@ -259,8 +278,6 @@ input.search-bar[type="text"], select {
 .notifications-dropdown::-webkit-scrollbar {
   display: none;
 }
-
-
 
 .messages-dropdown {
     display: none;

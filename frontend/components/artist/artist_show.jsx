@@ -14,7 +14,6 @@ class ArtistShow extends React.Component {
     }
 
     render() {
-        // debugger
         return(
             <div className="profile-container">
                 <div className="profile-left">
