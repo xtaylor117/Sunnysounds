@@ -30,7 +30,7 @@ class Splash extends React.Component {
                     </div>
                 </div>
                 <div className="splash-container">
-                        
+                        SPLASH!
                 </div>
             </>)
         );

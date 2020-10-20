@@ -135,8 +135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearSessionErrors", function() { return clearSessionErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveArtist", function() { return receiveArtist; });
 /* harmony import */ var _utils_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/session_api_util */ "./frontend/utils/session_api_util.js");
-/* harmony import */ var _song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./song_actions */ "./frontend/actions/song_actions.js");
-
 
 var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
@@ -153,7 +151,7 @@ var receiveCurrentUser = function receiveCurrentUser(currentUser) {
 
 var fetchArtist = function fetchArtist(user) {
   return {
-    type: _song_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SONG"],
+    type: RECEIVE_USER,
     user: user
   };
 };
@@ -377,11 +375,11 @@ var App = function App() {
     component: _nav_nav_container__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     exact: true,
-    path: "/artists/:id",
+    path: "/artists/:artistid",
     component: _nav_nav_container__WEBPACK_IMPORTED_MODULE_2__["default"]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     exact: true,
-    path: "/artists/:id",
+    path: "/artists/:artistid",
     component: _artist_artist_show_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     exact: true,
@@ -445,7 +443,10 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ArtistShow);
 
     return _super.call(this, props);
-  }
+  } // componentDidMount() {
+  //     this.props.recieveArtist(this.props.artistId)
+  // }
+
 
   _createClass(ArtistShow, [{
     key: "render",
@@ -483,6 +484,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, _ref) {
   var match = _ref.match;
+  debugger;
   var artistId = parseInt(match.params.artistId);
   var artist = Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["selectArtist"])(state.entities, artistId);
   return {
@@ -1336,7 +1338,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         }
       }, "Signup"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-container"
-      }));
+      }, "SPLASH!"));
     }
   }]);
 

@@ -4,9 +4,10 @@ import { receiveArtist } from '../../actions/session_actions'
 import ArtistShow from './artist_show'
 
 const mSTP = (state, { match }) => {
+    debugger
     const artistId = parseInt(match.params.artistId);
     const artist = selectArtist(state.entities, artistId);
- 
+
     return {
         artistId,
         artist

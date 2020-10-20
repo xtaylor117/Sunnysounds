@@ -8,3 +8,7 @@
     border-style: ridge;
     overflow: auto;
 }
+
+.profile-container::-webkit-scrollbar {
+  display: none;
+}

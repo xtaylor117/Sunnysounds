@@ -7,6 +7,10 @@ class ArtistShow extends React.Component {
         super(props);
     }
 
+    // componentDidMount() {
+    //     this.props.recieveArtist(this.props.artistId)
+    // }
+
     render() {
         return(
             <div className="profile-container">

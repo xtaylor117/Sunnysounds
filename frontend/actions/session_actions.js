@@ -1,5 +1,4 @@
 import * as APIUtil from '../utils/session_api_util'
-import { RECEIVE_SONG } from './song_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
@@ -13,7 +12,7 @@ const receiveCurrentUser = currentUser => ({
 });
 
 const fetchArtist = user => ({
-    type: RECEIVE_SONG,
+    type: RECEIVE_USER,
     user
 })
 
