@@ -13,8 +13,9 @@ class Nav extends React.Component {
                 <nav className="nav-bar">
                     <ul className="nav-links">
                         <div className="left-nav">
-                            <Link to='/'> Sunnysounds </Link>
-                            <li className="home"><a href="#">Home</a></li>
+                            <li><Link to='/'> Sunnysounds </Link></li>
+                            <li><Link to='/discovery'> Home </Link></li>
+                            {/* <li className="home"><a href="#">Home</a></li> */}
                             <li className="stream"><a href="#">Stream</a></li>
                             <li className="library"><a href="#">Library</a></li>
                         </div>
