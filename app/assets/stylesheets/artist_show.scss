@@ -20,6 +20,28 @@
   width: 70%;
 }
 
+.index-item-title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.index-item-genre {
+  font-size: 14px;
+}
+
+.index-item-title, .index-item-genre {
+  color: black;
+}
+
+.index-item-artist a {
+  text-decoration: none;
+  color: salmon;
+}
+
+.index-item-artist a:hover {
+  color: #4CAF50;
+}
+
 // .profile-sidebar {
 //     display: flex;
 //     flex-direction: column;
