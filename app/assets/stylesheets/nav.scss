@@ -229,8 +229,7 @@ input.search-bar[type="text"], select {
     z-index: 15;
     position: absolute;
     width: 400px;
-    white-space: nowrap;
-    overflow-x: wrap;
+    overflow-wrap: normal;
     text-overflow: ellipsis;
     padding-right: 6px;
     text-align: center;
@@ -243,6 +242,8 @@ input.search-bar[type="text"], select {
 .notifications-dropdown p {
     color: salmon;
     width: 100%;
+    height: auto;
+    max-height: 300px;
 }
 
 .notifications-dropdown p:hover {
