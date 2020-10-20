@@ -995,7 +995,9 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "index-item-title"
       }, "Title: ", title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-artist"
-      }, "Artist: ", artist_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/artists/".concat(artist_id)
+      }, "Artist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-genre"
       }, "Genre: ", genre)));
     }
