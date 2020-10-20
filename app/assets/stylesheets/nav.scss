@@ -80,10 +80,10 @@
     color: orange;
 }
 
-// .right-nav li a {
-//     padding-left: 4px;
-//     height: 46px;
-// }
+.right-nav li a {
+    padding-left: 4px;
+    height: 46px;
+}
 
 .right-nav li:active {
     background: lemonchiffon;
@@ -206,15 +206,14 @@ input.search-bar[type="text"], select {
 }
 
 .user-dropdown a {
-    display: block;
     color: salmon;
+    display: block;
     margin-left: -6px;
 }
 
-// .user-dropdown a:hover {
-//     background: rgb(242, 237, 194);
-// }
-
+.user-dropdown a:hover {
+    background: rgb(242, 237, 194);
+}
 
 .user-dropdown p {
     color: salmon;
@@ -223,10 +222,6 @@ input.search-bar[type="text"], select {
 
 .user-dropdown p:hover {
     background: rgb(242, 237, 194);
-}
-
-.user-dropdown p:hover a {
-    color: orange;
 }
 
 
