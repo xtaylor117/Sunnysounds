@@ -15,7 +15,6 @@ class Nav extends React.Component {
                         <div className="left-nav">
                             <li><Link to='/'> Sunnysounds </Link></li>
                             <li><Link to='/discovery'> Home </Link></li>
-                            {/* <li className="home"><a href="#">Home</a></li> */}
                             <li className="stream"><a href="#">Stream</a></li>
                             <li className="library"><a href="#">Library</a></li>
                         </div>
@@ -30,7 +29,7 @@ class Nav extends React.Component {
                             <li>
                                 <p className="this-user">{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
                                 <div className="user-dropdown">
-                                    <p>Profile</p>
+                                    <Link to={`/artists/${this.props.currentUser.id}`}> Profile </Link>
                                     <p>Likes</p>
                                     <p>Following</p>
                                     <p>Who to Follow</p>
@@ -45,7 +44,9 @@ class Nav extends React.Component {
                             <li>
                                 <p>Messages</p>
                                 <div className="messages-dropdown">
-                                    <p>Hey man!</p>
+                                    <p>Hey man! This is going to be a really long message to test things out!
+                                        How are you doing today? I hope everything is well. You can do this!
+                                    </p>
                                     <p>Cool!</p>
                                 </div>
                             </li>

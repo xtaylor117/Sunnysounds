@@ -1,14 +1,21 @@
 import * as APIUtil from '../utils/session_api_util'
+import { RECEIVE_SONG } from './song_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS'
 export const CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS'
+export const RECEIVE_USER = 'RECEIVE_USER'
 
 const receiveCurrentUser = currentUser => ({
     type: RECEIVE_CURRENT_USER,
     currentUser
 });
+
+const fetchArtist = user => ({
+    type: RECEIVE_SONG,
+    user
+})
 
 const logoutCurrentUser = () => ({
     type: LOGOUT_CURRENT_USER,
@@ -48,4 +55,9 @@ export const logout = () => dispatch => {
 
 export const clearSessionErrors = () => dispatch => {
     return dispatch(clearErrors())
+}
+
+export const receiveArtist = artistId => dispatch => {
+    return APIUtil.fetchArtist(artistId)
+        .then(artist => dispatch(fetchArtist(artist)))
 }

@@ -71,3 +71,11 @@ export const deleteSong = (songId) => dispatch => {
 export const clearSongErrors = () => dispatch => {
     return dispatch(removeSongErrors())
 }
+
+export const selectSong = ({ songs }, songId) => {
+    return songs[songId];
+};
+
+export const selectArtist = ({ artists }, artistId) => {
+    return artists[artistId];
+};

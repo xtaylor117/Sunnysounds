@@ -205,6 +205,15 @@ input.search-bar[type="text"], select {
     border-bottom-left-radius: 15px;
 }
 
+.user-dropdown a {
+    color: salmon;
+    width: 100%;
+}
+
+.user-dropdown a:hover {
+    background: rgb(242, 237, 194);
+}
+
 .user-dropdown p {
     color: salmon;
     width: 100%;
@@ -214,15 +223,16 @@ input.search-bar[type="text"], select {
     background: rgb(242, 237, 194);
 }
 
+
 .notifications-dropdown {
     display: none;
     z-index: 15;
     position: absolute;
     width: 400px;
     white-space: nowrap;
-    overflow-x: scroll;
+    overflow-x: wrap;
     text-overflow: ellipsis;
-    padding-right: 4px;
+    padding-right: 6px;
     text-align: center;
     font-size: 12px;
     background: lemonchiffon;
@@ -251,9 +261,9 @@ input.search-bar[type="text"], select {
     position: absolute;
     width: 400px;
     white-space: nowrap;
-    overflow-x: scroll;
+    overflow-wrap: normal;
     text-overflow: ellipsis;
-    padding-right: 4px;
+    padding-right: 6px;
     text-align: center;
     font-size: 12px;
     background: lemonchiffon;

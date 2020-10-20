@@ -11,8 +11,7 @@ class Api::ArtistsController < ApplicationController
     end
 
     def show
-        @artist = Artist.find(params[:id])
-        #.includes(:songs)
+        @artist = Artist.includes(:songs).find(params[:id])
         
         if @artist
             render :show
