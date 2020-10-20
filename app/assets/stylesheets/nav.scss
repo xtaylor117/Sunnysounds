@@ -211,6 +211,11 @@ input.search-bar[type="text"], select {
     margin-left: -6px;
 }
 
+.user-dropdown p:last-child a{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
 .user-dropdown a:hover {
     background: rgb(242, 237, 194);
 }

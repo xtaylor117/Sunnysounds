@@ -30,9 +30,9 @@ class Nav extends React.Component {
                                 <p className="this-user">{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
                                 <div className="user-dropdown">
                                     <p><Link to={`/artists/${this.props.currentUser.id}`}> Profile </Link></p>
-                                    <p>Likes</p>
-                                    <p>Following</p>
-                                    <p>Who to Follow</p>
+                                    <p><Link to={`/artists/${this.props.currentUser.id}`}> Likes </Link></p>
+                                    <p><Link to={`/artists/${this.props.currentUser.id}`}> Follows </Link></p>
+                                    <p><Link to={`/artists/${this.props.currentUser.id}`}> Who to Follow </Link></p>
                                 </div>
                             </li>
                             <li>
