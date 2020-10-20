@@ -15,11 +15,11 @@ const App = () => (
         <Modal />
         <header>
             <ProtectedRoute exact path='/discovery' component={NavContainer} />
-            <ProtectedRoute exact path='/artists/:artistid' component={NavContainer} />
+            <ProtectedRoute exact path='/artists/:artistId' component={NavContainer} />
         </header>
 
         <Switch>
-            <ProtectedRoute exact path='/artists/:artistid' component={ArtistShowContainer} />
+            <ProtectedRoute exact path='/artists/:artistId' component={ArtistShowContainer} />
             <ProtectedRoute exact path='/discovery' component={SongIndexContainer} />
             <AuthRoute path='/' component={SplashContainer} />
             <Redirect to='/' />

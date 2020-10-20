@@ -1,21 +1,23 @@
 import { connect } from 'react-redux'
-import { selectArtist } from '../../actions/song_actions'
+import { selectArtist, receiveAllSongs } from '../../actions/song_actions'
 import { receiveArtist } from '../../actions/session_actions'
 import ArtistShow from './artist_show'
 
-const mSTP = (state, { match }) => {
-    debugger
-    const artistId = parseInt(match.params.artistId);
+const mSTP = (state, ownProps) => {
+    const artistId = parseInt(ownProps.match.params.artistId);
     const artist = selectArtist(state.entities, artistId);
+    const songs = Object.values(state.entities.songs)
 
     return {
+        songs,
         artistId,
         artist
     };
 };
 
 const mDTP = dispatch => ({
-    receiveArtist: artistId => dispatch(receiveArtist(artistId))
+    receiveArtist: artistId => dispatch(receiveArtist(artistId)),
+    receiveAllSongs: () => dispatch(receiveAllSongs())
 });
 
 export default connect(mSTP, mDTP)(ArtistShow);

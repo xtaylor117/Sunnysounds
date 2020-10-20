@@ -38,7 +38,8 @@ body {
 
 .splash-header-description {
     position: relative;
-    top: 225px;
+    top: 200px;
+    left: 50px;
 }
 
 .splash-header-description h1 {
@@ -97,4 +98,8 @@ body {
     font-family: Overpass;
     font-weight: 100;
     color: white;
+}
+
+.splash-container {
+    text-align: center;
 }
