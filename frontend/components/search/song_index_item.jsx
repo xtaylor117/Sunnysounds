@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import { receiveAllSongs } from '../../actions/song_actions';
 
 // import BenchShowContainer from '../bench_show/bench_show_container';
 
@@ -9,12 +10,14 @@ class SongIndexItem extends React.Component {
         // this.handleClick = this.handleClick.bind(this);
     }
 
+
     // handleClick() {
     //     const songId = this.props.song.id;
     //     this.props.history.push(`${this.props.song.artist_id}/songs/${songId}`);
     // }
 
     render() {
+        // debugger
         const { title, artist_id, genre } = this.props.song;
         return (
             <>
@@ -32,5 +35,6 @@ class SongIndexItem extends React.Component {
         );
     }
 }
+
 
 export default withRouter(SongIndexItem);

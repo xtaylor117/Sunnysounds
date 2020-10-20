@@ -12,3 +12,22 @@
 .profile-container::-webkit-scrollbar {
   display: none;
 }
+
+.profile-left {
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+// .profile-sidebar {
+//     display: flex;
+//     flex-direction: column;
+//     width: 30%;
+//     border-left: 1px;
+//     border-style: ridge;
+//     padding: 15px 15px 15px 15px;
+//     margin: 0px 15px 0px 15px;
+//     font-family: Overpass;
+//     align-items: left;
+// }
