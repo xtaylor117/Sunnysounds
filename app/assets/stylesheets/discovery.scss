@@ -67,9 +67,9 @@
     text-align: center;
 }
 
-.affiliate-links * {
+.affiliate-links {
     position: fixed;
-    margin-top: 320px;
+    margin-top: 330px;
     display: flex;
     width: 24%;
 }
@@ -89,6 +89,11 @@
     margin-top: 15px;
     border-bottom: none;
     text-align: center;
+    padding-top: 175px;
+}
+
+.latest-upload audio {
+    height: 25px;
 }
 
 .latest-upload .song-edit-button {   
