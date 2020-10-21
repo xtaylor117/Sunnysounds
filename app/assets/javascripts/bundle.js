@@ -476,7 +476,20 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "latest-upload"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload!"), this.props.songs.filter(function (song) {
+        return song.id === _this.props.latestSong.id;
+      }).map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          currentUser: currentUser,
+          openModal: _this.props.openModal,
+          deleteSong: _this.props.deleteSong
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "affiliate-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.instagram.com/soundcloud/?hl=en"
@@ -520,7 +533,9 @@ var mSTP = function mSTP(state, ownProps) {
   var artistId = parseInt(ownProps.match.params.artistId);
   var artist = Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["selectArtist"])(state.entities, artistId);
   var songs = Object.values(state.entities.songs);
+  var latestSong = Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1];
   return {
+    latestSong: latestSong,
     currentUser: currentUser,
     songs: songs,
     artistId: artistId,
@@ -913,9 +928,22 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Who to follow"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "latest-upload"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload!"), this.props.songs.filter(function (song) {
+        return song.id === _this.props.latestSong.id;
+      }).map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          currentUser: currentUser,
+          openModal: _this.props.openModal,
+          deleteSong: _this.props.deleteSong
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "affiliate-links"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.instagram.com/soundcloud/?hl=en"
       }, "Instagram", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-instagram"
@@ -923,7 +951,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         href: "https://twitter.com/scsupport?lang=en"
       }, "Twitter", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-twitter"
-      }))))));
+      })))))));
     }
   }]);
 
@@ -960,7 +988,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
-    songs: Object.values(state.entities.songs)
+    songs: Object.values(state.entities.songs),
+    latestSong: Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1]
   };
 };
 

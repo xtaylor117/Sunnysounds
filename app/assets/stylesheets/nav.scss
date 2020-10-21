@@ -213,7 +213,6 @@ input.search-bar[type="text"], select {
 
 .user-dropdown {
     display: none;
-    z-index: 15;
     position: absolute;
     width: 99px;
     white-space: nowrap;
@@ -253,7 +252,6 @@ input.search-bar[type="text"], select {
 
 .notifications-dropdown {
     display: none;
-    z-index: 15;
     position: absolute;
     width: 400px;
     overflow-wrap: normal;
@@ -283,7 +281,6 @@ input.search-bar[type="text"], select {
 
 .messages-dropdown {
     display: none;
-    z-index: 15;
     position: absolute;
     width: 400px;
     overflow-wrap: normal;
@@ -313,7 +310,6 @@ input.search-bar[type="text"], select {
 
 .settings-dropdown {
     display: none;
-    z-index: 15;
     position: absolute;
     width: 75px;
     white-space: nowrap;

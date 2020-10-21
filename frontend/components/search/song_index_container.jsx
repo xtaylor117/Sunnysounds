@@ -8,7 +8,8 @@ import SongIndex from './song_index'
 const mSTP = (state, ownProps) => {
     return({
         currentUser: state.session.currentUser,
-        songs: Object.values(state.entities.songs)
+        songs: Object.values(state.entities.songs),
+        latestSong: Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1]
     })
 }
 

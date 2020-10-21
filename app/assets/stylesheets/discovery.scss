@@ -40,7 +40,6 @@
 .discovery-sidebar {
     display: flex;
     flex-direction: column;
-    // position: fixed;
     width: 30%;
     min-height: 100vh;
     border-left: 1px;
@@ -48,30 +47,45 @@
     padding: 15px 15px 15px 15px;
     margin: 0px 15px 0px 15px;
     font-family: Overpass;
-    align-items: left;
 }
 
 .discovery-sidebar h3:first-child {
     margin-top: 0;
+    position: fixed;
+    margin-bottom: 25%;
 }
 
 .discovery-sidebar h3 {
+    width: 24%;
+    position: fixed;
     color: orange;
-    margin-top: 15px;
+    margin-top: 25%;
     padding-bottom: 5px;
     border-bottom: 1px;
     border-style: ridge;
+    text-align: center;
 }
 
 .affiliate-links {
-    margin-top: 5px;
+    position: fixed;
+    margin-top: 27.5%;
     display: flex;
-    justify-content: space-evenly;
+    width: 24%;
 }
 
 .affiliate-links li a {
     text-decoration: none;
     color: salmon;
+}
+
+.latest-upload .index-item-info {
+    position: fixed;
+    margin-top: 25px;
+    border-bottom: none;
+}
+
+.latest-upload .song-edit-button {   
+    display: none;
 }
 
 

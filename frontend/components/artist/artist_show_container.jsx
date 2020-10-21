@@ -8,8 +8,10 @@ const mSTP = (state, ownProps) => {
     const artistId = parseInt(ownProps.match.params.artistId);
     const artist = selectArtist(state.entities, artistId);
     const songs = Object.values(state.entities.songs)
+    const latestSong = Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1]
 
     return {
+        latestSong,
         currentUser,
         songs,
         artistId,
