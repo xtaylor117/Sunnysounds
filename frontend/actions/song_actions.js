@@ -17,9 +17,9 @@ const fetchSong = (song) => ({
     song
 })
 
-const removeSong = (song) => ({
+const removeSong = (songId) => ({
     type: DELETE_SONG,
-    song
+    songId
 })
 
 const receiveSongErrors = (errors) => ({
@@ -63,8 +63,9 @@ export const editSong = (song) => dispatch => {
 }
 
 export const deleteSong = (songId) => dispatch => {
+    debugger
     return songUtil.deleteSong(songId)
-        .then( song => dispatch(removeSong(song)))
+        .then(() => dispatch(removeSong(songId)))
 }
 
 

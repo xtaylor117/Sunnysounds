@@ -4,18 +4,18 @@ import { withRouter, Link } from 'react-router-dom';
 class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
-
         this.settingsAuth = this.settingsAuth.bind(this)
     }
 
     settingsAuth() {
+        let songId = this.props.song.id;
         if (this.props.currentUser.id === this.props.song.artist_id) {
             return(
                 <div className="song-edit-button">
                     •••
                     <div className="song-dropdown">
                         <button onClick={() => this.props.openModal('edit')}>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={() => this.props.deleteSong(songId)}>Delete</button>
                     </div>
                 </div>
             )

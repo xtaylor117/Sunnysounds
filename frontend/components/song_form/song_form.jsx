@@ -8,14 +8,14 @@ class SongForm extends React.Component {
             title: '',
             genre: '',
             artist_id: this.props.currentUser.id,
-            audioUrl: ''
+            audioFile: null,
+            audioUrl: null
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
     }
 
-    
 
     update(field) {
         return e => this.setState({
@@ -31,6 +31,7 @@ class SongForm extends React.Component {
         formData.append('song[title]', this.state.title);
         formData.append('song[genre]', this.state.genre);
         formData.append('song[artist_id]', this.state.artist_id);
+        
         if (this.state.audioFile) {
             formData.append('song[audiofile]', this.state.audioFile);
         }
@@ -54,7 +55,7 @@ class SongForm extends React.Component {
         
     }
 
-    renderErrors() {            
+    renderErrors() {          
         return (
             <ul>
                 {this.props.errors.map((error, i) => (

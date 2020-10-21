@@ -16,7 +16,6 @@ class ArtistShow extends React.Component {
     render() {
 
         const currentUser = this.props.currentUser
-        const openModal = () => this.props.openModal
 
         return(
             <div className="profile-container">
@@ -28,7 +27,8 @@ class ArtistShow extends React.Component {
                             song={song}
                             key={song.id}
                             currentUser={currentUser}
-                            openModal={openModal}
+                            openModal={this.props.openModal}
+                            deleteSong={this.props.deleteSong}
                         />
                     ))}
                 </div>

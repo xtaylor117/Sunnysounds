@@ -260,10 +260,10 @@ var fetchSong = function fetchSong(song) {
   };
 };
 
-var removeSong = function removeSong(song) {
+var removeSong = function removeSong(songId) {
   return {
     type: DELETE_SONG,
-    song: song
+    songId: songId
   };
 };
 
@@ -316,8 +316,9 @@ var editSong = function editSong(song) {
 };
 var deleteSong = function deleteSong(songId) {
   return function (dispatch) {
-    return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["deleteSong"](songId).then(function (song) {
-      return dispatch(removeSong(song));
+    debugger;
+    return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["deleteSong"](songId).then(function () {
+      return dispatch(removeSong(songId));
     });
   };
 };
@@ -459,11 +460,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       var currentUser = this.props.currentUser;
-
-      var openModal = function openModal() {
-        return _this.props.openModal;
-      };
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -475,7 +471,8 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           song: song,
           key: song.id,
           currentUser: currentUser,
-          openModal: openModal
+          openModal: _this.props.openModal,
+          deleteSong: _this.props.deleteSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -538,6 +535,9 @@ var mDTP = function mDTP(dispatch) {
     },
     receiveAllSongs: function receiveAllSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveAllSongs"])());
+    },
+    deleteSong: function deleteSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["deleteSong"])(songId));
     }
   };
 };
@@ -898,11 +898,6 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       var currentUser = this.props.currentUser;
-
-      var openModal = function openModal() {
-        return _this.props.openModal;
-      };
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -912,7 +907,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           song: song,
           key: song.id,
           currentUser: currentUser,
-          openModal: openModal
+          openModal: _this.props.openModal,
+          deleteSong: _this.props.deleteSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -974,6 +970,9 @@ var mDTP = function mDTP(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
+    },
+    deleteSong: function deleteSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSong"])(songId));
     }
   };
 };
@@ -1039,6 +1038,8 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function settingsAuth() {
       var _this2 = this;
 
+      var songId = this.props.song.id;
+
       if (this.props.currentUser.id === this.props.song.artist_id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "song-edit-button"
@@ -1048,7 +1049,11 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this2.props.openModal('edit');
           }
-        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Delete")));
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.props.deleteSong(songId);
+          }
+        }, "Delete")));
       }
     }
   }, {
@@ -1372,6 +1377,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     currentUser: state.session.currentUser,
     errors: state.errors.session,
@@ -1498,7 +1504,8 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       title: '',
       genre: '',
       artist_id: _this.props.currentUser.id,
-      audioUrl: ''
+      audioFile: null,
+      audioUrl: null
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
@@ -2070,7 +2077,7 @@ var songReducer = function songReducer() {
       return newState;
 
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_SONG"]:
-      delete newState[action.song.id];
+      delete newState[action.songId];
       return newState;
 
     default:
@@ -2278,6 +2285,7 @@ var createSong = function createSong(song) {
   });
 };
 var deleteSong = function deleteSong(songId) {
+  debugger;
   return $.ajax({
     url: "/api/songs/".concat(songId),
     method: 'DELETE'
