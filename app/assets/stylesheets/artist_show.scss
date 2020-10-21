@@ -18,10 +18,11 @@
 
 .profile-left {
   margin-left: 25px;
+  padding-right: 20px;
   display: flex;
   justify-content: flex-end;
   flex-direction: column-reverse;
-  width: 65%;
+  width: 64%;
   border-right: 1px solid gold;
 }
 
@@ -60,7 +61,7 @@
 .song-edit-button {
   display: inline-block;
   position: relative;
-  left: 95%;
+  left: 97%;
   margin-bottom: -24px;
   width: fit-content;
   color: salmon;
