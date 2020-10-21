@@ -56,6 +56,7 @@
 }
 
 .discovery-sidebar h3 {
+    margin-left: 1%;
     width: 24%;
     position: fixed;
     color: orange;
@@ -78,9 +79,13 @@
     color: salmon;
 }
 
+.latest-upload:first-child {
+    margin-left: -2.5%;
+}
+
 .latest-upload .index-item-info {
     position: fixed;
-    margin-top: 25px;
+    margin-top: 15px;
     border-bottom: none;
 }
 
