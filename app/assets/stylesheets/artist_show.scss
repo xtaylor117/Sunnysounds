@@ -24,13 +24,25 @@
   width: 70%;
 }
 
+.index-item-info {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px;
+  border-style: ridge;
+  height: auto;
+  padding: 20px 0 20px 15px;
+  font-family: Overpass;
+}
+
 .index-item-title {
   font-size: 20px;
   font-weight: 400;
+  padding-left: 20px;
 }
 
 .index-item-genre {
   font-size: 14px;
+  padding-left: 20px;
 }
 
 .index-item-title, .index-item-genre {
@@ -40,6 +52,7 @@
 .index-item-artist a {
   text-decoration: none;
   color: salmon;
+  padding-left: 20px;
 }
 
 .index-item-artist a:hover {
@@ -53,6 +66,7 @@
   margin-bottom: -24px;
   width: fit-content;
   color: salmon;
+  cursor: pointer;
 }
 
 .song-dropdown {
@@ -69,10 +83,17 @@
   background: transparent;
   margin-bottom: 5px;
   width: 100%;
+  cursor: pointer;
 }
 
 .song-edit-button:hover .song-dropdown {
   display: block;
   right: 0;
   transform: translateX(22.5%)
+}
+
+.audio-player {
+  width: 70%;
+  margin-left: 170px;
+  padding-top: 45px;
 }
