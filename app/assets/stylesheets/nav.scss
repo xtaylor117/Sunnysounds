@@ -2,6 +2,7 @@
     position: fixed;
     background: gold;
     width: 100vw;
+    z-index: 1000;
 }
 
 .nav-links {
@@ -324,7 +325,6 @@ input.search-bar[type="text"], select {
     color: salmon;
     width: 100%;
 }
-
 
 .settings-dropdown p:hover {
     background: rgb(242, 237, 194);

@@ -49,6 +49,10 @@
     font-family: Overpass;
 }
 
+.discovery-sidebar * {
+    z-index: auto;
+}
+
 .discovery-sidebar h3:first-child {
     margin-top: 0;
     position: fixed;
