@@ -52,8 +52,8 @@ class ArtistShow extends React.Component {
                     </div>
                     <h3>Click These Links</h3>
                         <ul className='affiliate-links'>
-                            <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram<i className="fa fa-instagram"></i></a></li>
-                            <li><a href="https://twitter.com/scsupport?lang=en">Twitter<i className="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram</a></li>
+                            <li><a href="https://twitter.com/scsupport?lang=en">Twitter</a></li>
                         </ul>
                 </div>
             </div>

@@ -1,6 +1,4 @@
 .discovery-container {
-    // position: fixed;
-    z-index: -1;
     display: flex;
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
@@ -23,38 +21,40 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column-reverse;
-    width: 70%;
+    width: 65%;
 }
 
 
 .discovery-sidebar {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    min-height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    width: 25%;
+    height: 100vh;
     border-left: 1px;
     border-style: ridge;
-    padding: 15px 15px 15px 15px;
+    padding: 15px 75px 15px 15px;
     margin: 0px 15px 0px 15px;
     font-family: Overpass;
 }
 
-.discovery-sidebar * {
-    z-index: auto;
+.discovery-sidebar::-webkit-scrollbar {
+    display: none;
 }
+
 
 .discovery-sidebar h3:first-child {
     margin-top: 0;
-    position: fixed;
-    margin-bottom: 300px;
+    // position: fixed;
 }
 
 .discovery-sidebar h3 {
-    margin-left: 1%;
-    width: 24%;
-    position: fixed;
+    width: auto;
+    // position: fixed;
     color: orange;
-    margin-top: 300px;
+    margin-top: 400px;
     padding-bottom: 5px;
     border-bottom: 1px;
     border-style: ridge;
@@ -62,10 +62,9 @@
 }
 
 .affiliate-links {
-    position: fixed;
-    margin-top: 330px;
     display: flex;
-    width: 24%;
+    margin-top: 25px;
+    width: auto;
 }
 
 .affiliate-links li a {
@@ -73,14 +72,22 @@
     color: salmon;
 }
 
+.affiliate-links li:hover a {
+    color: #4CAF50;
+}
+
 .latest-upload .index-item-info {
-    width: 24%;
-    position: fixed;
+    width: auto;
+    // position: fixed;
     margin-top: 15px;
     border-bottom: none;
     text-align: center;
-    padding-top: 175px;
+    padding-top: 275px;
     padding-left: 0;
+}
+
+.latest-upload {
+    height: 400px;
 }
 
 .latest-upload audio {
