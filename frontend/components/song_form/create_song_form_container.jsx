@@ -7,7 +7,7 @@ import SongForm from './song_form'
 const mSTP = (state, ownProps) => {
     return({
         currentUser: state.session.currentUser,
-        errors: state.errors.session,
+        errors: state.errors.song,
         formType: 'create'
     })
 };

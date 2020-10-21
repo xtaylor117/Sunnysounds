@@ -18,6 +18,7 @@ class SongIndex extends React.Component {
                 <div className='discovery-left'>
                     {this.props.songs.map(song => (
                         <SongIndexItem
+                            songs={this.props.songs}
                             song={song}
                             key={song.id}
                             audioUrl={song.audioUrl}

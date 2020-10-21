@@ -17,6 +17,10 @@ class SongForm extends React.Component {
         this.editForm = this.editForm.bind(this);
     }
 
+    componentWillUnmount() {
+        this.props.clearSongErrors();
+    }
+
 
     update(field) {
         return e => this.setState({

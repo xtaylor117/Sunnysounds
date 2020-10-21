@@ -24,6 +24,7 @@ class ArtistShow extends React.Component {
                         song.artist_id === this.props.artistId
                     )).map(song => (
                         <SongIndexItem
+                            songs={this.props.songs}
                             song={song}
                             key={song.id}
                             audioUrl={song.audioUrl}

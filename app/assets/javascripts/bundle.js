@@ -467,6 +467,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         return song.artist_id === _this.props.artistId;
       }).map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          songs: _this.props.songs,
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
@@ -923,6 +924,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         className: "discovery-left"
       }, this.props.songs.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          songs: _this.props.songs,
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
@@ -1423,7 +1425,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
-    errors: state.errors.session,
+    errors: state.errors.song,
     formType: 'create'
   };
 };
@@ -1470,7 +1472,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
-    errors: state.errors.session,
+    errors: state.errors.song,
     formType: 'edit'
   };
 };
@@ -1557,6 +1559,11 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SongForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearSongErrors();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
