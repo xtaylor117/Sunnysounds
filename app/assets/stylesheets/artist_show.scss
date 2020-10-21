@@ -51,6 +51,7 @@
   position: relative;
   left: 97%;
   margin-bottom: -24px;
+  width: fit-content;
 }
 
 .song-dropdown {
@@ -58,6 +59,19 @@
   display: none;
 }
 
+.song-dropdown button {
+  color: #4CAF50;
+  font-family: Overpass;
+  display: block;
+  border: 1px solid orange;
+  border-radius: 10px;
+  background: transparent;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
 .song-edit-button:hover .song-dropdown {
   display: block;
+  right: 0;
+  transform: translateX(22.5%)
 }
