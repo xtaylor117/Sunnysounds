@@ -50,16 +50,20 @@ class ArtistShow extends React.Component {
                             />
                         ))}
                     </div>
-                    <h3>Click These Links</h3>
-                    <ul className='affiliate-links'>
-                        <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram</a></li>
-                        <li><a href="https://twitter.com/scsupport?lang=en">Twitter</a></li>
-                    </ul>
-                    <h3>Recent Comments</h3>
-                    <div className="recent-comments">
-                        <p>This song really bumps. Keep up the great work! I'll make sure to share this around.</p>
-                        <p>OOOH!</p>   
-                        <p>I listen to this when I need help falling asleep!</p>      
+                    <div className='comments-container'>
+                        <h3>Recent Comments</h3>
+                        <div className="recent-comments">
+                            <p>This song really bumps. Keep up the great work! I'll make sure to share this around.</p>
+                            <p>OOOH!</p>
+                            <p>I listen to this when I need help falling asleep!</p>
+                        </div>
+                    </div>
+                    <div className='link-container'>
+                        <h3>Click These Links</h3>
+                        <ul className='affiliate-links'>
+                            <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram</a></li>
+                            <li><a href="https://twitter.com/scsupport?lang=en">Twitter</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

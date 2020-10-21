@@ -21,7 +21,7 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column-reverse;
-    width: 65%;
+    width: 66%;
 }
 
 
@@ -46,10 +46,6 @@
 }
 
 
-.discovery-sidebar h3:first-child {
-    margin-top: 0;
-}
-
 .discovery-sidebar h3 {
     width: auto;
     color: orange;
@@ -64,7 +60,7 @@
     display: inline-flex;
     justify-content: space-evenly;
     margin-top: 10px;
-    width: auto;
+    width: 100%;
 }
 
 .affiliate-links li a {
@@ -82,14 +78,14 @@
     border-bottom: none;
     border-right: none;
     text-align: center;
-    padding-top: 275px;
+    padding-top: 250px;
     padding-left: 0;
 }
 
 .latest-upload {
     height: 400px;
+    padding-top: 60px;
 }
-
 .latest-upload audio {
     height: 25px;
     width: auto;
@@ -106,25 +102,26 @@
 }
 
 .recent-comments {
-    width: auto;
-    padding: 5px 8px 5px 8px;
     margin-top: 15px;
-    margin-right: 75px;
     border: 1px dashed #4CAF50;
+    height: 92%;
     border-radius: 15px;
-    height: 300px;
-    font-size: 14px;
-    position: absolute;
-}
-
-.recent-comments p:first-child {
-    margin-top: 0;
 }
 
 .recent-comments p {
     display: flex;
     margin-top: 15px;
     padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-bottom: 1px dotted gold;
+    font-size: 14px;
 }
 
+.recent-comments p:last-child {
+    border-bottom: none;
+}
+
+.comments-container {
+    height: 300px;
+}
