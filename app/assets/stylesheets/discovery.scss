@@ -52,7 +52,7 @@
 .discovery-sidebar h3:first-child {
     margin-top: 0;
     position: fixed;
-    margin-bottom: 25%;
+    margin-bottom: 300px;
 }
 
 .discovery-sidebar h3 {
@@ -60,16 +60,16 @@
     width: 24%;
     position: fixed;
     color: orange;
-    margin-top: 25%;
+    margin-top: 300px;
     padding-bottom: 5px;
     border-bottom: 1px;
     border-style: ridge;
     text-align: center;
 }
 
-.affiliate-links {
+.affiliate-links * {
     position: fixed;
-    margin-top: 27.5%;
+    margin-top: 320px;
     display: flex;
     width: 24%;
 }
@@ -84,6 +84,7 @@
 }
 
 .latest-upload .index-item-info {
+    width: 24%;
     position: fixed;
     margin-top: 15px;
     border-bottom: none;
