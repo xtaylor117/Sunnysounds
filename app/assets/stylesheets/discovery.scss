@@ -47,23 +47,22 @@
 
 .discovery-sidebar h3:first-child {
     margin-top: 0;
-    // position: fixed;
 }
 
 .discovery-sidebar h3 {
     width: auto;
-    // position: fixed;
     color: orange;
-    margin-top: 400px;
     padding-bottom: 5px;
     border-bottom: 1px;
+    margin-top: 15px;
     border-style: ridge;
     text-align: center;
 }
 
 .affiliate-links {
-    display: flex;
-    margin-top: 25px;
+    display: inline-flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
     width: auto;
 }
 
@@ -78,7 +77,6 @@
 
 .latest-upload .index-item-info {
     width: auto;
-    // position: fixed;
     margin-top: 15px;
     border-bottom: none;
     text-align: center;

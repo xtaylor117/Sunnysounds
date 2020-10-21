@@ -83,6 +83,11 @@
   cursor: pointer;
 }
 
+.song-dropdown button:hover {
+  background: gold;
+  color: white;
+}
+
 .song-edit-button:hover .song-dropdown {
   display: block;
   right: 0;
