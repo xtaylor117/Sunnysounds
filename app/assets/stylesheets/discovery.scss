@@ -1,4 +1,6 @@
 .discovery-container {
+    position: fixed;
+    z-index: -1;
     display: flex;
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
@@ -7,6 +9,8 @@
     border: 1px;
     border-style: ridge;
     overflow: auto;
+    right: 0;
+    left: 0;
 }
 
 .discovery-container::-webkit-scrollbar {
