@@ -6,7 +6,7 @@ class Song < ApplicationRecord
     class_name: :Artist
     
     has_one_attached :audiofile
-    has_one_attached :photo
+    # has_one_attached :albumart
 
     def ensure_audiofile
         unless self.audiofile.attached?

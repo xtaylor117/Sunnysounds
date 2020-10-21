@@ -31,6 +31,8 @@ gem "aws-sdk-s3"
 # gem 'mini_magick', '~> 4.8'
  gem 'bcrypt'
 
+ gem 'open-uri'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
