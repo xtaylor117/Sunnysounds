@@ -1,10 +1,9 @@
 .profile-container {
-    position: fixed;
     z-index: -1;
     display: flex;
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
-    height: 100vh;
+    min-height: 100vh;
     background: white;
     border: 1px;
     border-style: ridge;

@@ -1,10 +1,10 @@
 .discovery-container {
-    position: fixed;
+    // position: fixed;
     z-index: -1;
     display: flex;
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
-    height: 100vh;
+    min-height: 100vh;
     background: white;
     border: 1px;
     border-style: ridge;
@@ -42,7 +42,7 @@
     flex-direction: column;
     // position: fixed;
     width: 30%;
-    height: 100vh;
+    min-height: 100vh;
     border-left: 1px;
     border-style: ridge;
     padding: 15px 15px 15px 15px;
