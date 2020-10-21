@@ -80,11 +80,14 @@
     border-bottom: none;
     text-align: center;
     padding-top: 175px;
+    padding-left: 0;
 }
 
 .latest-upload audio {
     height: 25px;
     width: auto;
+    margin-left: 0;
+    padding-top: 0;
 }
 
 .latest-upload .song-edit-button {   
