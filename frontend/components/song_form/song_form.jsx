@@ -14,6 +14,7 @@ class SongForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+        this.editForm = this.editForm.bind(this);
     }
 
 
@@ -21,6 +22,16 @@ class SongForm extends React.Component {
         return e => this.setState({
             [field]: e.currentTarget.value
         });
+    }
+
+    editForm() {
+        if (this.props.formType === 'create') {
+            return(
+                <label>
+                    <input onChange={this.handleFile} type="file" />
+                </label>
+            )
+        }
     }
 
     handleSubmit(e) {
@@ -76,9 +87,7 @@ class SongForm extends React.Component {
                         <br />
                         <div className="login-form">
                             <br />
-                            <label>
-                                <input onChange={this.handleFile} type="file"/>
-                            </label>
+                            {this.editForm()}
                             <br />
                             <label>
                                 <input autoFocus type="text"

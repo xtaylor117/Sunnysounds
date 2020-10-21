@@ -26,6 +26,7 @@ class ArtistShow extends React.Component {
                         <SongIndexItem
                             song={song}
                             key={song.id}
+                            audioUrl={song.audioUrl}
                             currentUser={currentUser}
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}

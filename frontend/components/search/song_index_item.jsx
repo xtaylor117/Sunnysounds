@@ -27,6 +27,9 @@ class SongIndexItem extends React.Component {
         return (
             <>
                 <div className="index-item-info">
+                    <audio controls className='audio-player'>
+                        <source src={this.props.audioUrl} type="audio/mpeg" />   
+                    </audio>
                     <div className="index-item-title">{title}</div>
                     <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>Artist</Link></div>
                     <div className="index-item-genre">Genre: {genre}</div>
