@@ -7,7 +7,7 @@ class Api::SongsController < ApplicationController
 
     def create
         @song = Song.new(song_params)
-
+        debugger
         if @song.save
             render :show
         else
@@ -17,7 +17,7 @@ class Api::SongsController < ApplicationController
 
     def show
         @song = Song.find_by(id: params[:id])
-
+        
         if @song
             render :show
         else
@@ -44,7 +44,7 @@ class Api::SongsController < ApplicationController
 
     private
     def song_params
-        params.require(:song).permit(:title, :artist_id, :genre, :audioUrl, :audioFile)
+        params.require(:song).permit(:title, :artist_id, :genre, :audiofile)
     end
 
 end
