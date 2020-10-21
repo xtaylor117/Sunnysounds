@@ -64,5 +64,25 @@ song11 = Song.create(title: "Street Rhapsody", genre: "Hip Hop & Rap", artist_id
 song12 = Song.create(title: "Today's Plan", genre: "Hip Hop & Rap", artist_id: artist4.id)
     file12 = open("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/Today's+Plan+-+DJ+Freedem.mp3")
     song12.audiofile.attach(io: file12, filename:"song#{song12.id}_aud.mp3")
+
+song13 = Song.create(title: "Her Love Is Good", genre: "Acoustic", artist_id: demoUser.id)
+    file13 = open("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/Her+Love+Is+Good.m4a")
+    song13.audiofile.attach(io: file13, filename:"song#{song13.id}_aud.m4a")
+
+song14 = Song.create(title: "A Sad Ukelele", genre: "Acoustic", artist_id: demoUser.id)
+    file14 = open("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/A+Sad+Ukulele.m4a")
+    song14.audiofile.attach(io: file14, filename:"song#{song14.id}_aud.m4a")
     
+song15 = Song.create(title: "Drowning", genre: "Acoustic", artist_id: demoUser.id)
+    file15 = open("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/Drowning+%5BInstrumental%5D.m4a")
+    song15.audiofile.attach(io: file15, filename:"song#{song15.id}_aud.m4a")
+
+song16 = Song.create(title: "HUBBADA", genre: "Acoustic", artist_id: demoUser.id)
+    file16 = open("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/HUBBADA.m4a")
+    song16.audiofile.attach(io: file16, filename:"song#{song16.id}_aud.m4a")
+
+song17 = Song.create(title: "Poison", genre: "Acoustic", artist_id: demoUser.id)
+    file17 = open("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/Poison+%5BUKULELE+ORIGINAL%5D.mp3")
+    song17.audiofile.attach(io: file17, filename:"song#{song17.id}_aud.mp3")
+
 
