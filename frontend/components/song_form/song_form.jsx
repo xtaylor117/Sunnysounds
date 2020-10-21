@@ -51,6 +51,7 @@ class SongForm extends React.Component {
         } else {
             this.setState({audioUrl: "", audioFile: null });
         }
+        
     }
 
     renderErrors() {            
@@ -66,7 +67,7 @@ class SongForm extends React.Component {
     }
 
     render(){
-        
+        console.log(this.state)
         return(
             <>
                 <div className="login-form-container">
