@@ -28,7 +28,7 @@ class SongIndex extends React.Component {
                     ))}
                 </div>
                 <div className='discovery-sidebar'>
-                    <div className="latest-upload">
+                    <div className="latest-upload" >
                         <h3>Your Last Upload</h3>
                         {this.props.songs.filter(song => (
                             song.id === this.props.latestSong.id
