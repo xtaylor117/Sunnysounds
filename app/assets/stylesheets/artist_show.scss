@@ -99,3 +99,11 @@
   margin-left: 170px;
   padding-top: 45px;
 }
+
+.audio-player:focus {
+  outline: none;
+}
+
+.audio-player controls:focus {
+  outline: none;
+}
