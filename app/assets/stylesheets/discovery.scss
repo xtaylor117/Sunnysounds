@@ -26,18 +26,19 @@
 
 
 .discovery-sidebar {
-    display: flex;
+    display: fixed;
     flex-direction: column;
     overflow-y: auto;
     position: fixed;
     right: 0;
     width: 25%;
     height: 100vh;
-    border-left: 1px;
     border-style: ridge;
     padding: 15px 75px 15px 15px;
     margin: 0px 15px 0px 15px;
     font-family: Overpass;
+    bottom: 15px;
+    min-height: 0 !important;
 }
 
 .discovery-sidebar::-webkit-scrollbar {
@@ -54,7 +55,7 @@
     color: orange;
     padding-bottom: 5px;
     border-bottom: 1px;
-    margin-top: 15px;
+    margin-top: 25px;
     border-style: ridge;
     text-align: center;
 }
@@ -79,6 +80,7 @@
     width: auto;
     margin-top: 15px;
     border-bottom: none;
+    border-right: none;
     text-align: center;
     padding-top: 275px;
     padding-left: 0;
@@ -101,5 +103,28 @@
 
 .index-item-title {
     margin-top: 15px;
+}
+
+.recent-comments {
+    width: auto;
+    padding: 5px 8px 5px 8px;
+    margin-top: 15px;
+    margin-right: 75px;
+    border: 1px dashed #4CAF50;
+    border-radius: 15px;
+    height: 300px;
+    font-size: 14px;
+    position: absolute;
+}
+
+.recent-comments p:first-child {
+    margin-top: 0;
+}
+
+.recent-comments p {
+    display: flex;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted gold;
 }
 
