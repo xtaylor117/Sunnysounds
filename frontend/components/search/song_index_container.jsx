@@ -6,10 +6,13 @@ import { openModal } from '../../actions/modal_actions'
 import SongIndex from './song_index'
 
 const mSTP = (state, ownProps) => {
+    const userSongs = Object.values(state.entities.songs).filter(song => song.artist_id === state.session.currentUser.id)
+    const length = userSongs.length
+
     return({
         currentUser: state.session.currentUser,
         songs: Object.values(state.entities.songs),
-        latestSong: Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1]
+        latestSong: userSongs[length - 1]
     })
 }
 

@@ -8,7 +8,9 @@ const mSTP = (state, ownProps) => {
     const artistId = parseInt(ownProps.match.params.artistId);
     const artist = selectArtist(state.entities, artistId);
     const songs = Object.values(state.entities.songs)
-    const latestSong = Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1]
+    const userSongs = Object.values(state.entities.songs).filter(song => song.artist_id === state.session.currentUser.id)
+    const length = userSongs.length
+    const latestSong = userSongs[length - 1]
 
     return {
         latestSong,

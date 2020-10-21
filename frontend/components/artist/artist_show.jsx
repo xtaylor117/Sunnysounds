@@ -35,7 +35,7 @@ class ArtistShow extends React.Component {
                 </div>
                 <div className="discovery-sidebar">
                     <div className="latest-upload">
-                        <h3>Your Last Upload!</h3>
+                        <h3>Your Last Upload</h3>
                         {this.props.songs.filter(song => (
                             song.id === this.props.latestSong.id
                         )).map(song => (
@@ -49,7 +49,7 @@ class ArtistShow extends React.Component {
                             />
                         ))}
                     </div>
-                    <h3>Click These Links!</h3>
+                    <h3>Click These Links</h3>
                         <ul className='affiliate-links'>
                             <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram<i className="fa fa-instagram"></i></a></li>
                             <li><a href="https://twitter.com/scsupport?lang=en">Twitter<i className="fa fa-twitter"></i></a></li>

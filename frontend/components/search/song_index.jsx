@@ -29,7 +29,7 @@ class SongIndex extends React.Component {
                 </div>
                 <div className='discovery-sidebar'>
                     <div className="latest-upload">
-                        <h3>Your Last Upload!</h3>
+                        <h3>Your Last Upload</h3>
                         {this.props.songs.filter(song => (
                             song.id === this.props.latestSong.id
                         )).map(song => (
@@ -43,7 +43,7 @@ class SongIndex extends React.Component {
                             />
                         ))}
                     </div>
-                    <h3>Click These Links!</h3>
+                    <h3>Click These Links</h3>
                     <div className='affiliate-links'>
                         <ul>
                             <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram<i className="fa fa-instagram"></i></a></li>

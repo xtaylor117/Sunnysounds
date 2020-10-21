@@ -478,7 +478,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload!"), this.props.songs.filter(function (song) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload"), this.props.songs.filter(function (song) {
         return song.id === _this.props.latestSong.id;
       }).map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -489,7 +489,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong
         });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "affiliate-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.instagram.com/soundcloud/?hl=en"
@@ -533,7 +533,11 @@ var mSTP = function mSTP(state, ownProps) {
   var artistId = parseInt(ownProps.match.params.artistId);
   var artist = Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["selectArtist"])(state.entities, artistId);
   var songs = Object.values(state.entities.songs);
-  var latestSong = Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1];
+  var userSongs = Object.values(state.entities.songs).filter(function (song) {
+    return song.artist_id === state.session.currentUser.id;
+  });
+  var length = userSongs.length;
+  var latestSong = userSongs[length - 1];
   return {
     latestSong: latestSong,
     currentUser: currentUser,
@@ -930,7 +934,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload!"), this.props.songs.filter(function (song) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload"), this.props.songs.filter(function (song) {
         return song.id === _this.props.latestSong.id;
       }).map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -941,7 +945,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong
         });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click These Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "affiliate-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.instagram.com/soundcloud/?hl=en"
@@ -986,10 +990,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  var userSongs = Object.values(state.entities.songs).filter(function (song) {
+    return song.artist_id === state.session.currentUser.id;
+  });
+  var length = userSongs.length;
   return {
     currentUser: state.session.currentUser,
     songs: Object.values(state.entities.songs),
-    latestSong: Object.values(state.entities.songs)[Object.values(state.entities.songs).length - 1]
+    latestSong: userSongs[length - 1]
   };
 };
 
