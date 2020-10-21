@@ -316,7 +316,6 @@ var editSong = function editSong(song) {
 };
 var deleteSong = function deleteSong(songId) {
   return function (dispatch) {
-    debugger;
     return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["deleteSong"](songId).then(function () {
       return dispatch(removeSong(songId));
     });
@@ -1385,7 +1384,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     currentUser: state.session.currentUser,
     errors: state.errors.session,
@@ -2301,7 +2299,6 @@ var createSong = function createSong(song) {
   });
 };
 var deleteSong = function deleteSong(songId) {
-  debugger;
   return $.ajax({
     url: "/api/songs/".concat(songId),
     method: 'DELETE'

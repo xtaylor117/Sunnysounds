@@ -63,7 +63,6 @@ export const editSong = (song) => dispatch => {
 }
 
 export const deleteSong = (songId) => dispatch => {
-    debugger
     return songUtil.deleteSong(songId)
         .then(() => dispatch(removeSong(songId)))
 }
