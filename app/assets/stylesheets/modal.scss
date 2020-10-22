@@ -93,7 +93,7 @@
 .audio-preview {
   z-index: 15;
   position: fixed;
-  top: 0;
+  top: 15px;
   left: 15px;
   transform: translateY(-25px);
 }
@@ -107,8 +107,32 @@
   transform: translateX(-40px);
   border: 1px gold;
   border-style: double;
+  border-radius: 25px;
   height: 100px;
   width: 100px;
-  border-radius: 25px;
   object-fit: cover;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-song-upload {
+    border: 1px solid #ccc;
+    display: absolute;
+    margin-right: 5px;
+    width: 15%;
+    color: #4CAF50;
+    font-family: Overpass;
+    border: 1px solid orange;
+    border-radius: 10px;
+    background: transparent;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.custom-song-upload:hover{
+  background: gold;
+  color: white;
 }

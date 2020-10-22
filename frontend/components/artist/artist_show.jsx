@@ -28,6 +28,7 @@ class ArtistShow extends React.Component {
                             song={song}
                             key={song.id}
                             audioUrl={song.audioUrl}
+                            photoUrl={song.photoUrl}
                             currentUser={currentUser}
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
@@ -44,6 +45,7 @@ class ArtistShow extends React.Component {
                                 song={song}
                                 key={song.id}
                                 audioUrl={song.audioUrl}
+                                photoUrl={song.photoUrl}
                                 currentUser={currentUser}
                                 openModal={this.props.openModal}
                                 deleteSong={this.props.deleteSong}

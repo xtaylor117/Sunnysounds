@@ -11,7 +11,7 @@ class SongForm extends React.Component {
             audioFile: null,
             audioUrl: null,
             photoFile: null,
-            photoUrl: null
+            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png"
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,14 +34,21 @@ class SongForm extends React.Component {
         if (this.props.formType === 'create') {
             return(
                 <label>
-                    <input className="audio-submit" onChange={this.handleFile} type="file" accept="audio/mpeg" />
-                    <input className="photo-submit" onChange={this.handleFile} type="file" accept="image/png, image/jpeg"/>
+                    <label class="custom-song-upload">
+                        <input className="audio-submit" onChange={this.handleFile} type="file" accept="audio/mpeg" />
+                        Song Upload
+                    </label>
+                    <label class="custom-song-upload">
+                        <input className="photo-submit" onChange={this.handleFile} type="file" accept="image/png, image/jpeg" />
+                        Photo Upload
+                    </label>
                 </label>
             )
         } else {
             return(
-                <label>
-                    <input className="photo-submit" onChange={this.handleFile} type="file" />
+                <label class="custom-song-upload">
+                    <input className="photo-submit" onChange={this.handleFile} type="file" accept="image/png, image/jpeg" />
+                        Photo Upload
                 </label>
             )
         }
@@ -86,7 +93,7 @@ class SongForm extends React.Component {
             reader.readAsDataURL(file);
         } else {
             if (file.type === "image/png" || file.type === "image/jpeg") {
-                this.setState({ photoUrl: "", photoFile: null })
+                this.setState({ photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png", photoFile: null })
             } else {
                 this.setState({ audioUrl: "", audioFile: null });
             }

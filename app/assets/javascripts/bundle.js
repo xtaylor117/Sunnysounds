@@ -471,6 +471,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
           currentUser: currentUser,
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong
@@ -486,6 +487,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
           currentUser: currentUser,
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong
@@ -930,6 +932,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
           currentUser: currentUser,
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong
@@ -945,6 +948,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
           currentUser: currentUser,
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong
@@ -1558,7 +1562,7 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       audioFile: null,
       audioUrl: null,
       photoFile: null,
-      photoUrl: null
+      photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
@@ -1584,23 +1588,30 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
     key: "editForm",
     value: function editForm() {
       if (this.props.formType === 'create') {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          "class": "custom-song-upload"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "audio-submit",
           onChange: this.handleFile,
           type: "file",
           accept: "audio/mpeg"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }), "Song Upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          "class": "custom-song-upload"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "photo-submit",
           onChange: this.handleFile,
           type: "file",
           accept: "image/png, image/jpeg"
-        }));
+        }), "Photo Upload"));
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          "class": "custom-song-upload"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "photo-submit",
           onChange: this.handleFile,
-          type: "file"
-        }));
+          type: "file",
+          accept: "image/png, image/jpeg"
+        }), "Photo Upload");
       }
     }
   }, {
@@ -1653,7 +1664,7 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       } else {
         if (file.type === "image/png" || file.type === "image/jpeg") {
           this.setState({
-            photoUrl: "",
+            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png",
             photoFile: null
           });
         } else {

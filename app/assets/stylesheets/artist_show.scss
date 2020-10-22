@@ -36,13 +36,26 @@
   font-family: Overpass;
 }
 
+.index-item-info img {
+  position: absolute;
+  height: 115px;
+  width: 115px;
+  object-fit: cover;
+  border: 1px gold;
+  border-style: double;
+  border-radius: 25px;
+}
+
 .index-item-title {
+  padding-top: 5px;
   font-size: 20px;
   font-weight: 400;
+
 }
 
 .index-item-genre {
   font-size: 14px;
+
 }
 
 .index-item-title, .index-item-genre {
@@ -52,6 +65,7 @@
 .index-item-artist a {
   text-decoration: none;
   color: salmon;
+   
 }
 
 .index-item-artist a:hover {
@@ -75,9 +89,9 @@
 }
 
 .song-dropdown button {
+  display: block;
   color: #4CAF50;
   font-family: Overpass;
-  display: block;
   border: 1px solid orange;
   border-radius: 10px;
   background: transparent;
