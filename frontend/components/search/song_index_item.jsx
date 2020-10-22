@@ -1,12 +1,20 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+// import AudioPlayer from 'react-h5-audio-player';
+
 
 class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
-        this.settingsAuth = this.settingsAuth.bind(this)
+        this.settingsAuth = this.settingsAuth.bind(this);
+        // this.state = {
+        //     title: this.props.song.title,
+        //     genre: this.props.song.gengre,
+        //     artist_id: this.props.currentUser.id,
+        //     photoFile: this.props.song.photoFile,
+        //     photoUrl: this.props.song.photoUrl
+        // }
     }
-
     settingsAuth() {
         let songId = this.props.song.id;
         if (this.props.currentUser.id === this.props.song.artist_id) {
@@ -28,6 +36,7 @@ class SongIndexItem extends React.Component {
             <>
                 <div className="index-item-info">
                     <img src={this.props.photoUrl}/>
+                    {/* <AudioPlayer className="audio-player" src={this.props.audioUrl} type="audio/mpeg" showJumpControls={false}/> */}
                     <audio controls className='audio-player'>
                         <source src={this.props.audioUrl} type="audio/mpeg" />   
                     </audio>
@@ -43,3 +52,5 @@ class SongIndexItem extends React.Component {
 
 
 export default withRouter(SongIndexItem);
+
+

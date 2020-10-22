@@ -34,11 +34,11 @@ class SongForm extends React.Component {
         if (this.props.formType === 'create') {
             return(
                 <label>
-                    <label class="custom-song-upload">
+                    <label className="custom-song-upload">
                         <input className="audio-submit" onChange={this.handleFile} type="file" accept="audio/mpeg" />
                         Song Upload
                     </label>
-                    <label class="custom-song-upload">
+                    <label className="custom-song-upload">
                         <input className="photo-submit" onChange={this.handleFile} type="file" accept="image/png, image/jpeg" />
                         Photo Upload
                     </label>
@@ -46,7 +46,7 @@ class SongForm extends React.Component {
             )
         } else {
             return(
-                <label class="custom-song-upload">
+                <label className="custom-song-upload">
                     <input className="photo-submit" onChange={this.handleFile} type="file" accept="image/png, image/jpeg" />
                         Photo Upload
                 </label>
@@ -71,7 +71,6 @@ class SongForm extends React.Component {
             formData.append('song[photofile]', this.state.photoFile);
         }
 
-        
         this.props.processForm(formData)
             .then(this.props.closeModal)
     }
@@ -103,7 +102,7 @@ class SongForm extends React.Component {
 
     renderErrors() {          
         return (
-            <ul>
+            <ul className="form-errors">
                 {this.props.errors.map((error, i) => (
                     <li key={`error-${i}`}>
                         {error}
@@ -114,9 +113,8 @@ class SongForm extends React.Component {
     }
 
     render(){
-        console.log(this.state)
         const audioPreview = this.state.audioUrl ? <audio controls className="audio-preview" src={this.state.audioUrl} /> : null;
-        const photoPreview = this.state.photoUrl ? <img className="photo-preview" src={this.state.photoUrl} /> : null;
+        const photoPreview = this.state.photoUrl ? <img className={`photo-preview ${this.props.formType}` } src={this.state.photoUrl} /> : null;
         return(
             <>
                 <div className="login-form-container">
