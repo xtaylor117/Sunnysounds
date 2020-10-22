@@ -53,6 +53,7 @@ class ArtistShow extends React.Component {
                             currentUser={currentUser}
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
+                            artist={this.props.artist}
                         />
                     ))}
                 </div>

@@ -99,9 +99,10 @@
     height: 225px;
     width: 100%;
     object-fit: cover;
-    border: 1px cornflowerblue;
+    border: 1px cadetblue;
     border-style: double;
     border-radius: 25px;
+    transform: none;
 }
 
 .latest-upload h3 {
@@ -125,7 +126,7 @@
 
 .recent-comments {
     margin-top: 15px;
-    border: 1px dashed cornflowerblue;
+    border: 1px dashed cadetblue;
     height: 92%;
     border-radius: 15px;
 }

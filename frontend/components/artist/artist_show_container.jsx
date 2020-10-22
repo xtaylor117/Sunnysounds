@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { selectArtist, receiveAllSongs, deleteSong } from '../../actions/song_actions'
-import { receiveArtist } from '../../actions/session_actions'
 import ArtistShow from './artist_show'
 
 const mSTP = (state, ownProps) => {
@@ -22,7 +21,6 @@ const mSTP = (state, ownProps) => {
 };
 
 const mDTP = dispatch => ({
-    receiveArtist: artistId => dispatch(receiveArtist(artistId)),
     receiveAllSongs: () => dispatch(receiveAllSongs()),
     deleteSong: songId => dispatch(deleteSong(songId))
 });

@@ -1,4 +1,9 @@
 class Api::ArtistsController < ApplicationController
+    def index
+        @artists = Artist.all
+        render :index
+    end
+
     def create
         @artist = Artist.new(artist_params)
 

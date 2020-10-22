@@ -10,7 +10,9 @@ class SongIndex extends React.Component {
 
     componentDidMount() {
         this.props.receiveAllSongs();
+        this.props.receiveAllArtists();
     }
+
 
     lastUpload() {
         if (this.props.latestSong) {
@@ -26,6 +28,7 @@ class SongIndex extends React.Component {
                         currentUser={this.props.currentUser}
                         openModal={this.props.openModal}
                         deleteSong={this.props.deleteSong}
+                        artists={this.props.artists}
                     />
                 ))   
             )
@@ -34,6 +37,7 @@ class SongIndex extends React.Component {
     
     render() {
         const currentUser = this.props.currentUser
+
         return(
             <div className='discovery-container'>
                 {/* <h1>Search Results: </h1> */}
@@ -48,6 +52,7 @@ class SongIndex extends React.Component {
                             currentUser={currentUser}
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
+                            artists={this.props.artists}
                         />
                     ))}
                 </div>

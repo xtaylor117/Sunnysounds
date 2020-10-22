@@ -37,11 +37,12 @@
 }
 
 .index-item-info img {
+  transform: translateY(-5px);
   position: absolute;
   height: 115px;
   width: 115px;
   object-fit: cover;
-  border: 1px cornflowerblue;
+  border: 1px cadetblue;
   border-style: double;
   border-radius: 25px;
 }
@@ -69,7 +70,7 @@
 }
 
 .index-item-artist a:hover {
-  color: cornflowerblue;
+  color: cadetblue;
 }
 
 .song-edit-button {
@@ -90,9 +91,9 @@
 
 .song-dropdown button {
   display: block;
-  color: cornflowerblue;
+  color: cadetblue;
   font-family: Overpass;
-  border: 1px solid orange;
+  border: 1px solid #4CAF50;
   border-radius: 10px;
   background: transparent;
   margin-bottom: 5px;
@@ -102,6 +103,7 @@
 
 .song-dropdown button:hover {
   background: gold;
+  border-color: orange;
   color: white;
 }
 

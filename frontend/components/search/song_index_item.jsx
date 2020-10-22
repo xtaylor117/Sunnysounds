@@ -32,8 +32,16 @@ class SongIndexItem extends React.Component {
         }
     }
 
+    // artistUsername() {
+    //     if (this.props.artists[this.props.song.artist_id].username) {
+    //         return this.props.artists[this.props.song.artist_id].username
+    //     }
+    // }
+
     render() {
         const { title, artist_id, genre } = this.props.song;
+        // let Artist = Object.values(this.props.artists[this.props.song.artist_id])
+        // debugger
         return (
             <>
                 <div className="index-item-info">

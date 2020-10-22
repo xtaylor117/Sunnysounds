@@ -55,8 +55,3 @@ export const logout = () => dispatch => {
 export const clearSessionErrors = () => dispatch => {
     return dispatch(clearErrors())
 }
-
-export const receiveArtist = artistId => dispatch => {
-    return APIUtil.fetchArtist(artistId)
-        .then(artist => dispatch(fetchArtist(artist)))
-}

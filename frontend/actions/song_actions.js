@@ -1,4 +1,5 @@
 import * as songUtil from '../utils/song_api_utils'
+import * as artistUtil from '../utils/session_api_util'
 
 export const RECEIVE_ALL_SONGS = "RECEIVE_ALL_SONGS"
 export const RECEIVE_SONG = "RECEIVE_SONG"
@@ -7,9 +8,16 @@ export const DELETE_SONG = "DELETE_SONG"
 export const RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS"
 export const CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS"
 
+export const RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS"
+
 const fetchAllSongs = (songs) => ({
     type: RECEIVE_ALL_SONGS,
     songs
+})
+
+const fetchAllArtists = (users) => ({
+    type: RECEIVE_ALL_ARTISTS,
+    users
 })
 
 const fetchSong = (song) => ({
@@ -37,6 +45,13 @@ export const receiveAllSongs = () => dispatch => {
         .then(
             songs => (dispatch(fetchAllSongs(songs)))
         ) 
+}
+
+export const receiveAllArtists = () => dispatch => {
+    return artistUtil.fetchAllArtists()
+        .then(
+            artists => (dispatch(fetchAllArtists(artists)))
+        )
 }
 
 export const receiveSong = (songId) => dispatch => {

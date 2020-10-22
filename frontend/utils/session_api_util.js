@@ -27,3 +27,10 @@ export const fetchArtist = artistId => {
         method: 'GET'
     })
 }
+
+export const fetchAllArtists = () => {
+    return $.ajax({
+        url: "/api/artists",
+        method: "GET"
+    })
+}
