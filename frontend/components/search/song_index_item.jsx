@@ -7,14 +7,16 @@ class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.settingsAuth = this.settingsAuth.bind(this);
-        // this.state = {
-        //     title: this.props.song.title,
-        //     genre: this.props.song.gengre,
-        //     artist_id: this.props.currentUser.id,
-        //     photoFile: this.props.song.photoFile,
-        //     photoUrl: this.props.song.photoUrl
-        // }
     }
+
+    componentDidMount() {
+        $("audio").on("play", function () {
+            $("audio").not(this).each(function (index, audio) {
+                audio.pause();
+            });
+        });
+    }
+
     settingsAuth() {
         let songId = this.props.song.id;
         if (this.props.currentUser.id === this.props.song.artist_id) {

@@ -1102,18 +1102,20 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SongIndexItem);
 
     _this = _super.call(this, props);
-    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this)); // this.state = {
-    //     title: this.props.song.title,
-    //     genre: this.props.song.gengre,
-    //     artist_id: this.props.currentUser.id,
-    //     photoFile: this.props.song.photoFile,
-    //     photoUrl: this.props.song.photoUrl
-    // }
-
+    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SongIndexItem, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      $("audio").on("play", function () {
+        $("audio").not(this).each(function (index, audio) {
+          audio.pause();
+        });
+      });
+    }
+  }, {
     key: "settingsAuth",
     value: function settingsAuth() {
       var _this2 = this;
