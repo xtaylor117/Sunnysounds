@@ -6,13 +6,34 @@ import SongIndexItem from '../search/song_index_item'
 class ArtistShow extends React.Component {
     constructor(props) {
         super(props);
+
+        this.lastUpload = this.lastUpload.bind(this)
+    }
+
+    lastUpload() {
+        if (this.props.latestSong) {
+            return (
+                this.props.songs.filter(song => (
+                    song.id === this.props.latestSong.id
+                )).map(song => (
+                    <SongIndexItem
+                        song={song}
+                        key={song.id}
+                        audioUrl={song.audioUrl}
+                        photoUrl={song.photoUrl}
+                        currentUser={currentUser}
+                        openModal={this.props.openModal}
+                        deleteSong={this.props.deleteSong}
+                    />
+                ))
+            )
+        }
     }
 
     componentDidMount() {
         this.props.receiveAllSongs()
-        this.props.receiveArtist(this.props.artistId)
-    }
 
+    }
     render() {
 
         const currentUser = this.props.currentUser
@@ -32,27 +53,13 @@ class ArtistShow extends React.Component {
                             currentUser={currentUser}
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
-                            receiveSong={this.props.receiveSong}
                         />
                     ))}
                 </div>
                 <div className="discovery-sidebar">
                     <div className="latest-upload">
                         <h3>Your Last Upload</h3>
-                        {this.props.songs.filter(song => (
-                            song.id === this.props.latestSong.id
-                        )).map(song => (
-                            <SongIndexItem
-                                song={song}
-                                key={song.id}
-                                audioUrl={song.audioUrl}
-                                photoUrl={song.photoUrl}
-                                currentUser={currentUser}
-                                openModal={this.props.openModal}
-                                deleteSong={this.props.deleteSong}
-                                receiveSong={this.props.receiveSong}
-                            />
-                        ))}
+                        {this.lastUpload()}
                     </div>
                     <div className='comments-container'>
                         <h3>Recent Comments</h3>

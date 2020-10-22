@@ -442,21 +442,45 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ArtistShow);
 
   function ArtistShow(props) {
+    var _this;
+
     _classCallCheck(this, ArtistShow);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.lastUpload = _this.lastUpload.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ArtistShow, [{
+    key: "lastUpload",
+    value: function lastUpload() {
+      var _this2 = this;
+
+      if (this.props.latestSong) {
+        return this.props.songs.filter(function (song) {
+          return song.id === _this2.props.latestSong.id;
+        }).map(function (song) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            song: song,
+            key: song.id,
+            audioUrl: song.audioUrl,
+            photoUrl: song.photoUrl,
+            currentUser: currentUser,
+            openModal: _this2.props.openModal,
+            deleteSong: _this2.props.deleteSong
+          });
+        });
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.receiveAllSongs();
-      this.props.receiveArtist(this.props.artistId);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       var currentUser = this.props.currentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -464,37 +488,23 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-left"
       }, this.props.songs.filter(function (song) {
-        return song.artist_id === _this.props.artistId;
+        return song.artist_id === _this3.props.artistId;
       }).map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          songs: _this.props.songs,
+          songs: _this3.props.songs,
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
           photoUrl: song.photoUrl,
           currentUser: currentUser,
-          openModal: _this.props.openModal,
-          deleteSong: _this.props.deleteSong,
-          receiveSong: _this.props.receiveSong
+          openModal: _this3.props.openModal,
+          deleteSong: _this3.props.deleteSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload"), this.props.songs.filter(function (song) {
-        return song.id === _this.props.latestSong.id;
-      }).map(function (song) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          song: song,
-          key: song.id,
-          audioUrl: song.audioUrl,
-          photoUrl: song.photoUrl,
-          currentUser: currentUser,
-          openModal: _this.props.openModal,
-          deleteSong: _this.props.deleteSong,
-          receiveSong: _this.props.receiveSong
-        });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload"), this.lastUpload()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -564,9 +574,6 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["deleteSong"])(songId));
-    },
-    receiveSong: function receiveSong(songId) {
-      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSong"])(songId));
     }
   };
 };
@@ -911,9 +918,13 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(SongIndex);
 
   function SongIndex(props) {
+    var _this;
+
     _classCallCheck(this, SongIndex);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.lastUpload = _this.lastUpload.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(SongIndex, [{
@@ -922,9 +933,30 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
       this.props.receiveAllSongs();
     }
   }, {
+    key: "lastUpload",
+    value: function lastUpload() {
+      var _this2 = this;
+
+      if (this.props.latestSong) {
+        return this.props.songs.filter(function (song) {
+          return song.id === _this2.props.latestSong.id;
+        }).map(function (song) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            song: song,
+            key: song.id,
+            audioUrl: song.audioUrl,
+            photoUrl: song.photoUrl,
+            currentUser: currentUser,
+            openModal: _this2.props.openModal,
+            deleteSong: _this2.props.deleteSong
+          });
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       var currentUser = this.props.currentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -933,32 +965,20 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         className: "discovery-left"
       }, this.props.songs.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          songs: _this.props.songs,
+          songs: _this3.props.songs,
           song: song,
           key: song.id,
           audioUrl: song.audioUrl,
           photoUrl: song.photoUrl,
           currentUser: currentUser,
-          openModal: _this.props.openModal,
-          deleteSong: _this.props.deleteSong
+          openModal: _this3.props.openModal,
+          deleteSong: _this3.props.deleteSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload"), this.props.songs.filter(function (song) {
-        return song.id === _this.props.latestSong.id;
-      }).map(function (song) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          song: song,
-          key: song.id,
-          audioUrl: song.audioUrl,
-          photoUrl: song.photoUrl,
-          currentUser: currentUser,
-          openModal: _this.props.openModal,
-          deleteSong: _this.props.deleteSong
-        });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Last Upload"), this.lastUpload()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -1005,6 +1025,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   var userSongs = Object.values(state.entities.songs).filter(function (song) {
     return song.artist_id === state.session.currentUser.id;
   });
@@ -1026,9 +1047,6 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSong"])(songId));
-    },
-    editSong: function editSong(songId) {
-      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["editSong"])(songId));
     }
   };
 };
@@ -1497,7 +1515,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger
   return {
     currentUser: state.session.currentUser,
     errors: state.errors.song,

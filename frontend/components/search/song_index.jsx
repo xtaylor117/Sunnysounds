@@ -4,10 +4,32 @@ import SongIndexItem from './song_index_item'
 class SongIndex extends React.Component {
     constructor(props) {
         super(props)
+        
+        this.lastUpload = this.lastUpload.bind(this)
     }
 
     componentDidMount() {
         this.props.receiveAllSongs();
+    }
+
+    lastUpload() {
+        if (this.props.latestSong) {
+            return(
+                this.props.songs.filter(song => (
+                    song.id === this.props.latestSong.id
+                )).map(song => (
+                    <SongIndexItem
+                        song={song}
+                        key={song.id}
+                        audioUrl={song.audioUrl}
+                        photoUrl={song.photoUrl}
+                        currentUser={currentUser}
+                        openModal={this.props.openModal}
+                        deleteSong={this.props.deleteSong}
+                    />
+                ))   
+            )
+        }
     }
     
     render() {
@@ -32,19 +54,7 @@ class SongIndex extends React.Component {
                 <div className='discovery-sidebar'>
                     <div className="latest-upload" >
                         <h3>Your Last Upload</h3>
-                        {this.props.songs.filter(song => (
-                            song.id === this.props.latestSong.id
-                        )).map(song => (
-                            <SongIndexItem
-                                song={song}
-                                key={song.id}
-                                audioUrl={song.audioUrl}
-                                photoUrl={song.photoUrl}
-                                currentUser={currentUser}
-                                openModal={this.props.openModal}
-                                deleteSong={this.props.deleteSong}
-                            />
-                        ))}
+                        {this.lastUpload()}
                     </div>
                     <div className='comments-container'>
                         <h3>Recent Comments</h3>
