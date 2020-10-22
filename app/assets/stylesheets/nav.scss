@@ -30,9 +30,9 @@
 }
 
 .right-nav {
-    width: auto;
-    display: flex;
-    flex-shrink: 0;
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
     margin-left: 10px;
     line-height: 46px;
 }
@@ -161,7 +161,6 @@ input.search-bar[type="text"], select {
     overflow: scroll;
     align-items: center;
     height: 30px;
-    width: 300px;
     color: #666;
     outline: 0;
     border: 0;
@@ -184,9 +183,15 @@ input.search-bar[type="text"], select {
 
 
 .search-bar-container { 
+    margin-left: 15px;
     height: 46px;
     display: inline-flex;
     align-items: center;
+    width: 100%;
+}
+
+.search-bar-container li {
+    width: 85%;
 }
 
 .right-nav li:nth-child(2) {
@@ -332,13 +337,11 @@ input.search-bar[type="text"], select {
 
 .right-nav li:hover .user-dropdown {
     display: block;
-    left: 0;
-    transform: translateX(-22.5%)
 }
 
 .right-nav li:hover .notifications-dropdown {
     display: block;
-    transform: translateX(-49.9%);
+    transform: translateX(-50%);
 }
 
 .right-nav li:hover .messages-dropdown {
@@ -348,7 +351,7 @@ input.search-bar[type="text"], select {
 
 .right-nav li:hover .settings-dropdown {
     display: block;
-    transform: translateX(-60%);
+    transform: translateX(-59.3%);
 }
 
 
