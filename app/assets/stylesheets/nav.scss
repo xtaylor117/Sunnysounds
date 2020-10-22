@@ -337,6 +337,7 @@ input.search-bar[type="text"], select {
 
 .right-nav li:hover .user-dropdown {
     display: block;
+    transform-origin: center;
 }
 
 .right-nav li:hover .notifications-dropdown {

@@ -11,7 +11,7 @@ class SongForm extends React.Component {
             audioFile: null,
             audioUrl: null,
             photoFile: null,
-            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png"
+            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png"
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -92,7 +92,7 @@ class SongForm extends React.Component {
             reader.readAsDataURL(file);
         } else {
             if (file.type === "image/png" || file.type === "image/jpeg") {
-                this.setState({ photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png", photoFile: null })
+                this.setState({ photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png", photoFile: null })
             } else {
                 this.setState({ audioUrl: "", audioFile: null });
             }

@@ -6,8 +6,6 @@ export default function currentSongReducer(oldState = _nullSong, action) {
     Object.freeze(oldState);
     let nextState = Object.assign({}, oldState);
 
-    // debugger
-
     switch (action.type) {
         case RECEIVE_SONG:
             nextState.currentSong = action.currentSong

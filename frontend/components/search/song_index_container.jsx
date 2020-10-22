@@ -6,7 +6,6 @@ import { openModal } from '../../actions/modal_actions'
 import SongIndex from './song_index'
 
 const mSTP = (state, ownProps) => {
-    debugger
     const userSongs = Object.values(state.entities.songs).filter(song => song.artist_id === state.session.currentUser.id)
     const length = userSongs.length
     return({

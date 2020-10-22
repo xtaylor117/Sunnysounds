@@ -23,7 +23,7 @@ class SongIndex extends React.Component {
                         key={song.id}
                         audioUrl={song.audioUrl}
                         photoUrl={song.photoUrl}
-                        currentUser={currentUser}
+                        currentUser={this.props.currentUser}
                         openModal={this.props.openModal}
                         deleteSong={this.props.deleteSong}
                     />

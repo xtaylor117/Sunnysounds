@@ -946,7 +946,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             key: song.id,
             audioUrl: song.audioUrl,
             photoUrl: song.photoUrl,
-            currentUser: currentUser,
+            currentUser: _this2.props.currentUser,
             openModal: _this2.props.openModal,
             deleteSong: _this2.props.deleteSong
           });
@@ -1025,7 +1025,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   var userSongs = Object.values(state.entities.songs).filter(function (song) {
     return song.artist_id === state.session.currentUser.id;
   });
@@ -1597,7 +1596,7 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       audioFile: null,
       audioUrl: null,
       photoFile: null,
-      photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png"
+      photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
@@ -1699,7 +1698,7 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       } else {
         if (file.type === "image/png" || file.type === "image/jpeg") {
           this.setState({
-            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/audio%2Bmedia%2Bmusic%2Bplay%2Bplayer%2Bright%2Bsound%2Bvideo%2Bicon-1320085967363315937_64.png",
+            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png",
             photoFile: null
           });
         } else {
@@ -2009,7 +2008,7 @@ function currentSongReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSong;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
-  var nextState = Object.assign({}, oldState); // debugger
+  var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONG"]:
