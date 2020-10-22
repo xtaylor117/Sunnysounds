@@ -83,11 +83,12 @@ class SongForm extends React.Component {
     }
 
     render(){
-        console.log(this.state)
+        const audioPreview = this.state.audioUrl ? <audio controls className="audio-preview" src={this.state.audioUrl} /> : null;
         return(
             <>
                 <div className="login-form-container">
                     <form onSubmit={this.handleSubmit} className="login-form-box">
+                        {audioPreview}
                         <br />
                         <div className="login-form">
                             <br />

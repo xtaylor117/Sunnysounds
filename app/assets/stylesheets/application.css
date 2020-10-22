@@ -26,3 +26,6 @@ body {
   background: gainsboro;
 }
 
+button:focus {
+  outline: none;
+}

@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
     validates :title, :artist_id, presence: true
+    validate :ensure_audiofile
 
     belongs_to :artist,
     foreign_key: :artist_id,
