@@ -1109,7 +1109,9 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
           genre = _this$props$song.genre;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-info"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.photoUrl
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         controls: true,
         className: "audio-player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
@@ -1554,7 +1556,9 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       genre: '',
       artist_id: _this.props.currentUser.id,
       audioFile: null,
-      audioUrl: null
+      audioUrl: null,
+      photoFile: null,
+      photoUrl: null
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
@@ -1581,6 +1585,19 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
     value: function editForm() {
       if (this.props.formType === 'create') {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "audio-submit",
+          onChange: this.handleFile,
+          type: "file",
+          accept: "audio/mpeg"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "photo-submit",
+          onChange: this.handleFile,
+          type: "file",
+          accept: "image/png, image/jpeg"
+        }));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "photo-submit",
           onChange: this.handleFile,
           type: "file"
         }));
@@ -1600,6 +1617,10 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
         formData.append('song[audiofile]', this.state.audioFile);
       }
 
+      if (this.state.photoFile) {
+        formData.append('song[photofile]', this.state.photoFile);
+      }
+
       this.props.processForm(formData).then(this.props.closeModal);
     }
   }, {
@@ -1611,20 +1632,36 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       var reader = new FileReader();
       var file = e.currentTarget.files[0];
 
-      reader.onloadend = function () {
-        return _this3.setState({
-          audioUrl: reader.result,
-          audioFile: file
-        });
-      };
+      if (file.type === "image/png" || file.type === "image/jpeg") {
+        reader.onloadend = function () {
+          return _this3.setState({
+            photoUrl: reader.result,
+            photoFile: file
+          });
+        };
+      } else {
+        reader.onloadend = function () {
+          return _this3.setState({
+            audioUrl: reader.result,
+            audioFile: file
+          });
+        };
+      }
 
       if (file) {
         reader.readAsDataURL(file);
       } else {
-        this.setState({
-          audioUrl: "",
-          audioFile: null
-        });
+        if (file.type === "image/png" || file.type === "image/jpeg") {
+          this.setState({
+            photoUrl: "",
+            photoFile: null
+          });
+        } else {
+          this.setState({
+            audioUrl: "",
+            audioFile: null
+          });
+        }
       }
     }
   }, {
@@ -1639,17 +1676,22 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       var audioPreview = this.state.audioUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         controls: true,
         className: "audio-preview",
         src: this.state.audioUrl
+      }) : null;
+      var photoPreview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "photo-preview",
+        src: this.state.photoUrl
       }) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "login-form-box"
-      }, audioPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, audioPreview, photoPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.editForm(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         autoFocus: true,

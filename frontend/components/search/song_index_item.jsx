@@ -27,6 +27,7 @@ class SongIndexItem extends React.Component {
         return (
             <>
                 <div className="index-item-info">
+                    <img src={this.props.photoUrl}/>
                     <audio controls className='audio-player'>
                         <source src={this.props.audioUrl} type="audio/mpeg" />   
                     </audio>

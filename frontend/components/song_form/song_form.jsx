@@ -9,7 +9,9 @@ class SongForm extends React.Component {
             genre: '',
             artist_id: this.props.currentUser.id,
             audioFile: null,
-            audioUrl: null
+            audioUrl: null,
+            photoFile: null,
+            photoUrl: null
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +34,14 @@ class SongForm extends React.Component {
         if (this.props.formType === 'create') {
             return(
                 <label>
-                    <input onChange={this.handleFile} type="file" />
+                    <input className="audio-submit" onChange={this.handleFile} type="file" accept="audio/mpeg" />
+                    <input className="photo-submit" onChange={this.handleFile} type="file" accept="image/png, image/jpeg"/>
+                </label>
+            )
+        } else {
+            return(
+                <label>
+                    <input className="photo-submit" onChange={this.handleFile} type="file" />
                 </label>
             )
         }
@@ -50,6 +59,11 @@ class SongForm extends React.Component {
         if (this.state.audioFile) {
             formData.append('song[audiofile]', this.state.audioFile);
         }
+
+        if (this.state.photoFile) {
+            formData.append('song[photofile]', this.state.photoFile);
+        }
+
         
         this.props.processForm(formData)
             .then(this.props.closeModal)
@@ -59,13 +73,23 @@ class SongForm extends React.Component {
         e.stopPropagation();
         const reader = new FileReader();
         const file = e.currentTarget.files[0];
-        reader.onloadend = () =>
-            this.setState({audioUrl: reader.result, audioFile: file });
+
+        if (file.type === "image/png" || file.type === "image/jpeg") {
+            reader.onloadend = () =>
+            this.setState({photoUrl: reader.result, photoFile: file});
+        } else {
+            reader.onloadend = () =>
+            this.setState({audioUrl: reader.result, audioFile: file })
+        }
 
         if (file) {
             reader.readAsDataURL(file);
         } else {
-            this.setState({audioUrl: "", audioFile: null });
+            if (file.type === "image/png" || file.type === "image/jpeg") {
+                this.setState({ photoUrl: "", photoFile: null })
+            } else {
+                this.setState({ audioUrl: "", audioFile: null });
+            }
         }
         
     }
@@ -83,12 +107,15 @@ class SongForm extends React.Component {
     }
 
     render(){
+        console.log(this.state)
         const audioPreview = this.state.audioUrl ? <audio controls className="audio-preview" src={this.state.audioUrl} /> : null;
+        const photoPreview = this.state.photoUrl ? <img className="photo-preview" src={this.state.photoUrl} /> : null;
         return(
             <>
                 <div className="login-form-container">
                     <form onSubmit={this.handleSubmit} className="login-form-box">
                         {audioPreview}
+                        {photoPreview}
                         <br />
                         <div className="login-form">
                             <br />

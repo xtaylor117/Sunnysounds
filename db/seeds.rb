@@ -11,7 +11,6 @@ require 'open-uri'
 Artist.destroy_all
 
 demoUser = Artist.create(username: "Demo", password: "password")
-
 artist1 = Artist.create(username: "Patrick Patrikios", password: "password")
 artist2 = Artist.create(username: "Asher Fulero", password: "password")
 artist3 = Artist.create(username: "Nana Kwabena", password: "password")

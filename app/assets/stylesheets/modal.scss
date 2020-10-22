@@ -36,6 +36,11 @@
     padding: 20px;
     background: white;
     position: relative;
+    max-width: 100%;
+}
+
+.login-form-container {
+  max-width: 500px;
 }
 
 .session-submit {
@@ -70,3 +75,12 @@
 // .audio-preview {
 //   width: 50%;
 // }
+
+.photo-preview {
+  position: absolute;
+  right: 0;
+  margin-right: 50px;
+  height: 100px;
+  width: 100px;
+  border-radius: 25px;
+}
