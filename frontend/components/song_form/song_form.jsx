@@ -113,9 +113,9 @@ class SongForm extends React.Component {
         return(
             <>
                 <div className="login-form-container">
-                    <form onSubmit={this.handleSubmit} className="login-form-box">
-                        {audioPreview}
-                        {photoPreview}
+                    {audioPreview}
+                    {photoPreview}
+                    <form onSubmit={this.handleSubmit} className="create-form-box">
                         <br />
                         <div className="login-form">
                             <br />

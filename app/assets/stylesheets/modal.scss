@@ -39,6 +39,24 @@
     max-width: 100%;
 }
 
+.create-form-box {
+  display: flex;
+  align-items: flex-end;
+  height: 345px;
+  margin-top: -50px;
+  border-radius: 25px;
+  border-bottom: 1px solid #e5e5e5;
+  border-left:  1px solid #e5e5e5;
+  border-right:  1px solid #e5e5e5;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding: 20px;
+  background: white;
+  position: relative;
+  max-width: 100%;
+}
+
+
 .login-form-container {
   max-width: 500px;
 }
@@ -72,15 +90,25 @@
   color: #333333;
 }
 
-// .audio-preview {
-//   width: 50%;
-// }
+.audio-preview {
+  z-index: 15;
+  position: fixed;
+  top: 0;
+  left: 15px;
+  transform: translateY(-25px);
+}
 
 .photo-preview {
-  position: absolute;
-  right: 0;
-  margin-right: 50px;
+  z-index: 15;
+  position: fixed;
+  top: -20px;
+  left: 385px;
+  margin-right: 20px;
+  transform: translateX(-40px);
+  border: 1px gold;
+  border-style: double;
   height: 100px;
   width: 100px;
   border-radius: 25px;
+  object-fit: cover;
 }
