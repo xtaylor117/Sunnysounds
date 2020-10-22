@@ -78,7 +78,8 @@
 
 .close-modal-button {
   margin-top: 46px;
-  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q2xvc2U8L3RpdGxlPjxwYXRoIGQ9Ik0xMCA4LjU0NUwzLjQ1NSAyIDIgMy40NTUgOC41NDUgMTAgMiAxNi41NDUgMy40NTUgMTggMTAgMTEuNDU1IDE2LjU0NSAxOCAxOCAxNi41NDUgMTEuNDU1IDEwIDE4IDMuNDU1IDE2LjU0NSAyIDEwIDguNTQ1eiIgZmlsbD0iIzMzMyIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+Cg==) 50% no-repeat;
+  cursor: pointer;
+  background: url(https://sunnysounds-seed.s3-us-west-1.amazonaws.com/false-2061132_640.png) 50% no-repeat;
   position: absolute;
   top: 14px;
   right: 20px;
@@ -134,6 +135,8 @@ input[type="file"] {
 }
 
 .custom-song-upload {
+  position: relative;
+  z-index: 5;
   border: 1px solid #ccc;
   display: inline-flex;
   margin-bottom: 10px;
@@ -156,4 +159,5 @@ input[type="file"] {
 
 .form-errors {
   position: fixed;
+  z-index: 5;
 }
