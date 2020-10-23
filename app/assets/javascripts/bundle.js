@@ -478,7 +478,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ArtistShow);
 
     _this = _super.call(this, props);
-    _this.lastUpload = _this.lastUpload.bind(_assertThisInitialized(_this));
+    _this.currentSong = _this.currentSong.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -489,13 +489,13 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       this.props.receiveAllArtists();
     }
   }, {
-    key: "lastUpload",
-    value: function lastUpload() {
+    key: "currentSong",
+    value: function currentSong() {
       var _this2 = this;
 
-      if (this.props.latestSong) {
+      if (this.props.currentSong) {
         return this.props.songs.filter(function (song) {
-          return song.id === _this2.props.latestSong.id;
+          return song.id === _this2.props.currentSong.id;
         }).map(function (song) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
             song: song,
@@ -542,7 +542,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "~Song Playing~"), this.lastUpload()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "~Song Playing~"), this.currentSong()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -976,7 +976,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SongIndex);
 
     _this = _super.call(this, props);
-    _this.lastUpload = _this.lastUpload.bind(_assertThisInitialized(_this));
+    _this.currentSong = _this.currentSong.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -987,13 +987,13 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
       this.props.receiveAllSongs();
     }
   }, {
-    key: "lastUpload",
-    value: function lastUpload() {
+    key: "currentSong",
+    value: function currentSong() {
       var _this2 = this;
 
-      if (this.props.latestSong) {
+      if (this.props.currentSong) {
         return this.props.songs.filter(function (song) {
-          return song.id === _this2.props.latestSong.id;
+          return song.id === _this2.props.currentSong.id;
         }).map(function (song) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             song: song,
@@ -1039,7 +1039,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "~Song Playing~"), this.lastUpload()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "~Song Playing~"), this.currentSong()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -1105,7 +1105,7 @@ var mDTP = function mDTP(dispatch) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllArtists"])());
     },
     openModal: function openModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
+      return disspatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     },
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSong"])(songId));

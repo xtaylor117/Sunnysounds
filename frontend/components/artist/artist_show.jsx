@@ -7,7 +7,7 @@ class ArtistShow extends React.Component {
     constructor(props) {
         super(props);
 
-        this.lastUpload = this.lastUpload.bind(this)
+        this.currentSong = this.currentSong.bind(this)
     }
     
     componentDidMount() {
@@ -15,11 +15,11 @@ class ArtistShow extends React.Component {
         this.props.receiveAllArtists()
     }
 
-    lastUpload() {
-        if (this.props.latestSong) {
+    currentSong() {
+        if (this.props.currentSong) {
             return (
                 this.props.songs.filter(song => (
-                    song.id === this.props.latestSong.id
+                    song.id === this.props.currentSong.id
                 )).map(song => (
                     <SongIndexItem
                         song={song}
@@ -66,7 +66,7 @@ class ArtistShow extends React.Component {
                 <div className="discovery-sidebar">
                     <div className="latest-upload">
                         <h3>~Song Playing~</h3>
-                        {this.lastUpload()}
+                        {this.currentSong()}
                     </div>
                     <div className='comments-container'>
                         <h3>Recent Comments</h3>
