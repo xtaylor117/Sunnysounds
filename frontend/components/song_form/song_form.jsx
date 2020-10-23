@@ -5,17 +5,18 @@ class SongForm extends React.Component {
     constructor(props){
         super(props);
 
-        // if (this.props.formType === 'edit') {
-        //     this.state = this.props.song
-        // } else {}
-        this.state = {
-            title: '',
-            genre: '',
-            artist_id: this.props.currentUser.id,
-            audioFile: null,
-            audioUrl: null,
-            photoFile: null,
-            photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png"
+        if (this.props.formType === 'edit') {
+            this.state = this.props.song
+        } else {
+            this.state = {
+                title: '',
+                genre: '',
+                artist_id: this.props.currentUser.id,
+                audioFile: null,
+                audioUrl: null,
+                photoFile: null,
+                photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png"
+            }
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);

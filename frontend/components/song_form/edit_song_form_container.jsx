@@ -5,14 +5,11 @@ import { editSong, clearSongErrors } from '../../actions/song_actions'
 import SongForm from './song_form'
 
 const mSTP = (state, ownProps) => {
-    // const currentSong = state.ui.currentsong;
-
     return({
         currentUser: state.session.currentUser,
         errors: state.errors.song,
-        formType: 'edit'
-        // song: state.entities.songs[currentSong]
-
+        formType: 'edit',
+        song: ownProps.song
     })
 };
 

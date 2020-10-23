@@ -13,7 +13,6 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
     }
     
     let component;
-    console.log(modal.formType)
     switch (modal.formType) {
         case 'login':
             component = <LoginFormContainer />;

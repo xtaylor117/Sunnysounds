@@ -647,7 +647,6 @@ function Modal(_ref) {
   }
 
   var component;
-  console.log(modal.formType);
 
   switch (modal.formType) {
     case 'login':
@@ -1570,12 +1569,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // const currentSong = state.ui.currentsong;
   return {
     currentUser: state.session.currentUser,
     errors: state.errors.song,
-    formType: 'edit' // song: state.entities.songs[currentSong]
-
+    formType: 'edit',
+    song: ownProps.song
   };
 };
 
@@ -1646,19 +1644,22 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, SongForm);
 
-    _this = _super.call(this, props); // if (this.props.formType === 'edit') {
-    //     this.state = this.props.song
-    // } else {}
+    _this = _super.call(this, props);
 
-    _this.state = {
-      title: '',
-      genre: '',
-      artist_id: _this.props.currentUser.id,
-      audioFile: null,
-      audioUrl: null,
-      photoFile: null,
-      photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png"
-    };
+    if (_this.props.formType === 'edit') {
+      _this.state = _this.props.song;
+    } else {
+      _this.state = {
+        title: '',
+        genre: '',
+        artist_id: _this.props.currentUser.id,
+        audioFile: null,
+        audioUrl: null,
+        photoFile: null,
+        photoUrl: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png"
+      };
+    }
+
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.editForm = _this.editForm.bind(_assertThisInitialized(_this));
