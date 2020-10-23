@@ -1105,7 +1105,7 @@ var mDTP = function mDTP(dispatch) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllArtists"])());
     },
     openModal: function openModal(modal) {
-      return disspatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     },
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSong"])(songId));
