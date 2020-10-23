@@ -39,7 +39,7 @@ class SongIndexItem extends React.Component {
                 <div className="index-item-info">
                     <img src={this.props.photoUrl}/>
                     <div className="custom-audio-player">
-                        <button className="play-pause">Play</button>
+                        <button className="play-pause"><img className="play-button" src="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png" /></button>
                         <audio controls className='audio-player'>
                             <source src={this.props.audioUrl} type="audio/mpeg" />   
                         </audio>
