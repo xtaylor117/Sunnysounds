@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { selectArtist, receiveAllSongs, deleteSong, receiveAllArtists } from '../../actions/song_actions'
 import ArtistShow from './artist_show'
+import { openModal } from '../../actions/modal_actions'
 
 const mSTP = (state, ownProps) => {
     const currentUser = state.session.currentUser;
@@ -25,6 +26,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => ({
     receiveAllSongs: () => dispatch(receiveAllSongs()),
     deleteSong: songId => dispatch(deleteSong(songId)),
+    openModal: (modal) => dispatch(openModal(modal)),
     receiveAllArtists: () => dispatch(receiveAllArtists())
 });
 

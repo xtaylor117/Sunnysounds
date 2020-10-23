@@ -567,6 +567,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
 /* harmony import */ var _artist_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./artist_show */ "./frontend/components/artist/artist_show.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -599,6 +601,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["deleteSong"])(songId));
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     },
     receiveAllArtists: function receiveAllArtists() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveAllArtists"])());
@@ -1719,6 +1724,10 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
       formData.append('song[title]', this.state.title);
       formData.append('song[genre]', this.state.genre);
       formData.append('song[artist_id]', this.state.artist_id);
+
+      if (this.state.id) {
+        formData.append('song[id]', this.state.id);
+      }
 
       if (this.state.audioFile) {
         formData.append('song[audiofile]', this.state.audioFile);

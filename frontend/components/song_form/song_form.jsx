@@ -67,6 +67,10 @@ class SongForm extends React.Component {
         formData.append('song[title]', this.state.title);
         formData.append('song[genre]', this.state.genre);
         formData.append('song[artist_id]', this.state.artist_id);
+
+        if (this.state.id) {
+            formData.append('song[id]', this.state.id);
+        }
         
         if (this.state.audioFile) {
             formData.append('song[audiofile]', this.state.audioFile);
