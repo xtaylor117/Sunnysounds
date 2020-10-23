@@ -15,6 +15,7 @@ class SongIndexItem extends React.Component {
                 audio.pause();
             });
         });
+
     }
 
 
@@ -29,6 +30,8 @@ class SongIndexItem extends React.Component {
     // }
 
     playSong() {
+        this.props.receiveCurrentSong(this.props.song.id);
+
         let song = document.getElementById(this.props.song.id);
         let background = document.getElementById(this.props.song.id + 1000)
         // debugger

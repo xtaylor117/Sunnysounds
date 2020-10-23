@@ -9,6 +9,11 @@ class ArtistShow extends React.Component {
 
         this.lastUpload = this.lastUpload.bind(this)
     }
+    
+    componentDidMount() {
+        this.props.receiveAllSongs()
+        this.props.receiveAllArtists()
+    }
 
     lastUpload() {
         if (this.props.latestSong) {
@@ -26,16 +31,13 @@ class ArtistShow extends React.Component {
                         deleteSong={this.props.deleteSong}
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
+                        receiveCurrentSong={this.props.receiveCurrentSong}
                     />
                 ))
             )
         }
     }
-
-    componentDidMount() {
-        this.props.receiveAllSongs()
-        this.props.receiveAllArtists()
-    }
+    
     render() {
 
         const currentUser = this.props.currentUser
@@ -57,6 +59,7 @@ class ArtistShow extends React.Component {
                             deleteSong={this.props.deleteSong}
                             artists={this.props.artists}
                             receiveSong={this.props.receiveSong}
+                            receiveCurrentSong={this.props.receiveCurrentSong}
                         />
                     ))}
                 </div>

@@ -9,7 +9,7 @@ export const CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS"
 export const RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS"
 export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG"
 
-export const receiveCurrentSong = (song) => ({
+const fetchCurrentSong = (song) => ({
     type: RECEIVE_CURRENT_SONG,
     song
 })
@@ -62,6 +62,13 @@ export const receiveSong = (songId) => dispatch => {
     return songUtil.fetchSong(songId)
         .then(
             song => (dispatch(fetchSong(song)))
+        )
+}
+
+export const receiveCurrentSong = (songId) => dispatch => {
+    return songUtil.fetchSong(songId)
+        .then(
+            song => (dispatch(fetchCurrentSong(song)))
         )
 }
 

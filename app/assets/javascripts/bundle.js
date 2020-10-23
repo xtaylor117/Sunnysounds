@@ -216,7 +216,7 @@ var clearSessionErrors = function clearSessionErrors() {
 /*!******************************************!*\
   !*** ./frontend/actions/song_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_ALL_SONGS, RECEIVE_SONG, DELETE_SONG, RECEIVE_SONG_ERRORS, CLEAR_SONG_ERRORS, RECEIVE_ALL_ARTISTS, RECEIVE_CURRENT_SONG, receiveCurrentSong, receiveAllSongs, receiveAllArtists, receiveSong, createSong, editSong, deleteSong, clearSongErrors, selectSong, selectArtist */
+/*! exports provided: RECEIVE_ALL_SONGS, RECEIVE_SONG, DELETE_SONG, RECEIVE_SONG_ERRORS, CLEAR_SONG_ERRORS, RECEIVE_ALL_ARTISTS, RECEIVE_CURRENT_SONG, receiveAllSongs, receiveAllArtists, receiveSong, receiveCurrentSong, createSong, editSong, deleteSong, clearSongErrors, selectSong, selectArtist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -228,10 +228,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_SONG_ERRORS", function() { return CLEAR_SONG_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_ARTISTS", function() { return RECEIVE_ALL_ARTISTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_SONG", function() { return RECEIVE_CURRENT_SONG; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentSong", function() { return receiveCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllSongs", function() { return receiveAllSongs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllArtists", function() { return receiveAllArtists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSong", function() { return receiveSong; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentSong", function() { return receiveCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editSong", function() { return editSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSong", function() { return deleteSong; });
@@ -249,7 +249,8 @@ var RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS";
 var CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS";
 var RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS";
 var RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
-var receiveCurrentSong = function receiveCurrentSong(song) {
+
+var fetchCurrentSong = function fetchCurrentSong(song) {
   return {
     type: RECEIVE_CURRENT_SONG,
     song: song
@@ -316,6 +317,13 @@ var receiveSong = function receiveSong(songId) {
   return function (dispatch) {
     return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["fetchSong"](songId).then(function (song) {
       return dispatch(fetchSong(song));
+    });
+  };
+};
+var receiveCurrentSong = function receiveCurrentSong(songId) {
+  return function (dispatch) {
+    return _utils_song_api_utils__WEBPACK_IMPORTED_MODULE_0__["fetchSong"](songId).then(function (song) {
+      return dispatch(fetchCurrentSong(song));
     });
   };
 };
@@ -475,6 +483,12 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(ArtistShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.receiveAllSongs();
+      this.props.receiveAllArtists();
+    }
+  }, {
     key: "lastUpload",
     value: function lastUpload() {
       var _this2 = this;
@@ -492,16 +506,11 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
             openModal: _this2.props.openModal,
             deleteSong: _this2.props.deleteSong,
             artists: _this2.props.artists,
-            receiveSong: _this2.props.receiveSong
+            receiveSong: _this2.props.receiveSong,
+            receiveCurrentSong: _this2.props.receiveCurrentSong
           });
         });
       }
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.receiveAllSongs();
-      this.props.receiveAllArtists();
     }
   }, {
     key: "render",
@@ -526,7 +535,8 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           openModal: _this3.props.openModal,
           deleteSong: _this3.props.deleteSong,
           artists: _this3.props.artists,
-          receiveSong: _this3.props.receiveSong
+          receiveSong: _this3.props.receiveSong,
+          receiveCurrentSong: _this3.props.receiveCurrentSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -575,6 +585,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   var currentUser = state.session.currentUser;
+  var currentSong = state.ui.currentSong;
   var artistId = parseInt(ownProps.match.params.artistId);
   var artist = Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["selectArtist"])(state.entities, artistId);
   var songs = Object.values(state.entities.songs);
@@ -582,10 +593,9 @@ var mSTP = function mSTP(state, ownProps) {
     return song.artist_id === state.session.currentUser.id;
   });
   var length = userSongs.length;
-  var latestSong = userSongs[length - 1];
   var artists = Object.values(state.entities.artists);
   return {
-    latestSong: latestSong,
+    currentSong: currentSong,
     currentUser: currentUser,
     songs: songs,
     artistId: artistId,
@@ -610,6 +620,9 @@ var mDTP = function mDTP(dispatch) {
     },
     receiveSong: function receiveSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSong"])(songId));
+    },
+    receiveCurrentSong: function receiveCurrentSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveCurrentSong"])(songId));
     }
   };
 };
@@ -970,7 +983,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(SongIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.receiveAllArtists().then(this.props.receiveAllSongs());
+      this.props.receiveAllArtists();
+      this.props.receiveAllSongs();
     }
   }, {
     key: "lastUpload",
@@ -990,7 +1004,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             openModal: _this2.props.openModal,
             deleteSong: _this2.props.deleteSong,
             artists: _this2.props.artists,
-            receiveSong: _this2.props.receiveSong
+            receiveSong: _this2.props.receiveSong,
+            receiveCurrentSong: _this2.props.receiveCurrentSong
           });
         });
       }
@@ -1017,7 +1032,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           openModal: _this3.props.openModal,
           deleteSong: _this3.props.deleteSong,
           artists: _this3.props.artists,
-          receiveSong: _this3.props.receiveSong
+          receiveSong: _this3.props.receiveSong,
+          receiveCurrentSong: _this3.props.receiveCurrentSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -1074,9 +1090,9 @@ var mSTP = function mSTP(state, ownProps) {
   var length = userSongs.length;
   return {
     currentUser: state.session.currentUser,
+    currentSong: state.ui.currentSong,
     artists: Object.values(state.entities.artists),
-    songs: Object.values(state.entities.songs),
-    latestSong: userSongs[length - 1]
+    songs: Object.values(state.entities.songs)
   };
 };
 
@@ -1096,6 +1112,9 @@ var mDTP = function mDTP(dispatch) {
     },
     receiveSong: function receiveSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveSong"])(songId));
+    },
+    receiveCurrentSong: function receiveCurrentSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentSong"])(songId));
     }
   };
 };
@@ -1176,6 +1195,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "playSong",
     value: function playSong() {
+      this.props.receiveCurrentSong(this.props.song.id);
       var song = document.getElementById(this.props.song.id);
       var background = document.getElementById(this.props.song.id + 1000); // debugger
 

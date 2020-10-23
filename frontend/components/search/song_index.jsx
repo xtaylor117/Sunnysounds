@@ -10,7 +10,7 @@ class SongIndex extends React.Component {
 
     componentDidMount() {
         this.props.receiveAllArtists()
-            .then(this.props.receiveAllSongs())
+        this.props.receiveAllSongs()
     }
 
 
@@ -30,6 +30,7 @@ class SongIndex extends React.Component {
                         deleteSong={this.props.deleteSong}
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
+                        receiveCurrentSong={this.props.receiveCurrentSong}
                     />
                 ))   
             )
@@ -55,6 +56,7 @@ class SongIndex extends React.Component {
                             deleteSong={this.props.deleteSong}
                             artists={this.props.artists}
                             receiveSong={this.props.receiveSong}
+                            receiveCurrentSong={this.props.receiveCurrentSong}
                         />
                     ))}
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { receiveAllSongs, deleteSong, receiveAllArtists, receiveSong } from '../../actions/song_actions'
+import { receiveAllSongs, deleteSong, receiveAllArtists, receiveSong, receiveCurrentSong } from '../../actions/song_actions'
 import { openModal, receiveModalSong } from '../../actions/modal_actions'
 import SongIndex from './song_index'
 
@@ -10,9 +10,9 @@ const mSTP = (state, ownProps) => {
 
     return({
         currentUser: state.session.currentUser,
+        currentSong: state.ui.currentSong,
         artists: Object.values(state.entities.artists),
-        songs: Object.values(state.entities.songs),
-        latestSong: userSongs[length - 1]
+        songs: Object.values(state.entities.songs)
     })
 }
 
@@ -22,7 +22,8 @@ const mDTP = dispatch => {
         receiveAllArtists: () => dispatch(receiveAllArtists()),
         openModal: (modal) => dispatch(openModal(modal)),
         deleteSong: songId => dispatch(deleteSong(songId)),
-        receiveSong: songId => dispatch(receiveSong(songId))
+        receiveSong: songId => dispatch(receiveSong(songId)),
+        receiveCurrentSong: songId => dispatch(receiveCurrentSong(songId))
 
     })
 }
