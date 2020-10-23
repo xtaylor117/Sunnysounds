@@ -25,7 +25,7 @@ class Nav extends React.Component {
                             </li>
                         </div>
                         <div className="right-nav">
-                            <li className="upload"><button onClick={() => this.props.openModal('create')}>Upload</button></li>
+                            <li className="upload"><button onClick={() => this.props.openModal({formType: 'create'})}>Upload</button></li>
                             <li>
                                 <p className="this-user">{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
                                 <div className="user-dropdown">

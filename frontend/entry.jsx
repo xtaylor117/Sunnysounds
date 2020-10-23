@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root'
 
-import { createSong, editSong, deleteSong, receiveSong, receiveAllSongs } from './actions/song_actions'
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,9 +23,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.getState = store.getState;
     window.dispatch = store.dispatch;
     
-    window.createSong = createSong;
-    window.editSong = editSong;
-    window.deleteSong = deleteSong;
-    window.receiveAllSongs = receiveAllSongs;
-    window.receiveSong = receiveSong;
 });

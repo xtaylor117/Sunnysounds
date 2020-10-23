@@ -13,7 +13,8 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
     }
     
     let component;
-    switch (modal) {
+    console.log(modal.formType)
+    switch (modal.formType) {
         case 'login':
             component = <LoginFormContainer />;
             break;
@@ -24,7 +25,7 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
             component = <CreateSongFormContainer />;
             break;
         case 'edit':
-            component = <EditSongFormContainer />;
+            component = <EditSongFormContainer song={modal.song}/>;
             break;
         default:
             return null;
@@ -34,7 +35,6 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
         clearSessionErrors();
         closeModal();
     }
-
     
     return (
 
@@ -48,10 +48,8 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
 }
 
 const mapStateToProps = state => {
-    // debugger
     return {
-        modal: state.ui.modal,
-        currentSong: state.ui.currentSong
+        modal: state.ui.modal
     };
 };
 

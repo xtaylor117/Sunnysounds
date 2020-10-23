@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { selectArtist, receiveAllSongs, deleteSong } from '../../actions/song_actions'
+import { selectArtist, receiveAllSongs, deleteSong, receiveAllArtists } from '../../actions/song_actions'
 import ArtistShow from './artist_show'
 
 const mSTP = (state, ownProps) => {
@@ -10,19 +10,22 @@ const mSTP = (state, ownProps) => {
     const userSongs = Object.values(state.entities.songs).filter(song => song.artist_id === state.session.currentUser.id)
     const length = userSongs.length
     const latestSong = userSongs[length - 1]
+    const artists = Object.values(state.entities.artists)
 
     return {
         latestSong,
         currentUser,
         songs,
         artistId,
-        artist
+        artist,
+        artists
     };
 };
 
 const mDTP = dispatch => ({
     receiveAllSongs: () => dispatch(receiveAllSongs()),
-    deleteSong: songId => dispatch(deleteSong(songId))
+    deleteSong: songId => dispatch(deleteSong(songId)),
+    receiveAllArtists: () => dispatch(receiveAllArtists())
 });
 
 export default connect(mSTP, mDTP)(ArtistShow);

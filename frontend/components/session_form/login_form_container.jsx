@@ -17,7 +17,7 @@ const mDTP = dispatch => {
     return {
         processForm: (user) => dispatch(login(user)),
         otherForm: (
-            <button className="demo-button" onClick={() => dispatch(openModal('signup'))}>
+            <button className="demo-button" onClick={() => dispatch(openModal({formType: 'signup'}))}>
                 Sign Up!
             </button>
         ),

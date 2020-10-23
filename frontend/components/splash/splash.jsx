@@ -21,10 +21,10 @@ class Splash extends React.Component {
                         </div>
                         <div className="login-signup">
                             <li>
-                                <button onClick={() => this.props.openModal('login')}>Login</button>
+                                <button onClick={() => this.props.openModal({formType: 'login'})}>Login</button>
                             </li>
                             <li>
-                                <button onClick={() => this.props.openModal('signup')}>Signup</button>
+                                <button onClick={() => this.props.openModal({formType: 'signup'})}>Signup</button>
                             </li>
                         </div>
                     </div>

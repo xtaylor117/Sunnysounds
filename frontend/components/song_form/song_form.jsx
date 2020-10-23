@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 class SongForm extends React.Component {
     constructor(props){
         super(props);
+
+        // if (this.props.formType === 'edit') {
+        //     this.state = this.props.song
+        // } else {}
         this.state = {
             title: '',
             genre: '',

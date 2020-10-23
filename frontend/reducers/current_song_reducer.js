@@ -1,11 +1,11 @@
-import { RECEIVE_SONG } from '../actions/song_actions';
+import { RECEIVE_MODAL_SONG, CLOSE_MODAL } from '../actions/modal_actions'
 
 const currentSongReducer = (state = [], action) => {
     Object.freeze(state)
 
     switch (action.type) {
-        case RECEIVE_SONG:
-            return action.song
+        case CLOSE_MODAL:
+            return []
         default:
             return state
     }

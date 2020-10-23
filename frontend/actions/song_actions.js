@@ -34,7 +34,7 @@ const receiveSongErrors = (errors) => ({
     type: RECEIVE_SONG_ERRORS,
     errors
 })
-// 
+
 const removeSongErrors = (errors) => ({
     type: CLEAR_SONG_ERRORS,
     errors
