@@ -29,6 +29,7 @@ class SongIndex extends React.Component {
                         openModal={this.props.openModal}
                         deleteSong={this.props.deleteSong}
                         artists={this.props.artists}
+                        receiveSong={this.props.receiveSong}
                     />
                 ))   
             )
@@ -37,11 +38,11 @@ class SongIndex extends React.Component {
     
     render() {
         const currentUser = this.props.currentUser
-
+        // debugger
         return(
             <div className='discovery-container'>
-                {/* <h1>Search Results: </h1> */}
                 <div className='discovery-left'>
+                {/* <h1>Discover More! </h1> */}
                     {this.props.songs.map(song => (
                         <SongIndexItem
                             songs={this.props.songs}
@@ -53,6 +54,7 @@ class SongIndex extends React.Component {
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
                             artists={this.props.artists}
+                            receiveSong={this.props.receiveSong}
                         />
                     ))}
                 </div>

@@ -7,6 +7,7 @@ class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.settingsAuth = this.settingsAuth.bind(this);
+        // this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount() {
@@ -32,15 +33,23 @@ class SongIndexItem extends React.Component {
         }
     }
 
+    
+
     // artistUsername() {
     //     if (this.props.artists[this.props.song.artist_id].username) {
     //         return this.props.artists[this.props.song.artist_id].username
     //     }
     // }
 
+    // handleClick() {
+    //     this.props.recieveSong(this.props.song.id)
+    //     debugger
+    //     this.props.openModal('edit')
+    // }
+
     render() {
         const { title, artist_id, genre } = this.props.song;
-        // let Artist = Object.values(this.props.artists[this.props.song.artist_id])
+        // let username = Object.values(this.props.artists[this.props.song.artist_id])
         // debugger
         return (
             <>

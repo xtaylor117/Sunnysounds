@@ -48,8 +48,10 @@ function Modal({ modal, closeModal, clearSessionErrors }) {
 }
 
 const mapStateToProps = state => {
+    // debugger
     return {
-        modal: state.ui.modal
+        modal: state.ui.modal,
+        currentSong: state.ui.currentSong
     };
 };
 

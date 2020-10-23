@@ -20,7 +20,8 @@ const mDTP = dispatch => {
         receiveAllSongs: () => dispatch(receiveAllSongs()),
         receiveAllArtists: () => dispatch(receiveAllArtists()),
         openModal: (modal) => dispatch(openModal(modal)),
-        deleteSong: songId => dispatch(deleteSong(songId))
+        deleteSong: songId => dispatch(deleteSong(songId)),
+        receiveSong: songId => dispatch(receiveSong(songId))
     })
 }
 

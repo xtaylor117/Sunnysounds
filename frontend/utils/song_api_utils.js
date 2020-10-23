@@ -31,10 +31,10 @@ export const deleteSong = (songId) => {
 
 export const updateSong = (song) => {
     return $.ajax({
-        url: `/api/songs/${song.id}`,
+        url: `/api/songs/${song.get("song[id]")}`,
         method: 'PATCH',
-        data: {
-            song: song,
-        }
+        contentType: false,
+        processData: false,
+        data: song
     })
 }

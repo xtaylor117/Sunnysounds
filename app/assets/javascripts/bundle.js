@@ -509,8 +509,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           photoUrl: song.photoUrl,
           currentUser: currentUser,
           openModal: _this3.props.openModal,
-          deleteSong: _this3.props.deleteSong,
-          artist: _this3.props.artist
+          deleteSong: _this3.props.deleteSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -668,8 +667,10 @@ function Modal(_ref) {
 }
 
 var mapStateToProps = function mapStateToProps(state) {
+  // debugger
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal,
+    currentSong: state.ui.currentSong
   };
 };
 
@@ -957,7 +958,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             currentUser: _this2.props.currentUser,
             openModal: _this2.props.openModal,
             deleteSong: _this2.props.deleteSong,
-            artists: _this2.props.artists
+            artists: _this2.props.artists,
+            receiveSong: _this2.props.receiveSong
           });
         });
       }
@@ -967,7 +969,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var currentUser = this.props.currentUser;
+      var currentUser = this.props.currentUser; // debugger
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -982,7 +985,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           currentUser: currentUser,
           openModal: _this3.props.openModal,
           deleteSong: _this3.props.deleteSong,
-          artists: _this3.props.artists
+          artists: _this3.props.artists,
+          receiveSong: _this3.props.receiveSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -1058,6 +1062,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSong"])(songId));
+    },
+    receiveSong: function receiveSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveSong"])(songId));
     }
   };
 };
@@ -1114,7 +1121,8 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SongIndexItem);
 
     _this = _super.call(this, props);
-    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this));
+    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this)); // this.handleClick = this.handleClick.bind(this)
+
     return _this;
   }
 
@@ -1154,6 +1162,11 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     //         return this.props.artists[this.props.song.artist_id].username
     //     }
     // }
+    // handleClick() {
+    //     this.props.recieveSong(this.props.song.id)
+    //     debugger
+    //     this.props.openModal('edit')
+    // }
 
   }, {
     key: "render",
@@ -1161,7 +1174,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
       var _this$props$song = this.props.song,
           title = _this$props$song.title,
           artist_id = _this$props$song.artist_id,
-          genre = _this$props$song.genre; // let Artist = Object.values(this.props.artists[this.props.song.artist_id])
+          genre = _this$props$song.genre; // let username = Object.values(this.props.artists[this.props.song.artist_id])
       // debugger
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1744,6 +1757,7 @@ var SongForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // debugger
       var audioPreview = this.state.audioUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         controls: true,
         className: "audio-preview",
@@ -2545,11 +2559,11 @@ var deleteSong = function deleteSong(songId) {
 };
 var updateSong = function updateSong(song) {
   return $.ajax({
-    url: "/api/songs/".concat(song.id),
+    url: "/api/songs/".concat(song.get("song[id]")),
     method: 'PATCH',
-    data: {
-      song: song
-    }
+    contentType: false,
+    processData: false,
+    data: song
   });
 };
 
