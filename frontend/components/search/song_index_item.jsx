@@ -6,6 +6,7 @@ class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.settingsAuth = this.settingsAuth.bind(this);
+
     }
 
     componentDidMount() {
@@ -16,16 +17,27 @@ class SongIndexItem extends React.Component {
         });
     }
 
+
+    // pausePic() {
+    //     let background = document.getElementById(this.props.song.id + 1000)
+    //     background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')" 
+    // }
+    
+    // playPic() {
+    //     let background = document.getElementById(this.props.song.id + 1000)
+    //     background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+    // }
+
     playSong() {
         let song = document.getElementById(this.props.song.id);
-        let pic = document.getElementById(this.props.song.id + 1000)
-
+        let background = document.getElementById(this.props.song.id + 1000)
+        // debugger
         if (song.paused) {
-            pic.src ="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png"
+            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')" 
             song.play()
         } else {
-            pic.src ="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png"
             song.pause()
+            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         }
 
     }
@@ -51,17 +63,19 @@ class SongIndexItem extends React.Component {
         return (
             <>
                 <div className="index-item-info">
-                    <img src={this.props.photoUrl}/>
+                    <img onClick={() => this.playSong()} src={this.props.photoUrl}/>
                     <div className="custom-audio-player">
-                        <button onClick={() => this.playSong()} className="play-button"><img className="play-button-image" id={this.props.song.id + 1000} src="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png" /></button>
+                        <button className="play-button" id={this.props.song.id + 1000} />
                         {/* <AudioPlayer /> */}
                         <audio controls className='audio-player' id={this.props.song.id}>
                             <source src={this.props.audioUrl} type="audio/mpeg" />   
                         </audio>
                     </div>
+                    <div className="song-info">
+                        <div className="index-item-genre">Genre: {genre}</div>
+                    </div>
                     <div className="index-item-title">{title}</div>
                     <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
-                    <div className="index-item-genre">Genre: {genre}</div>
                 </div>
                 {this.settingsAuth()}
             </>

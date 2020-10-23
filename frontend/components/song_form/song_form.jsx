@@ -60,6 +60,7 @@ class SongForm extends React.Component {
     }
 
     handleSubmit(e) {
+        
         e.preventDefault();
         e.stopPropagation();
         

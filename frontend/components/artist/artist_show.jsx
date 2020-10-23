@@ -62,7 +62,7 @@ class ArtistShow extends React.Component {
                 </div>
                 <div className="discovery-sidebar">
                     <div className="latest-upload">
-                        <h3>Your Last Upload</h3>
+                        <h3>~Song Playing~</h3>
                         {this.lastUpload()}
                     </div>
                     <div className='comments-container'>

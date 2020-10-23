@@ -45,6 +45,12 @@
   border: 1px cadetblue;
   border-style: double;
   border-radius: 25px;
+  opacity: 0.8;
+  z-index: 25;
+}
+
+.index-item-info img:hover {
+  cursor: pointer;
 }
 
 .index-item-title {
