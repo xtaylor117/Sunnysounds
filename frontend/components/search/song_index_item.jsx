@@ -17,9 +17,17 @@ class SongIndexItem extends React.Component {
     }
 
     playSong() {
-        debugger
         let song = document.getElementById(this.props.song.id);
-        song.play();
+        let pic = document.getElementById(this.props.song.id + 1000)
+
+        if (song.paused) {
+            pic.src ="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png"
+            song.play()
+        } else {
+            pic.src ="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png"
+            song.pause()
+        }
+
     }
 
     settingsAuth() {
@@ -45,7 +53,8 @@ class SongIndexItem extends React.Component {
                 <div className="index-item-info">
                     <img src={this.props.photoUrl}/>
                     <div className="custom-audio-player">
-                        <button onClick={() => this.playSong()} className="play-pause"><img className="play-button" src="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png" /></button>
+                        <button onClick={() => this.playSong()} className="play-button"><img className="play-button-image" id={this.props.song.id + 1000} src="https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png" /></button>
+                        {/* <AudioPlayer /> */}
                         <audio controls className='audio-player' id={this.props.song.id}>
                             <source src={this.props.audioUrl} type="audio/mpeg" />   
                         </audio>

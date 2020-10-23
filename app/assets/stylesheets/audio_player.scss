@@ -1,4 +1,4 @@
-.play-pause {
+.play-button {
     position: relative;
     width: 115px;
     height: 115px;
@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 
-.latest-upload .play-pause {
+.latest-upload .play-button {
     position: relative;
     width: 125%;
     height: 225px;
@@ -20,13 +20,13 @@
     right: 19px;
 }
 
-.latest-upload .play-pause .play-button {
+.latest-upload .play-button .play-button-image {
     width: 90%;
     top: -0.5px;
     right: 3%;
 }
 
-.play-pause .play-button {
+.play-button .play-button-image {
     position: relative;
     top: 4px;
     opacity: 0.2;

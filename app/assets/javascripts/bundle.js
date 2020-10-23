@@ -1168,9 +1168,16 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "playSong",
     value: function playSong() {
-      debugger;
       var song = document.getElementById(this.props.song.id);
-      song.play();
+      var pic = document.getElementById(this.props.song.id + 1000);
+
+      if (song.paused) {
+        pic.src = "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png";
+        song.play();
+      } else {
+        pic.src = "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png";
+        song.pause();
+      }
     }
   }, {
     key: "settingsAuth",
@@ -1218,9 +1225,10 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this3.playSong();
         },
-        className: "play-pause"
+        className: "play-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "play-button",
+        className: "play-button-image",
+        id: this.props.song.id + 1000,
         src: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         controls: true,
