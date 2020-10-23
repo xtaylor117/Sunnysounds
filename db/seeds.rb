@@ -9,6 +9,7 @@
 require 'open-uri'
 
 Artist.destroy_all
+Song.destroy_all
 
 demoUser = Artist.create(username: "Demo", password: "password")
 artist1 = Artist.create(username: "Patrick Patrikios", password: "password")
