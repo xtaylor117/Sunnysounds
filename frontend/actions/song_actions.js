@@ -4,11 +4,15 @@ import * as artistUtil from '../utils/session_api_util'
 export const RECEIVE_ALL_SONGS = "RECEIVE_ALL_SONGS"
 export const RECEIVE_SONG = "RECEIVE_SONG"
 export const DELETE_SONG = "DELETE_SONG"
-
 export const RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS"
 export const CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS"
-
 export const RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS"
+export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG"
+
+export const receiveCurrentSong = (song) => ({
+    type: RECEIVE_CURRENT_SONG,
+    song
+})
 
 const fetchAllSongs = (songs) => ({
     type: RECEIVE_ALL_SONGS,

@@ -38,9 +38,12 @@ class SongIndexItem extends React.Component {
             <>
                 <div className="index-item-info">
                     <img src={this.props.photoUrl}/>
-                    <audio controls className='audio-player'>
-                        <source src={this.props.audioUrl} type="audio/mpeg" />   
-                    </audio>
+                    <div className="custom-audio-player">
+                        <button className="play-pause">Play</button>
+                        <audio controls className='audio-player'>
+                            <source src={this.props.audioUrl} type="audio/mpeg" />   
+                        </audio>
+                    </div>
                     <div className="index-item-title">{title}</div>
                     <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
                     <div className="index-item-genre">Genre: {genre}</div>

@@ -1,0 +1,24 @@
+.play-pause {
+    position: relative;
+    width: 115px;
+    height: 115px;
+    bottom: 4px;
+    right: -1px;
+    border-radius: 20px;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.latest-upload .play-pause {
+    position: relative;
+    width: 125%;
+    height: 225px;
+    background: transparent;
+    top: -249px;
+    right: 19px;
+}
+
+.audio-player {
+    display: none;
+}

@@ -216,7 +216,7 @@ var clearSessionErrors = function clearSessionErrors() {
 /*!******************************************!*\
   !*** ./frontend/actions/song_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_ALL_SONGS, RECEIVE_SONG, DELETE_SONG, RECEIVE_SONG_ERRORS, CLEAR_SONG_ERRORS, RECEIVE_ALL_ARTISTS, receiveAllSongs, receiveAllArtists, receiveSong, createSong, editSong, deleteSong, clearSongErrors, selectSong, selectArtist */
+/*! exports provided: RECEIVE_ALL_SONGS, RECEIVE_SONG, DELETE_SONG, RECEIVE_SONG_ERRORS, CLEAR_SONG_ERRORS, RECEIVE_ALL_ARTISTS, RECEIVE_CURRENT_SONG, receiveCurrentSong, receiveAllSongs, receiveAllArtists, receiveSong, createSong, editSong, deleteSong, clearSongErrors, selectSong, selectArtist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -227,6 +227,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SONG_ERRORS", function() { return RECEIVE_SONG_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_SONG_ERRORS", function() { return CLEAR_SONG_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_ARTISTS", function() { return RECEIVE_ALL_ARTISTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_SONG", function() { return RECEIVE_CURRENT_SONG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentSong", function() { return receiveCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllSongs", function() { return receiveAllSongs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllArtists", function() { return receiveAllArtists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSong", function() { return receiveSong; });
@@ -246,6 +248,13 @@ var DELETE_SONG = "DELETE_SONG";
 var RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS";
 var CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS";
 var RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS";
+var RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
+var receiveCurrentSong = function receiveCurrentSong(song) {
+  return {
+    type: RECEIVE_CURRENT_SONG,
+    song: song
+  };
+};
 
 var fetchAllSongs = function fetchAllSongs(songs) {
   return {
@@ -1194,13 +1203,17 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "index-item-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.photoUrl
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "custom-audio-player"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "play-pause"
+      }, "Play"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         controls: true,
         className: "audio-player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
         src: this.props.audioUrl,
         type: "audio/mpeg"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-title"
       }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-artist"
@@ -2093,7 +2106,7 @@ var currentAritstReducer = function currentAritstReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/song_actions */ "./frontend/actions/song_actions.js");
 
 
 var currentSongReducer = function currentSongReducer() {
@@ -2102,8 +2115,8 @@ var currentSongReducer = function currentSongReducer() {
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
-      return [];
+    case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_SONG"]:
+      return action.song;
 
     default:
       return state;
