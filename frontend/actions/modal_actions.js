@@ -15,19 +15,3 @@ export const closeModal = () => {
         type: CLOSE_MODAL
     };
 };
-
-
-// const receiveModalSong = (song) => {
-//     return {
-//         type: RECEIVE_MODAL_SONG,
-//         song
-//     }
-// }
-
-// export const receiveModalSong = (songId) => dispatch => {
-//     return songUtil.fetchSong(songId)
-//         .then(
-//             song => (dispatch(fetchModalSong(song)))
-//         )
-// }
-

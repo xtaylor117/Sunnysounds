@@ -9,8 +9,8 @@ class SongIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.receiveAllArtists();
-        this.props.receiveAllSongs();
+        this.props.receiveAllArtists()
+            .then(this.props.receiveAllSongs())
     }
 
 
@@ -29,7 +29,7 @@ class SongIndex extends React.Component {
                         openModal={this.props.openModal}
                         deleteSong={this.props.deleteSong}
                         artists={this.props.artists}
-                        receiveModalSong={this.props.receiveModalSong}
+                        receiveSong={this.props.receiveSong}
                     />
                 ))   
             )
@@ -54,7 +54,7 @@ class SongIndex extends React.Component {
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
                             artists={this.props.artists}
-                            receiveModalSong={this.props.receiveModalSong}
+                            receiveSong={this.props.receiveSong}
                         />
                     ))}
                 </div>

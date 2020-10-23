@@ -25,6 +25,7 @@ class ArtistShow extends React.Component {
                         openModal={this.props.openModal}
                         deleteSong={this.props.deleteSong}
                         artists={this.props.artists}
+                        receiveSong={this.props.receiveSong}
                     />
                 ))
             )
@@ -55,6 +56,7 @@ class ArtistShow extends React.Component {
                             openModal={this.props.openModal}
                             deleteSong={this.props.deleteSong}
                             artists={this.props.artists}
+                            receiveSong={this.props.receiveSong}
                         />
                     ))}
                 </div>

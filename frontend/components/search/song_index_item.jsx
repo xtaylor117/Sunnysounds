@@ -6,7 +6,6 @@ class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.settingsAuth = this.settingsAuth.bind(this);
-        // this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -34,8 +33,7 @@ class SongIndexItem extends React.Component {
 
     render() {
         const { title, artist_id, genre } = this.props.song;
-        // debugger
-        // let username = Object.values(this.props.artists[this.props.song.artist_id])
+        let name = this.props.artists[this.props.song.artist_id - 1]["username"]
         return (
             <>
                 <div className="index-item-info">
@@ -44,7 +42,7 @@ class SongIndexItem extends React.Component {
                         <source src={this.props.audioUrl} type="audio/mpeg" />   
                     </audio>
                     <div className="index-item-title">{title}</div>
-                    <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>Artist</Link></div>
+                    <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
                     <div className="index-item-genre">Genre: {genre}</div>
                 </div>
                 {this.settingsAuth()}

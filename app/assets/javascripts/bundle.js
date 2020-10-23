@@ -115,18 +115,7 @@ var closeModal = function closeModal() {
   return {
     type: CLOSE_MODAL
   };
-}; // const receiveModalSong = (song) => {
-//     return {
-//         type: RECEIVE_MODAL_SONG,
-//         song
-//     }
-// }
-// export const receiveModalSong = (songId) => dispatch => {
-//     return songUtil.fetchSong(songId)
-//         .then(
-//             song => (dispatch(fetchModalSong(song)))
-//         )
-// }
+};
 
 /***/ }),
 
@@ -493,7 +482,8 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
             currentUser: _this2.props.currentUser,
             openModal: _this2.props.openModal,
             deleteSong: _this2.props.deleteSong,
-            artists: _this2.props.artists
+            artists: _this2.props.artists,
+            receiveSong: _this2.props.receiveSong
           });
         });
       }
@@ -526,7 +516,8 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           currentUser: currentUser,
           openModal: _this3.props.openModal,
           deleteSong: _this3.props.deleteSong,
-          artists: _this3.props.artists
+          artists: _this3.props.artists,
+          receiveSong: _this3.props.receiveSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -607,6 +598,9 @@ var mDTP = function mDTP(dispatch) {
     },
     receiveAllArtists: function receiveAllArtists() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveAllArtists"])());
+    },
+    receiveSong: function receiveSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSong"])(songId));
     }
   };
 };
@@ -967,8 +961,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(SongIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.receiveAllArtists();
-      this.props.receiveAllSongs();
+      this.props.receiveAllArtists().then(this.props.receiveAllSongs());
     }
   }, {
     key: "lastUpload",
@@ -988,7 +981,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             openModal: _this2.props.openModal,
             deleteSong: _this2.props.deleteSong,
             artists: _this2.props.artists,
-            receiveModalSong: _this2.props.receiveModalSong
+            receiveSong: _this2.props.receiveSong
           });
         });
       }
@@ -1015,7 +1008,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           openModal: _this3.props.openModal,
           deleteSong: _this3.props.deleteSong,
           artists: _this3.props.artists,
-          receiveModalSong: _this3.props.receiveModalSong
+          receiveSong: _this3.props.receiveSong
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -1092,8 +1085,8 @@ var mDTP = function mDTP(dispatch) {
     deleteSong: function deleteSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSong"])(songId));
     },
-    receiveModalSong: function receiveModalSong(song) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["receiveModalSong"])(song));
+    receiveSong: function receiveSong(songId) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveSong"])(songId));
     }
   };
 };
@@ -1150,8 +1143,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SongIndexItem);
 
     _this = _super.call(this, props);
-    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this)); // this.handleClick = this.handleClick.bind(this);
-
+    _this.settingsAuth = _this.settingsAuth.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1196,9 +1188,8 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
       var _this$props$song = this.props.song,
           title = _this$props$song.title,
           artist_id = _this$props$song.artist_id,
-          genre = _this$props$song.genre; // debugger
-      // let username = Object.values(this.props.artists[this.props.song.artist_id])
-
+          genre = _this$props$song.genre;
+      var name = this.props.artists[this.props.song.artist_id - 1]["username"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1215,7 +1206,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "index-item-artist"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/artists/".concat(artist_id)
-      }, "Artist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-genre"
       }, "Genre: ", genre)), this.settingsAuth());
     }

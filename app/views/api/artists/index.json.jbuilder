@@ -1,6 +1,6 @@
 @artists.each do |artist|
     json.set! artist.id do 
-        json.extract! artist, :username
+        json.extract! artist, :username, :id
 
         # if (song.audiofile.attached?)
         #     json.audioUrl url_for(song.audiofile)
