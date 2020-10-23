@@ -1166,6 +1166,13 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "playSong",
+    value: function playSong() {
+      debugger;
+      var song = document.getElementById(this.props.song.id);
+      song.play();
+    }
+  }, {
     key: "settingsAuth",
     value: function settingsAuth() {
       var _this2 = this;
@@ -1194,6 +1201,8 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var _this$props$song = this.props.song,
           title = _this$props$song.title,
           artist_id = _this$props$song.artist_id,
@@ -1206,13 +1215,17 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "custom-audio-player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.playSong();
+        },
         className: "play-pause"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "play-button",
         src: "https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         controls: true,
-        className: "audio-player"
+        className: "audio-player",
+        id: this.props.song.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
         src: this.props.audioUrl,
         type: "audio/mpeg"
