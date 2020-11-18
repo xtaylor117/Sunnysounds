@@ -15,7 +15,6 @@ class SongIndexItem extends React.Component {
                 audio.pause();
             });
         });
-
     }
 
 

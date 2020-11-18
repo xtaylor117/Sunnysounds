@@ -10,5 +10,9 @@
             json.photoUrl url_for(song.photofile)
         end
 
+        if (!song.photofile.attached?)
+            json.photoUrl url_for("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/sunny_logo.png")
+        end
+
     end
 end

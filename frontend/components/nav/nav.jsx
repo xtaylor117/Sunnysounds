@@ -15,7 +15,7 @@ class Nav extends React.Component {
                         <div className="left-nav">
                             <li><Link to='/'> Sunnysounds </Link></li>
                             <li><Link to='/discovery'> Home </Link></li>
-                            <li className="stream"><a href="#">Stream</a></li>
+                            <li><Link to='/stream'> Stream </Link></li>
                             <li className="library"><a href="#">Library</a></li>
                         </div>
                         <div className="search-bar-container">

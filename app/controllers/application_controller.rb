@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?
+    helper_method :current_user, :logged_in?, :current_song
     skip_before_action :verify_authenticity_token
     #CRLLL
 
