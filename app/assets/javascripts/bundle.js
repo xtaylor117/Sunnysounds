@@ -733,18 +733,26 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
         return _this3.props.songs.filter(function (song) {
           return artist.id === song.artist_id;
         });
-      }); // for ( let i =0; i < sortedSongs.length; i++) { 
-      //     for ( let j = 0; j < sortedSongs[i].length; j++ ) { 
-      //         console.log(sortedSongs[i][j]) 
-      //     } 
-      // }
+      });
 
-      debugger;
+      for (var i = 0; i < sortedSongs.length; i++) {
+        sortedSongs[i].forEach(function (song, index) {
+          var audioEl = document.createElement("audio");
+          audioEl.setAttribute('id', song.id);
+          audioEl.setAttribute('src', song.audioUrl);
+          audioEl.controls = true;
+          document.getElementById('sorted-playlists').appendChild(audioEl);
+        });
+      } // debugger
+
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-left"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        id: "sorted-playlists"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
@@ -1416,7 +1424,9 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
       if (this.props.currentUser.id === this.props.song.artist_id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "song-edit-button"
-        }, "\u2022\u2022\u2022", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-cogs"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "song-dropdown"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {

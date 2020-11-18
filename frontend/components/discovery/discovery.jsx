@@ -43,20 +43,25 @@ class Discovery extends React.Component {
         const sortedSongs = this.props.artists.map(artist => 
                 this.props.songs.filter(song => 
                 artist.id === song.artist_id))
-        
-        // for ( let i =0; i < sortedSongs.length; i++) { 
-        //     for ( let j = 0; j < sortedSongs[i].length; j++ ) { 
-        //         console.log(sortedSongs[i][j]) 
-        //     } 
-        // }
 
-        debugger
+        for (let i = 0; i < sortedSongs.length; i++) {
+            sortedSongs[i].forEach(function(song, index) {
+                let audioEl = document.createElement("audio");
+                audioEl.setAttribute('id', song.id);
+                audioEl.setAttribute('src', song.audioUrl);
+                audioEl.controls = true;
+                document.getElementById('sorted-playlists').appendChild(audioEl);
+            });
+        }
+
+        // debugger
 
         return(
             <div className='discovery-container'>
                 <div className='discovery-left'>
+                    <ul id='sorted-playlists'></ul>
 
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    {/* <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -79,7 +84,7 @@ class Discovery extends React.Component {
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-                    </div>
+                    </div> */}
 
                 </div>
                 <div className='discovery-sidebar'>

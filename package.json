@@ -6,6 +6,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "flickity": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-h5-audio-player": "^3.4.1",

@@ -49,7 +49,7 @@ class SongIndexItem extends React.Component {
         if (this.props.currentUser.id === this.props.song.artist_id) {
             return(
                 <div className="song-edit-button">
-                    •••
+                    <i className="fas fa-cogs"></i>
                     <div className="song-dropdown">
                         <button onClick={() => this.props.openModal({formType:"edit", song:this.props.song})}>Edit</button>
                         <button onClick={() => this.props.deleteSong(songId)}>Delete</button>
