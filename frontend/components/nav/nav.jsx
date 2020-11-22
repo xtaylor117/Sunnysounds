@@ -5,9 +5,30 @@ import SongList from './search'
 class Nav extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            inputValue: ''
+        }
+
+        this.songFilterOnChange = this.songFilterOnChange.bind(this)
+    }
+
+    songFilterOnChange(event) {
+        this.setState({
+            inputValue: event.target.value
+        })
     }
 
     render(){
+        
+        const searchedSongs =
+            this.props.songs.filter(song => {
+                return (song.title.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+                        song.genre.toLowerCase().includes(this.state.inputValue.toLowerCase()))
+            })
+
+        debugger
+
         return (
             <>
                 <nav className="nav-bar">
@@ -19,7 +40,7 @@ class Nav extends React.Component {
                             <li className="library"><a href="#">Library</a></li>
                         </div>
                         <div className="search-bar-container">
-                            <SongList songs={this.props.songs} artists={this.props.artists} />
+                            <SongList songs={searchedSongs.sort()} artists={this.props.artists} songFilterOnChange={this.songFilterOnChange} inputValue={this.state.inputValue} />
                         </div>
                         <div className="right-nav">
                             <li className="upload"><button onClick={() => this.props.openModal({formType: 'create'})}>Upload</button></li>

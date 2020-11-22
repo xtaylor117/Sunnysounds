@@ -18,9 +18,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
     return({
         logout: () => dispatch(logout()),
-        openModal: modal => dispatch(openModal(modal)),
-        // receiveAllSongs: () => dispatch(receiveAllSongs()),
-        // receiveAllArtists: () => dispatch(receiveAllArtists())
+        openModal: modal => dispatch(openModal(modal))
     })
 }
 

@@ -993,16 +993,34 @@ var Nav = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Nav);
 
   function Nav(props) {
+    var _this;
+
     _classCallCheck(this, Nav);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      inputValue: ''
+    };
+    _this.songFilterOnChange = _this.songFilterOnChange.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Nav, [{
+    key: "songFilterOnChange",
+    value: function songFilterOnChange(event) {
+      this.setState({
+        inputValue: event.target.value
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
+      var searchedSongs = this.props.songs.filter(function (song) {
+        return song.title.toLowerCase().includes(_this2.state.inputValue.toLowerCase()) || song.genre.toLowerCase().includes(_this2.state.inputValue.toLowerCase());
+      });
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1022,15 +1040,17 @@ var Nav = /*#__PURE__*/function (_React$Component) {
       }, "Library"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-bar-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        songs: this.props.songs,
-        artists: this.props.artists
+        songs: searchedSongs.sort(),
+        artists: this.props.artists,
+        songFilterOnChange: this.songFilterOnChange,
+        inputValue: this.state.inputValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "upload"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal({
+          return _this2.props.openModal({
             formType: 'create'
           });
         }
@@ -1106,9 +1126,7 @@ var mDTP = function mDTP(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
-    } // receiveAllSongs: () => dispatch(receiveAllSongs()),
-    // receiveAllArtists: () => dispatch(receiveAllArtists())
-
+    }
   };
 };
 
@@ -1163,22 +1181,14 @@ var SongList = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SongList, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      debugger;
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "search-bar",
-        placeholder: "Search for Artists and Songs"
+        placeholder: "Search for Artists and Songs",
+        value: this.props.inputValue,
+        onChange: this.props.songFilterOnChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "image",
         src: "https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg",
