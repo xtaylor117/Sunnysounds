@@ -45,6 +45,7 @@ class Discovery extends React.Component {
                 artist.id === song.artist_id))
 
         for (let i = 0; i < sortedSongs.length; i++) {
+            
             sortedSongs[i].forEach(function(song, index) {
                 let audioEl = document.createElement("audio");
                 audioEl.setAttribute('id', song.id);
@@ -52,7 +53,16 @@ class Discovery extends React.Component {
                 audioEl.controls = true;
                 document.getElementById('sorted-playlists').appendChild(audioEl);
             });
+
         }
+
+        // <div className="custom-audio-player">
+        //     <button className="play-button" id={this.props.song.id + 1000} />
+        //     {/* <AudioPlayer /> */}
+        //     <audio controls className='audio-player' id={this.props.song.id}>
+        //         <source src={this.props.audioUrl} type="audio/mpeg" />   
+        //     </audio>
+        // </div>
 
         // debugger
 
