@@ -182,11 +182,14 @@ input.search-bar[type="text"], select {
 
 
 .search-bar-container { 
-    margin-left: 15px;
+    z-index: 1000;
+    top: 0;
+    left: 500px;
+    width: 325px;
     height: 46px;
+    position: fixed;
     display: inline-flex;
     align-items: center;
-    width: 100%;
 }
 
 .search-bar-container li {

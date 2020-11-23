@@ -5,6 +5,13 @@ class SongIndex extends React.Component {
     constructor(props) {
         super(props)
         
+        this.state = {
+            songs: [],
+            inputValue: ''
+        }
+
+        this.songFilterOnChange = this.songFilterOnChange.bind(this)
+        this.songList = this.songList.bind(this)
         this.currentSong = this.currentSong.bind(this)
     }
 
@@ -12,7 +19,19 @@ class SongIndex extends React.Component {
         this.props.receiveAllArtists()
         this.props.receiveAllSongs()
     }
+    
+    songFilterOnChange(event) {
+        this.setState({
+            inputValue: event.target.value
+        })
 
+        let filteredSongs = this.props.songs.filter(song => {
+            return (song.title.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+            song.genre.toLowerCase().includes(this.state.inputValue.toLowerCase()))
+        }).sort()
+
+        this.setState({ songs: filteredSongs})
+    }
 
     currentSong() {
         if (this.props.currentSong) {
@@ -36,29 +55,58 @@ class SongIndex extends React.Component {
             )
         }
     }
+
+    songList() {
+        if (this.state.songs.length === 0) {
+            return(
+                this.props.songs.map(song => (
+                    <SongIndexItem
+                        songs={this.props.songs}
+                        song={song}
+                        key={song.id}
+                        audioUrl={song.audioUrl}
+                        photoUrl={song.photoUrl}
+                        currentUser={currentUser}
+                        openModal={this.props.openModal}
+                        deleteSong={this.props.deleteSong}
+                        artists={this.props.artists}
+                        receiveSong={this.props.receiveSong}
+                        receiveCurrentSong={this.props.receiveCurrentSong}
+                    />
+                ))
+            )
+        } else {
+            return(
+                this.state.songs.map(song => (
+                    <SongIndexItem
+                        songs={this.props.songs}
+                        song={song}
+                        key={song.id}
+                        audioUrl={song.audioUrl}
+                        photoUrl={song.photoUrl}
+                        currentUser={currentUser}
+                        openModal={this.props.openModal}
+                        deleteSong={this.props.deleteSong}
+                        artists={this.props.artists}
+                        receiveSong={this.props.receiveSong}
+                        receiveCurrentSong={this.props.receiveCurrentSong}
+                    />
+                ))
+            )
+        }
+    }
     
     render() {
         const currentUser = this.props.currentUser
-        // debugger
+
         return(
             <div className='discovery-container'>
+                <div className="search-bar-container">
+                    <input type="text" className="search-bar" placeholder='Search by song title or genre...' value={this.state.inputValue} onChange={this.songFilterOnChange}/>
+                    <input type="image" src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" className="search-button"/>
+                </div>
                 <div className='discovery-left'>
-                {/* <h1>Discover More! </h1> */}
-                    {this.props.songs.map(song => (
-                        <SongIndexItem
-                            songs={this.props.songs}
-                            song={song}
-                            key={song.id}
-                            audioUrl={song.audioUrl}
-                            photoUrl={song.photoUrl}
-                            currentUser={currentUser}
-                            openModal={this.props.openModal}
-                            deleteSong={this.props.deleteSong}
-                            artists={this.props.artists}
-                            receiveSong={this.props.receiveSong}
-                            receiveCurrentSong={this.props.receiveCurrentSong}
-                        />
-                    ))}
+                    {this.songList()}
                 </div>
                 <div className='discovery-sidebar'>
                     <div className="latest-upload" >
