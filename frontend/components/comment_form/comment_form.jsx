@@ -6,7 +6,7 @@ class CommentForm extends React.Component{
 
         this.state={
             body: '',
-            author_id: this.props.currentUser,
+            author_id: this.props.currentUser.id,
             song_id: this.props.songId,
         }
 
@@ -32,7 +32,12 @@ class CommentForm extends React.Component{
     render(){
         return(
             <div className="create-comment">
-                <form onSubmit={this.handleSubmit}>
+                <form onKeyPress={e => {
+                        if(e.key === 'Enter'){
+                            e.preventDefault();
+                            this.handleSubmit();
+                        }
+                    }}>
                     <input 
                     type="text" 
                     className="comment-form-input"

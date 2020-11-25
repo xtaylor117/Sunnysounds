@@ -8,7 +8,8 @@ class Song < ApplicationRecord
 
     has_many :comments,
     foreign_key: :song_id,
-    class_name: :Comment
+    class_name: :Comment,
+    dependent: :destroy
     
     has_one_attached :audiofile
     has_one_attached :photofile

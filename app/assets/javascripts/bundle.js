@@ -120,6 +120,7 @@ var removeComment = function removeComment(commentId) {
 
 var createComment = function createComment(comment) {
   return function (dispatch) {
+    debugger;
     return _utils_comment_api_utils__WEBPACK_IMPORTED_MODULE_0__["createComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
@@ -740,7 +741,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       body: '',
-      author_id: _this.props.currentUser,
+      author_id: _this.props.currentUser.id,
       song_id: _this.props.songId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -769,10 +770,18 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
+        onKeyPress: function onKeyPress(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+
+            _this3.handleSubmit();
+          }
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "comment-form-input",
@@ -1462,7 +1471,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             deleteSong: _this3.props.deleteSong,
             artists: _this3.props.artists,
             receiveSong: _this3.props.receiveSong,
-            receiveCurrentSong: _this3.props.receiveCurrentSong
+            receiveCurrentSong: _this3.props.receiveCurrentSong,
+            createComment: _this3.props.createComment
           });
         });
       }
@@ -1485,7 +1495,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             deleteSong: _this4.props.deleteSong,
             artists: _this4.props.artists,
             receiveSong: _this4.props.receiveSong,
-            receiveCurrentSong: _this4.props.receiveCurrentSong
+            receiveCurrentSong: _this4.props.receiveCurrentSong,
+            createComment: _this4.props.createComment
           });
         });
       } else {
@@ -1776,7 +1787,8 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         to: "/artists/".concat(artist_id)
       }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_form_comment_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         songId: this.props.song.id,
-        createComment: this.props.createComment
+        createComment: this.props.createComment,
+        currentUser: this.props.currentUser
       })), this.settingsAuth());
     }
   }]);
@@ -2647,7 +2659,7 @@ var CommentsReducer = function CommentsReducer() {
     // case RECEIVE_SONG:
     //     return Object.assign({}, action.song.comments);
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
-      nextState[action.comment.id] = action.comment;
+      nextState[action.comment.comment.id] = action.comment.comment;
       return nextState;
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
@@ -3054,6 +3066,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 var createComment = function createComment(comment) {
+  debugger;
   return $.ajax({
     method: "POST",
     url: "/api/comments",

@@ -79,7 +79,7 @@ class SongIndexItem extends React.Component {
                     </div>
                     <div className="index-item-title">{title}</div>
                     <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
-                    <CommentForm songId={this.props.song.id} createComment={this.props.createComment} />
+                    <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>
                 </div>
                 {this.settingsAuth()}
             </>

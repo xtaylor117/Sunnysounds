@@ -18,6 +18,7 @@ const removeComment = (commentId) => {
 };
 
 export const createComment = (comment) => (dispatch) => {
+    debugger
     return (
         CommentApiUtil.createComment(comment)
             .then(comment => {

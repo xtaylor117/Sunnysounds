@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
     belongs_to :author,
         primary_key: :id,
         foreign_key: :author_id,
-        class_name: :User
+        class_name: :Artist
    
     belongs_to :song,
         primary_key: :id,
