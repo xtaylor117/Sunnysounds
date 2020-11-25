@@ -13,7 +13,6 @@ class SongIndexItem extends React.Component {
     componentDidMount() {
         $("audio").on("play", function () {
             $("audio").not(this).each(function (index, audio) {
-                debugger
                 audio.pause();
             });
         });
@@ -61,8 +60,9 @@ class SongIndexItem extends React.Component {
     }
 
     render() {
-        const { title, artist_id, genre } = this.props.song;
+        const { title, artist_id, genre, id } = this.props.song;
         let name = this.props.artists[this.props.song.artist_id - 1]["username"]
+
         return (
             <>
                 <div className="index-item-info">
@@ -78,7 +78,7 @@ class SongIndexItem extends React.Component {
                         <div className="song-info">
                             <div className="index-item-genre">Genre: {genre}</div>
                         </div>
-                        <div className="index-item-title">{title}</div>
+                        <div className="index-item-title"><Link to={`/songs/${id}`}>{title}</Link></div>
                         <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
                     </div>
                     <div className="item-info-right">

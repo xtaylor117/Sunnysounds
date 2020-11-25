@@ -6,3 +6,13 @@
 .item-info-right {
     width: 100%;
 }
+
+.song-show-left {
+    margin-left: 25px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column-reverse;
+    width: 65%;
+    border-right: 1px solid gold;
+}

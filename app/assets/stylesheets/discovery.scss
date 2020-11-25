@@ -162,10 +162,14 @@
 }
 
 .recent-comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-top: 15px;
     border: 1px dashed cadetblue;
     height: 92%;
     border-radius: 15px;
+    overflow: hidden;
 }
 
 .recent-comments p {

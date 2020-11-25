@@ -16,6 +16,7 @@ class SongIndex extends React.Component {
     }
 
     componentDidMount() {
+        this.props.receiveAllComments()
         this.props.receiveAllArtists()
         this.props.receiveAllSongs()
     }
@@ -101,6 +102,15 @@ class SongIndex extends React.Component {
     
     render() {
         const currentUser = this.props.currentUser
+        
+        const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
+            return(
+                <div className='single-comment'>
+                    <p>"{comment.body}"</p>
+                    {/* <p>{comment.song_id}</p> */}
+                </div>
+            )
+        })
 
         return(
             <div className='discovery-container'>
@@ -125,11 +135,9 @@ class SongIndex extends React.Component {
                         {this.currentSong()}
                     </div>
                     <div className='comments-container'>
-                        <h3>Recent Comments</h3>
+                        <h3>Your Recent Comments</h3>
                         <div className="recent-comments">
-                            <p>This song really bumps. Keep up the great work! I'll make sure to share this around.</p>
-                            <p>OOOH!</p>
-                            <p>I listen to this when I need help falling asleep!</p>
+                            {currentUserComments}
                         </div>
                     </div>
                 </div>

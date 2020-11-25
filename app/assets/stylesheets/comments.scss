@@ -9,3 +9,8 @@ input.comment-form-input[type=text] {
     bottom: -140px;
     width: 80%;
 }
+
+.single-comment {
+    display: flex;
+    justify-content: space-between;
+}

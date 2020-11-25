@@ -9,6 +9,7 @@ class Discovery extends React.Component {
     }
 
     componentDidMount() {
+        this.props.receiveAllComments()
         this.props.receiveAllArtists()
         this.props.receiveAllSongs()
     }
@@ -44,17 +45,25 @@ class Discovery extends React.Component {
                 this.props.songs.filter(song => 
                 artist.id === song.artist_id))
 
-        for (let i = 0; i < sortedSongs.length; i++) {
+        // for (let i = 0; i < sortedSongs.length; i++) {
             
-            sortedSongs[i].forEach(function(song, index) {
-                let audioEl = document.createElement("audio");
-                audioEl.setAttribute('id', song.id);
-                audioEl.setAttribute('src', song.audioUrl);
-                audioEl.controls = true;
-                document.getElementById('sorted-playlists').appendChild(audioEl);
-            });
+        //     sortedSongs[i].forEach(function(song, index) {
+        //         let audioEl = document.createElement("audio");
+        //         audioEl.setAttribute('id', song.id);
+        //         audioEl.setAttribute('src', song.audioUrl);
+        //         audioEl.controls = true;
+        //         document.getElementById('sorted-playlists').appendChild(audioEl);
+        //     });
+        // }
 
-        }
+        const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
+            return(
+                <div className='single-comment'>
+                    <p>"{comment.body}"</p>
+                    {/* <p>{comment.song_id}</p> */}
+                </div>
+            )
+        })
 
         // <div className="custom-audio-player">
         //     <button className="play-button" id={this.props.song.id + 1000} />
@@ -63,8 +72,6 @@ class Discovery extends React.Component {
         //         <source src={this.props.audioUrl} type="audio/mpeg" />   
         //     </audio>
         // </div>
-
-        // debugger
 
         return(
             <div className='discovery-container'>
@@ -111,11 +118,9 @@ class Discovery extends React.Component {
                         {this.currentSong()}
                     </div>
                     <div className='comments-container'>
-                        <h3>Recent Comments</h3>
+                        <h3>Your Recent Comments</h3>
                         <div className="recent-comments">
-                            <p>This song really bumps. Keep up the great work! I'll make sure to share this around.</p>
-                            <p>OOOH!</p>
-                            <p>I listen to this when I need help falling asleep!</p>
+                            {currentUserComments}
                         </div>
                     </div>
                 </div>

@@ -124,7 +124,6 @@ class SongForm extends React.Component {
     }
 
     render(){
-        // debugger
         const audioPreview = this.state.audioUrl ? <audio controls className="audio-preview" src={this.state.audioUrl} /> : null;
         const photoPreview = this.state.photoUrl ? <img className={`photo-preview ${this.props.formType}` } src={this.state.photoUrl} /> : null;
         return(

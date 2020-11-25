@@ -1,5 +1,4 @@
 export const createComment = (comment) => {
-    debugger
     return $.ajax({
         method: `POST`,
         url: `/api/comments`,
@@ -11,5 +10,12 @@ export const deleteComment = (commentId) => {
     return $.ajax({
         method: `DELETE`,
         url: `/api/comments/${commentId}`,
+    })
+}
+
+export const fetchAllComments = () => {
+    return $.ajax({
+        url: 'api/comments',
+        method: 'GET'
     })
 }
