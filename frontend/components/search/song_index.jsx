@@ -90,6 +90,7 @@ class SongIndex extends React.Component {
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
                         receiveCurrentSong={this.props.receiveCurrentSong}
+                        createComment={this.props.createComment}
                     />
                 ))
             )

@@ -9,38 +9,9 @@ class Nav extends React.Component {
         this.state = {
             inputValue: ''
         }
-
-        // this.songFilterOnChange = this.songFilterOnChange.bind(this)
-        // this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    // songFilterOnChange(event) {
-    //     this.setState({
-    //         inputValue: event.target.value
-    //     })
-    // }
-
-    // handleSubmit(e) {
-        // let filteredSongs = this.props.songs.filter(song => {
-        //     return (song.title.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
-        //     song.genre.toLowerCase().includes(this.state.inputValue.toLowerCase()))
-        // }).sort()
-
-
-    //     debugger
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     console.log("yes")
-    // }
-
     render(){
-        
-        // const searchedSongs =
-        //     this.props.songs.filter(song => {
-        //         return (song.title.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
-        //                 song.genre.toLowerCase().includes(this.state.inputValue.toLowerCase()))
-        //     }).sort()
-
         return (
             <>
                 <nav className="nav-bar">
@@ -51,10 +22,6 @@ class Nav extends React.Component {
                             <li><Link to='/stream'> Stream </Link></li>
                             <li className="library"><a href="#">Library</a></li>
                         </div>
-                        {/* <form onSubmit={this.handleSubmit} className="search-bar-container">
-                            <input type="text" className="search-bar" placeholder='Search for Artists and Songs' value={this.state.inputValue} onChange={this.songFilterOnChange}/>
-                            <input type="image" src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" onClick={this.handleSubmit} className="search-button"/>
-                        </form> */}
                         <div className="right-nav">
                             <li className="upload"><button onClick={() => this.props.openModal({formType: 'create'})}>Upload</button></li>
                             <li>

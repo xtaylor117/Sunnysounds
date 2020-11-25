@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import CommentForm from '../comment_form/comment_form'
 
 
 class SongIndexItem extends React.Component {
@@ -12,6 +13,7 @@ class SongIndexItem extends React.Component {
     componentDidMount() {
         $("audio").on("play", function () {
             $("audio").not(this).each(function (index, audio) {
+                debugger
                 audio.pause();
             });
         });
@@ -33,7 +35,7 @@ class SongIndexItem extends React.Component {
 
         let song = document.getElementById(this.props.song.id);
         let background = document.getElementById(this.props.song.id + 1000)
-        // debugger
+
         if (song.paused) {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')" 
             song.play()
@@ -41,7 +43,6 @@ class SongIndexItem extends React.Component {
             song.pause()
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         }
-
     }
 
     settingsAuth() {
@@ -78,6 +79,7 @@ class SongIndexItem extends React.Component {
                     </div>
                     <div className="index-item-title">{title}</div>
                     <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
+                    <CommentForm songId={this.props.song.id} createComment={this.props.createComment} />
                 </div>
                 {this.settingsAuth()}
             </>
