@@ -78,8 +78,12 @@ class SongIndexItem extends React.Component {
                         <div className="song-info">
                             <div className="index-item-genre">Genre: {genre}</div>
                         </div>
-                        <div className="index-item-title"><Link to={`/songs/${id}`}>{title}</Link></div>
-                        <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
+                        <div className="index-item-title">
+                            <Link to={`/songs/${id}`}>{title}</Link>
+                        </div>
+                        <div className="index-item-artist">
+                            <Link to={`/artists/${artist_id}`}>{name}</Link>
+                        </div>
                     </div>
                     <div className="item-info-right">
                         <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>

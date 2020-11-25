@@ -54,10 +54,20 @@
 }
 
 .index-item-title {
-  padding-top: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
   font-size: 20px;
   font-weight: 400;
+  width: max-content;
+}
 
+.index-item-title a {
+  text-decoration: none;
+  color: black;
+}
+
+.index-item-title a:hover {
+  cursor: pointer;
 }
 
 .index-item-genre {
