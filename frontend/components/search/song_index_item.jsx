@@ -66,20 +66,24 @@ class SongIndexItem extends React.Component {
         return (
             <>
                 <div className="index-item-info">
-                    <img onClick={() => this.playSong()} src={this.props.photoUrl}/>
-                    <div className="custom-audio-player">
-                        <button className="play-button" id={this.props.song.id + 1000} />
-                        {/* <AudioPlayer /> */}
-                        <audio controls className='audio-player' id={this.props.song.id}>
-                            <source src={this.props.audioUrl} type="audio/mpeg" />   
-                        </audio>
+                    <div className="item-info-left">
+                        <img onClick={() => this.playSong()} src={this.props.photoUrl}/>
+                        <div className="custom-audio-player">
+                            <button className="play-button" id={this.props.song.id + 1000} />
+                            {/* <AudioPlayer /> */}
+                            <audio controls className='audio-player' id={this.props.song.id}>
+                                <source src={this.props.audioUrl} type="audio/mpeg" />   
+                            </audio>
+                        </div>
+                        <div className="song-info">
+                            <div className="index-item-genre">Genre: {genre}</div>
+                        </div>
+                        <div className="index-item-title">{title}</div>
+                        <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
                     </div>
-                    <div className="song-info">
-                        <div className="index-item-genre">Genre: {genre}</div>
+                    <div className="item-info-right">
+                        <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>
                     </div>
-                    <div className="index-item-title">{title}</div>
-                    <div className="index-item-artist"><Link to={`/artists/${artist_id}`}>{name}</Link></div>
-                    <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>
                 </div>
                 {this.settingsAuth()}
             </>

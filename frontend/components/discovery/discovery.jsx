@@ -98,6 +98,14 @@ class Discovery extends React.Component {
 
                 </div>
                 <div className='discovery-sidebar'>
+                    <div className='link-container'>
+                        <h3>Get to know me!</h3>
+                        <ul className='affiliate-links'>
+                            <a href="https://github.com/xtaylor117" target="_blank" rel="noreferrer"><i className="fab fa-github-square"></i></a>
+                            <a href="https://www.linkedin.com/in/taylorlee117/" target="_blank" rel="noreferrer"><i className="fab fa-linkedin"></i></a>
+                            <a href="https://angel.co/u/taylor-lee-18" target="_blank" rel="noreferrer"><i className="fab fa-angellist"></i></a>
+                        </ul>
+                    </div>
                     <div className="latest-upload" >
                         <h3>~Song Playing~</h3>
                         {this.currentSong()}
@@ -109,13 +117,6 @@ class Discovery extends React.Component {
                             <p>OOOH!</p>
                             <p>I listen to this when I need help falling asleep!</p>
                         </div>
-                    </div>
-                    <div className='link-container'>
-                        <h3>Click These Links</h3>
-                        <ul className='affiliate-links'>
-                            <li><a href="https://www.instagram.com/soundcloud/?hl=en">Instagram</a></li>
-                            <li><a href="https://twitter.com/scsupport?lang=en">Twitter</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>

@@ -78,9 +78,19 @@
     color: orange;
     padding-bottom: 5px;
     border-bottom: 1px;
-    margin-top: 25px;
     border-style: ridge;
     text-align: center;
+}
+
+.discovery-sidebar > .link-container {
+    position: fixed;
+    width: 27.3%;
+    transform: translateX(-75px);
+    margin-top: -15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: rgb(245, 245, 245);
+    z-index: 5;
 }
 
 .affiliate-links {
@@ -112,6 +122,7 @@
 
 .latest-upload {
     height: 400px;
+    margin-top: 85px;
 }
 
 .latest-upload img {
@@ -179,4 +190,10 @@
     color: gray;
     size: 25px;
     margin-top: 5px;
+}
+
+.fa-github-square, .fa-linkedin, .fa-angellist {
+    color: black;
+    font-size: 35px;
+    z-index: 10px;
 }
