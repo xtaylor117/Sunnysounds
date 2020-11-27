@@ -63,11 +63,19 @@ class SongShow extends React.Component {
         })
         
         const song = this.props.songs.filter(song => song.id === parseInt(this.props.match.params.songId))[0]
+        const songComments = this.props.comments.filter(comment => comment.song_id === song.id).reverse().map(comment => {
+            return(
+                <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+            )
+        })
         debugger
 
         return(
             <div className='discovery-container'>
                 <div className='song-show-left'>
+                    <ul className='all-song-comments'>
+                        {songComments}
+                    </ul>
                     <SongIndexItem
                         songs={this.props.songs}
                         song={song}

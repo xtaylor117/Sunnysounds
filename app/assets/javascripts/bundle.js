@@ -2680,12 +2680,22 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       var song = this.props.songs.filter(function (song) {
         return song.id === parseInt(_this.props.match.params.songId);
       })[0];
+      var songComments = this.props.comments.filter(function (comment) {
+        return comment.song_id === song.id;
+      }).reverse().map(function (comment) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "song-show-comment",
+          key: "comment-".concat(comment.id)
+        }, comment.body);
+      });
       debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "song-show-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "all-song-comments"
+      }, songComments), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
         songs: this.props.songs,
         song: song,
         key: song.id,

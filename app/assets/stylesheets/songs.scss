@@ -66,4 +66,16 @@
     cursor: pointer;
 }
 
+.all-song-comments {
+    padding: 15px;
+    border-radius: 5px;
+    background: whitesmoke;
+    overflow: auto;
+    height: 165px;
+}
+
+.song-show-comment {
+    padding: 0px 10px 10px 10px;
+    border-bottom: 1px solid black;
+}
 
