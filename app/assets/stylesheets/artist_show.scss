@@ -3,7 +3,7 @@
     display: flex;
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
-    min-height: 100vh;
+    min-height: 93vh;
     background: white;
     border: 1px;
     border-style: ridge;
@@ -111,10 +111,11 @@
   font-family: Overpass;
   border: 1px solid #4CAF50;
   border-radius: 10px;
-  background: transparent;
+  background: white;
   margin-bottom: 5px;
   width: 100%;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .song-dropdown button:hover {

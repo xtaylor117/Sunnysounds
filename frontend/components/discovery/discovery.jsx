@@ -57,13 +57,24 @@ class Discovery extends React.Component {
         // }
 
         const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
-            return(
-                <div className='single-comment'>
-                    <p>"{comment.body}"</p>
-                    {/* <p>{comment.song_id}</p> */}
-                </div>
-            )
+            if (comment.id % 2 == 0) {
+                return(
+                    <div className='single-comment' style={{background: 'lightgray' }}>
+                        <p>"{comment.body}"</p>
+                        {/* <p>{comment.song_id}</p> */}
+                    </div>
+                )
+            } else {
+                return(
+                    <div className='single-comment' style={{background: 'whitesmoke' }}>
+                        <p>"{comment.body}"</p>
+                        {/* <p>{comment.song_id}</p> */}
+                    </div>
+                )
+            }
+                    
         })
+        
 
         // <div className="custom-audio-player">
         //     <button className="play-button" id={this.props.song.id + 1000} />

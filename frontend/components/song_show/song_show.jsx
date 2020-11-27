@@ -44,12 +44,22 @@ class SongShow extends React.Component {
         
         const currentUser = this.props.currentUser
         const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
-            return(
-                <div className='single-comment'>
-                    <p>"{comment.body}"</p>
-                    {/* <p>{comment.song_id}</p> */}
-                </div>
-            )
+            if (comment.id % 2 == 0) {
+                return(
+                    <div className='single-comment' style={{background: 'lightgray' }}>
+                        <p>"{comment.body}"</p>
+                        {/* <p>{comment.song_id}</p> */}
+                    </div>
+                )
+            } else {
+                return(
+                    <div className='single-comment' style={{background: 'whitesmoke' }}>
+                        <p>"{comment.body}"</p>
+                        {/* <p>{comment.song_id}</p> */}
+                    </div>
+                )
+            }
+                    
         })
         
         const song = this.props.songs.filter(song => song.id === parseInt(this.props.match.params.songId))[0]
@@ -72,6 +82,7 @@ class SongShow extends React.Component {
                         receiveCurrentSong={this.props.receiveCurrentSong}
                         createComment={this.props.createComment}
                     />
+                    <img className='show-banner' src={song.photoUrl} />
                 </div>
                 <div className='discovery-sidebar'>
                     <div className='link-container'>

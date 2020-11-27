@@ -1,6 +1,4 @@
-// Place all the styles related to the comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
 
 input.comment-form-input[type=text] {
     float: right;
@@ -12,5 +10,26 @@ input.comment-form-input[type=text] {
 
 .single-comment {
     display: flex;
+}
+
+.recent-comments {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    margin-top: 15px;
+    height: 92%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.recent-comments p {
+    display: flex;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.comments-container {
+    height: 300px;
 }

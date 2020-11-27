@@ -2,7 +2,7 @@
     display: flex;
     padding-top: 46px;
     margin: 0px 75px 0px 75px;
-    min-height: 100vh;
+    min-height: 93vh;
     background: white;
     border: 1px;
     border-style: ridge;
@@ -89,7 +89,7 @@
     margin-top: -15px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: rgb(245, 245, 245);
+    background: rgba(245, 245, 245, 0.86);
     z-index: 5;
 }
 
@@ -157,34 +157,6 @@
     display: none;
 }
 
-.recent-comments {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 15px;
-    border: 1px dashed cadetblue;
-    height: 92%;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.recent-comments p {
-    display: flex;
-    margin-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-bottom: 1px dotted gold;
-    font-size: 14px;
-}
-
-.recent-comments p:last-child {
-    border-bottom: none;
-}
-
-.comments-container {
-    height: 300px;
-}
 
 .fa-cogs {
     color: gray;
@@ -197,3 +169,5 @@
     font-size: 35px;
     z-index: 10px;
 }
+
+

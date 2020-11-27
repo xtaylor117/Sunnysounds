@@ -16,3 +16,54 @@
     width: 65%;
     border-right: 1px solid gold;
 }
+
+.song-info {
+    width: fit-content;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.show-banner {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.song-show-left .item-info-left {
+    position: absolute;
+    z-index: 999;
+    top: 65px;
+}
+
+.song-show-left input.comment-form-input[type=text] {
+    float: none;
+    width: 100%;
+    bottom: 0;
+    margin-left: -9px;
+}
+
+.song-show-left .song-edit-button {
+    top: -295px;
+    margin-left: -15px;
+}
+
+.song-show-left .song-box-photo {
+    display: none;
+}
+
+.song-show-left .play-button {
+    height: 100px;
+    width: 100px;
+    right: -15px;
+    opacity: 1;
+}
+
+.play-button:hover {
+    cursor: pointer;
+}
+
+

@@ -67,8 +67,8 @@ class SongIndexItem extends React.Component {
             <>
                 <div className="index-item-info">
                     <div className="item-info-left">
-                        <img onClick={() => this.playSong()} src={this.props.photoUrl}/>
-                        <div className="custom-audio-player">
+                        <div onClick={() => this.playSong()} className="custom-audio-player">
+                        <img className='song-box-photo' src={this.props.photoUrl}/>
                             <button className="play-button" id={this.props.song.id + 1000} />
                             {/* <AudioPlayer /> */}
                             <audio controls className='audio-player' id={this.props.song.id}>
@@ -77,12 +77,12 @@ class SongIndexItem extends React.Component {
                         </div>
                         <div className="song-info">
                             <div className="index-item-genre">Genre: {genre}</div>
-                        </div>
-                        <div className="index-item-title">
-                            <Link to={`/songs/${id}`}>{title}</Link>
-                        </div>
-                        <div className="index-item-artist">
-                            <Link to={`/artists/${artist_id}`}>{name}</Link>
+                            <div className="index-item-title">
+                                <Link to={`/songs/${id}`}>{title}</Link>
+                            </div>
+                            <div className="index-item-artist">
+                                <Link to={`/artists/${artist_id}`}>{name}</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="item-info-right">
