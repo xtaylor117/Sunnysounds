@@ -61,7 +61,7 @@ class SongIndexItem extends React.Component {
 
     render() {
         const { title, artist_id, genre, id } = this.props.song;
-        let name = this.props.artists[this.props.song.artist_id - 1]["username"]
+        let name = this.props.artists[this.props.song.artist_id - 1]["username"] || null
 
         return (
             <>

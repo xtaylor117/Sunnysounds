@@ -47,14 +47,14 @@ class SongShow extends React.Component {
             if (comment.id % 2 == 0) {
                 return(
                     <div className='single-comment' style={{background: 'lightgray' }}>
-                        <p>"{comment.body}"</p>
+                        <p>" {comment.body} "</p>
                         {/* <p>{comment.song_id}</p> */}
                     </div>
                 )
             } else {
                 return(
                     <div className='single-comment' style={{background: 'whitesmoke' }}>
-                        <p>"{comment.body}"</p>
+                        <p>" {comment.body} "</p>
                         {/* <p>{comment.song_id}</p> */}
                     </div>
                 )
@@ -64,11 +64,19 @@ class SongShow extends React.Component {
         
         const song = this.props.songs.filter(song => song.id === parseInt(this.props.match.params.songId))[0]
         const songComments = this.props.comments.filter(comment => comment.song_id === song.id).reverse().map(comment => {
-            return(
-                <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
-            )
+            if (comment.author_id === currentUser.id) {
+                return(
+                    <>
+                        <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+                        <button className='comment-delete-button' onClick={() => this.props.deleteComment(comment.id)}>x</button>
+                    </>
+                )
+            } else {
+                return(
+                    <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+                )
+            }
         })
-        debugger
 
         return(
             <div className='discovery-container'>

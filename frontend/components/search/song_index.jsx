@@ -107,14 +107,14 @@ class SongIndex extends React.Component {
             if (comment.id % 2 == 0) {
                 return(
                     <div className='single-comment' style={{background: 'lightgray' }}>
-                        <p>"{comment.body}"</p>
+                        <p>" {comment.body} "</p>
                         {/* <p>{comment.song_id}</p> */}
                     </div>
                 )
             } else {
                 return(
                     <div className='single-comment' style={{background: 'whitesmoke' }}>
-                        <p>"{comment.body}"</p>
+                        <p>" {comment.body} "</p>
                         {/* <p>{comment.song_id}</p> */}
                     </div>
                 )

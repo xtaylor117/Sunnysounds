@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { receiveAllSongs, deleteSong, receiveAllArtists, receiveSong, receiveCurrentSong } from '../../actions/song_actions'
 import { openModal, receiveModalSong } from '../../actions/modal_actions'
-import { createComment, receiveAllComments } from '../../actions/comment_actions';
+import { createComment, receiveAllComments, deleteComment } from '../../actions/comment_actions';
 import SongShow from './song_show'
 
 const mSTP = (state, ownProps) => {
@@ -28,7 +28,8 @@ const mDTP = dispatch => {
         deleteSong: songId => dispatch(deleteSong(songId)),
         receiveSong: songId => dispatch(receiveSong(songId)),
         receiveCurrentSong: songId => dispatch(receiveCurrentSong(songId)),
-        createComment: song => dispatch(createComment(song)),
+        createComment: comment => dispatch(createComment(comment)),
+        deleteComment: commentId => dispatch(deleteComment(commentId)),
         receiveAllComments: () => dispatch(receiveAllComments())
 
     })

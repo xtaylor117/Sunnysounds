@@ -33,3 +33,23 @@ input.comment-form-input[type=text] {
 .comments-container {
     height: 300px;
 }
+
+
+.comment-delete-button {
+    position: relative;
+    top: -30px;
+    left: 96%;
+    outline: none;
+    border: none;
+    z-index: 999;
+    background: coral;
+    padding-bottom: 2px;
+    border-radius: 8px;
+    color: white;
+    transition: 0.3s;
+}
+
+.comment-delete-button:hover {
+    cursor: pointer;
+    background: cadetblue;
+}

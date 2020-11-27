@@ -605,6 +605,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      debugger;
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
         return comment.author_id === _this3.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
@@ -614,14 +615,14 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
             style: {
               background: 'lightgray'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "single-comment",
             style: {
               background: 'whitesmoke'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -973,6 +974,7 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
       //     });
       // }
 
+      debugger;
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
         return comment.author_id === _this3.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
@@ -982,14 +984,14 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
             style: {
               background: 'lightgray'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "single-comment",
             style: {
               background: 'whitesmoke'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         }
       }); // <div className="custom-audio-player">
       //     <button className="play-button" id={this.props.song.id + 1000} />
@@ -1643,14 +1645,14 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             style: {
               background: 'lightgray'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "single-comment",
             style: {
               background: 'whitesmoke'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1905,7 +1907,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
           artist_id = _this$props$song.artist_id,
           genre = _this$props$song.genre,
           id = _this$props$song.id;
-      var name = this.props.artists[this.props.song.artist_id - 1]["username"];
+      var name = this.props.artists[this.props.song.artist_id - 1]["username"] || null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "index-item-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2667,14 +2669,14 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
             style: {
               background: 'lightgray'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "single-comment",
             style: {
               background: 'whitesmoke'
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\"", comment.body, "\""));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
         }
       });
       var song = this.props.songs.filter(function (song) {
@@ -2683,12 +2685,23 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       var songComments = this.props.comments.filter(function (comment) {
         return comment.song_id === song.id;
       }).reverse().map(function (comment) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "song-show-comment",
-          key: "comment-".concat(comment.id)
-        }, comment.body);
+        if (comment.author_id === currentUser.id) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: "song-show-comment",
+            key: "comment-".concat(comment.id)
+          }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "comment-delete-button",
+            onClick: function onClick() {
+              return _this.props.deleteComment(comment.id);
+            }
+          }, "x"));
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: "song-show-comment",
+            key: "comment-".concat(comment.id)
+          }, comment.body);
+        }
       });
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2810,8 +2823,11 @@ var mDTP = function mDTP(dispatch) {
     receiveCurrentSong: function receiveCurrentSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentSong"])(songId));
     },
-    createComment: function createComment(song) {
-      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["createComment"])(song));
+    createComment: function createComment(comment) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["createComment"])(comment));
+    },
+    deleteComment: function deleteComment(commentId) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["deleteComment"])(commentId));
     },
     receiveAllComments: function receiveAllComments() {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["receiveAllComments"])());
