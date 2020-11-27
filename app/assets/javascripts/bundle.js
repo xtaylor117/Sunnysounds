@@ -605,7 +605,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
         return comment.author_id === _this3.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
@@ -955,6 +954,11 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "artistName",
+    value: function artistName(playlist) {
+      debugger;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -964,17 +968,25 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
         return _this3.props.songs.filter(function (song) {
           return artist.id === song.artist_id;
         });
-      }); // for (let i = 0; i < sortedSongs.length; i++) {
-      //     sortedSongs[i].forEach(function(song, index) {
-      //         let audioEl = document.createElement("audio");
-      //         audioEl.setAttribute('id', song.id);
-      //         audioEl.setAttribute('src', song.audioUrl);
-      //         audioEl.controls = true;
-      //         document.getElementById('sorted-playlists').appendChild(audioEl);
-      //     });
-      // }
-
-      debugger;
+      }).reverse();
+      var playlist = sortedSongs.map(function (playlist) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "discovery-playlist"
+        }, playlist.map(function (song) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            song: song,
+            key: song.id,
+            audioUrl: song.audioUrl,
+            photoUrl: song.photoUrl,
+            currentUser: _this3.props.currentUser,
+            openModal: _this3.props.openModal,
+            deleteSong: _this3.props.deleteSong,
+            artists: _this3.props.artists,
+            receiveSong: _this3.props.receiveSong,
+            receiveCurrentSong: _this3.props.receiveCurrentSong
+          });
+        }));
+      });
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
         return comment.author_id === _this3.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
@@ -1005,9 +1017,7 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
         className: "discovery-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        id: "sorted-playlists"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, playlist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "link-container"

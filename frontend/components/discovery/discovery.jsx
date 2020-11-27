@@ -37,26 +37,42 @@ class Discovery extends React.Component {
             )
         }
     }
+
+    artistName(playlist) {
+        debugger
+    }
     
     render() {
         const currentUser = this.props.currentUser
 
         const sortedSongs = this.props.artists.map(artist => 
                 this.props.songs.filter(song => 
-                artist.id === song.artist_id))
+                artist.id === song.artist_id)).reverse()
 
-        // for (let i = 0; i < sortedSongs.length; i++) {
-            
-        //     sortedSongs[i].forEach(function(song, index) {
-        //         let audioEl = document.createElement("audio");
-        //         audioEl.setAttribute('id', song.id);
-        //         audioEl.setAttribute('src', song.audioUrl);
-        //         audioEl.controls = true;
-        //         document.getElementById('sorted-playlists').appendChild(audioEl);
-        //     });
-        // }
+        const playlist = sortedSongs.map(playlist => {
+            return(
+                <div className="discovery-playlist">
+                    {playlist.map(song => {
+                        return(
+                            <SongIndexItem
+                                song={song}
+                                key={song.id}
+                                audioUrl={song.audioUrl}
+                                photoUrl={song.photoUrl}
+                                currentUser={this.props.currentUser}
+                                openModal={this.props.openModal}
+                                deleteSong={this.props.deleteSong}
+                                artists={this.props.artists}
+                                receiveSong={this.props.receiveSong}
+                                receiveCurrentSong={this.props.receiveCurrentSong}
+                            />
+                        )
+                    })}
+                </div>
+            )
+        })
 
-        debugger
+ 
 
         const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
             if (comment.id % 2 == 0) {
@@ -89,7 +105,7 @@ class Discovery extends React.Component {
         return(
             <div className='discovery-container'>
                 <div className='discovery-left'>
-                    <ul id='sorted-playlists'></ul>
+                    {playlist}
 
                     {/* <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">

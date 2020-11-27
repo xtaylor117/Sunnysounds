@@ -170,4 +170,21 @@
     z-index: 10px;
 }
 
+.discovery-playlist {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 1px solid whitesmoke;
+    overflow-y: hidden;
+}
 
+.discovery-playlist .comment-form-input {
+    display: none;
+}
+
+.discovery-playlist .index-item-info {
+    border-bottom: none;
+}
+
+.discovery-playlist .song-edit-button {
+    display: none;
+}

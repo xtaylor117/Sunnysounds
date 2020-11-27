@@ -42,8 +42,6 @@ class ArtistShow extends React.Component {
 
     
     render() {
-        debugger
-
         const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
             if (comment.id % 2 == 0) {
                 return(

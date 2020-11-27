@@ -77,6 +77,8 @@
 .song-show-comment {
     padding: 10px;
     border-bottom: 1px solid black;
+    font-family: 'Overpass';
+    font-size: 14px;
 }
 
 .song-show-comment:first-child {
@@ -86,3 +88,4 @@
 .song-show-comment:last-child {
     border-bottom: none;
 }
+
