@@ -12,14 +12,24 @@ input.comment-form-input[type=text] {
     display: flex;
 }
 
+.single-comment a {
+    text-decoration: none;
+    color: white;
+    background: cadetblue;
+    position: absolute;
+    transform: translate(-11px, -10px);
+    padding: 2px;
+    border-radius: 5px;
+}
+
 .recent-comments {
     display: flex;
     flex-direction: column;
     margin-top: 15px;
     height: 92%;
-    border-radius: 15px;
-    overflow: hidden;
+    overflow: visible;
 }
+
 .recent-comments p {
     display: flex;
     margin-top: 15px;
@@ -51,4 +61,19 @@ input.comment-form-input[type=text] {
 .comment-delete-button:hover {
     cursor: pointer;
     background: cadetblue;
+}
+
+.song-show-comment {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    font-family: 'Overpass';
+    font-size: 14px;
+}
+
+.song-show-comment:first-child {
+    padding-top: 0px;
+}
+
+.song-show-comment:last-child {
+    border-bottom: none;
 }

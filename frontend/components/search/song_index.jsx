@@ -1,5 +1,6 @@
 import React from 'react'
 import SongIndexItem from './song_index_item'
+import { Link } from 'react-router-dom'
 
 class SongIndex extends React.Component {
     constructor(props) {
@@ -107,15 +108,17 @@ class SongIndex extends React.Component {
             if (comment.id % 2 == 0) {
                 return(
                     <div className='single-comment' style={{background: 'lightgray' }}>
+                        <Link to={`/songs/${comment.song_id}`}>{Object.values(this.props.songs).filter(song => song.id === comment.song_id).map(song => {
+                            return(song.title)})}</Link>
                         <p>" {comment.body} "</p>
-                        {/* <p>{comment.song_id}</p> */}
                     </div>
                 )
             } else {
                 return(
                     <div className='single-comment' style={{background: 'whitesmoke' }}>
+                        <Link to={`/songs/${comment.song_id}`}>{Object.values(this.props.songs).filter(song => song.id === comment.song_id).map(song => {
+                            return(song.title)})}</Link>
                         <p>" {comment.body} "</p>
-                        {/* <p>{comment.song_id}</p> */}
                     </div>
                 )
             }
