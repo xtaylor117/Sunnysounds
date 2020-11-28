@@ -28,18 +28,18 @@ class Nav extends React.Component {
                                 <p className="this-user">{this.props.currentUser.username}  <i className="fa fa-caret-down"></i></p>
                                 <div className="user-dropdown">
                                     <p><Link to={`/artists/${this.props.currentUser.id}`}> Profile </Link></p>
-                                    <p><Link to={`/artists/${this.props.currentUser.id}`}> Likes </Link></p>
+                                    {/* <p><Link to={`/artists/${this.props.currentUser.id}`}> Likes </Link></p>
                                     <p><Link to={`/artists/${this.props.currentUser.id}`}> Follows </Link></p>
-                                    <p><Link to={`/artists/${this.props.currentUser.id}`}> Who to Follow </Link></p>
+                                    <p><Link to={`/artists/${this.props.currentUser.id}`}> Who to Follow </Link></p> */}
                                 </div>
                             </li>
-                            <li>
+                            {/* <li>
                                 <p>Notifications</p>
                                 <div className="notifications-dropdown">
                                     <p>Someone liked your song!</p>
                                 </div>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <p>Messages</p>
                                 <div className="messages-dropdown">
                                     <p>Hey man! This is going to be a really long message to test things out!
@@ -47,7 +47,7 @@ class Nav extends React.Component {
                                     </p>
                                     <p>Cool!</p>
                                 </div>
-                            </li>
+                            </li> */}
                             <li>
                                 •••
                                 <div className="settings-dropdown">

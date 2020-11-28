@@ -21,12 +21,12 @@ class SongIndexItem extends React.Component {
 
     // pausePic() {
     //     let background = document.getElementById(this.props.song.id + 1000)
-    //     background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')" 
+        // background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')" 
     // }
     
     // playPic() {
     //     let background = document.getElementById(this.props.song.id + 1000)
-    //     background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+        // background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
     // }
 
     playSong() {
@@ -36,11 +36,13 @@ class SongIndexItem extends React.Component {
         let background = document.getElementById(this.props.song.id + 1000)
 
         if (song.paused) {
-            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')" 
+            background.classList.toggle("play")
+            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             song.play()
         } else {
-            song.pause()
+            background.classList.toggle("play")
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            song.pause()
         }
     }
 
@@ -60,8 +62,10 @@ class SongIndexItem extends React.Component {
     }
 
     render() {
+        if (!this.props.artists[this.props.song.artist_id - 1]) return null
+
         const { title, artist_id, genre, id } = this.props.song;
-        let name = this.props.artists[this.props.song.artist_id - 1]["username"] || null
+        let name = this.props.artists[this.props.song.artist_id - 1]["username"]
 
         return (
             <>

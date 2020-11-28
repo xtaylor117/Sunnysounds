@@ -38,10 +38,6 @@ class Discovery extends React.Component {
             )
         }
     }
-
-    artistName(playlist) {
-        debugger
-    }
     
     render() {
         const currentUser = this.props.currentUser
@@ -147,7 +143,6 @@ class Discovery extends React.Component {
                     </div>
                     <div className="latest-upload" >
                         <h3>~Song Playing~</h3>
-                        {this.currentSong()}
                     </div>
                     <div className='comments-container'>
                         <h3>Your Recent Comments</h3>
