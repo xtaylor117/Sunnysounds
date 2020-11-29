@@ -1,0 +1,27 @@
+.playbar-controls {
+    display: none;
+}
+
+.playbar-controls.play {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 35px;
+    background: whitesmoke;
+    left: 0px;
+    border-top: 1px solid lightgrey;
+    display: flex;
+}
+
+.playbar-prev-song-button, .playbar-play-button, .playbar-pause-button, .playbar-next-song-button, .playbar-volume-button {
+    outline: none;
+    border: none;
+    background: none;
+    transition: 0.3s;
+}
+
+.playbar-prev-song-button:hover, .playbar-play-button:hover, .playbar-pause-button:hover, .playbar-next-song-button:hover, .playbar-volume-button:hover {
+    cursor: pointer;
+    color: gold;
+}

@@ -145,8 +145,7 @@ class SongIndex extends React.Component {
                         </ul>
                     </div>
                     <div className="latest-upload" >
-                        <h3>~Song Playing~</h3>
-                        {this.currentSong()}
+                        <h3>Listening History...</h3>
                     </div>
                     <div className='comments-container'>
                         <h3>Your Recent Comments</h3>

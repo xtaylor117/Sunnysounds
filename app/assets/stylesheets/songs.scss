@@ -21,6 +21,7 @@
     width: fit-content;
     padding: 10px;
     background: rgba(255, 255, 255, 0.75);
+    margin-bottom: -15px;
 }
 
 .show-banner {
@@ -62,7 +63,7 @@
     opacity: 1;
 }
 
-.play-button:hover {
+.song-show-left .play-button:hover {
     cursor: pointer;
 }
 

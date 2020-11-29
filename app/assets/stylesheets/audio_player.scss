@@ -4,19 +4,24 @@
 
 .play-button {
     position: relative;
-    width: 115px;
-    height: 115px;
-    bottom: 4px;
-    right: -1px;
+    width: 65px;
+    height: 65px;
+    bottom: -20px;
+    right: -25px;
+    margin-bottom: 40px;
     border-radius: 20px;
     background: transparent;
-    background-image: url("https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png");
+    background-image: url(https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png);
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.2;
+    opacity: 1;
     background-size: contain;
     outline: none;
     border: none;
+}
+
+.play-button:hover {
+    cursor: pointer;
 }
 
 

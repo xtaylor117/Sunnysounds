@@ -64,9 +64,11 @@
 .index-item-title a {
   text-decoration: none;
   color: black;
+  transition: 0.3s;
 }
 
 .index-item-title a:hover {
+  color: gold;
   cursor: pointer;
 }
 
@@ -83,6 +85,7 @@
 .index-item-artist a {
   text-decoration: none;
   color: salmon;
+  transition: 0.3s;
    
 }
 
@@ -129,18 +132,4 @@
   display: block;
   right: 0;
   transform: translateX(22.5%)
-}
-
-.audio-player {
-  width: 68%;
-  margin-left: 163px;
-  padding-top: 45px;
-}
-
-.audio-player:focus {
-  outline: none;
-}
-
-.audio-player controls:focus {
-  outline: none;
 }

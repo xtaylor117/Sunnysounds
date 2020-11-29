@@ -113,7 +113,7 @@ class SongShow extends React.Component {
                         </ul>
                     </div>
                     <div className="latest-upload" >
-                        <h3>~Song Playing~</h3>
+                        <h3>Listening History...</h3>
                     </div>
                     <div className='comments-container'>
                         <h3>Your Recent Comments</h3>

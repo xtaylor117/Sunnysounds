@@ -20,6 +20,11 @@ input.comment-form-input[type=text] {
     transform: translate(-11px, -10px);
     padding: 2px;
     border-radius: 5px;
+    transition: 0.3s;
+}
+
+.single-comment a:hover {
+    background: coral;
 }
 
 .recent-comments {

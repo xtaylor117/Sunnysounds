@@ -34,13 +34,14 @@ class SongIndexItem extends React.Component {
 
         let song = document.getElementById(this.props.song.id);
         let background = document.getElementById(this.props.song.id + 1000)
+        let playbar = document.getElementById(this.props.song.id + 2000)
 
         if (song.paused) {
-            background.classList.toggle("play")
+            playbar.classList.toggle("play")
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             song.play()
         } else {
-            background.classList.toggle("play")
+            playbar.classList.toggle("play")
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             song.pause()
         }
@@ -74,6 +75,13 @@ class SongIndexItem extends React.Component {
                         <div onClick={() => this.playSong()} className="custom-audio-player">
                         <img className='song-box-photo' src={this.props.photoUrl}/>
                             <button className="play-button" id={this.props.song.id + 1000} />
+                            <div className="playbar-controls" id={this.props.song.id + 2000}>
+                                <button className="playbar-prev-song-button"><i class="fas fa-backward"></i></button>
+                                <button className="playbar-play-button"><i class="fas fa-play"></i></button>
+                                <button className="playbar-pause-button"><i class="fas fa-pause"></i></button>
+                                <button className="playbar-next-song-button"><i class="fas fa-forward"></i></button>
+                                <button className="playbar-volume-button"><i class="fas fa-volume"></i></button>
+                            </div>
                             {/* <AudioPlayer /> */}
                             <audio controls className='audio-player' id={this.props.song.id}>
                                 <source src={this.props.audioUrl} type="audio/mpeg" />   

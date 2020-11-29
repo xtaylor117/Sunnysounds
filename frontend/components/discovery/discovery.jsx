@@ -6,7 +6,13 @@ class Discovery extends React.Component {
     constructor(props) {
         super(props)
         
+        this.state = {
+            songs: [],
+            inputValue: ''
+        }
+
         this.currentSong = this.currentSong.bind(this)
+        this.songFilterOnChange = this.songFilterOnChange.bind(this)
     }
 
     componentDidMount() {
@@ -15,6 +21,18 @@ class Discovery extends React.Component {
         this.props.receiveAllSongs()
     }
 
+    songFilterOnChange(event) {
+        this.setState({
+            inputValue: event.target.value
+        })
+
+        let filteredSongs = this.props.songs.filter(song => {
+            return (song.title.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+            song.genre.toLowerCase().includes(this.state.inputValue.toLowerCase()))
+        }).sort()
+
+        this.setState({ songs: filteredSongs})
+    }
 
     currentSong() {
         if (this.props.currentSong) {
@@ -51,6 +69,8 @@ class Discovery extends React.Component {
                 <div className="discovery-playlist">
                     {playlist.map(song => {
                         return(
+                            <>
+                            {/* <h3>{Object.values(this.props.artists).filter(artist => artist.id === song.artist_id).map(artist => artist.username)}</h3> */}
                             <SongIndexItem
                                 song={song}
                                 key={song.id}
@@ -63,6 +83,7 @@ class Discovery extends React.Component {
                                 receiveSong={this.props.receiveSong}
                                 receiveCurrentSong={this.props.receiveCurrentSong}
                             />
+                            </>
                         )
                     })}
                 </div>
@@ -103,8 +124,13 @@ class Discovery extends React.Component {
 
         return(
             <div className='discovery-container'>
+                {/* <div className="search-bar-container">
+                    <input type="text" className="search-bar" placeholder='Search by song title or genre...' value={this.state.inputValue} onChange={this.songFilterOnChange}/>
+                    <input type="image" src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" className="search-button"/>
+                </div> */}
                 <div className='discovery-left'>
                     {playlist}
+                    <h3 className='discovery-header'>See what other musicians are posting!</h3>
 
                     {/* <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -142,7 +168,7 @@ class Discovery extends React.Component {
                         </ul>
                     </div>
                     <div className="latest-upload" >
-                        <h3>~Song Playing~</h3>
+                        <h3>Listening History...</h3>
                     </div>
                     <div className='comments-container'>
                         <h3>Your Recent Comments</h3>
