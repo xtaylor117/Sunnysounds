@@ -2712,7 +2712,15 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         return comment.song_id === song.id;
       }).reverse().map(function (comment) {
         if (comment.author_id === currentUser.id) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            to: "/artists/".concat(comment.author_id)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+            className: "comment-author"
+          }, Object.values(_this.props.artists).filter(function (artist) {
+            return artist.id === comment.author_id;
+          }).map(function (artist) {
+            return artist.username;
+          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "song-show-comment",
             key: "comment-".concat(comment.id)
           }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -2722,10 +2730,18 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
             }
           }, "x"));
         } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            to: "/artists/".concat(comment.author_id)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+            className: "comment-author"
+          }, Object.values(_this.props.artists).filter(function (artist) {
+            return artist.id === comment.author_id;
+          }).map(function (artist) {
+            return artist.username;
+          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "song-show-comment",
             key: "comment-".concat(comment.id)
-          }, comment.body);
+          }, comment.body));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

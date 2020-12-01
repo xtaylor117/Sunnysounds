@@ -70,13 +70,21 @@ class SongShow extends React.Component {
             if (comment.author_id === currentUser.id) {
                 return(
                     <>
+                        <Link to={`/artists/${comment.author_id}`}> 
+                            <h3 className="comment-author">{Object.values(this.props.artists).filter(artist => artist.id === comment.author_id).map(artist => artist.username)}</h3>
+                        </Link>
                         <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
                         <button className='comment-delete-button' onClick={() => this.props.deleteComment(comment.id)}>x</button>
                     </>
                 )
             } else {
                 return(
-                    <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+                    <>
+                        <Link to={`/artists/${comment.author_id}`}>
+                            <h3 className="comment-author">{Object.values(this.props.artists).filter(artist => artist.id === comment.author_id).map(artist => artist.username)}</h3>
+                        </Link>
+                        <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+                    </>
                 )
             }
         })
