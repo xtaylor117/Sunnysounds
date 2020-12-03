@@ -5,28 +5,38 @@ class Playbar extends React.Component {
     constructor(props) {
         super(props)
         
-        // this.state = {
-        //     playlist: this.props.songs,
-        //     prevSong: this.props.songs[this.props.song.id - 2],
-        //     currentSong: this.props.song,
-        //     nextSong: this.props.songs[this.props.song.id]
-        // }
+        this.state = {
+            prevSong: this.props.prevSong,
+            currentSong: this.props.currentSong,
+            nextSong: this.props.prevSong
+        }
     }
 
+    prevSong() {
+        debugger
+    }
+
+    playSong() {
+        debugger
+    }
+
+    pauseSong() {
+        debugger
+    }
+
+    nextSong() {
+        debugger
+    }
 
     render() {
         return(
-
-            <p>
-                hey!
-            </p>
-            // <div className="playbar-controls" id={this.props.song.id + 2000}>
-            //     <button className="playbar-prev-song-button"><i class="fas fa-backward"></i></button>
-            //     <button className="playbar-play-button"><i class="fas fa-play"></i></button>
-            //     <button className="playbar-pause-button"><i class="fas fa-pause"></i></button>
-            //     <button className="playbar-next-song-button"><i class="fas fa-forward"></i></button>
-            //     <button className="playbar-volume-button"><i class="fa fa-volume"></i></button>
-            // </div>
+            <div className="playbar-controls" id={this.props.song.id + 2000} >
+                <button onClick={() => this.prevSong()} className="playbar-prev-song-button"><i className="fas fa-backward"></i></button>
+                <button onClick={() => this.playSong()} className="playbar-play-button"><i className="fas fa-play"></i></button>
+                <button onClick={() => this.pauseSong()} className="playbar-pause-button"><i className="fas fa-pause"></i></button>
+                <button onClick={() => this.nextSong()} className="playbar-next-song-button"><i className="fas fa-forward"></i></button>
+                <button className="playbar-volume-button"><i className="fa fa-volume"></i></button>
+            </div>
         )
     }
 }

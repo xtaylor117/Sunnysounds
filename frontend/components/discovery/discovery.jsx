@@ -11,7 +11,6 @@ class Discovery extends React.Component {
             inputValue: ''
         }
 
-        this.currentSong = this.currentSong.bind(this)
         this.songFilterOnChange = this.songFilterOnChange.bind(this)
     }
 
@@ -33,30 +32,6 @@ class Discovery extends React.Component {
 
         this.setState({ songs: filteredSongs})
     }
-
-    currentSong() {
-        if (this.props.currentSong) {
-            return(
-                this.props.songs.filter(song => (
-                    song.id === this.props.currentSong.id
-                )).map(song => (
-                    <SongIndexItem
-                        song={song}
-                        key={song.id}
-                        audioUrl={song.audioUrl}
-                        photoUrl={song.photoUrl}
-                        currentUser={this.props.currentUser}
-                        openModal={this.props.openModal}
-                        deleteSong={this.props.deleteSong}
-                        artists={this.props.artists}
-                        receiveSong={this.props.receiveSong}
-                        receiveCurrentSong={this.props.receiveCurrentSong}
-                        receivePrevSong={this.props.receivePrevSong}
-                    />
-                ))   
-            )
-        }
-    }
     
     render() {
         const currentUser = this.props.currentUser
@@ -64,6 +39,8 @@ class Discovery extends React.Component {
         const sortedSongs = this.props.artists.map(artist => 
                 this.props.songs.filter(song => 
                 artist.id === song.artist_id)).reverse()
+
+        sortedSongs.map(playlist => playlist.reverse())
 
         const playlist = sortedSongs.map(playlist => {
             return(
@@ -83,9 +60,12 @@ class Discovery extends React.Component {
                                 deleteSong={this.props.deleteSong}
                                 artists={this.props.artists}
                                 receiveSong={this.props.receiveSong}
-                                currentSong={this.props.currentSong}
                                 receiveCurrentSong={this.props.receiveCurrentSong}
                                 receivePrevSong={this.props.receivePrevSong}
+                                receiveNextSong={this.props.receiveNextSong}
+                                currentSong={this.props.currentSong}
+                                prevSong={this.props.prevSong}
+                                nextSong={this.props.nextSong}
                             />
                             </>
                         )

@@ -119,7 +119,12 @@ class SongShow extends React.Component {
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
                         receiveCurrentSong={this.props.receiveCurrentSong}
+                        receivePrevSong={this.props.receivePrevSong}
+                        receiveNextSong={this.props.receiveNextSong}
                         createComment={this.props.createComment}
+                        currentSong={this.props.currentSong}
+                        prevSong={this.props.prevSong}
+                        nextSong={this.props.nextSong}
                     />
                     <img className='show-banner' src={song.photoUrl} />
                 </div>

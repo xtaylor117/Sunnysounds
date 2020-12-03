@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { receiveAllSongs, deleteSong, receiveAllArtists, receiveSong, receiveCurrentSong } from '../../actions/song_actions'
+import { receiveAllSongs, deleteSong, receiveAllArtists, receiveSong, receiveCurrentSong, receiveNextSong, receivePrevSong } from '../../actions/song_actions'
 import { openModal, receiveModalSong } from '../../actions/modal_actions'
 import { createComment, receiveAllComments, deleteComment } from '../../actions/comment_actions';
 import SongShow from './song_show'
@@ -13,7 +13,9 @@ const mSTP = (state, ownProps) => {
 
     return({
         currentUser: state.session.currentUser,
-        currentSong: state.ui.currentSong,
+        currentSong: state.ui.playbar.currentSong,
+        prevSong: state.ui.playbar.prevSong,
+        nextSong: state.ui.playbar.nextSong,
         artists: Object.values(state.entities.artists),
         songs: Object.values(state.entities.songs),
         comments
@@ -28,6 +30,8 @@ const mDTP = dispatch => {
         deleteSong: songId => dispatch(deleteSong(songId)),
         receiveSong: songId => dispatch(receiveSong(songId)),
         receiveCurrentSong: songId => dispatch(receiveCurrentSong(songId)),
+        receivePrevSong: songId => dispatch(receivePrevSong(songId)),
+        receiveNextSong: songId => dispatch(receiveNextSong(songId)),
         createComment: comment => dispatch(createComment(comment)),
         deleteComment: commentId => dispatch(deleteComment(commentId)),
         receiveAllComments: () => dispatch(receiveAllComments())

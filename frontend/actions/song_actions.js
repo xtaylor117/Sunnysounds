@@ -10,6 +10,7 @@ export const RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS"
 
 export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG"
 export const RECEIVE_PREVIOUS_SONG = "RECEIVE_PREVIOUS_SONG"
+export const RECEIVE_NEXT_SONG = "RECEIVE_NEXT_SONG"
 
 const fetchCurrentSong = (song) => ({
     type: RECEIVE_CURRENT_SONG,
@@ -18,6 +19,11 @@ const fetchCurrentSong = (song) => ({
 
 const fetchPrevSong = (song) => ({
     type: RECEIVE_PREVIOUS_SONG,
+    song
+})
+
+const fetchNextSong = (song) => ({
+    type: RECEIVE_NEXT_SONG,
     song
 })
 
@@ -83,6 +89,13 @@ export const receivePrevSong = (songId) => dispatch => {
     return songUtil.fetchSong(songId)
         .then(
             song => (dispatch(fetchPrevSong(song)))
+        )
+}
+
+export const receiveNextSong = (songId) => dispatch => {
+    return songUtil.fetchSong(songId)
+        .then(
+            song => (dispatch(fetchNextSong(song)))
         )
 }
 

@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_SONG, RECEIVE_PREVIOUS_SONG } from '../actions/song_actions'
+import { RECEIVE_CURRENT_SONG, RECEIVE_PREVIOUS_SONG, RECEIVE_NEXT_SONG } from '../actions/song_actions'
 
 
 const defaultState = {
@@ -17,6 +17,9 @@ const PlaybarReducer = (oldState = defaultState, action) => {
             return newState
         case RECEIVE_PREVIOUS_SONG:
             newState.prevSong = action.song
+            return newState
+        case RECEIVE_NEXT_SONG:
+            newState.nextSong = action.song
             return newState
         default:
             return oldState

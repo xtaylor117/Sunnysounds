@@ -1,16 +1,11 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import CommentForm from '../comment_form/comment_form'
+import PlaybarContainer from '../playbar/playbar_container'
 
 class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            prevSong: this.props.prevSong,
-            currentSong: this.props.currentSong,
-            nextSong: {}
-        }
 
         this.settingsAuth = this.settingsAuth.bind(this);
     }
@@ -33,20 +28,24 @@ class SongIndexItem extends React.Component {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             this.props.receivePrevSong(this.props.currentSong.id)
             this.props.receiveCurrentSong(this.props.song.id)
+            this.props.receiveNextSong(this.props.song.id - 1)
         } else {
             this.props.receiveCurrentSong(this.props.song.id);
+            this.props.receiveNextSong(this.props.song.id - 1)
         }
 
         song = document.getElementById(this.props.song.id);
         background = document.getElementById(this.props.song.id + 1000)
         playbar = document.getElementById(this.props.song.id + 2000)
+
+        debugger
         
         if (song.paused) {
-            // playbar.classList.toggle("play")
+            playbar.classList.toggle("play")
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             song.play()
         } else {
-            // playbar.classList.toggle("play")
+            playbar.classList.toggle("play")
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             song.pause()
         }
@@ -80,14 +79,7 @@ class SongIndexItem extends React.Component {
                         <div onClick={() => this.playSong()} className="custom-audio-player">
                         <img className='song-box-photo' src={this.props.photoUrl}/>
                             <button className="play-button" id={this.props.song.id + 1000} />
-                            {/* <AudioPlayer /> */}
-                            {/* <div className="playbar-controls" id={this.props.song.id + 2000} >
-                                <button onClick={() => this.prevSong()} className="playbar-prev-song-button"><i className="fas fa-backward"></i></button>
-                                <button onClick={() => this.playSong()} className="playbar-play-button"><i className="fas fa-play"></i></button>
-                                <button onClick={() => this.pauseSong()} className="playbar-pause-button"><i className="fas fa-pause"></i></button>
-                                <button onClick={() => this.nextSong()} className="playbar-next-song-button"><i className="fas fa-forward"></i></button>
-                                <button className="playbar-volume-button"><i className="fa fa-volume"></i></button>
-                            </div> */}
+                            <PlaybarContainer song={this.props.song} />
                             <audio controls className='audio-player' id={this.props.song.id}>
                                 <source src={this.props.audioUrl} type="audio/mpeg" />   
                             </audio>
