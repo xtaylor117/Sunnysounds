@@ -51,6 +51,7 @@ class Discovery extends React.Component {
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
                         receiveCurrentSong={this.props.receiveCurrentSong}
+                        receivePrevSong={this.props.receivePrevSong}
                     />
                 ))   
             )
@@ -72,6 +73,7 @@ class Discovery extends React.Component {
                             <>
                             {/* <h3>{Object.values(this.props.artists).filter(artist => artist.id === song.artist_id).map(artist => artist.username)}</h3> */}
                             <SongIndexItem
+                                songs={this.props.songs}
                                 song={song}
                                 key={song.id}
                                 audioUrl={song.audioUrl}
@@ -81,7 +83,9 @@ class Discovery extends React.Component {
                                 deleteSong={this.props.deleteSong}
                                 artists={this.props.artists}
                                 receiveSong={this.props.receiveSong}
+                                currentSong={this.props.currentSong}
                                 receiveCurrentSong={this.props.receiveCurrentSong}
+                                receivePrevSong={this.props.receivePrevSong}
                             />
                             </>
                         )

@@ -14,29 +14,39 @@ class SongShow extends React.Component {
         this.props.receiveSong(this.props.match.params.songId)
     }
 
-    // currentSong() {
-    //     if (this.props.currentSong) {
-    //         return(
-    //             this.props.songs.filter(song => (
-    //                 song.id === this.props.currentSong.id
-    //             )).map(song => (
-    //                 <SongIndexItem
-    //                     song={this.props.song}
-    //                     key={this.props.song.id}
-    //                     audioUrl={this.props.song.audioUrl}
-    //                     photoUrl={this.props.song.photoUrl}
-    //                     currentUser={this.props.currentUser}
-    //                     openModal={this.props.openModal}
-    //                     deleteSong={this.props.deleteSong}
-    //                     artists={this.props.artists}
-    //                     receiveSong={this.props.receiveSong}
-    //                     receiveCurrentSong={this.props.receiveCurrentSong}
-    //                     createComment={this.props.createComment}
-    //                 />
-    //             ))   
-    //         )
-    //     }
-    // }
+    timeDiff(comment) {
+        // const now = new Date();
+        // let years = now.getUTCFullYear() - comment.created_at.slice(0, 4);
+        // let months = now.getUTCMonth() + 1 - comment.created_at.slice(5, 7);
+        // let days = now.getUTCDate() - comment.created_at.slice(8, 10);
+        // let hours = now.getUTCHours() - comment.created_at.slice(11, 13);
+        // let minutes = now.getUTCMinutes() - comment.created_at.slice(14, 16);
+        // let seconds = now.getUTCSeconds() - comment.created_at.slice(17, 19);
+        // if (years > 0) {
+        //     return <p className='date-created'>{`${years} years ago`}</p>
+        // }
+        // else if (months > 0) {
+        //     return <p className='date-created'>{`${months} months ago`}</p>
+        // }
+        // else if (days > 7) {
+        //     return <p className='date-created'>{`${Math.floor(days / 7)} weeks ago`}</p>
+        // }
+        // else if (days > 0) {
+        //     return <p className='date-created'>{`${days} days ago`}</p>
+        // }
+        // else if (hours > 0) {
+        //     return <p className='date-created'>{`${hours} hours ago`}</p>
+        // }
+        // else if (minutes > 0) {
+        //     return <p className='date-created'>{`${minutes} minutes ago`}</p>
+        // }
+        // else if (seconds > 0) {
+        //     return <p className='date-created'>{`${seconds} seconds ago`}</p>
+        // }
+        // else {
+        //     return <p className='date-created'>{`just created`}</p>
+        // }
+    }
     
     render() {
         if (this.props.songs.length === 0) {
@@ -74,6 +84,7 @@ class SongShow extends React.Component {
                             <h3 className="comment-author">{Object.values(this.props.artists).filter(artist => artist.id === comment.author_id).map(artist => artist.username)}</h3>
                         </Link>
                         <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+                        <p>{this.timeDiff(comment)}</p>
                         <button className='comment-delete-button' onClick={() => this.props.deleteComment(comment.id)}>x</button>
                     </>
                 )
@@ -84,6 +95,7 @@ class SongShow extends React.Component {
                             <h3 className="comment-author">{Object.values(this.props.artists).filter(artist => artist.id === comment.author_id).map(artist => artist.username)}</h3>
                         </Link>
                         <li className='song-show-comment' key={`comment-${comment.id}`}>{comment.body}</li>
+                        <p>{this.timeDiff(comment)}</p>
                     </>
                 )
             }

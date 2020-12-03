@@ -13,7 +13,6 @@ class SongIndex extends React.Component {
 
         this.songFilterOnChange = this.songFilterOnChange.bind(this)
         this.songList = this.songList.bind(this)
-        this.currentSong = this.currentSong.bind(this)
     }
 
     componentDidMount() {
@@ -35,30 +34,6 @@ class SongIndex extends React.Component {
         this.setState({ songs: filteredSongs})
     }
 
-    currentSong() {
-        if (this.props.currentSong) {
-            return(
-                this.props.songs.filter(song => (
-                    song.id === this.props.currentSong.id
-                )).map(song => (
-                    <SongIndexItem
-                        song={song}
-                        key={song.id}
-                        audioUrl={song.audioUrl}
-                        photoUrl={song.photoUrl}
-                        currentUser={this.props.currentUser}
-                        openModal={this.props.openModal}
-                        deleteSong={this.props.deleteSong}
-                        artists={this.props.artists}
-                        receiveSong={this.props.receiveSong}
-                        receiveCurrentSong={this.props.receiveCurrentSong}
-                        createComment={this.props.createComment}
-                    />
-                ))   
-            )
-        }
-    }
-
     songList() {
         if (this.state.songs.length === 0) {
             return(
@@ -75,7 +50,10 @@ class SongIndex extends React.Component {
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
                         receiveCurrentSong={this.props.receiveCurrentSong}
+                        receivePrevSong={this.props.receivePrevSong}
                         createComment={this.props.createComment}
+                        currentSong={this.props.currentSong}
+                        prevSong={this.props.prevSong}
                     />
                 ))
             )
@@ -94,7 +72,10 @@ class SongIndex extends React.Component {
                         artists={this.props.artists}
                         receiveSong={this.props.receiveSong}
                         receiveCurrentSong={this.props.receiveCurrentSong}
+                        receivePrevSong={this.props.receivePrevSong}
                         createComment={this.props.createComment}
+                        currentSong={this.props.currentSong}
+                        prevSong={this.props.prevSong}
                     />
                 ))
             )

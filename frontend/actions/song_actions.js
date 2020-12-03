@@ -7,10 +7,17 @@ export const DELETE_SONG = "DELETE_SONG"
 export const RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS"
 export const CLEAR_SONG_ERRORS = "CLEAR_SONG_ERRORS"
 export const RECEIVE_ALL_ARTISTS = "RECEIVE_ALL_ARTISTS"
+
 export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG"
+export const RECEIVE_PREVIOUS_SONG = "RECEIVE_PREVIOUS_SONG"
 
 const fetchCurrentSong = (song) => ({
     type: RECEIVE_CURRENT_SONG,
+    song
+})
+
+const fetchPrevSong = (song) => ({
+    type: RECEIVE_PREVIOUS_SONG,
     song
 })
 
@@ -69,6 +76,13 @@ export const receiveCurrentSong = (songId) => dispatch => {
     return songUtil.fetchSong(songId)
         .then(
             song => (dispatch(fetchCurrentSong(song)))
+        )
+}
+
+export const receivePrevSong = (songId) => dispatch => {
+    return songUtil.fetchSong(songId)
+        .then(
+            song => (dispatch(fetchPrevSong(song)))
         )
 }
 
