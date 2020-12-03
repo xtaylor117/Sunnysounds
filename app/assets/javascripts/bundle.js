@@ -1847,16 +1847,22 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "playSong",
     value: function playSong() {
+      var song;
+      var background;
+      var playbar;
+
       if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
+        background = document.getElementById(this.props.currentSong.id + 1000);
+        background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
         this.props.receivePrevSong(this.props.currentSong.id);
         this.props.receiveCurrentSong(this.props.song.id);
       } else {
         this.props.receiveCurrentSong(this.props.song.id);
       }
 
-      var song = document.getElementById(this.props.song.id);
-      var background = document.getElementById(this.props.song.id + 1000);
-      var playbar = document.getElementById(this.props.song.id + 2000);
+      song = document.getElementById(this.props.song.id);
+      background = document.getElementById(this.props.song.id + 1000);
+      playbar = document.getElementById(this.props.song.id + 2000);
 
       if (song.paused) {
         // playbar.classList.toggle("play")

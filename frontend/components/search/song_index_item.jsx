@@ -24,16 +24,22 @@ class SongIndexItem extends React.Component {
     }
 
     playSong() {
+        let song;
+        let background;
+        let playbar;
+
         if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
+            background = document.getElementById(this.props.currentSong.id + 1000)
+            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             this.props.receivePrevSong(this.props.currentSong.id)
             this.props.receiveCurrentSong(this.props.song.id)
         } else {
             this.props.receiveCurrentSong(this.props.song.id);
         }
-        
-        let song = document.getElementById(this.props.song.id);
-        let background = document.getElementById(this.props.song.id + 1000)
-        let playbar = document.getElementById(this.props.song.id + 2000)
+
+        song = document.getElementById(this.props.song.id);
+        background = document.getElementById(this.props.song.id + 1000)
+        playbar = document.getElementById(this.props.song.id + 2000)
         
         if (song.paused) {
             // playbar.classList.toggle("play")
