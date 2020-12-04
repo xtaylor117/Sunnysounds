@@ -7,7 +7,8 @@ const mSTP = (state, ownProps) => {
     return({
         currentSong: state.ui.playbar.currentSong,
         prevSong: state.ui.playbar.prevSong,
-        nextSong: state.ui.playbar.nextSong
+        nextSong: state.ui.playbar.nextSong,
+        artists: Object.values(state.entities.artists)
     })
 };
 

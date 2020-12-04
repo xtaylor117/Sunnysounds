@@ -18,18 +18,23 @@ class Playbar extends React.Component {
         this.muteSong = this.muteSong.bind(this)
     }
 
-    componentDidUpdate() {
-        console.log('change song?')
+    componentWillUnmount() {
+        console.log("change pages?")
     }
 
     prevSong() {
-        if (this.props.prevSong) {
-            let song = document.getElementById(this.props.prevSong.id)
+        if (this.props.prevSong.length != 0) {
+            let latestSong = this.props.prevSong.pop().id
+            let song = document.getElementById(latestSong)
             song.currentTime = 0;
             song.play();
 
-            this.props.receivePrevSong(this.props.prevSong.id + 1);
-            this.props.receiveCurrentSong(this.props.prevSong.id);
+            if (this.props.prevSong.length != 0) {
+                this.props.receivePrevSong(this.props.prevSong.pop().id);
+            } else {
+                this.props.receivePrevSong(latestSong)
+            }
+            this.props.receiveCurrentSong(latestSong);
             this.props.receiveNextSong(this.props.currentSong.id);
         }
     }
@@ -56,10 +61,9 @@ class Playbar extends React.Component {
     }
 
     muteSong() {
-        debugger
+        let song = document.getElementById(this.props.currentSong.id)
+        song.volume == 0 ? song.volume = 1 : song.volume = 0;
     }
-
-    
 
     render() {
         if (!this.props.currentSong) return null
@@ -72,6 +76,8 @@ class Playbar extends React.Component {
                     <button onClick={() => this.pauseSong()} className="playbar-pause-button"><i className="fas fa-pause"></i></button>
                     <button onClick={() => this.nextSong()} className="playbar-next-song-button"><i className="fas fa-forward"></i></button>
                     <button onClick={() => this.muteSong()} className="playbar-volume-button"><i className="fas fa-volume-up"></i></button>
+                    <span>{this.props.currentSong.title}</span>
+                    <span>{this.props.artists.filter(artist => artist.id === this.props.currentSong.artist_id).map(artist => artist.username)}</span>
                 </div>
             </>
         )

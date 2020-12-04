@@ -1511,19 +1511,26 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Playbar, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log('change song?');
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("change pages?");
     }
   }, {
     key: "prevSong",
     value: function prevSong() {
-      if (this.props.prevSong) {
-        var song = document.getElementById(this.props.prevSong.id);
+      if (this.props.prevSong.length != 0) {
+        var latestSong = this.props.prevSong.pop().id;
+        var song = document.getElementById(latestSong);
         song.currentTime = 0;
         song.play();
-        this.props.receivePrevSong(this.props.prevSong.id + 1);
-        this.props.receiveCurrentSong(this.props.prevSong.id);
+
+        if (this.props.prevSong.length != 0) {
+          this.props.receivePrevSong(this.props.prevSong.pop().id);
+        } else {
+          this.props.receivePrevSong(latestSong);
+        }
+
+        this.props.receiveCurrentSong(latestSong);
         this.props.receiveNextSong(this.props.currentSong.id);
       }
     }
@@ -1552,7 +1559,8 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "muteSong",
     value: function muteSong() {
-      debugger;
+      var song = document.getElementById(this.props.currentSong.id);
+      song.volume == 0 ? song.volume = 1 : song.volume = 0;
     }
   }, {
     key: "render",
@@ -1597,6 +1605,10 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "playbar-volume-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-volume-up"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.currentSong.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.artists.filter(function (artist) {
+        return artist.id === _this2.props.currentSong.artist_id;
+      }).map(function (artist) {
+        return artist.username;
       }))));
     }
   }]);
@@ -1631,7 +1643,8 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     currentSong: state.ui.playbar.currentSong,
     prevSong: state.ui.playbar.prevSong,
-    nextSong: state.ui.playbar.nextSong
+    nextSong: state.ui.playbar.nextSong,
+    artists: Object.values(state.entities.artists)
   };
 };
 
@@ -3490,7 +3503,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var defaultState = {
   currentSong: null,
-  prevSong: null,
+  prevSong: [],
   nextSong: null
 };
 
@@ -3506,7 +3519,7 @@ var PlaybarReducer = function PlaybarReducer() {
       return newState;
 
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PREVIOUS_SONG"]:
-      newState.prevSong = action.song;
+      newState.prevSong.push(action.song);
       return newState;
 
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_NEXT_SONG"]:
