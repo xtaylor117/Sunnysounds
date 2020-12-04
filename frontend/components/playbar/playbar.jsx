@@ -23,23 +23,36 @@ class Playbar extends React.Component {
     }
 
     prevSong() {
-        console.log(this.props.prevSong)
-        // debugger
+        if (this.props.prevSong) {
+            let song = document.getElementById(this.props.prevSong.id)
+            song.currentTime = 0;
+            song.play();
+
+            this.props.receivePrevSong(this.props.prevSong.id + 1);
+            this.props.receiveCurrentSong(this.props.prevSong.id);
+            this.props.receiveNextSong(this.props.currentSong.id);
+        }
     }
 
     playSong() {
-        console.log(this.props.currentSong)
-        // debugger
+        let song = document.getElementById(this.props.currentSong.id)
+        song.play();
     }
 
     pauseSong() {
-        console.log('pausing song')
-        // debugger
+        let song = document.getElementById(this.props.currentSong.id)
+        song.pause();
     }
 
     nextSong() {
-        console.log(this.props.nextSong)
-        // debugger
+        
+        let song = document.getElementById(this.props.nextSong.id)
+        song.currentTime = 0;
+        song.play();
+
+        this.props.receivePrevSong(this.props.currentSong.id);
+        this.props.receiveCurrentSong(this.props.nextSong.id);
+        this.props.receiveNextSong(this.props.nextSong.id - 1);
     }
 
     muteSong() {
@@ -53,10 +66,7 @@ class Playbar extends React.Component {
 
         return(
             <>
-                <audio controls className='audio-player' id={this.props.currentSong.id}>
-                    <source src={this.props.currentSong.audioUrl} type="audio/mpeg" />   
-                </audio>
-                <div className="playbar-controls play" id={this.props.currentSong.id + 2000} >
+                <div className="playbar-controls play">
                     <button onClick={() => this.prevSong()} className="playbar-prev-song-button"><i className="fas fa-backward"></i></button>
                     <button onClick={() => this.playSong()} className="playbar-play-button"><i className="fas fa-play"></i></button>
                     <button onClick={() => this.pauseSong()} className="playbar-pause-button"><i className="fas fa-pause"></i></button>

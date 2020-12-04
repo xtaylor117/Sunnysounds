@@ -36,7 +36,6 @@ class SongIndexItem extends React.Component {
         background = document.getElementById(this.props.song.id + 1000)
         
         if (song.paused) {
-            
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             song.play()
         } else {

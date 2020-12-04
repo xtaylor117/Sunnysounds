@@ -1518,22 +1518,36 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "prevSong",
     value: function prevSong() {
-      console.log(this.props.prevSong); // debugger
+      if (this.props.prevSong) {
+        var song = document.getElementById(this.props.prevSong.id);
+        song.currentTime = 0;
+        song.play();
+        this.props.receivePrevSong(this.props.prevSong.id + 1);
+        this.props.receiveCurrentSong(this.props.prevSong.id);
+        this.props.receiveNextSong(this.props.currentSong.id);
+      }
     }
   }, {
     key: "playSong",
     value: function playSong() {
-      console.log(this.props.currentSong); // debugger
+      var song = document.getElementById(this.props.currentSong.id);
+      song.play();
     }
   }, {
     key: "pauseSong",
     value: function pauseSong() {
-      console.log('pausing song'); // debugger
+      var song = document.getElementById(this.props.currentSong.id);
+      song.pause();
     }
   }, {
     key: "nextSong",
     value: function nextSong() {
-      console.log(this.props.nextSong); // debugger
+      var song = document.getElementById(this.props.nextSong.id);
+      song.currentTime = 0;
+      song.play();
+      this.props.receivePrevSong(this.props.currentSong.id);
+      this.props.receiveCurrentSong(this.props.nextSong.id);
+      this.props.receiveNextSong(this.props.nextSong.id - 1);
     }
   }, {
     key: "muteSong",
@@ -1546,16 +1560,8 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       if (!this.props.currentSong) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
-        controls: true,
-        className: "audio-player",
-        id: this.props.currentSong.id
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-        src: this.props.currentSong.audioUrl,
-        type: "audio/mpeg"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "playbar-controls play",
-        id: this.props.currentSong.id + 2000
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.prevSong();
