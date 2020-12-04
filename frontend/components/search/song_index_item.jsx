@@ -72,7 +72,6 @@ class SongIndexItem extends React.Component {
                         <div onClick={() => this.playSong()} className="custom-audio-player">
                         <img className='song-box-photo' src={this.props.photoUrl}/>
                             <button className="play-button" id={this.props.song.id + 1000} />
-                            {/* <PlaybarContainer song={this.props.song} /> */}
                             <audio controls className='audio-player' id={this.props.song.id}>
                                 <source src={this.props.audioUrl} type="audio/mpeg" />   
                             </audio>

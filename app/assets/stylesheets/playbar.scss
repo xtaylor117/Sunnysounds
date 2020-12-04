@@ -11,19 +11,6 @@
     z-index: 5;
 }
 
-// .playbar-controls.play {
-//     display: block;
-//     position: fixed;
-//     bottom: 0px;
-//     width: 100vw;
-//     height: 35px;
-//     background: whitesmoke;
-//     left: 0px;
-//     border-top: 1px solid lightgrey;
-//     display: flex;
-//     z-index: 5;
-// }
-
 .playbar-prev-song-button, .playbar-play-button, .playbar-pause-button, .playbar-next-song-button, .playbar-volume-button {
     outline: none;
     border: none;
@@ -34,4 +21,15 @@
 .playbar-prev-song-button:hover, .playbar-play-button:hover, .playbar-pause-button:hover, .playbar-next-song-button:hover, .playbar-volume-button:hover {
     cursor: pointer;
     color: gold;
+}
+
+.playbar-scrubber {
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.slider {
+    width: 80%;
 }
