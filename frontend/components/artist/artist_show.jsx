@@ -6,8 +6,6 @@ import SongIndexItem from '../search/song_index_item'
 class ArtistShow extends React.Component {
     constructor(props) {
         super(props);
-
-        this.currentSong = this.currentSong.bind(this)
     }
     
     componentDidMount() {
@@ -15,31 +13,6 @@ class ArtistShow extends React.Component {
         this.props.receiveAllArtists()
         this.props.receiveAllComments()
     }
-
-    currentSong() {
-        if (this.props.currentSong) {
-            return (
-                this.props.songs.filter(song => (
-                    song.id === this.props.currentSong.id
-                )).map(song => (
-                    <SongIndexItem
-                        song={song}
-                        key={song.id}
-                        audioUrl={song.audioUrl}
-                        photoUrl={song.photoUrl}
-                        currentUser={this.props.currentUser}
-                        openModal={this.props.openModal}
-                        deleteSong={this.props.deleteSong}
-                        artists={this.props.artists}
-                        receiveSong={this.props.receiveSong}
-                        receiveCurrentSong={this.props.receiveCurrentSong}
-                        createComment={this.props.createComment}
-                    />
-                ))
-            )
-        }
-    }
-
     
     render() {
         const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
@@ -82,6 +55,8 @@ class ArtistShow extends React.Component {
                             artists={this.props.artists}
                             receiveSong={this.props.receiveSong}
                             receiveCurrentSong={this.props.receiveCurrentSong}
+                            receivePrevSong={this.props.receivePrevSong}
+                            receiveNextSong={this.props.receiveNextSong}
                             createComment={this.props.createComment}
                         />
                     ))}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import CommentForm from '../comment_form/comment_form'
-import PlaybarContainer from '../playbar/playbar_container'
 
 class SongIndexItem extends React.Component {
     constructor(props) {
@@ -21,7 +20,6 @@ class SongIndexItem extends React.Component {
     playSong() {
         let song;
         let background;
-        let playbar;
 
         if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
             background = document.getElementById(this.props.currentSong.id + 1000)
@@ -36,16 +34,12 @@ class SongIndexItem extends React.Component {
 
         song = document.getElementById(this.props.song.id);
         background = document.getElementById(this.props.song.id + 1000)
-        playbar = document.getElementById(this.props.song.id + 2000)
-
-        debugger
         
         if (song.paused) {
-            playbar.classList.toggle("play")
+            
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             song.play()
         } else {
-            playbar.classList.toggle("play")
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             song.pause()
         }
@@ -79,7 +73,7 @@ class SongIndexItem extends React.Component {
                         <div onClick={() => this.playSong()} className="custom-audio-player">
                         <img className='song-box-photo' src={this.props.photoUrl}/>
                             <button className="play-button" id={this.props.song.id + 1000} />
-                            <PlaybarContainer song={this.props.song} />
+                            {/* <PlaybarContainer song={this.props.song} /> */}
                             <audio controls className='audio-player' id={this.props.song.id}>
                                 <source src={this.props.audioUrl} type="audio/mpeg" />   
                             </audio>

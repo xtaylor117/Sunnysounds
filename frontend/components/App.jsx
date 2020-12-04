@@ -8,6 +8,7 @@ import SignupFormContainer from './session_form/signup_form_container'
 import ArtistShowContainer from './artist/artist_show_container'
 import DiscoveryContainer from './discovery/discovery_container'
 import SongShowContainer from './song_show/song_show_container'
+import PlaybarContainer from './playbar/playbar_container'
 import { Switch, Redirect, Route } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from '../utils/route_utils'
 
@@ -30,7 +31,12 @@ const App = () => (
             <AuthRoute path='/' component={SplashContainer} />
             <Redirect to='/' />
         </Switch>
-
+        <footer>
+            <ProtectedRoute exact path='/artists/:artistId' component={PlaybarContainer} />
+            <ProtectedRoute exact path='/songs/:songId' component={PlaybarContainer} />
+            <ProtectedRoute exact path='/discovery' component={PlaybarContainer} />
+            <ProtectedRoute exact path='/stream' component={PlaybarContainer} />
+        </footer>
     </div>
 )
 
