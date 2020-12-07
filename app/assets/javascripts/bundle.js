@@ -1519,22 +1519,26 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   _createClass(Playbar, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      console.log("change pages?");
+      console.log('CHANGE PAGES');
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      debugger;
-
-      if (prevProps.currentSong !== this.props.currentSong) {
-        console.log('change');
-        clearInterval(this.currentTimeInterval);
-        this.setState({
-          currentTime: 0
-        });
-      } else {
-        console.log('same');
-      }
+      if (!this.props.currentSong) return null; // if (prevProps.currentSong.id !== this.props.currentSong.id) {
+      //     console.log(prevProps.currentSong, this.props.currentSong)
+      // }
+      // if (this.props.currentSong && localStorage.currentSongTime !== 0) {
+      //     let song = document.getElementById(this.props.currentSong.id)
+      //     song.currentTime = localStorage.currentSongTime
+      //     debugger
+      // }
+      // if (prevProps.currentSong !== this.props.currentSong) {
+      //     console.log('change')
+      //     clearInterval(this.currentTimeInterval)
+      //     this.setState({currentTime: 0})
+      // } else {
+      //     console.log('same')
+      // }
     }
   }, {
     key: "prevSong",
@@ -1542,6 +1546,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       if (this.props.prevSong.length != 0) {
         var latestSong = this.props.prevSong.pop().id;
         var song = document.getElementById(latestSong);
+        clearInterval(this.currentTimeInterval);
         song.currentTime = 0;
         song.play();
 
@@ -1589,6 +1594,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var newBackground = document.getElementById(this.props.nextSong.id + 1000);
       oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
       newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+      clearInterval(this.currentTimeInterval);
       song.currentTime = 0;
       song.play();
       this.props.receivePrevSong(this.props.currentSong.id);
@@ -1613,9 +1619,10 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       if (!this.props.currentSong) return null;
-      var song = document.getElementById(this.props.currentSong.id);
-      var scrubber = document.getElementById('scrubber');
       this.currentTimeInterval = setInterval(function () {
+        var song = document.getElementById(_this2.props.currentSong.id);
+        var scrubber = document.getElementById('scrubber');
+
         if (song.ended) {
           _this2.setState({
             currentTime: 0
@@ -1629,16 +1636,9 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
             currentTime: song.currentTime
           });
         }
-      }, 50);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
-        controls: true,
-        className: "audio-player",
-        onPlaying: this.handleSongPlay,
-        id: this.props.currentSong.id
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-        src: this.props.currentSong.audioUrl,
-        type: "audio/mpeg"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, 500);
+      var song = document.getElementById(this.props.currentSong.id);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
@@ -1681,7 +1681,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         type: "range",
         id: "scrubber",
         min: "0",
-        max: song.duration,
+        max: song.duratio,
         onInput: this.handleScrubbing,
         className: "slider"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_utils_playbar_util__WEBPACK_IMPORTED_MODULE_3__["formatSongTime"])(song.duration))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

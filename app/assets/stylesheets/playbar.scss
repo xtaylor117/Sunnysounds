@@ -34,8 +34,30 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    width: 35%;
 }
 
+.playbar-info a {
+    text-decoration: none;
+    color: salmon;
+    font-family: Overpass;
+    transition: 0.3s;
+}
+
+.playbar-info a:hover {
+    cursor: pointer;
+    color: gold;
+}
+
+.playbar-info a:first-child {
+    color: cadetblue;
+    transition: 0.3s;
+}
+
+.playbar-info a:first-child:hover {
+    color: gold;
+    cursor: pointer;
+}
 
 .slider {
   -webkit-appearance: none;

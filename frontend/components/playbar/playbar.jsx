@@ -23,27 +23,39 @@ class Playbar extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log("change pages?")
+        console.log('CHANGE PAGES')
     }
 
     componentDidUpdate(prevProps) {
-        debugger
-        if (prevProps.currentSong !== this.props.currentSong) {
-            console.log('change')
-            clearInterval(this.currentTimeInterval)
-            this.setState({currentTime: 0})
-        } else {
-            console.log('same')
-        }
+        if (!this.props.currentSong) return null
+        
+        // if (prevProps.currentSong.id !== this.props.currentSong.id) {
+        //     console.log(prevProps.currentSong, this.props.currentSong)
+        // }
+        
+        // if (this.props.currentSong && localStorage.currentSongTime !== 0) {
+        //     let song = document.getElementById(this.props.currentSong.id)
+        //     song.currentTime = localStorage.currentSongTime
+        //     debugger
+        // }
+        // if (prevProps.currentSong !== this.props.currentSong) {
+        //     console.log('change')
+        //     clearInterval(this.currentTimeInterval)
+        //     this.setState({currentTime: 0})
+        // } else {
+        //     console.log('same')
+        // }
     }
 
     prevSong() {
+        
         if (this.props.prevSong.length != 0) {
             let latestSong = this.props.prevSong.pop().id
             let song = document.getElementById(latestSong)
+            clearInterval(this.currentTimeInterval)
             song.currentTime = 0;
             song.play();
-
+            
             if (this.props.prevSong.length != 0) {
                 this.props.receivePrevSong(this.props.prevSong.pop().id);
             } else {
@@ -80,13 +92,15 @@ class Playbar extends React.Component {
     }
 
     nextSong() {
+        
         let song = document.getElementById(this.props.nextSong.id)
         let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
         let newBackground = document.getElementById(this.props.nextSong.id + 1000)
-
+        
         oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-
+        
+        clearInterval(this.currentTimeInterval)
         song.currentTime = 0;
         song.play();
 
@@ -106,12 +120,12 @@ class Playbar extends React.Component {
     }
 
     render() {
-        if (!this.props.currentSong) return null
 
-        let song = document.getElementById(this.props.currentSong.id)
-        let scrubber = document.getElementById('scrubber')
-            
+        if (!this.props.currentSong) return null
+        
         this.currentTimeInterval = setInterval(()=>{
+            let song = document.getElementById(this.props.currentSong.id)
+            let scrubber = document.getElementById('scrubber')
             if (song.ended) {
                 this.setState({currentTime: 0})
                 this.nextSong();
@@ -119,13 +133,12 @@ class Playbar extends React.Component {
                 scrubber.value = song.currentTime;
                 this.setState({ currentTime: song.currentTime})
             }
-        },50);
+        },500);
+
+        let song = document.getElementById(this.props.currentSong.id)
 
         return(
             <>
-                <audio controls className='audio-player' onPlaying={this.handleSongPlay} id={this.props.currentSong.id}>
-                    <source src={this.props.currentSong.audioUrl} type="audio/mpeg" />   
-                </audio>
                 <div className="playbar-controls play">
                     <button onClick={() => this.prevSong()} className="playbar-prev-song-button"><i className="fas fa-backward"></i></button>
                     <button onClick={() => this.playSong()} className="playbar-play-button"><i className="fas fa-play"></i></button>
@@ -134,7 +147,7 @@ class Playbar extends React.Component {
                     <button onClick={() => this.muteSong()} className="playbar-volume-button"><i className="fas fa-volume-up"></i></button>
                     <div className='playbar-scrubber'>
                         <p>{formatSongTime(this.state.currentTime)}</p>
-                        <input type="range" id="scrubber" min='0' max={song.duration}
+                        <input type="range" id="scrubber" min='0' max={song.duratio}
                         onInput={this.handleScrubbing} className="slider"/>
                         <p>{formatSongTime(song.duration)}</p>
                     </div>
