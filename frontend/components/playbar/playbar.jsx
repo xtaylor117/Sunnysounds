@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router-dom'
+import { receiveCurrentTime } from '../../actions/song_actions';
 import { formatSongTime } from '../../utils/playbar_util';
 
 class Playbar extends React.Component {
@@ -10,8 +11,7 @@ class Playbar extends React.Component {
         this.state = {
             prevSong: this.props.prevSong,
             currentSong: this.props.currentSong,
-            nextSong: this.props.nextSong,
-            currentTime: 0
+            nextSong: this.props.nextSong
         }
 
         this.playSong = this.playSong.bind(this)
@@ -24,27 +24,6 @@ class Playbar extends React.Component {
 
     componentWillUnmount() {
         console.log('CHANGE PAGES')
-    }
-
-    componentDidUpdate(prevProps) {
-        if (!this.props.currentSong) return null
-        
-        // if (prevProps.currentSong.id !== this.props.currentSong.id) {
-        //     console.log(prevProps.currentSong, this.props.currentSong)
-        // }
-        
-        // if (this.props.currentSong && localStorage.currentSongTime !== 0) {
-        //     let song = document.getElementById(this.props.currentSong.id)
-        //     song.currentTime = localStorage.currentSongTime
-        //     debugger
-        // }
-        // if (prevProps.currentSong !== this.props.currentSong) {
-        //     console.log('change')
-        //     clearInterval(this.currentTimeInterval)
-        //     this.setState({currentTime: 0})
-        // } else {
-        //     console.log('same')
-        // }
     }
 
     prevSong() {

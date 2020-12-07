@@ -1462,7 +1462,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _utils_playbar_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/playbar_util */ "./frontend/utils/playbar_util.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _utils_playbar_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/playbar_util */ "./frontend/utils/playbar_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1490,6 +1491,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Playbar = /*#__PURE__*/function (_React$Component) {
   _inherits(Playbar, _React$Component);
 
@@ -1504,8 +1506,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       prevSong: _this.props.prevSong,
       currentSong: _this.props.currentSong,
-      nextSong: _this.props.nextSong,
-      currentTime: 0
+      nextSong: _this.props.nextSong
     };
     _this.playSong = _this.playSong.bind(_assertThisInitialized(_this));
     _this.prevSong = _this.prevSong.bind(_assertThisInitialized(_this));
@@ -1520,25 +1521,6 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       console.log('CHANGE PAGES');
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (!this.props.currentSong) return null; // if (prevProps.currentSong.id !== this.props.currentSong.id) {
-      //     console.log(prevProps.currentSong, this.props.currentSong)
-      // }
-      // if (this.props.currentSong && localStorage.currentSongTime !== 0) {
-      //     let song = document.getElementById(this.props.currentSong.id)
-      //     song.currentTime = localStorage.currentSongTime
-      //     debugger
-      // }
-      // if (prevProps.currentSong !== this.props.currentSong) {
-      //     console.log('change')
-      //     clearInterval(this.currentTimeInterval)
-      //     this.setState({currentTime: 0})
-      // } else {
-      //     console.log('same')
-      // }
     }
   }, {
     key: "prevSong",
@@ -1677,14 +1659,14 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "fas fa-volume-up"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbar-scrubber"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_utils_playbar_util__WEBPACK_IMPORTED_MODULE_3__["formatSongTime"])(this.state.currentTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_utils_playbar_util__WEBPACK_IMPORTED_MODULE_4__["formatSongTime"])(this.state.currentTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "range",
         id: "scrubber",
         min: "0",
         max: song.duratio,
         onInput: this.handleScrubbing,
         className: "slider"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_utils_playbar_util__WEBPACK_IMPORTED_MODULE_3__["formatSongTime"])(song.duration))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_utils_playbar_util__WEBPACK_IMPORTED_MODULE_4__["formatSongTime"])(song.duration))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbar-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/songs/".concat(this.props.currentSong.id)
