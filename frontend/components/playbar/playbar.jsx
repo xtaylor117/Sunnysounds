@@ -30,6 +30,9 @@ class Playbar extends React.Component {
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
             song.currentTime = parseInt(window.localStorage.currentTime)
             song.play()
+        } else {
+            let song = document.getElementById(parseInt(window.localStorage.currentSong))
+            song.currentTime = parseInt(window.localStorage.currentTime)
         }
     }
 

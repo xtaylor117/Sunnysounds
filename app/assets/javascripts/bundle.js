@@ -1527,6 +1527,10 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         var song = document.getElementById(parseInt(window.localStorage.currentSong));
         song.currentTime = parseInt(window.localStorage.currentTime);
         song.play();
+      } else {
+        var _song = document.getElementById(parseInt(window.localStorage.currentSong));
+
+        _song.currentTime = parseInt(window.localStorage.currentTime);
       }
     }
   }, {
@@ -1569,11 +1573,11 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         this.props.receiveCurrentSong(latestSong);
         this.props.receiveNextSong(this.props.currentSong.id);
       } else {
-        var _song = document.getElementById(this.props.currentSong.id);
+        var _song2 = document.getElementById(this.props.currentSong.id);
 
-        _song.currentTime = 0;
+        _song2.currentTime = 0;
 
-        _song.play();
+        _song2.play();
       }
     }
   }, {
