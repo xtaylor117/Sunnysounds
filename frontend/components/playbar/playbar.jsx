@@ -126,7 +126,7 @@ class Playbar extends React.Component {
                     <button onClick={() => this.muteSong()} className="playbar-volume-button"><i className="fas fa-volume-up"></i></button>
                     <div className='playbar-scrubber'>
                         <p>{formatSongTime(this.state.currentTime)}</p>
-                        <input type="range" id="scrubber" min='0' max={song.duratio}
+                        <input type="range" id="scrubber" min='0' max={song.duration}
                         onInput={this.handleScrubbing} className="slider"/>
                         <p>{formatSongTime(song.duration)}</p>
                     </div>

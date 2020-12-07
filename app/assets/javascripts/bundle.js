@@ -1663,7 +1663,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         type: "range",
         id: "scrubber",
         min: "0",
-        max: song.duratio,
+        max: song.duration,
         onInput: this.handleScrubbing,
         className: "slider"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_utils_playbar_util__WEBPACK_IMPORTED_MODULE_4__["formatSongTime"])(song.duration))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
