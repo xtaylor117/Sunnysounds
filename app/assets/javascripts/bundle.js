@@ -1522,6 +1522,21 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       console.log("change pages?");
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      debugger;
+
+      if (prevProps.currentSong !== this.props.currentSong) {
+        console.log('change');
+        clearInterval(this.currentTimeInterval);
+        this.setState({
+          currentTime: 0
+        });
+      } else {
+        console.log('same');
+      }
+    }
+  }, {
     key: "prevSong",
     value: function prevSong() {
       if (this.props.prevSong.length != 0) {
@@ -1600,7 +1615,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
       var scrubber = document.getElementById('scrubber');
-      var currentTimeInterval = setInterval(function () {
+      this.currentTimeInterval = setInterval(function () {
         if (song.ended) {
           _this2.setState({
             currentTime: 0
@@ -1613,8 +1628,6 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
           _this2.setState({
             currentTime: song.currentTime
           });
-
-          console.log(_this2.state);
         }
       }, 50);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
@@ -2143,7 +2156,11 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
         background = document.getElementById(this.props.currentSong.id + 1000);
-        background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+
+        if (background) {
+          background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+        }
+
         this.props.receivePrevSong(this.props.currentSong.id);
         this.props.receiveCurrentSong(this.props.song.id);
         this.props.receiveNextSong(this.props.song.id - 1);

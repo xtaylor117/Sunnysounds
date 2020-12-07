@@ -23,7 +23,10 @@ class SongIndexItem extends React.Component {
 
         if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
             background = document.getElementById(this.props.currentSong.id + 1000)
-            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+
+            if (background) {
+                background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            }
             this.props.receivePrevSong(this.props.currentSong.id)
             this.props.receiveCurrentSong(this.props.song.id)
             this.props.receiveNextSong(this.props.song.id - 1)

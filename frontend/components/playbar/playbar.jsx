@@ -26,6 +26,17 @@ class Playbar extends React.Component {
         console.log("change pages?")
     }
 
+    componentDidUpdate(prevProps) {
+        debugger
+        if (prevProps.currentSong !== this.props.currentSong) {
+            console.log('change')
+            clearInterval(this.currentTimeInterval)
+            this.setState({currentTime: 0})
+        } else {
+            console.log('same')
+        }
+    }
+
     prevSong() {
         if (this.props.prevSong.length != 0) {
             let latestSong = this.props.prevSong.pop().id
@@ -100,14 +111,13 @@ class Playbar extends React.Component {
         let song = document.getElementById(this.props.currentSong.id)
         let scrubber = document.getElementById('scrubber')
             
-        let currentTimeInterval = setInterval(()=>{
+        this.currentTimeInterval = setInterval(()=>{
             if (song.ended) {
                 this.setState({currentTime: 0})
                 this.nextSong();
             } else {
                 scrubber.value = song.currentTime;
                 this.setState({ currentTime: song.currentTime})
-                console.log(this.state)
             }
         },50);
 

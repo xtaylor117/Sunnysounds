@@ -2,6 +2,16 @@
 <html>
   <head>
     <title>Sunnysounds</title>
+    <meta property="og:title" content="Sunnysounds" />
+     <meta property='og:image' content="<%= image_url('sunny_logo.png') %>"/>
+     <meta property="og:description"
+       content="A SoundCloud inspired open audio platform to create a community among creators, listeners, and curators."
+     />
+     <meta property="og:url"
+       content="https://sunnysounds.herokuapp.com/"
+    />
+    <link rel="icon" href="<%= image_url('sunny_logo.png') %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
