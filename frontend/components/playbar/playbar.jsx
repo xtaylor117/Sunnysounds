@@ -11,7 +11,8 @@ class Playbar extends React.Component {
         this.state = {
             prevSong: this.props.prevSong,
             currentSong: this.props.currentSong,
-            nextSong: this.props.nextSong
+            nextSong: this.props.nextSong,
+            currentTime: 0
         }
 
         this.playSong = this.playSong.bind(this)
@@ -22,15 +23,41 @@ class Playbar extends React.Component {
         this.handleScrubbing = this.handleScrubbing.bind(this)
     }
 
-    componentWillUnmount() {
-        console.log('CHANGE PAGES')
+    componentDidMount() {
+        if (!this.props.currentSong) return null
+
+        if (window.localStorage.isPlaying === 'true') {
+            let song = document.getElementById(parseInt(window.localStorage.currentSong))
+            song.currentTime = parseInt(window.localStorage.currentTime)
+            song.play()
+        }
     }
 
+    componentWillUnmount() {
+        if (!this.props.currentSong) return null
+
+        let song = document.getElementById(this.props.currentSong.id)
+        localStorage.setItem('currentSong', song.id)
+        localStorage.setItem('currentTime', this.state.currentTime)
+    }
+
+    // componentDidUpdate(prevProps) {
+    //     if (window.localStorage.isPlaying === 'true') {
+    //         let song = document.getElementById(parseInt(window.localStorage.currentSong))          
+
+    //         if (song && song.paused) {
+    //             song.currentTime = window.localStorage.currentTime
+    //             this.playSong()
+    //         }
+
+    //     }
+    // }
+
     prevSong() {
-        
         if (this.props.prevSong.length != 0) {
             let latestSong = this.props.prevSong.pop().id
             let song = document.getElementById(latestSong)
+
             clearInterval(this.currentTimeInterval)
             song.currentTime = 0;
             song.play();
@@ -60,6 +87,7 @@ class Playbar extends React.Component {
         let song = document.getElementById(this.props.currentSong.id)
         let background = document.getElementById(this.props.currentSong.id + 1000)
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+        localStorage.setItem('isPlaying', true)
         song.play();
     }
 
@@ -67,6 +95,7 @@ class Playbar extends React.Component {
         let song = document.getElementById(this.props.currentSong.id)
         let background = document.getElementById(this.props.currentSong.id + 1000)
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+        localStorage.setItem('isPlaying', false)
         song.pause();
     }
 

@@ -40,9 +40,11 @@ class SongIndexItem extends React.Component {
         
         if (song.paused) {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+            localStorage.setItem('isPlaying', true)
             song.play()
         } else {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            localStorage.setItem('isPlaying', false)
             song.pause()
         }
     }

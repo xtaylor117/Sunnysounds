@@ -1506,7 +1506,8 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       prevSong: _this.props.prevSong,
       currentSong: _this.props.currentSong,
-      nextSong: _this.props.nextSong
+      nextSong: _this.props.nextSong,
+      currentTime: 0
     };
     _this.playSong = _this.playSong.bind(_assertThisInitialized(_this));
     _this.prevSong = _this.prevSong.bind(_assertThisInitialized(_this));
@@ -1518,10 +1519,33 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Playbar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (!this.props.currentSong) return null;
+
+      if (window.localStorage.isPlaying === 'true') {
+        var song = document.getElementById(parseInt(window.localStorage.currentSong));
+        song.currentTime = parseInt(window.localStorage.currentTime);
+        song.play();
+      }
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      console.log('CHANGE PAGES');
-    }
+      if (!this.props.currentSong) return null;
+      var song = document.getElementById(this.props.currentSong.id);
+      localStorage.setItem('currentSong', song.id);
+      localStorage.setItem('currentTime', this.state.currentTime);
+    } // componentDidUpdate(prevProps) {
+    //     if (window.localStorage.isPlaying === 'true') {
+    //         let song = document.getElementById(parseInt(window.localStorage.currentSong))          
+    //         if (song && song.paused) {
+    //             song.currentTime = window.localStorage.currentTime
+    //             this.playSong()
+    //         }
+    //     }
+    // }
+
   }, {
     key: "prevSong",
     value: function prevSong() {
@@ -1558,6 +1582,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var song = document.getElementById(this.props.currentSong.id);
       var background = document.getElementById(this.props.currentSong.id + 1000);
       background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+      localStorage.setItem('isPlaying', true);
       song.play();
     }
   }, {
@@ -1566,6 +1591,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var song = document.getElementById(this.props.currentSong.id);
       var background = document.getElementById(this.props.currentSong.id + 1000);
       background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+      localStorage.setItem('isPlaying', false);
       song.pause();
     }
   }, {
@@ -2156,9 +2182,11 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
 
       if (song.paused) {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+        localStorage.setItem('isPlaying', true);
         song.play();
       } else {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+        localStorage.setItem('isPlaying', false);
         song.pause();
       }
     }
