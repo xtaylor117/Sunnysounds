@@ -29,56 +29,41 @@ class Playbar extends React.Component {
         if (window.localStorage.isPlaying === 'true') {
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
             song.currentTime = parseFloat(window.localStorage.currentTime)
-            song.play()
+            this.playSong()
         } else {
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
             song.currentTime = parseFloat(window.localStorage.currentTime)
         }
     }
 
-    componentDidUpdate(prevProps) {
-        if (!this.props.currentSong) return null
-
-
-        this.currentTimeInterval = setInterval(()=> {
-            let song = document.getElementById(this.props.currentSong.id)
-            let scrubber = document.getElementById('scrubber')
-            if (song.ended) {
-                this.setState({currentTime: 0})
-                this.nextSong();
-            } else {
-                scrubber.value = song.currentTime;
-                this.setState({ currentTime: song.currentTime})
-            }
-        },50);
-    }
 
     componentWillUnmount() {
+        clearInterval(this.currentTimeInterval)
         if (!this.props.currentSong) return null
 
         let song = document.getElementById(this.props.currentSong.id)
+
         localStorage.setItem('currentSong', song.id)
         localStorage.setItem('currentTime', this.state.currentTime)
     }
-
-    // componentDidUpdate(prevProps) {
-    //     if (window.localStorage.isPlaying === 'true') {
-    //         let song = document.getElementById(parseInt(window.localStorage.currentSong))          
-
-    //         if (song && song.paused) {
-    //             song.currentTime = window.localStorage.currentTime
-    //             this.playSong()
-    //         }
-
-    //     }
-    // }
 
     prevSong() {
         if (this.props.prevSong.length != 0) {
             let latestSong = this.props.prevSong.pop().id
             let song = document.getElementById(latestSong)
 
-            clearInterval(this.currentTimeInterval)
+            this.currentTimeInterval = setInterval(()=> {
+                let song = document.getElementById(this.props.currentSong.id)
+                let scrubber = document.getElementById('scrubber')
+                if (song.ended) {
+                    this.setState({currentTime: 0})
+                    this.nextSong();
+                } else {
+                    scrubber.value = song.currentTime;
+                    this.setState({ currentTime: song.currentTime})
+                }
+            },50);
+
             song.currentTime = 0;
             song.play();
             
@@ -106,8 +91,27 @@ class Playbar extends React.Component {
     playSong() {
         let song = document.getElementById(this.props.currentSong.id)
         let background = document.getElementById(this.props.currentSong.id + 1000)
-        background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-        localStorage.setItem('isPlaying', true)
+
+
+        if (!song) return null
+        if (background) {
+            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+            localStorage.setItem('isPlaying', true)
+        }
+
+
+        this.currentTimeInterval = setInterval(()=> {
+            let song = document.getElementById(this.props.currentSong.id)
+            let scrubber = document.getElementById('scrubber')
+            if (song.ended) {
+                this.setState({currentTime: 0})
+                this.nextSong();
+            } else {
+                scrubber.value = song.currentTime;
+                this.setState({ currentTime: song.currentTime})
+            }
+        },50);
+
         song.play();
     }
 
@@ -116,7 +120,6 @@ class Playbar extends React.Component {
         let background = document.getElementById(this.props.currentSong.id + 1000)
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         localStorage.setItem('isPlaying', false)
-        clearInterval(this.currentTimeInterval)
         song.pause();
     }
 
@@ -129,7 +132,18 @@ class Playbar extends React.Component {
         oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
         
-        clearInterval(this.currentTimeInterval)
+        this.currentTimeInterval = setInterval(()=> {
+            let song = document.getElementById(this.props.currentSong.id)
+            let scrubber = document.getElementById('scrubber')
+            if (song.ended) {
+                this.setState({currentTime: 0})
+                this.nextSong();
+            } else {
+                scrubber.value = song.currentTime;
+                this.setState({ currentTime: song.currentTime})
+            }
+        },50);
+
         song.currentTime = 0;
         song.play();
 
@@ -148,29 +162,18 @@ class Playbar extends React.Component {
         song.currentTime = e.target.value;
     }
 
-    insertSong() {
-        let song = document.getElementById(this.props.currentSong.id)
-
-        if (!song) {
-            return(
-                <audio controls className='audio-player' id={this.props.currentSong.id}>
-                    <source src={this.props.currentSong.audioUrl} type="audio/mpeg" />   
-                </audio>
-            )
-        } else {
-            return null
-        }
-    }
-
     render() {
 
         if (!this.props.currentSong) return null
-
         let song = document.getElementById(this.props.currentSong.id)
+        
+        if (!song) return null
         
         return(
             <>
-                {this.insertSong()}
+                <audio controls className='audio-player' id={this.props.currentSong.id}>
+                    <source src={this.props.currentSong.audioUrl} type="audio/mpeg" />   
+                </audio>
                 <div className="playbar-controls play">
                     <button onClick={() => this.prevSong()} className="playbar-prev-song-button"><i className="fas fa-backward"></i></button>
                     <button onClick={() => this.playSong()} className="playbar-play-button"><i className="fas fa-play"></i></button>

@@ -111,7 +111,6 @@ body {
 }
 
 .splash-title-1 {
-    background: whitesmoke;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -122,13 +121,15 @@ body {
 
 .splash-call {
     display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background: whitesmoke;
 }
 
 .splash-call-img {
-    background: url(/assets/crowd.jpg);
+    background: url(/assets/girl.jpg);
     background-position: center;
-    object-fit: fill;
+    object-fit: cover;
     background-repeat: no-repeat;
     height: 400px;
     width: 60%;

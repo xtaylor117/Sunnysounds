@@ -1580,7 +1580,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       if (window.localStorage.isPlaying === 'true') {
         var song = document.getElementById(parseInt(window.localStorage.currentSong));
         song.currentTime = parseFloat(window.localStorage.currentTime);
-        song.play();
+        this.playSong();
       } else {
         var _song = document.getElementById(parseInt(window.localStorage.currentSong));
 
@@ -1588,54 +1588,40 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this2 = this;
-
-      if (!this.props.currentSong) return null;
-      this.currentTimeInterval = setInterval(function () {
-        var song = document.getElementById(_this2.props.currentSong.id);
-        var scrubber = document.getElementById('scrubber');
-
-        if (song.ended) {
-          _this2.setState({
-            currentTime: 0
-          });
-
-          _this2.nextSong();
-        } else {
-          scrubber.value = song.currentTime;
-
-          _this2.setState({
-            currentTime: song.currentTime
-          });
-        }
-      }, 50);
-    }
-  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
+      clearInterval(this.currentTimeInterval);
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
       localStorage.setItem('currentSong', song.id);
       localStorage.setItem('currentTime', this.state.currentTime);
-    } // componentDidUpdate(prevProps) {
-    //     if (window.localStorage.isPlaying === 'true') {
-    //         let song = document.getElementById(parseInt(window.localStorage.currentSong))          
-    //         if (song && song.paused) {
-    //             song.currentTime = window.localStorage.currentTime
-    //             this.playSong()
-    //         }
-    //     }
-    // }
-
+    }
   }, {
     key: "prevSong",
     value: function prevSong() {
+      var _this2 = this;
+
       if (this.props.prevSong.length != 0) {
         var latestSong = this.props.prevSong.pop().id;
         var song = document.getElementById(latestSong);
-        clearInterval(this.currentTimeInterval);
+        this.currentTimeInterval = setInterval(function () {
+          var song = document.getElementById(_this2.props.currentSong.id);
+          var scrubber = document.getElementById('scrubber');
+
+          if (song.ended) {
+            _this2.setState({
+              currentTime: 0
+            });
+
+            _this2.nextSong();
+          } else {
+            scrubber.value = song.currentTime;
+
+            _this2.setState({
+              currentTime: song.currentTime
+            });
+          }
+        }, 50);
         song.currentTime = 0;
         song.play();
 
@@ -1662,10 +1648,35 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "playSong",
     value: function playSong() {
+      var _this3 = this;
+
       var song = document.getElementById(this.props.currentSong.id);
       var background = document.getElementById(this.props.currentSong.id + 1000);
-      background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
-      localStorage.setItem('isPlaying', true);
+      if (!song) return null;
+
+      if (background) {
+        background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+        localStorage.setItem('isPlaying', true);
+      }
+
+      this.currentTimeInterval = setInterval(function () {
+        var song = document.getElementById(_this3.props.currentSong.id);
+        var scrubber = document.getElementById('scrubber');
+
+        if (song.ended) {
+          _this3.setState({
+            currentTime: 0
+          });
+
+          _this3.nextSong();
+        } else {
+          scrubber.value = song.currentTime;
+
+          _this3.setState({
+            currentTime: song.currentTime
+          });
+        }
+      }, 50);
       song.play();
     }
   }, {
@@ -1675,18 +1686,36 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var background = document.getElementById(this.props.currentSong.id + 1000);
       background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
       localStorage.setItem('isPlaying', false);
-      clearInterval(this.currentTimeInterval);
       song.pause();
     }
   }, {
     key: "nextSong",
     value: function nextSong() {
+      var _this4 = this;
+
       var song = document.getElementById(this.props.nextSong.id);
       var oldBackground = document.getElementById(this.props.currentSong.id + 1000);
       var newBackground = document.getElementById(this.props.nextSong.id + 1000);
       oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
       newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
-      clearInterval(this.currentTimeInterval);
+      this.currentTimeInterval = setInterval(function () {
+        var song = document.getElementById(_this4.props.currentSong.id);
+        var scrubber = document.getElementById('scrubber');
+
+        if (song.ended) {
+          _this4.setState({
+            currentTime: 0
+          });
+
+          _this4.nextSong();
+        } else {
+          scrubber.value = song.currentTime;
+
+          _this4.setState({
+            currentTime: song.currentTime
+          });
+        }
+      }, 50);
       song.currentTime = 0;
       song.play();
       this.props.receivePrevSong(this.props.currentSong.id);
@@ -1706,63 +1735,53 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       song.currentTime = e.target.value;
     }
   }, {
-    key: "insertSong",
-    value: function insertSong() {
-      var song = document.getElementById(this.props.currentSong.id);
-
-      if (!song) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
-          controls: true,
-          className: "audio-player",
-          id: this.props.currentSong.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-          src: this.props.currentSong.audioUrl,
-          type: "audio/mpeg"
-        }));
-      } else {
-        return null;
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.insertSong(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      if (!song) return null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+        controls: true,
+        className: "audio-player",
+        id: this.props.currentSong.id
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+        src: this.props.currentSong.audioUrl,
+        type: "audio/mpeg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this3.prevSong();
+          return _this5.prevSong();
         },
         className: "playbar-prev-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-backward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this3.playSong();
+          return _this5.playSong();
         },
         className: "playbar-play-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-play"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this3.pauseSong();
+          return _this5.pauseSong();
         },
         className: "playbar-pause-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pause"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this3.nextSong();
+          return _this5.nextSong();
         },
         className: "playbar-next-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-forward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this3.muteSong();
+          return _this5.muteSong();
         },
         className: "playbar-volume-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1783,7 +1802,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }, this.props.currentSong.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/artists/".concat(this.props.currentSong.artist_id)
       }, this.props.artists.filter(function (artist) {
-        return artist.id === _this3.props.currentSong.artist_id;
+        return artist.id === _this5.props.currentSong.artist_id;
       }).map(function (artist) {
         return artist.username;
       })))));
