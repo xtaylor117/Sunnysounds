@@ -104,3 +104,72 @@ body {
 .splash-container {
     text-align: center;
 }
+
+.splash-title-1, .splash-title-2 {
+    font-family: Overpass;
+    font-size: 35px;
+}
+
+.splash-title-1 {
+    background: whitesmoke;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.splash-title-2 {
+    margin-top: 20px;
+}
+
+.splash-call {
+    display: flex;
+    background: whitesmoke;
+}
+
+.splash-call-img {
+    background: url(/assets/crowd.jpg);
+    background-position: center;
+    object-fit: fill;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 60%;
+}
+
+.splash-call-right {
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    position: relative;
+    right: -20px;
+    top: 125px;
+    width: 30%;
+}
+
+.footer-session h2 {
+    font-family: Overpass;
+    font-size: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.footer-stuff {
+    height: fit-content;
+    background: gray;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-stuff * {
+    font-family: Overpass;
+}
+
+.footer-img {
+    background: url(/assets/mixer.jpg);
+    background-position: center;
+    object-fit: contain;
+    background-repeat: no-repeat;
+}
+
+.creator-call {
+    font-family: Overpass;
+}

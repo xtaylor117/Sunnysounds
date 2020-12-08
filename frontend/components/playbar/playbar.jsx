@@ -36,8 +36,10 @@ class Playbar extends React.Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         if (!this.props.currentSong) return null
+
+
         this.currentTimeInterval = setInterval(()=> {
             let song = document.getElementById(this.props.currentSong.id)
             let scrubber = document.getElementById('scrubber')
@@ -150,7 +152,6 @@ class Playbar extends React.Component {
         let song = document.getElementById(this.props.currentSong.id)
 
         if (!song) {
-            debugger
             return(
                 <audio controls className='audio-player' id={this.props.currentSong.id}>
                     <source src={this.props.currentSong.audioUrl} type="audio/mpeg" />   

@@ -1589,7 +1589,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    value: function componentDidUpdate(prevProps) {
       var _this2 = this;
 
       if (!this.props.currentSong) return null;
@@ -1711,7 +1711,6 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var song = document.getElementById(this.props.currentSong.id);
 
       if (!song) {
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
           controls: true,
           className: "audio-player",
@@ -1949,7 +1948,6 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         inputValue: event.target.value
       });
       var filteredSongs = this.props.songs.filter(function (song) {
-        debugger;
         return song.title.toLowerCase().includes(_this2.state.inputValue.toLowerCase()) || song.genre.toLowerCase().includes(_this2.state.inputValue.toLowerCase());
       }).sort();
       this.setState({
@@ -2264,16 +2262,12 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         $("audio").not(this).each(function (index, audio) {
           audio.pause();
         });
-      });
-
-      if (this.props.song.id === parseInt(window.localStorage.currentSong)) {
-        debugger;
-        var background = document.getElementById(this.props.song.id + 1000);
-
-        if (window.localStorage.isPlaying === "true") {
-          background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
-        }
-      }
+      }); // if (this.props.song.id === parseInt(window.localStorage.currentSong)) {
+      //     let background = document.getElementById(this.props.song.id + 1000)
+      //     if (window.localStorage.isPlaying === "true") {
+      //         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+      //     }
+      // }
     }
   }, {
     key: "playSong",
@@ -3371,6 +3365,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _search_song_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search/song_index_item */ "./frontend/components/search/song_index_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3396,21 +3391,53 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Splash = /*#__PURE__*/function (_React$Component) {
   _inherits(Splash, _React$Component);
 
   var _super = _createSuper(Splash);
 
   function Splash(props) {
+    var _this;
+
     _classCallCheck(this, Splash);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.songList = _this.songList.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Splash, [{
+    key: "songList",
+    value: function songList() {
+      var _this2 = this;
+
+      return this.props.songs.map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          songs: _this2.props.songs,
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
+          currentUser: currentUser,
+          openModal: _this2.props.openModal,
+          deleteSong: _this2.props.deleteSong,
+          artists: _this2.props.artists,
+          receiveSong: _this2.props.receiveSong,
+          receiveCurrentSong: _this2.props.receiveCurrentSong,
+          receivePrevSong: _this2.props.receivePrevSong,
+          receiveNextSong: _this2.props.receiveNextSong,
+          createComment: _this2.props.createComment,
+          currentSong: _this2.props.currentSong,
+          prevSong: _this2.props.prevSong,
+          nextSong: _this2.props.nextSong
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       return this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
         to: "/discovery"
@@ -3426,19 +3453,53 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         className: "login-signup"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal({
+          return _this3.props.openModal({
             formType: 'login'
           });
         }
       }, "Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal({
+          return _this3.props.openModal({
             formType: 'signup'
           });
         }
       }, "Signup"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-container"
-      }, "SPLASH!"));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "splash-title-1"
+      }, "These are some popular tracks these days..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-songs"
+      }, this.songList()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-call"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-call-img"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-call-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "splash-title-2"
+      }, " Calling all creators"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "creator-call"
+      }, "Get on Sunnysounds to connect with fans, share your sounds, and bask in the light. What are you waiting for?"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-session"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Thanks for listening. Now join with your own sounds!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-stuff"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-img"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Save tracks, follow artists and build playlists. All for free."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.props.openModal({
+            formType: 'signup'
+          });
+        },
+        className: "signup"
+      }, "Create account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Already have an account?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.props.openModal({
+            formType: 'login'
+          });
+        },
+        className: "signin"
+      }, "Sign in")))));
     }
   }]);
 
@@ -3470,7 +3531,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    songs: Object.values(state.entities.songs)
   };
 };
 

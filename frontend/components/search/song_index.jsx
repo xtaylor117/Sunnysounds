@@ -27,7 +27,6 @@ class SongIndex extends React.Component {
         })
 
         let filteredSongs = this.props.songs.filter(song => {
-            debugger
             return (song.title.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
             song.genre.toLowerCase().includes(this.state.inputValue.toLowerCase()))
         }).sort()
