@@ -13,6 +13,30 @@ class ArtistShow extends React.Component {
         this.props.receiveAllArtists()
         this.props.receiveAllComments()
     }
+
+    prevSongList() {
+        return(
+            this.props.prevSong.map(song => (
+                        <SongIndexItem
+                            songs={this.props.songs}
+                            song={song}
+                            key={song.id}
+                            audioUrl={song.audioUrl}
+                            photoUrl={song.photoUrl}
+                            currentUser={currentUser}
+                            openModal={this.props.openModal}
+                            deleteSong={this.props.deleteSong}
+                            artists={this.props.artists}
+                            receiveSong={this.props.receiveSong}
+                            receiveCurrentSong={this.props.receiveCurrentSong}
+                            receivePrevSong={this.props.receivePrevSong}
+                            createComment={this.props.createComment}
+                            currentSong={this.props.currentSong}
+                            prevSong={this.props.prevSong}
+                        />
+                    )).reverse()
+        )
+    }
     
     render() {
         const currentUserComments = Object.values(this.props.comments).filter(comment => comment.author_id === this.props.currentUser.id).reverse().slice(0, 5).map(comment => {
@@ -72,6 +96,7 @@ class ArtistShow extends React.Component {
                     </div>
                     <div className="latest-upload">
                         <h3>Listening History...</h3>
+                        {this.prevSongList()}
                     </div>
                     <div className='comments-container'>
                         <h3>Your Recent Comments</h3>

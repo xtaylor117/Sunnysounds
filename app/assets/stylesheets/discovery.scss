@@ -112,25 +112,33 @@
 
 .latest-upload .index-item-info {
     width: auto;
-    margin-top: 15px;
-    border-bottom: none;
     border-right: none;
     text-align: center;
-    padding-top: 250px;
-    padding-left: 0;
 }
 
+.latest-upload .item-info-right {
+    display: none;
+}
 
 .latest-upload {
     height: 400px;
     margin-top: 85px;
+    overflow: scroll;
+    margin-bottom: 15px;
+}
+
+.latest-upload .song-info {
+    background: none;
+    width: 100%;
+}
+
+.latest-upload::-webkit-scrollbar {
+    display: none;
 }
 
 .latest-upload img {
-    position: absolute;
-    top: 0;
-    height: 225px;
-    width: 100%;
+    height: 75px;
+    width: 75px;
     object-fit: cover;
     border: 1px cadetblue;
     border-style: double;

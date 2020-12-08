@@ -559,6 +559,9 @@ var App = function App() {
     exact: true,
     path: "/stream",
     component: _playbar_playbar_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_12__["AuthRoute"], {
+    path: "/",
+    component: _playbar_playbar_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   })));
 };
 
@@ -624,48 +627,11 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       this.props.receiveAllComments();
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "prevSongList",
+    value: function prevSongList() {
       var _this = this;
 
-      var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
-        return comment.author_id === _this.props.currentUser.id;
-      }).reverse().slice(0, 5).map(function (comment) {
-        if (comment.id % 2 == 0) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "single-comment",
-            style: {
-              background: 'lightgray'
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this.props.songs).filter(function (song) {
-            return song.id === comment.song_id;
-          }).map(function (song) {
-            return song.title;
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
-        } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "single-comment",
-            style: {
-              background: 'whitesmoke'
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this.props.songs).filter(function (song) {
-            return song.id === comment.song_id;
-          }).map(function (song) {
-            return song.title;
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
-        }
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-left"
-      }, this.props.songs.filter(function (song) {
-        return song.artist_id === _this.props.artistId;
-      }).map(function (song) {
+      return this.props.prevSong.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           songs: _this.props.songs,
           song: song,
@@ -679,8 +645,70 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           receiveSong: _this.props.receiveSong,
           receiveCurrentSong: _this.props.receiveCurrentSong,
           receivePrevSong: _this.props.receivePrevSong,
-          receiveNextSong: _this.props.receiveNextSong,
-          createComment: _this.props.createComment
+          createComment: _this.props.createComment,
+          currentSong: _this.props.currentSong,
+          prevSong: _this.props.prevSong
+        });
+      }).reverse();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
+        return comment.author_id === _this2.props.currentUser.id;
+      }).reverse().slice(0, 5).map(function (comment) {
+        if (comment.id % 2 == 0) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "single-comment",
+            style: {
+              background: 'lightgray'
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: "/songs/".concat(comment.song_id)
+          }, Object.values(_this2.props.songs).filter(function (song) {
+            return song.id === comment.song_id;
+          }).map(function (song) {
+            return song.title;
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "single-comment",
+            style: {
+              background: 'whitesmoke'
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: "/songs/".concat(comment.song_id)
+          }, Object.values(_this2.props.songs).filter(function (song) {
+            return song.id === comment.song_id;
+          }).map(function (song) {
+            return song.title;
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\" ", comment.body, " \""));
+        }
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-left"
+      }, this.props.songs.filter(function (song) {
+        return song.artist_id === _this2.props.artistId;
+      }).map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          songs: _this2.props.songs,
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
+          currentUser: currentUser,
+          openModal: _this2.props.openModal,
+          deleteSong: _this2.props.deleteSong,
+          artists: _this2.props.artists,
+          receiveSong: _this2.props.receiveSong,
+          receiveCurrentSong: _this2.props.receiveCurrentSong,
+          receivePrevSong: _this2.props.receivePrevSong,
+          receiveNextSong: _this2.props.receiveNextSong,
+          createComment: _this2.props.createComment
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discovery-sidebar"
@@ -708,7 +736,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         className: "fab fa-angellist"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History..."), this.prevSongList()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -745,7 +773,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   var currentUser = state.session.currentUser;
-  var currentSong = state.ui.currentSong;
+  var currentSong = state.ui.playbar.currentSong;
   var artistId = parseInt(ownProps.match.params.artistId);
   var artist = Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["selectArtist"])(state.entities, artistId);
   var songs = Object.values(state.entities.songs);
@@ -756,6 +784,7 @@ var mSTP = function mSTP(state, ownProps) {
   var artists = Object.values(state.entities.artists);
   var comments = Object.values(state.entities.comments);
   return {
+    prevSong: state.ui.playbar.prevSong,
     currentSong: currentSong,
     currentUser: currentUser,
     songs: songs,
@@ -994,13 +1023,38 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "prevSongList",
+    value: function prevSongList() {
+      var _this3 = this;
+
+      return this.props.prevSong.map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          songs: _this3.props.songs,
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
+          currentUser: currentUser,
+          openModal: _this3.props.openModal,
+          deleteSong: _this3.props.deleteSong,
+          artists: _this3.props.artists,
+          receiveSong: _this3.props.receiveSong,
+          receiveCurrentSong: _this3.props.receiveCurrentSong,
+          receivePrevSong: _this3.props.receivePrevSong,
+          createComment: _this3.props.createComment,
+          currentSong: _this3.props.currentSong,
+          prevSong: _this3.props.prevSong
+        });
+      }).reverse();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var currentUser = this.props.currentUser;
       var sortedSongs = this.props.artists.map(function (artist) {
-        return _this3.props.songs.filter(function (song) {
+        return _this4.props.songs.filter(function (song) {
           return artist.id === song.artist_id;
         });
       }).reverse();
@@ -1012,27 +1066,27 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
           className: "discovery-playlist"
         }, playlist.map(function (song) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            songs: _this3.props.songs,
+            songs: _this4.props.songs,
             song: song,
             key: song.id,
             audioUrl: song.audioUrl,
             photoUrl: song.photoUrl,
-            currentUser: _this3.props.currentUser,
-            openModal: _this3.props.openModal,
-            deleteSong: _this3.props.deleteSong,
-            artists: _this3.props.artists,
-            receiveSong: _this3.props.receiveSong,
-            receiveCurrentSong: _this3.props.receiveCurrentSong,
-            receivePrevSong: _this3.props.receivePrevSong,
-            receiveNextSong: _this3.props.receiveNextSong,
-            currentSong: _this3.props.currentSong,
-            prevSong: _this3.props.prevSong,
-            nextSong: _this3.props.nextSong
+            currentUser: _this4.props.currentUser,
+            openModal: _this4.props.openModal,
+            deleteSong: _this4.props.deleteSong,
+            artists: _this4.props.artists,
+            receiveSong: _this4.props.receiveSong,
+            receiveCurrentSong: _this4.props.receiveCurrentSong,
+            receivePrevSong: _this4.props.receivePrevSong,
+            receiveNextSong: _this4.props.receiveNextSong,
+            currentSong: _this4.props.currentSong,
+            prevSong: _this4.props.prevSong,
+            nextSong: _this4.props.nextSong
           }));
         }));
       });
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
-        return comment.author_id === _this3.props.currentUser.id;
+        return comment.author_id === _this4.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
         if (comment.id % 2 == 0) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1042,7 +1096,7 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this3.props.songs).filter(function (song) {
+          }, Object.values(_this4.props.songs).filter(function (song) {
             return song.id === comment.song_id;
           }).map(function (song) {
             return song.title;
@@ -1055,7 +1109,7 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this3.props.songs).filter(function (song) {
+          }, Object.values(_this4.props.songs).filter(function (song) {
             return song.id === comment.song_id;
           }).map(function (song) {
             return song.title;
@@ -1101,7 +1155,7 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
         className: "fab fa-angellist"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History..."), this.prevSongList()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -1525,13 +1579,38 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
 
       if (window.localStorage.isPlaying === 'true') {
         var song = document.getElementById(parseInt(window.localStorage.currentSong));
-        song.currentTime = parseInt(window.localStorage.currentTime);
+        song.currentTime = parseFloat(window.localStorage.currentTime);
         song.play();
       } else {
         var _song = document.getElementById(parseInt(window.localStorage.currentSong));
 
-        _song.currentTime = parseInt(window.localStorage.currentTime);
+        _song.currentTime = parseFloat(window.localStorage.currentTime);
       }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this2 = this;
+
+      if (!this.props.currentSong) return null;
+      this.currentTimeInterval = setInterval(function () {
+        var song = document.getElementById(_this2.props.currentSong.id);
+        var scrubber = document.getElementById('scrubber');
+
+        if (song.ended) {
+          _this2.setState({
+            currentTime: 0
+          });
+
+          _this2.nextSong();
+        } else {
+          scrubber.value = song.currentTime;
+
+          _this2.setState({
+            currentTime: song.currentTime
+          });
+        }
+      }, 50);
     }
   }, {
     key: "componentWillUnmount",
@@ -1596,6 +1675,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       var background = document.getElementById(this.props.currentSong.id + 1000);
       background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
       localStorage.setItem('isPlaying', false);
+      clearInterval(this.currentTimeInterval);
       song.pause();
     }
   }, {
@@ -1626,63 +1706,64 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       song.currentTime = e.target.value;
     }
   }, {
+    key: "insertSong",
+    value: function insertSong() {
+      var song = document.getElementById(this.props.currentSong.id);
+
+      if (!song) {
+        debugger;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+          controls: true,
+          className: "audio-player",
+          id: this.props.currentSong.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+          src: this.props.currentSong.audioUrl,
+          type: "audio/mpeg"
+        }));
+      } else {
+        return null;
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!this.props.currentSong) return null;
-      this.currentTimeInterval = setInterval(function () {
-        var song = document.getElementById(_this2.props.currentSong.id);
-        var scrubber = document.getElementById('scrubber');
-
-        if (song.ended) {
-          _this2.setState({
-            currentTime: 0
-          });
-
-          _this2.nextSong();
-        } else {
-          scrubber.value = song.currentTime;
-
-          _this2.setState({
-            currentTime: song.currentTime
-          });
-        }
-      }, 500);
       var song = document.getElementById(this.props.currentSong.id);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.insertSong(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.prevSong();
+          return _this3.prevSong();
         },
         className: "playbar-prev-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-backward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.playSong();
+          return _this3.playSong();
         },
         className: "playbar-play-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-play"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.pauseSong();
+          return _this3.pauseSong();
         },
         className: "playbar-pause-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pause"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.nextSong();
+          return _this3.nextSong();
         },
         className: "playbar-next-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-forward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.muteSong();
+          return _this3.muteSong();
         },
         className: "playbar-volume-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1703,7 +1784,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }, this.props.currentSong.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/artists/".concat(this.props.currentSong.artist_id)
       }, this.props.artists.filter(function (artist) {
-        return artist.id === _this2.props.currentSong.artist_id;
+        return artist.id === _this3.props.currentSong.artist_id;
       }).map(function (artist) {
         return artist.username;
       })))));
@@ -1925,13 +2006,38 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "prevSongList",
+    value: function prevSongList() {
+      var _this4 = this;
+
+      return this.props.prevSong.map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          songs: _this4.props.songs,
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
+          currentUser: currentUser,
+          openModal: _this4.props.openModal,
+          deleteSong: _this4.props.deleteSong,
+          artists: _this4.props.artists,
+          receiveSong: _this4.props.receiveSong,
+          receiveCurrentSong: _this4.props.receiveCurrentSong,
+          receivePrevSong: _this4.props.receivePrevSong,
+          createComment: _this4.props.createComment,
+          currentSong: _this4.props.currentSong,
+          prevSong: _this4.props.prevSong
+        });
+      }).reverse();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var currentUser = this.props.currentUser;
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
-        return comment.author_id === _this4.props.currentUser.id;
+        return comment.author_id === _this5.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
         if (comment.id % 2 == 0) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1941,7 +2047,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this4.props.songs).filter(function (song) {
+          }, Object.values(_this5.props.songs).filter(function (song) {
             return song.id === comment.song_id;
           }).map(function (song) {
             return song.title;
@@ -1954,7 +2060,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this4.props.songs).filter(function (song) {
+          }, Object.values(_this5.props.songs).filter(function (song) {
             return song.id === comment.song_id;
           }).map(function (song) {
             return song.title;
@@ -2003,7 +2109,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         className: "fab fa-angellist"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History..."), this.prevSongList()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"
@@ -2159,6 +2265,15 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
           audio.pause();
         });
       });
+
+      if (this.props.song.id === parseInt(window.localStorage.currentSong)) {
+        debugger;
+        var background = document.getElementById(this.props.song.id + 1000);
+
+        if (window.localStorage.isPlaying === "true") {
+          background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+        }
+      }
     }
   }, {
     key: "playSong",
@@ -2990,9 +3105,34 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       // }
     }
   }, {
+    key: "prevSongList",
+    value: function prevSongList() {
+      var _this = this;
+
+      return this.props.prevSong.map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          songs: _this.props.songs,
+          song: song,
+          key: song.id,
+          audioUrl: song.audioUrl,
+          photoUrl: song.photoUrl,
+          currentUser: currentUser,
+          openModal: _this.props.openModal,
+          deleteSong: _this.props.deleteSong,
+          artists: _this.props.artists,
+          receiveSong: _this.props.receiveSong,
+          receiveCurrentSong: _this.props.receiveCurrentSong,
+          receivePrevSong: _this.props.receivePrevSong,
+          createComment: _this.props.createComment,
+          currentSong: _this.props.currentSong,
+          prevSong: _this.props.prevSong
+        });
+      }).reverse();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.props.songs.length === 0) {
         return null;
@@ -3000,7 +3140,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
 
       var currentUser = this.props.currentUser;
       var currentUserComments = Object.values(this.props.comments).filter(function (comment) {
-        return comment.author_id === _this.props.currentUser.id;
+        return comment.author_id === _this2.props.currentUser.id;
       }).reverse().slice(0, 5).map(function (comment) {
         if (comment.id % 2 == 0) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3010,7 +3150,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this.props.songs).filter(function (song) {
+          }, Object.values(_this2.props.songs).filter(function (song) {
             return song.id === comment.song_id;
           }).map(function (song) {
             return song.title;
@@ -3023,7 +3163,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/songs/".concat(comment.song_id)
-          }, Object.values(_this.props.songs).filter(function (song) {
+          }, Object.values(_this2.props.songs).filter(function (song) {
             return song.id === comment.song_id;
           }).map(function (song) {
             return song.title;
@@ -3031,7 +3171,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         }
       });
       var song = this.props.songs.filter(function (song) {
-        return song.id === parseInt(_this.props.match.params.songId);
+        return song.id === parseInt(_this2.props.match.params.songId);
       })[0];
       var songComments = this.props.comments.filter(function (comment) {
         return comment.song_id === song.id;
@@ -3041,17 +3181,17 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
             to: "/artists/".concat(comment.author_id)
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
             className: "comment-author"
-          }, Object.values(_this.props.artists).filter(function (artist) {
+          }, Object.values(_this2.props.artists).filter(function (artist) {
             return artist.id === comment.author_id;
           }).map(function (artist) {
             return artist.username;
           }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "song-show-comment",
             key: "comment-".concat(comment.id)
-          }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, _this.timeDiff(comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, _this2.timeDiff(comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "comment-delete-button",
             onClick: function onClick() {
-              return _this.props.deleteComment(comment.id);
+              return _this2.props.deleteComment(comment.id);
             }
           }, "x"));
         } else {
@@ -3059,14 +3199,14 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
             to: "/artists/".concat(comment.author_id)
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
             className: "comment-author"
-          }, Object.values(_this.props.artists).filter(function (artist) {
+          }, Object.values(_this2.props.artists).filter(function (artist) {
             return artist.id === comment.author_id;
           }).map(function (artist) {
             return artist.username;
           }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "song-show-comment",
             key: "comment-".concat(comment.id)
-          }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, _this.timeDiff(comment)));
+          }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, _this2.timeDiff(comment)));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3122,7 +3262,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         className: "fab fa-angellist"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "latest-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Listening History..."), this.prevSongList()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Recent Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recent-comments"

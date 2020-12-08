@@ -6,7 +6,7 @@ import { openModal } from '../../actions/modal_actions'
 
 const mSTP = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    const currentSong = state.ui.currentSong;
+    const currentSong = state.ui.playbar.currentSong;
     const artistId = parseInt(ownProps.match.params.artistId);
     const artist = selectArtist(state.entities, artistId);
     const songs = Object.values(state.entities.songs)
@@ -16,6 +16,7 @@ const mSTP = (state, ownProps) => {
     const comments = Object.values(state.entities.comments)
 
     return {
+        prevSong: state.ui.playbar.prevSong,
         currentSong,
         currentUser,
         songs,

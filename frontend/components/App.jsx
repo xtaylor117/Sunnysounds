@@ -31,11 +31,13 @@ const App = () => (
             <AuthRoute path='/' component={SplashContainer} />
             <Redirect to='/' />
         </Switch>
+
         <footer>
             <ProtectedRoute exact path='/artists/:artistId' component={PlaybarContainer} />
             <ProtectedRoute exact path='/songs/:songId' component={PlaybarContainer} />
             <ProtectedRoute exact path='/discovery' component={PlaybarContainer} />
             <ProtectedRoute exact path='/stream' component={PlaybarContainer} />
+            <AuthRoute path='/' component={PlaybarContainer} />
         </footer>
     </div>
 )

@@ -47,7 +47,31 @@ class SongShow extends React.Component {
         //     return <p className='date-created'>{`just created`}</p>
         // }
     }
-    
+
+    prevSongList() {
+        return(
+            this.props.prevSong.map(song => (
+                        <SongIndexItem
+                            songs={this.props.songs}
+                            song={song}
+                            key={song.id}
+                            audioUrl={song.audioUrl}
+                            photoUrl={song.photoUrl}
+                            currentUser={currentUser}
+                            openModal={this.props.openModal}
+                            deleteSong={this.props.deleteSong}
+                            artists={this.props.artists}
+                            receiveSong={this.props.receiveSong}
+                            receiveCurrentSong={this.props.receiveCurrentSong}
+                            receivePrevSong={this.props.receivePrevSong}
+                            createComment={this.props.createComment}
+                            currentSong={this.props.currentSong}
+                            prevSong={this.props.prevSong}
+                        />
+                    )).reverse()
+        )
+    }
+
     render() {
         if (this.props.songs.length === 0) {
             return null
@@ -139,6 +163,7 @@ class SongShow extends React.Component {
                     </div>
                     <div className="latest-upload" >
                         <h3>Listening History...</h3>
+                        {this.prevSongList()}
                     </div>
                     <div className='comments-container'>
                         <h3>Your Recent Comments</h3>

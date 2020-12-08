@@ -15,6 +15,14 @@ class SongIndexItem extends React.Component {
                 audio.pause();
             });
         });
+
+        if (this.props.song.id === parseInt(window.localStorage.currentSong)) {
+            debugger
+            let background = document.getElementById(this.props.song.id + 1000)
+            if (window.localStorage.isPlaying === "true") {
+                background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+            }
+        }
     }
 
     playSong() {
