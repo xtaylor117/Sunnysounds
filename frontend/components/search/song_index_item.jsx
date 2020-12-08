@@ -15,13 +15,6 @@ class SongIndexItem extends React.Component {
                 audio.pause();
             });
         });
-
-        // if (this.props.song.id === parseInt(window.localStorage.currentSong)) {
-        //     let background = document.getElementById(this.props.song.id + 1000)
-        //     if (window.localStorage.isPlaying === "true") {
-        //         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-        //     }
-        // }
     }
 
     playSong() {
@@ -58,6 +51,9 @@ class SongIndexItem extends React.Component {
 
     settingsAuth() {
         let songId = this.props.song.id;
+
+        if (!this.props.currentUser || !this.props.song) return null
+
         if (this.props.currentUser.id === this.props.song.artist_id) {
             return(
                 <div className="song-edit-button">
@@ -67,6 +63,16 @@ class SongIndexItem extends React.Component {
                         <button onClick={() => this.props.deleteSong(songId)}>Delete</button>
                     </div>
                 </div>
+            )
+        }
+    }
+
+    commentForm() {
+        if(!this.props.currentUser) {
+            return null
+        } else {
+            return(
+                 <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>
             )
         }
     }
@@ -99,7 +105,7 @@ class SongIndexItem extends React.Component {
                         </div>
                     </div>
                     <div className="item-info-right">
-                        <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>
+                       {this.commentForm()}
                     </div>
                 </div>
                 {this.settingsAuth()}

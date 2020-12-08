@@ -5,7 +5,7 @@ body {
 .splash-container {
     margin: 0px 75px 0px 75px;
     background: white;
-    height: 100vh;
+    height: fit-content;
     border-left: 1px;
     border-right: 1px;
     border-style: ridge;
@@ -105,7 +105,7 @@ body {
     text-align: center;
 }
 
-.splash-title-1, .splash-title-2 {
+.splash-title-1, .splash-title-2, .splash-title-3 {
     font-family: Overpass;
     font-size: 35px;
 }
@@ -123,11 +123,17 @@ body {
     display: flex;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.splash-call-2 {
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background: whitesmoke;
 }
 
 .splash-call-img {
-    background: url(/assets/girl.jpg);
+    background: url(https://sunnysounds-seed.s3-us-west-1.amazonaws.com/girl.jpg);
     background-position: center;
     object-fit: cover;
     background-repeat: no-repeat;
@@ -145,6 +151,16 @@ body {
     width: 30%;
 }
 
+.splash-call-left {
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    position: relative;
+    right: -20px;
+    top: 125px;
+    width: 35%;
+}
+
 .footer-session h2 {
     font-family: Overpass;
     font-size: 40px;
@@ -154,23 +170,93 @@ body {
 
 .footer-stuff {
     height: fit-content;
-    background: gray;
     padding: 15px;
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+    justify-content: space-evenly;
 }
 
 .footer-stuff * {
     font-family: Overpass;
 }
 
+.footer-stuff .signup {
+    outline: none;
+    border: none;
+    background: salmon;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    width: 40%;
+    margin-right: 20px;
+    transition: 0.3s;
+}
+
+.footer-stuff .signin {
+    outline: none;
+    border: none;
+    background: cadetblue;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    width: 40%;
+    transition: 0.3s;
+}
+
+.footer-stuff .signin:hover {
+    cursor: pointer;
+    background: gold;
+    color: black;
+}
+
+.footer-stuff .signup:hover {
+    cursor: pointer;
+    background: gold;
+    color: black;
+}
+
 .footer-img {
-    background: url(/assets/mixer.jpg);
+    background: url(https://sunnysounds-seed.s3-us-west-1.amazonaws.com/crowd.jpg);
     background-position: center;
     object-fit: contain;
     background-repeat: no-repeat;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 15px;
+    padding: 10px;
 }
 
 .creator-call {
     font-family: Overpass;
+}
+
+.footer-img h4 {
+    color: gold;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.splash-call-img-2 {
+    background: url(https://sunnysounds-seed.s3-us-west-1.amazonaws.com/mixer.jpg);
+    background-position: center;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 60%;
+}
+
+.splash-songs {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: 10px;
+    justify-content: center;
+}
+
+.splash-songs .play-button {
+    right: 0px;
 }

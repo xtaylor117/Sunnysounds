@@ -9,18 +9,45 @@ class Splash extends React.Component {
         this.songList = this.songList.bind(this)
     }
 
+    componentDidMount() {
+        this.props.receiveAllSongs()
+        this.props.receiveAllArtists()
+    }
+
+
+    shuffle(array) {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
     songList() {
         if (!this.props.songs) return null
-        
-        return(
-            this.props.songs.map(song => (
+
+        if (!window.sessionStorage.playlist || window.sessionStorage.playlist === '[]') {
+            let playlist = this.shuffle(this.props.songs).slice(0, 14)
+            sessionStorage.setItem('playlist', JSON.stringify(playlist))
+            return(
+            playlist.map(song => (
                     <SongIndexItem
                         songs={this.props.songs}
                         song={song}
                         key={song.id}
                         audioUrl={song.audioUrl}
                         photoUrl={song.photoUrl}
-                        currentUser={currentUser}
+                        currentUser={this.props.currentUser}
                         openModal={this.props.openModal}
                         deleteSong={this.props.deleteSong}
                         artists={this.props.artists}
@@ -28,13 +55,36 @@ class Splash extends React.Component {
                         receiveCurrentSong={this.props.receiveCurrentSong}
                         receivePrevSong={this.props.receivePrevSong}
                         receiveNextSong={this.props.receiveNextSong}
-                        createComment={this.props.createComment}
                         currentSong={this.props.currentSong}
-                        prevSong={this.props.prevSong}
-                        nextSong={this.props.nextSong}
                     />
                 ))
         )
+        } else {
+            if (window.sessionStorage.playlist !== undefined) {
+                let playlist = JSON.parse(window.sessionStorage.playlist)
+                debugger
+                return(
+                    playlist.map(song => (
+                            <SongIndexItem
+                                songs={this.props.songs}
+                                song={song}
+                                key={song.id}
+                                audioUrl={song.audioUrl}
+                                photoUrl={song.photoUrl}
+                                currentUser={this.props.currentUser}
+                                openModal={this.props.openModal}
+                                deleteSong={this.props.deleteSong}
+                                artists={this.props.artists}
+                                receiveSong={this.props.receiveSong}
+                                receiveCurrentSong={this.props.receiveCurrentSong}
+                                receivePrevSong={this.props.receivePrevSong}
+                                receiveNextSong={this.props.receiveNextSong}
+                                currentSong={this.props.currentSong}
+                            />
+                        ))
+                )
+            }
+        }
     }
 
     render() {
@@ -74,22 +124,30 @@ class Splash extends React.Component {
                         </div>
                     </div>
 
+                    <div className='splash-call-2'>
+                        <div className='splash-call-left'>
+                            <h4 className="splash-title-3"> Be the best musician you can be</h4>
+                            <p className="creator-call">No limits, no judgements, no drama. Just music.</p>
+                        </div>
+                        <div className='splash-call-img-2'/>
+                    </div>
+
                     <div className="footer-session">
                         <h2>Thanks for listening. Now join with your own sounds!</h2>
                         <div className='footer-stuff'>
-                            <div className='footer-img' />
-                            <h4>Save tracks, follow artists and build playlists. All for free.</h4>
                             <button 
                                 onClick={() => this.props.openModal({formType:'signup'})}
                                 className='signup'>
                                 Create account
                             </button>
-                            <span>Already have an account?</span>
                             <button 
                                 onClick={() => this.props.openModal({formType: 'login'})}
                                 className='signin'>
                                 Sign in
                             </button>
+                            <div className='footer-img'>
+                                <h4>Celebrate your sounds-- anywhere, anytime.</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
