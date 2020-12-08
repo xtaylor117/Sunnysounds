@@ -62,7 +62,6 @@ class Splash extends React.Component {
         } else {
             if (window.sessionStorage.playlist !== undefined) {
                 let playlist = JSON.parse(window.sessionStorage.playlist)
-                debugger
                 return(
                     playlist.map(song => (
                             <SongIndexItem

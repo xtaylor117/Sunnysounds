@@ -700,7 +700,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           key: song.id,
           audioUrl: song.audioUrl,
           photoUrl: song.photoUrl,
-          currentUser: currentUser,
+          currentUser: _this2.props.currentUser,
           openModal: _this2.props.openModal,
           deleteSong: _this2.props.deleteSong,
           artists: _this2.props.artists,
@@ -1034,7 +1034,7 @@ var Discovery = /*#__PURE__*/function (_React$Component) {
           key: song.id,
           audioUrl: song.audioUrl,
           photoUrl: song.photoUrl,
-          currentUser: currentUser,
+          currentUser: _this3.props.currentUser,
           openModal: _this3.props.openModal,
           deleteSong: _this3.props.deleteSong,
           artists: _this3.props.artists,
@@ -2310,6 +2310,11 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
       if (song.paused) {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
         localStorage.setItem('isPlaying', true);
+        $("audio").on("play", function () {
+          $("audio").not(this).each(function (index, audio) {
+            audio.pause();
+          });
+        });
         song.play();
       } else {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
@@ -3488,7 +3493,6 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         if (window.sessionStorage.playlist !== undefined) {
           var _playlist = JSON.parse(window.sessionStorage.playlist);
 
-          debugger;
           return _playlist.map(function (song) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
               songs: _this2.props.songs,

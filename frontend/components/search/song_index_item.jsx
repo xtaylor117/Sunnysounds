@@ -41,6 +41,11 @@ class SongIndexItem extends React.Component {
         if (song.paused) {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             localStorage.setItem('isPlaying', true)
+            $("audio").on("play", function () {
+                $("audio").not(this).each(function (index, audio) {
+                    audio.pause();
+                });
+            });
             song.play()
         } else {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
