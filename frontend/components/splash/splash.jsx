@@ -10,6 +10,8 @@ class Splash extends React.Component {
     }
 
     songList() {
+        if (!this.props.songs) return null
+        
         return(
             this.props.songs.map(song => (
                     <SongIndexItem

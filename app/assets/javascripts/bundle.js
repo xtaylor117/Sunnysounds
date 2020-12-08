@@ -3431,6 +3431,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     value: function songList() {
       var _this2 = this;
 
+      if (!this.props.songs) return null;
       return this.props.songs.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           songs: _this2.props.songs,
