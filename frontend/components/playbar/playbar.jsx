@@ -120,17 +120,32 @@ class Playbar extends React.Component {
         let background = document.getElementById(this.props.currentSong.id + 1000)
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         localStorage.setItem('isPlaying', false)
+        this.currentTimeInterval = setInterval(()=> {
+            let song = document.getElementById(this.props.currentSong.id)
+            let scrubber = document.getElementById('scrubber')
+            if (song.ended) {
+                this.setState({currentTime: 0})
+                this.nextSong();
+            } else {
+                scrubber.value = song.currentTime;
+                this.setState({ currentTime: song.currentTime})
+            }
+        },50);
         song.pause();
     }
 
     nextSong() {
         
         let song = document.getElementById(this.props.nextSong.id)
+        if (!song) return null
+
         let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
         let newBackground = document.getElementById(this.props.nextSong.id + 1000)
         
+        
         oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
         newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+        
         
         this.currentTimeInterval = setInterval(()=> {
             let song = document.getElementById(this.props.currentSong.id)

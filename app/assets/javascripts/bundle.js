@@ -1682,22 +1682,12 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "pauseSong",
     value: function pauseSong() {
+      var _this4 = this;
+
       var song = document.getElementById(this.props.currentSong.id);
       var background = document.getElementById(this.props.currentSong.id + 1000);
       background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
       localStorage.setItem('isPlaying', false);
-      song.pause();
-    }
-  }, {
-    key: "nextSong",
-    value: function nextSong() {
-      var _this4 = this;
-
-      var song = document.getElementById(this.props.nextSong.id);
-      var oldBackground = document.getElementById(this.props.currentSong.id + 1000);
-      var newBackground = document.getElementById(this.props.nextSong.id + 1000);
-      oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
-      newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
       this.currentTimeInterval = setInterval(function () {
         var song = document.getElementById(_this4.props.currentSong.id);
         var scrubber = document.getElementById('scrubber');
@@ -1712,6 +1702,37 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
           scrubber.value = song.currentTime;
 
           _this4.setState({
+            currentTime: song.currentTime
+          });
+        }
+      }, 50);
+      song.pause();
+    }
+  }, {
+    key: "nextSong",
+    value: function nextSong() {
+      var _this5 = this;
+
+      var song = document.getElementById(this.props.nextSong.id);
+      if (!song) return null;
+      var oldBackground = document.getElementById(this.props.currentSong.id + 1000);
+      var newBackground = document.getElementById(this.props.nextSong.id + 1000);
+      oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+      newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+      this.currentTimeInterval = setInterval(function () {
+        var song = document.getElementById(_this5.props.currentSong.id);
+        var scrubber = document.getElementById('scrubber');
+
+        if (song.ended) {
+          _this5.setState({
+            currentTime: 0
+          });
+
+          _this5.nextSong();
+        } else {
+          scrubber.value = song.currentTime;
+
+          _this5.setState({
             currentTime: song.currentTime
           });
         }
@@ -1737,7 +1758,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
@@ -1753,35 +1774,35 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this5.prevSong();
+          return _this6.prevSong();
         },
         className: "playbar-prev-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-backward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this5.playSong();
+          return _this6.playSong();
         },
         className: "playbar-play-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-play"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this5.pauseSong();
+          return _this6.pauseSong();
         },
         className: "playbar-pause-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pause"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this5.nextSong();
+          return _this6.nextSong();
         },
         className: "playbar-next-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-forward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this5.muteSong();
+          return _this6.muteSong();
         },
         className: "playbar-volume-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1802,7 +1823,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }, this.props.currentSong.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/artists/".concat(this.props.currentSong.artist_id)
       }, this.props.artists.filter(function (artist) {
-        return artist.id === _this5.props.currentSong.artist_id;
+        return artist.id === _this6.props.currentSong.artist_id;
       }).map(function (artist) {
         return artist.username;
       })))));
@@ -1986,7 +2007,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             key: song.id,
             audioUrl: song.audioUrl,
             photoUrl: song.photoUrl,
-            currentUser: currentUser,
+            currentUser: _this3.props.currentUser,
             openModal: _this3.props.openModal,
             deleteSong: _this3.props.deleteSong,
             artists: _this3.props.artists,
@@ -2008,7 +2029,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
             key: song.id,
             audioUrl: song.audioUrl,
             photoUrl: song.photoUrl,
-            currentUser: currentUser,
+            currentUser: _this3.props.currentUser,
             openModal: _this3.props.openModal,
             deleteSong: _this3.props.deleteSong,
             artists: _this3.props.artists,
@@ -2034,7 +2055,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           key: song.id,
           audioUrl: song.audioUrl,
           photoUrl: song.photoUrl,
-          currentUser: currentUser,
+          currentUser: _this4.props.currentUser,
           openModal: _this4.props.openModal,
           deleteSong: _this4.props.deleteSong,
           artists: _this4.props.artists,
