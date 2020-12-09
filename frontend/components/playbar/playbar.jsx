@@ -28,8 +28,23 @@ class Playbar extends React.Component {
 
         if (window.localStorage.isPlaying === 'true') {
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
+            let background = document.getElementById(parseInt(window.localStorage.currentSong) + 1000)
+            let glow = document.getElementById(parseInt(window.localStorage.currentSong) + 2000)
+
             song.currentTime = parseFloat(window.localStorage.currentTime)
-            this.playSong()
+            this.currentTimeInterval = setInterval(()=> {
+            let scrubber = document.getElementById('scrubber')
+                scrubber.value = song.currentTime;
+                this.setState({ currentTime: song.currentTime})
+            },50);
+
+            if (background) {
+                background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+                glow.classList.toggle('currently-playing')
+                localStorage.setItem('isPlaying', true)
+            }
+
+            song.play();
         } else {
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
             song.currentTime = parseFloat(window.localStorage.currentTime)
@@ -74,10 +89,14 @@ class Playbar extends React.Component {
             }
 
             let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
+            let oldGlow = document.getElementById(this.props.currentSong.id + 2000)
             let newBackground = document.getElementById(latestSong + 1000)
+            let newGlow = document.getElementById(latestSong + 2000)
 
             oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            oldGlow.classList.toggle('currently-playing')
             newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+            newGlow.classList.toggle('currently-playing')
 
             this.props.receiveCurrentSong(latestSong);
             this.props.receiveNextSong(this.props.currentSong.id);
@@ -118,7 +137,11 @@ class Playbar extends React.Component {
     pauseSong() {
         let song = document.getElementById(this.props.currentSong.id)
         let background = document.getElementById(this.props.currentSong.id + 1000)
+        let glow = document.getElementById(this.props.currentSong.id + 2000)
+
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+        glow.classList.toggle('currently-playing')
+
         localStorage.setItem('isPlaying', false)
         this.currentTimeInterval = setInterval(()=> {
             let song = document.getElementById(this.props.currentSong.id)
@@ -140,11 +163,15 @@ class Playbar extends React.Component {
         if (!song) return null
 
         let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
+        let oldGlow = document.getElementById(this.props.currentSong.id + 2000)
         let newBackground = document.getElementById(this.props.nextSong.id + 1000)
+        let newGlow = document.getElementById(this.props.nextSong.id + 2000)
         
         
         oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+        oldGlow.classList.toggle('currently-playing')
         newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+        newGlow.classList.toggle('currently-playing')
         
         
         this.currentTimeInterval = setInterval(()=> {

@@ -20,13 +20,17 @@ class SongIndexItem extends React.Component {
     playSong() {
         let song;
         let background;
+        let glow;
 
         if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
             background = document.getElementById(this.props.currentSong.id + 1000)
+            glow = document.getElementById(this.props.currentSong.id + 2000)
 
             if (background) {
                 background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+                glow.classList.toggle('currently-playing')
             }
+
             this.props.receivePrevSong(this.props.currentSong.id)
             this.props.receiveCurrentSong(this.props.song.id)
             this.props.receiveNextSong(this.props.song.id - 1)
@@ -37,9 +41,11 @@ class SongIndexItem extends React.Component {
 
         song = document.getElementById(this.props.song.id);
         background = document.getElementById(this.props.song.id + 1000)
+        glow = document.getElementById(this.props.song.id + 2000)
         
         if (song.paused) {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+            glow.classList.toggle('currently-playing')
             localStorage.setItem('isPlaying', true)
             $("audio").on("play", function () {
                 $("audio").not(this).each(function (index, audio) {
@@ -49,6 +55,7 @@ class SongIndexItem extends React.Component {
             song.play()
         } else {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            glow.classList.toggle('currently-playing')
             localStorage.setItem('isPlaying', false)
             song.pause()
         }
@@ -93,7 +100,7 @@ class SongIndexItem extends React.Component {
                 <div className="index-item-info">
                     <div className="item-info-left">
                         <div onClick={() => this.playSong()} className="custom-audio-player">
-                        <img className='song-box-photo' src={this.props.photoUrl}/>
+                        <img className='song-box-photo' id={this.props.song.id + 2000} src={this.props.photoUrl}/>
                             <button className="play-button" id={this.props.song.id + 1000} />
                             <audio controls className='audio-player' id={this.props.song.id}>
                                 <source src={this.props.audioUrl} type="audio/mpeg" />   

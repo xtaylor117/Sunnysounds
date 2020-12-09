@@ -1575,12 +1575,31 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   _createClass(Playbar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       if (!this.props.currentSong) return null;
 
       if (window.localStorage.isPlaying === 'true') {
         var song = document.getElementById(parseInt(window.localStorage.currentSong));
+        var background = document.getElementById(parseInt(window.localStorage.currentSong) + 1000);
+        var glow = document.getElementById(parseInt(window.localStorage.currentSong) + 2000);
         song.currentTime = parseFloat(window.localStorage.currentTime);
-        this.playSong();
+        this.currentTimeInterval = setInterval(function () {
+          var scrubber = document.getElementById('scrubber');
+          scrubber.value = song.currentTime;
+
+          _this2.setState({
+            currentTime: song.currentTime
+          });
+        }, 50);
+
+        if (background) {
+          background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+          glow.classList.toggle('currently-playing');
+          localStorage.setItem('isPlaying', true);
+        }
+
+        song.play();
       } else {
         var _song = document.getElementById(parseInt(window.localStorage.currentSong));
 
@@ -1599,25 +1618,25 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "prevSong",
     value: function prevSong() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.props.prevSong.length != 0) {
         var latestSong = this.props.prevSong.pop().id;
         var song = document.getElementById(latestSong);
         this.currentTimeInterval = setInterval(function () {
-          var song = document.getElementById(_this2.props.currentSong.id);
+          var song = document.getElementById(_this3.props.currentSong.id);
           var scrubber = document.getElementById('scrubber');
 
           if (song.ended) {
-            _this2.setState({
+            _this3.setState({
               currentTime: 0
             });
 
-            _this2.nextSong();
+            _this3.nextSong();
           } else {
             scrubber.value = song.currentTime;
 
-            _this2.setState({
+            _this3.setState({
               currentTime: song.currentTime
             });
           }
@@ -1632,9 +1651,13 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         }
 
         var oldBackground = document.getElementById(this.props.currentSong.id + 1000);
+        var oldGlow = document.getElementById(this.props.currentSong.id + 2000);
         var newBackground = document.getElementById(latestSong + 1000);
+        var newGlow = document.getElementById(latestSong + 2000);
         oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+        oldGlow.classList.toggle('currently-playing');
         newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+        newGlow.classList.toggle('currently-playing');
         this.props.receiveCurrentSong(latestSong);
         this.props.receiveNextSong(this.props.currentSong.id);
       } else {
@@ -1648,7 +1671,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "playSong",
     value: function playSong() {
-      var _this3 = this;
+      var _this4 = this;
 
       var song = document.getElementById(this.props.currentSong.id);
       var background = document.getElementById(this.props.currentSong.id + 1000);
@@ -1659,35 +1682,6 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         localStorage.setItem('isPlaying', true);
       }
 
-      this.currentTimeInterval = setInterval(function () {
-        var song = document.getElementById(_this3.props.currentSong.id);
-        var scrubber = document.getElementById('scrubber');
-
-        if (song.ended) {
-          _this3.setState({
-            currentTime: 0
-          });
-
-          _this3.nextSong();
-        } else {
-          scrubber.value = song.currentTime;
-
-          _this3.setState({
-            currentTime: song.currentTime
-          });
-        }
-      }, 50);
-      song.play();
-    }
-  }, {
-    key: "pauseSong",
-    value: function pauseSong() {
-      var _this4 = this;
-
-      var song = document.getElementById(this.props.currentSong.id);
-      var background = document.getElementById(this.props.currentSong.id + 1000);
-      background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
-      localStorage.setItem('isPlaying', false);
       this.currentTimeInterval = setInterval(function () {
         var song = document.getElementById(_this4.props.currentSong.id);
         var scrubber = document.getElementById('scrubber');
@@ -1706,19 +1700,19 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
           });
         }
       }, 50);
-      song.pause();
+      song.play();
     }
   }, {
-    key: "nextSong",
-    value: function nextSong() {
+    key: "pauseSong",
+    value: function pauseSong() {
       var _this5 = this;
 
-      var song = document.getElementById(this.props.nextSong.id);
-      if (!song) return null;
-      var oldBackground = document.getElementById(this.props.currentSong.id + 1000);
-      var newBackground = document.getElementById(this.props.nextSong.id + 1000);
-      oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
-      newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+      var song = document.getElementById(this.props.currentSong.id);
+      var background = document.getElementById(this.props.currentSong.id + 1000);
+      var glow = document.getElementById(this.props.currentSong.id + 2000);
+      background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+      glow.classList.toggle('currently-playing');
+      localStorage.setItem('isPlaying', false);
       this.currentTimeInterval = setInterval(function () {
         var song = document.getElementById(_this5.props.currentSong.id);
         var scrubber = document.getElementById('scrubber');
@@ -1733,6 +1727,41 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
           scrubber.value = song.currentTime;
 
           _this5.setState({
+            currentTime: song.currentTime
+          });
+        }
+      }, 50);
+      song.pause();
+    }
+  }, {
+    key: "nextSong",
+    value: function nextSong() {
+      var _this6 = this;
+
+      var song = document.getElementById(this.props.nextSong.id);
+      if (!song) return null;
+      var oldBackground = document.getElementById(this.props.currentSong.id + 1000);
+      var oldGlow = document.getElementById(this.props.currentSong.id + 2000);
+      var newBackground = document.getElementById(this.props.nextSong.id + 1000);
+      var newGlow = document.getElementById(this.props.nextSong.id + 2000);
+      oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+      oldGlow.classList.toggle('currently-playing');
+      newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+      newGlow.classList.toggle('currently-playing');
+      this.currentTimeInterval = setInterval(function () {
+        var song = document.getElementById(_this6.props.currentSong.id);
+        var scrubber = document.getElementById('scrubber');
+
+        if (song.ended) {
+          _this6.setState({
+            currentTime: 0
+          });
+
+          _this6.nextSong();
+        } else {
+          scrubber.value = song.currentTime;
+
+          _this6.setState({
             currentTime: song.currentTime
           });
         }
@@ -1758,7 +1787,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this7 = this;
 
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
@@ -1774,35 +1803,35 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.prevSong();
+          return _this7.prevSong();
         },
         className: "playbar-prev-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-backward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.playSong();
+          return _this7.playSong();
         },
         className: "playbar-play-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-play"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.pauseSong();
+          return _this7.pauseSong();
         },
         className: "playbar-pause-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pause"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.nextSong();
+          return _this7.nextSong();
         },
         className: "playbar-next-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-forward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.muteSong();
+          return _this7.muteSong();
         },
         className: "playbar-volume-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1823,7 +1852,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }, this.props.currentSong.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/artists/".concat(this.props.currentSong.artist_id)
       }, this.props.artists.filter(function (artist) {
-        return artist.id === _this6.props.currentSong.artist_id;
+        return artist.id === _this7.props.currentSong.artist_id;
       }).map(function (artist) {
         return artist.username;
       })))));
@@ -2309,12 +2338,15 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function playSong() {
       var song;
       var background;
+      var glow;
 
       if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
         background = document.getElementById(this.props.currentSong.id + 1000);
+        glow = document.getElementById(this.props.currentSong.id + 2000);
 
         if (background) {
           background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+          glow.classList.toggle('currently-playing');
         }
 
         this.props.receivePrevSong(this.props.currentSong.id);
@@ -2327,9 +2359,11 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
 
       song = document.getElementById(this.props.song.id);
       background = document.getElementById(this.props.song.id + 1000);
+      glow = document.getElementById(this.props.song.id + 2000);
 
       if (song.paused) {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+        glow.classList.toggle('currently-playing');
         localStorage.setItem('isPlaying', true);
         $("audio").on("play", function () {
           $("audio").not(this).each(function (index, audio) {
@@ -2339,6 +2373,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         song.play();
       } else {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')";
+        glow.classList.toggle('currently-playing');
         localStorage.setItem('isPlaying', false);
         song.pause();
       }
@@ -2408,6 +2443,7 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "custom-audio-player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "song-box-photo",
+        id: this.props.song.id + 2000,
         src: this.props.photoUrl
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "play-button",
