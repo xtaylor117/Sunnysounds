@@ -1703,10 +1703,12 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
 
       var song = document.getElementById(this.props.currentSong.id);
       var background = document.getElementById(this.props.currentSong.id + 1000);
+      var glow = document.getElementById(this.props.currentSong.id + 2000);
       if (!song) return null;
 
       if (background) {
         background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
+        glow.classList.toggle('currently-playing');
         localStorage.setItem('isPlaying', true);
       }
 
