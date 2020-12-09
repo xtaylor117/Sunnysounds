@@ -10,6 +10,45 @@ class Nav extends React.Component {
         }
     }
 
+    // focusHome() {
+    //     let home = document.getElementById('home')
+    //     let stream = document.getElementById('stream')
+    //     let library = document.getElementById('library')
+
+    //     if (!home.classList.contains('nav-focused')) {
+    //         home.classList.add('nav-focused')
+    //     }
+
+    //     stream.classList.remove('nav-focused')
+    //     library.classList.remove('nav-focused')
+    // }
+
+    // focusStream(){
+    //     let home = document.getElementById('home')
+    //     let stream = document.getElementById('stream')
+    //     let library = document.getElementById('library')
+
+    //     if (!stream.classList.contains('nav-focused')) {
+    //         stream.classList.add('nav-focused')
+    //     }
+
+    //     home.classList.remove('nav-focused')
+    //     library.classList.remove('nav-focused')
+    // }
+
+    // focusLibrary(){
+    //     let home = document.getElementById('home')
+    //     let stream = document.getElementById('stream')
+    //     let library = document.getElementById('library')
+
+    //     if (!library.classList.contains('nav-focused')) {
+    //         library.classList.add('nav-focused')
+    //     }
+
+    //     stream.classList.remove('nav-focused')
+    //     home.classList.remove('nav-focused')
+    // }
+
     render(){
         return (
             <>
@@ -17,9 +56,9 @@ class Nav extends React.Component {
                     <ul className="nav-links">
                         <div className="left-nav">
                             <li><Link to='/'> Sunnysounds </Link></li>
-                            <li><Link to='/discovery'> Home </Link></li>
-                            <li><Link to='/stream'> Stream </Link></li>
-                            <li className="library"><a href="#">Library</a></li>
+                            <li /* onClick={() => this.focusHome()} id='home' */><Link  to='/discovery'> Home </Link></li>
+                            <li /* onClick={() => this.focusStream()} id='stream' */><Link to='/stream'> Stream </Link></li>
+                            <li /* onClick={() => this.focusLibrary()} id='library' */><Link to='/discovery'> Library </Link></li>
                         </div>
                         <div className="right-nav">
                             <li className="upload"><button onClick={() => this.props.openModal({formType: 'create'})}>Upload</button></li>

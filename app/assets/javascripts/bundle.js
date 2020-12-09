@@ -1399,7 +1399,37 @@ var Nav = /*#__PURE__*/function (_React$Component) {
       inputValue: ''
     };
     return _this;
-  }
+  } // focusHome() {
+  //     let home = document.getElementById('home')
+  //     let stream = document.getElementById('stream')
+  //     let library = document.getElementById('library')
+  //     if (!home.classList.contains('nav-focused')) {
+  //         home.classList.add('nav-focused')
+  //     }
+  //     stream.classList.remove('nav-focused')
+  //     library.classList.remove('nav-focused')
+  // }
+  // focusStream(){
+  //     let home = document.getElementById('home')
+  //     let stream = document.getElementById('stream')
+  //     let library = document.getElementById('library')
+  //     if (!stream.classList.contains('nav-focused')) {
+  //         stream.classList.add('nav-focused')
+  //     }
+  //     home.classList.remove('nav-focused')
+  //     library.classList.remove('nav-focused')
+  // }
+  // focusLibrary(){
+  //     let home = document.getElementById('home')
+  //     let stream = document.getElementById('stream')
+  //     let library = document.getElementById('library')
+  //     if (!library.classList.contains('nav-focused')) {
+  //         library.classList.add('nav-focused')
+  //     }
+  //     stream.classList.remove('nav-focused')
+  //     home.classList.remove('nav-focused')
+  // }
+
 
   _createClass(Nav, [{
     key: "render",
@@ -1418,11 +1448,9 @@ var Nav = /*#__PURE__*/function (_React$Component) {
         to: "/discovery"
       }, " Home ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/stream"
-      }, " Stream ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "library"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
-      }, "Library"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " Stream ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/discovery"
+      }, " Library "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "upload"
