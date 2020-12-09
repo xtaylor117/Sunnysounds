@@ -21,7 +21,6 @@
     width: fit-content;
     padding: 10px;
     background: rgba(255, 255, 255, 0.75);
-    margin-bottom: -15px;
 }
 
 .show-banner {
@@ -40,11 +39,21 @@
     top: 65px;
 }
 
+.item-info-left {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .song-show-left input.comment-form-input[type=text] {
     float: none;
+    margin-left: -50px;
+    margin-right: 15px;
+    position: relative;
+    bottom: 150px;
     width: 100%;
-    bottom: 0;
-    margin-left: -9px;
 }
 
 .song-show-left .song-edit-button {

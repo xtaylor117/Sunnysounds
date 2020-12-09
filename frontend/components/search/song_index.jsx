@@ -134,12 +134,12 @@ class SongIndex extends React.Component {
         
 
         return(
-            <div className='discovery-container'>
+            <div className='profile-container'>
                 <div className="search-bar-container">
                     <input type="text" className="search-bar" placeholder='Search by song title or genre...' value={this.state.inputValue} onChange={this.songFilterOnChange}/>
                     <input type="image" src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" className="search-button"/>
                 </div>
-                <div className='discovery-left'>
+                <div className='profile-left'>
                     {this.songList()}
                 </div>
                 <div className='discovery-sidebar'>

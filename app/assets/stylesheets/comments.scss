@@ -3,10 +3,12 @@
 input.comment-form-input[type=text] {
     float: right;
     margin-right: 15px;
-    position: relative;
-    bottom: -140px;
-    width: 80%;
+    position: absolute;
+    transform: translate(50px, 150px);
+    width: 40%;
 }
+
+
 
 .single-comment {
     display: flex;

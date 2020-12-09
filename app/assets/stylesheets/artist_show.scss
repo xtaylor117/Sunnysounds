@@ -26,13 +26,17 @@
   border-right: 1px solid gold;
 }
 
+.profile-left .custom-audio-player {
+  padding-left: 9%;
+}
+
 .index-item-info {
   display: flex;
   flex-direction: row;
   border-bottom: 1px;
   border-style: ridge;
   height: auto;
-  padding: 20px 0 20px 15px;
+  padding: 10px;
   font-family: Overpass;
 }
 
