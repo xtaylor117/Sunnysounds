@@ -3556,7 +3556,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       if (!this.props.songs) return null;
 
       if (!window.sessionStorage.playlist || window.sessionStorage.playlist === '[]') {
-        var playlist = this.shuffle(this.props.songs).slice(0, 14);
+        var playlist = this.shuffle(this.props.songs).slice(0, 10);
         sessionStorage.setItem('playlist', JSON.stringify(playlist));
         return playlist.map(function (song) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_song_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {

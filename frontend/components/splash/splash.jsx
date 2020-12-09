@@ -37,7 +37,7 @@ class Splash extends React.Component {
         if (!this.props.songs) return null
 
         if (!window.sessionStorage.playlist || window.sessionStorage.playlist === '[]') {
-            let playlist = this.shuffle(this.props.songs).slice(0, 14)
+            let playlist = this.shuffle(this.props.songs).slice(0, 10)
             sessionStorage.setItem('playlist', JSON.stringify(playlist))
             return(
             playlist.map(song => (
