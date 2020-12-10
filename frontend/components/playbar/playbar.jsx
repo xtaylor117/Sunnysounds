@@ -97,7 +97,10 @@ class Playbar extends React.Component {
             newGlow.classList.toggle('currently-playing')
 
             this.props.receiveCurrentSong(latestSong);
-            this.props.receiveNextSong(this.props.currentSong.id);
+            if (!(this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined)) {
+                this.props.receiveNextSong(this.props.currentSong.id);
+            }
+            
         } else {
             let song = document.getElementById(this.props.currentSong.id)
             song.currentTime = 0;

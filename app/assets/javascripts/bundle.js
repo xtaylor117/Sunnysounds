@@ -1685,7 +1685,10 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
         newGlow.classList.toggle('currently-playing');
         this.props.receiveCurrentSong(latestSong);
-        this.props.receiveNextSong(this.props.currentSong.id);
+
+        if (!(this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined)) {
+          this.props.receiveNextSong(this.props.currentSong.id);
+        }
       } else {
         var _song2 = document.getElementById(this.props.currentSong.id);
 
@@ -1772,7 +1775,6 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
           var next = playlist.map(function (song) {
             return song.id;
           }).indexOf(this.props.currentSong.id) + 1;
-          debugger;
 
           if (playlist[next]) {
             var song = document.getElementById(playlist[next].id);
