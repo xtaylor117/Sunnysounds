@@ -33,10 +33,14 @@ class SongIndexItem extends React.Component {
 
             this.props.receivePrevSong(this.props.currentSong.id)
             this.props.receiveCurrentSong(this.props.song.id)
-            this.props.receiveNextSong(this.props.song.id - 1)
+            if (!(this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined)) {
+                this.props.receiveNextSong(this.props.song.id - 1)
+            }
         } else {
             this.props.receiveCurrentSong(this.props.song.id);
-            this.props.receiveNextSong(this.props.song.id - 1)
+            if (!(this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined)) {
+                this.props.receiveNextSong(this.props.song.id - 1)
+            }
         }
 
         song = document.getElementById(this.props.song.id);
@@ -52,6 +56,19 @@ class SongIndexItem extends React.Component {
                     audio.pause();
                 });
             });
+
+            this.currentTimeInterval = setInterval(()=> {
+                let song = document.getElementById(this.props.currentSong.id)
+                let scrubber = document.getElementById('scrubber')
+                if (song.ended) {
+                    this.setState({currentTime: 0})
+                    this.nextSong();
+                } else {
+                    scrubber.value = song.currentTime;
+                    this.setState({ currentTime: song.currentTime})
+                }
+            },50);
+
             song.play()
         } else {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"

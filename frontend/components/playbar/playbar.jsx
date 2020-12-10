@@ -84,8 +84,6 @@ class Playbar extends React.Component {
             
             if (this.props.prevSong.length != 0) {
                 this.props.receivePrevSong(this.props.prevSong.pop().id);
-            } else {
-                this.props.receivePrevSong(latestSong)
             }
 
             let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
@@ -160,40 +158,79 @@ class Playbar extends React.Component {
     }
 
     nextSong() {
-        
-        let song = document.getElementById(this.props.nextSong.id)
-        if (!song) return null
 
-        let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
-        let oldGlow = document.getElementById(this.props.currentSong.id + 2000)
-        let newBackground = document.getElementById(this.props.nextSong.id + 1000)
-        let newGlow = document.getElementById(this.props.nextSong.id + 2000)
-        
-        
-        oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
-        oldGlow.classList.toggle('currently-playing')
-        newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-        newGlow.classList.toggle('currently-playing')
-        
-        
-        this.currentTimeInterval = setInterval(()=> {
-            let song = document.getElementById(this.props.currentSong.id)
-            let scrubber = document.getElementById('scrubber')
-            if (song.ended) {
-                this.setState({currentTime: 0})
-                this.nextSong();
+        if (!this.props.nextSong) {
+            if (this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined) {
+                let playlist = JSON.parse(window.sessionStorage.playlist)
+                let next = playlist.map(song => song.id).indexOf(this.props.currentSong.id) + 1
+    
+                if (playlist[next]){
+                    let song = document.getElementById(playlist[next].id)
+                    let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
+                    let oldGlow = document.getElementById(this.props.currentSong.id + 2000)
+                    let newBackground = document.getElementById(playlist[next].id + 1000)
+                    let newGlow = document.getElementById(playlist[next].id + 2000)
+    
+                    oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+                    oldGlow.classList.toggle('currently-playing')
+                    newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+                    newGlow.classList.toggle('currently-playing')
+    
+                    this.currentTimeInterval = setInterval(()=> {
+                        let song = document.getElementById(this.props.currentSong.id)
+                        let scrubber = document.getElementById('scrubber')
+                        if (song.ended) {
+                            this.setState({currentTime: 0})
+                            this.nextSong();
+                        } else {
+                            scrubber.value = song.currentTime;
+                            this.setState({ currentTime: song.currentTime})
+                        }
+                    },50);
+    
+                    song.currentTime = 0;
+                    song.play();
+
+                    this.props.receivePrevSong(this.props.currentSong.id);
+                    this.props.receiveCurrentSong(playlist[next].id);
+                }
             } else {
-                scrubber.value = song.currentTime;
-                this.setState({ currentTime: song.currentTime})
+                return null
             }
-        },50);
-
-        song.currentTime = 0;
-        song.play();
-
-        this.props.receivePrevSong(this.props.currentSong.id);
-        this.props.receiveCurrentSong(this.props.nextSong.id);
-        this.props.receiveNextSong(this.props.nextSong.id - 1);
+        } else {
+            let song = document.getElementById(this.props.nextSong.id)
+            let oldBackground = document.getElementById(this.props.currentSong.id + 1000)
+            let oldGlow = document.getElementById(this.props.currentSong.id + 2000)
+            let newBackground = document.getElementById(this.props.nextSong.id + 1000)
+            let newGlow = document.getElementById(this.props.nextSong.id + 2000)
+            
+            
+            oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            oldGlow.classList.toggle('currently-playing')
+            newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+            newGlow.classList.toggle('currently-playing')
+            
+            
+            this.currentTimeInterval = setInterval(()=> {
+                let song = document.getElementById(this.props.currentSong.id)
+                let scrubber = document.getElementById('scrubber')
+                if (song.ended) {
+                    this.setState({currentTime: 0})
+                    this.nextSong();
+                } else {
+                    scrubber.value = song.currentTime;
+                    this.setState({ currentTime: song.currentTime})
+                }
+            },50);
+    
+            song.currentTime = 0;
+            song.play();
+    
+            this.props.receivePrevSong(this.props.currentSong.id);
+            this.props.receiveCurrentSong(this.props.nextSong.id);
+            this.props.receiveNextSong(this.props.nextSong.id - 1);
+        }
+        
     }
 
     muteSong() {
