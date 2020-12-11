@@ -82,6 +82,7 @@ class ArtistShow extends React.Component {
                             receivePrevSong={this.props.receivePrevSong}
                             receiveNextSong={this.props.receiveNextSong}
                             createComment={this.props.createComment}
+                            currentSong={this.props.currentSong}
                         />
                     ))}
                 </div>

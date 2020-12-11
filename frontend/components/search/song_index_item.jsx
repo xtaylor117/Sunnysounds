@@ -25,11 +25,12 @@ class SongIndexItem extends React.Component {
     }
 
     playSong() {
-        let song;
+        let song = document.getElementById(this.props.song.id);
         let background;
         let glow;
 
         if (this.props.currentSong && this.props.currentSong.id != this.props.song.id) {
+            song.currentTime = 0;
             background = document.getElementById(this.props.currentSong.id + 1000)
             glow = document.getElementById(this.props.currentSong.id + 2000)
 
@@ -50,11 +51,16 @@ class SongIndexItem extends React.Component {
             }
         }
 
-        song = document.getElementById(this.props.song.id);
+        // song = document.getElementById(this.props.song.id);
         background = document.getElementById(this.props.song.id + 1000)
         glow = document.getElementById(this.props.song.id + 2000)
         
         if (song.paused) {
+            if (document.getElementById('play-button')) {
+                document.getElementById('play-button').classList.add("hidden")
+                document.getElementById('pause-button').classList.remove("hidden")
+            }
+
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             glow.classList.add('currently-playing')
             localStorage.setItem('isPlaying', true)
@@ -69,18 +75,18 @@ class SongIndexItem extends React.Component {
                 let scrubber = document.getElementById('scrubber')
                 let time = document.getElementById('scrubber-current')
                 
-                if (song.ended) {
-                    this.setState({currentTime: 0})
-                    this.nextSong();
-                } else {
-                    scrubber.value = song.currentTime;
-                    time.innerText = `${formatSongTime(song.currentTime)}`
-                    this.setState({ currentTime: song.currentTime})
-                }
+                scrubber.value = song.currentTime;
+                time.innerText = `${formatSongTime(song.currentTime)}`
+                this.setState({ currentTime: song.currentTime})
+                
             },50);
-            song.currentTime = 0;
+            
             song.play()
         } else {
+            if (document.getElementById('play-button')) {
+                document.getElementById('play-button').classList.remove("hidden")
+                document.getElementById('pause-button').classList.add("hidden")
+            }
             clearInterval(this.currentTimeInterval)
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             glow.classList.remove('currently-playing')
@@ -91,7 +97,6 @@ class SongIndexItem extends React.Component {
 
     handleDelete() {
         if (this.props.location.pathname === (`/songs/${this.props.song.id}`)) {
-            debugger
             this.props.deleteSong(this.props.song.id)
                 .then(this.props.history.push(`/artists/${this.props.currentUser.id}`))
         } else {

@@ -33,7 +33,8 @@ class Playbar extends React.Component {
 
             song.currentTime = parseFloat(window.localStorage.currentTime)
             this.currentTimeInterval = setInterval(()=> {
-            let scrubber = document.getElementById('scrubber')
+                let scrubber = document.getElementById('scrubber')
+
                 scrubber.value = song.currentTime;
                 this.setState({ currentTime: song.currentTime})
             },50);
@@ -59,7 +60,6 @@ class Playbar extends React.Component {
         }
     }
 
-
     componentWillUnmount() {
         clearInterval(this.currentTimeInterval)
         if (!this.props.currentSong) return null
@@ -71,6 +71,11 @@ class Playbar extends React.Component {
     }
 
     prevSong() {
+        if (document.getElementById("pause-button").classList.contains("hidden")) {
+            document.getElementById("play-button").classList.toggle("hidden")
+            document.getElementById("pause-button").classList.toggle("hidden")
+        }
+
         if (this.props.prevSong.length != 0) {
             let latestSong = this.props.prevSong.pop().id
             let song = document.getElementById(latestSong)
@@ -78,13 +83,10 @@ class Playbar extends React.Component {
             this.currentTimeInterval = setInterval(()=> {
                 let song = document.getElementById(this.props.currentSong.id)
                 let scrubber = document.getElementById('scrubber')
-                if (song.ended) {
-                    this.setState({currentTime: 0})
-                    this.nextSong();
-                } else {
-                    scrubber.value = song.currentTime;
-                    this.setState({ currentTime: song.currentTime})
-                }
+
+                scrubber.value = song.currentTime;
+                this.setState({ currentTime: song.currentTime})
+
             },50);
 
             song.currentTime = 0;
@@ -100,9 +102,9 @@ class Playbar extends React.Component {
             let newGlow = document.getElementById(latestSong + 2000)
 
             oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
-            oldGlow.classList.toggle('currently-playing')
+            oldGlow.classList.remove('currently-playing')
             newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-            newGlow.classList.toggle('currently-playing')
+            newGlow.classList.add('currently-playing')
 
             this.props.receiveCurrentSong(latestSong);
             if (!(this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined)) {
@@ -117,58 +119,71 @@ class Playbar extends React.Component {
     }
 
     playSong() {
+        document.getElementById("pause-button").classList.remove("hidden")
+        document.getElementById("play-button").classList.add("hidden")
+        
         let song = document.getElementById(this.props.currentSong.id)
         let background = document.getElementById(this.props.currentSong.id + 1000)
         let glow = document.getElementById(this.props.currentSong.id + 2000)
 
 
         if (!song) return null
+
         if (background) {
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
             glow.classList.toggle('currently-playing')
-            localStorage.setItem('isPlaying', true)
         }
-
+        
+        localStorage.setItem('isPlaying', true)
 
         this.currentTimeInterval = setInterval(()=> {
             let song = document.getElementById(this.props.currentSong.id)
             let scrubber = document.getElementById('scrubber')
-            if (song.ended) {
-                this.setState({currentTime: 0})
-                this.nextSong();
-            } else {
-                scrubber.value = song.currentTime;
-                this.setState({ currentTime: song.currentTime})
-            }
+
+            scrubber.value = song.currentTime;
+            this.setState({ currentTime: song.currentTime})
+    
         },50);
 
         song.play();
     }
 
     pauseSong() {
+        document.getElementById("pause-button").classList.add("hidden")
+        document.getElementById("play-button").classList.remove("hidden")
+
         let song = document.getElementById(this.props.currentSong.id)
+
+  
+
         let background = document.getElementById(this.props.currentSong.id + 1000)
         let glow = document.getElementById(this.props.currentSong.id + 2000)
 
-        background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
-        glow.classList.toggle('currently-playing')
+        if (background) {
+            background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+            glow.classList.toggle('currently-playing')
+        }
 
         localStorage.setItem('isPlaying', false)
         this.currentTimeInterval = setInterval(()=> {
             let song = document.getElementById(this.props.currentSong.id)
             let scrubber = document.getElementById('scrubber')
-            if (song.ended) {
-                this.setState({currentTime: 0})
-                this.nextSong();
-            } else {
-                scrubber.value = song.currentTime;
-                this.setState({ currentTime: song.currentTime})
-            }
+
+            scrubber.value = song.currentTime;
+            this.setState({ currentTime: song.currentTime})
+
         },50);
         song.pause();
     }
 
     nextSong() {
+        if (document.getElementById("pause-button").classList.contains("hidden")) {
+            document.getElementById("play-button").classList.toggle("hidden")
+            document.getElementById("pause-button").classList.toggle("hidden")
+        }
+
+        clearInterval(this.currentTimeInterval)
+        this.setState({currentTime: 0})
 
         if (!this.props.nextSong) {
             if (this.props.location.pathname === "/" && window.sessionStorage.playlist !== undefined) {
@@ -182,21 +197,23 @@ class Playbar extends React.Component {
                     let newBackground = document.getElementById(playlist[next].id + 1000)
                     let newGlow = document.getElementById(playlist[next].id + 2000)
     
-                    oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
-                    oldGlow.classList.toggle('currently-playing')
-                    newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-                    newGlow.classList.toggle('currently-playing')
+                    if (oldBackground) {
+                        oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+                        oldGlow.classList.remove('currently-playing')
+                    }
+
+                    if (newBackground) {
+                        newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+                        newGlow.classList.add('currently-playing')
+                    }
     
                     this.currentTimeInterval = setInterval(()=> {
                         let song = document.getElementById(this.props.currentSong.id)
                         let scrubber = document.getElementById('scrubber')
-                        if (song.ended) {
-                            this.setState({currentTime: 0})
-                            this.nextSong();
-                        } else {
-                            scrubber.value = song.currentTime;
-                            this.setState({ currentTime: song.currentTime})
-                        }
+                        
+                        scrubber.value = song.currentTime;
+                        this.setState({ currentTime: song.currentTime})
+                    
                     },50);
     
                     song.currentTime = 0;
@@ -215,23 +232,24 @@ class Playbar extends React.Component {
             let newBackground = document.getElementById(this.props.nextSong.id + 1000)
             let newGlow = document.getElementById(this.props.nextSong.id + 2000)
             
-            
-            oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
-            oldGlow.classList.toggle('currently-playing')
-            newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
-            newGlow.classList.toggle('currently-playing')
+            if (oldBackground) {
+                oldBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
+                oldGlow.classList.remove('currently-playing')
+            }
+
+            if (newBackground) {
+                newBackground.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
+                newGlow.classList.add('currently-playing')
+            }
             
             
             this.currentTimeInterval = setInterval(()=> {
                 let song = document.getElementById(this.props.currentSong.id)
                 let scrubber = document.getElementById('scrubber')
-                if (song.ended) {
-                    this.setState({currentTime: 0})
-                    this.nextSong();
-                } else {
-                    scrubber.value = song.currentTime;
-                    this.setState({ currentTime: song.currentTime})
-                }
+
+                scrubber.value = song.currentTime;
+                this.setState({ currentTime: song.currentTime})
+
             },50);
     
             song.currentTime = 0;
@@ -268,8 +286,8 @@ class Playbar extends React.Component {
                 </audio>
                 <div className="playbar-controls play">
                     <button onClick={() => this.prevSong()} className="playbar-prev-song-button"><i className="fas fa-backward"></i></button>
-                    <button onClick={() => this.playSong()} className="playbar-play-button"><i className="fas fa-play"></i></button>
-                    <button onClick={() => this.pauseSong()} className="playbar-pause-button"><i className="fas fa-pause"></i></button>
+                    <button onClick={() => this.playSong()} className="playbar-play-button hidden" id="play-button"><i className="fas fa-play"></i></button>
+                    <button onClick={() => this.pauseSong()} className="playbar-pause-button" id="pause-button"><i className="fas fa-pause"></i></button>
                     <button onClick={() => this.nextSong()} className="playbar-next-song-button"><i className="fas fa-forward"></i></button>
                     <button onClick={() => this.muteSong()} className="playbar-volume-button"><i className="fas fa-volume-up"></i></button>
                     <div className='playbar-scrubber'>

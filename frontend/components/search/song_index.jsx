@@ -78,6 +78,7 @@ class SongIndex extends React.Component {
                         createComment={this.props.createComment}
                         currentSong={this.props.currentSong}
                         prevSong={this.props.prevSong}
+                        nextSong={this.props.nextSong}
                     />
                 ))
             )

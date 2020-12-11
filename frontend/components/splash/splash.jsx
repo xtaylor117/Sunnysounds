@@ -32,6 +32,7 @@ class Splash extends React.Component {
 
         return array;
     }
+    
     songList() {
         if (!this.props.songs) return null
 
