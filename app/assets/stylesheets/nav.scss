@@ -221,6 +221,7 @@ input.search-bar[type="text"], select {
 .user-dropdown {
     display: none;
     position: absolute;
+    transform: translateX(-6px);
     width: 99px;
     white-space: nowrap;
     padding-right: 6px;

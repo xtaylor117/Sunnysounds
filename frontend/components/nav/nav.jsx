@@ -89,7 +89,7 @@ class Nav extends React.Component {
                             <li>
                                 •••
                                 <div className="settings-dropdown">
-                                    <p>Settings</p>
+                                    {/* <p>Settings</p> */}
                                     <p onClick={this.props.logout}>Logout</p>
                                 </div>
                             </li>
