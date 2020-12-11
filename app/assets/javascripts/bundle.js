@@ -1635,6 +1635,15 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(prevProps) {
+      if (prevProps.currentSong && this.props.currentSong) {
+        if (prevProps.currentSong.id !== this.props.currentSong.id) {
+          clearInterval(this.currentTimeInterval);
+        }
+      }
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       clearInterval(this.currentTimeInterval);

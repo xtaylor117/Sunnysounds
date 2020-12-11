@@ -14,7 +14,6 @@ class Splash extends React.Component {
         this.props.receiveAllArtists()
     }
 
-
     shuffle(array) {
         let currentIndex = array.length, temporaryValue, randomIndex;
 

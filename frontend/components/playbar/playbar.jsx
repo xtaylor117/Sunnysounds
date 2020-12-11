@@ -51,6 +51,14 @@ class Playbar extends React.Component {
         }
     }
 
+    componentWillReceiveProps(prevProps) {
+        if (prevProps.currentSong && this.props.currentSong) {
+            if (prevProps.currentSong.id !== this.props.currentSong.id) {
+                clearInterval(this.currentTimeInterval)
+            }
+        }
+    }
+
 
     componentWillUnmount() {
         clearInterval(this.currentTimeInterval)
