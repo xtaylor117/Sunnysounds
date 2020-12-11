@@ -91,7 +91,7 @@ class ArtistShow extends React.Component {
                         <ul className='affiliate-links'>
                             <a href="https://github.com/xtaylor117" target="_blank" rel="noreferrer"><i className="fab fa-github-square"></i></a>
                             <a href="https://www.linkedin.com/in/taylorlee117/" target="_blank" rel="noreferrer"><i className="fab fa-linkedin"></i></a>
-                            <a href="https://angel.co/u/taylor-lee-18" target="_blank" rel="noreferrer"><i className="fab fa-angellist"></i></a>
+                            <a href="https://angel.co/u/taylor-117" target="_blank" rel="noreferrer"><i className="fab fa-angellist"></i></a>
                         </ul>
                     </div>
                     <div className="latest-upload">

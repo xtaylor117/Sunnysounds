@@ -1,12 +1,15 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import CommentForm from '../comment_form/comment_form'
+import { formatSongTime } from '../../utils/playbar_util'
 
 class SongIndexItem extends React.Component {
     constructor(props) {
         super(props);
 
         this.settingsAuth = this.settingsAuth.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.includeGenre = this.includeGenre.bind(this);
     }
 
     componentDidMount() {
@@ -15,6 +18,10 @@ class SongIndexItem extends React.Component {
                 audio.pause();
             });
         });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.currentTimeInterval)
     }
 
     playSong() {
@@ -60,21 +67,35 @@ class SongIndexItem extends React.Component {
             this.currentTimeInterval = setInterval(()=> {
                 let song = document.getElementById(this.props.currentSong.id)
                 let scrubber = document.getElementById('scrubber')
+                let time = document.getElementById('scrubber-current')
+                
                 if (song.ended) {
                     this.setState({currentTime: 0})
                     this.nextSong();
                 } else {
                     scrubber.value = song.currentTime;
+                    time.innerText = `${formatSongTime(song.currentTime)}`
                     this.setState({ currentTime: song.currentTime})
                 }
             },50);
-
+            song.currentTime = 0;
             song.play()
         } else {
+            clearInterval(this.currentTimeInterval)
             background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/play_button.png')"
             glow.classList.remove('currently-playing')
             localStorage.setItem('isPlaying', false)
             song.pause()
+        }
+    }
+
+    handleDelete() {
+        if (this.props.location.pathname === (`/songs/${this.props.song.id}`)) {
+            debugger
+            this.props.deleteSong(this.props.song.id)
+                .then(this.props.history.push(`/artists/${this.props.currentUser.id}`))
+        } else {
+            this.props.deleteSong(this.props.song.id)
         }
     }
 
@@ -89,7 +110,7 @@ class SongIndexItem extends React.Component {
                     <i className="fas fa-cogs"></i>
                     <div className="song-dropdown">
                         <button onClick={() => this.props.openModal({formType:"edit", song:this.props.song})}>Edit</button>
-                        <button onClick={() => this.props.deleteSong(songId)}>Delete</button>
+                        <button onClick={this.handleDelete}>Delete</button>
                     </div>
                 </div>
             )
@@ -103,6 +124,18 @@ class SongIndexItem extends React.Component {
             return(
                  <CommentForm songId={this.props.song.id} createComment={this.props.createComment} currentUser={this.props.currentUser}/>
             )
+        }
+    }
+
+    includeGenre() {
+        let genre = this.props.song.genre;
+
+        if (genre) {
+            return (
+                <div className="index-item-genre">Genre: {genre}</div>
+            )
+        } else {
+            return null
         }
     }
 
@@ -124,7 +157,7 @@ class SongIndexItem extends React.Component {
                             </audio>
                         </div>
                         <div className="song-info">
-                            <div className="index-item-genre">Genre: {genre}</div>
+                            {this.includeGenre()}
                             <div className="index-item-title">
                                 <Link to={`/songs/${id}`}>{title}</Link>
                             </div>

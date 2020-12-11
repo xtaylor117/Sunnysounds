@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import { openModal, closeModal } from '../../actions/modal_actions'
 import { editSong, clearSongErrors } from '../../actions/song_actions'
 import SongForm from './song_form'
@@ -9,7 +10,8 @@ const mSTP = (state, ownProps) => {
         currentUser: state.session.currentUser,
         errors: state.errors.song,
         formType: 'edit',
-        song: ownProps.song
+        song: ownProps.song,
+        songs: Object.values(state.entities.songs)
     })
 };
 
@@ -19,4 +21,4 @@ const mDTP = dispatch => ({
     clearSongErrors: () => dispatch(clearSongErrors())
 });
 
-export default connect(mSTP, mDTP)(SongForm);
+export default withRouter(connect(mSTP, mDTP)(SongForm));

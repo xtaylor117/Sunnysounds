@@ -81,9 +81,10 @@ class SongForm extends React.Component {
             formData.append('song[photofile]', this.state.photoFile);
         }
 
+
         this.props.processForm(formData)
             .then(this.props.closeModal)
-
+            // .then(this.props.history.push(`/songs/${this.props.songs[this.props.songs.length - 1].id + 1}`))
     }
 
     handleFile(e) {
