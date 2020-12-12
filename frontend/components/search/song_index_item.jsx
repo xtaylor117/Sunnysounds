@@ -20,9 +20,17 @@ class SongIndexItem extends React.Component {
         });
     }
 
-    componentWillUnmount() {
-        clearInterval(this.currentTimeInterval)
-    }
+    // componentWillUnmount() {
+    //     clearInterval(this.currentTimeInterval)
+    //     if (window.localStorage.isPlaying === 'true') {
+    //         let song = document.getElementById(this.props.currentSong.id)
+
+    //         if (!song) return null
+
+    //         localStorage.setItem('currentSong', song.id)
+    //         localStorage.setItem('currentTime', song.currentTime)
+    //     }
+    // }
 
     playSong() {
         let song = document.getElementById(this.props.song.id);
@@ -72,6 +80,11 @@ class SongIndexItem extends React.Component {
 
             this.currentTimeInterval = setInterval(()=> {
                 let song = document.getElementById(this.props.currentSong.id)
+
+                if (!song) {
+                    clearInterval(this.currentTimeInterval)
+                }
+
                 let scrubber = document.getElementById('scrubber')
                 let time = document.getElementById('scrubber-current')
                 

@@ -7,14 +7,14 @@ import { formatSongTime } from '../../utils/playbar_util';
 class Playbar extends React.Component {
     constructor(props) {
         super(props)
-        
+    
         this.state = {
             prevSong: this.props.prevSong,
             currentSong: this.props.currentSong,
             nextSong: this.props.nextSong,
-            currentTime: 0
+            currentTime: parseFloat(window.localStorage.currentTime)
         }
-
+        
         this.playSong = this.playSong.bind(this)
         this.prevSong = this.prevSong.bind(this)
         this.nextSong = this.nextSong.bind(this)
@@ -24,20 +24,28 @@ class Playbar extends React.Component {
     }
 
     componentDidMount() {
+
         if (!this.props.currentSong) return null
 
         if (window.localStorage.isPlaying === 'true') {
+
+            if (document.getElementById('play-button')) {
+                document.getElementById('play-button').classList.add("hidden")
+                document.getElementById('pause-button').classList.remove("hidden")
+            }
+
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
             let background = document.getElementById(parseInt(window.localStorage.currentSong) + 1000)
             let glow = document.getElementById(parseInt(window.localStorage.currentSong) + 2000)
 
-            song.currentTime = parseFloat(window.localStorage.currentTime)
-            this.currentTimeInterval = setInterval(()=> {
-                let scrubber = document.getElementById('scrubber')
 
-                scrubber.value = song.currentTime;
-                this.setState({ currentTime: song.currentTime})
-            },50);
+            song.currentTime = parseFloat(window.localStorage.currentTime)
+            // this.currentTimeInterval = setInterval(()=> {
+            //     let scrubber = document.getElementById('scrubber')
+
+            //     scrubber.value = song.currentTime;
+            //     this.setState({ currentTime: song.currentTime})
+            // },50);
 
             if (background) {
                 background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"
@@ -47,6 +55,9 @@ class Playbar extends React.Component {
 
             song.play();
         } else {
+            document.getElementById('pause-button').classList.add("hidden")
+            document.getElementById('play-button').classList.remove("hidden")
+
             let song = document.getElementById(parseInt(window.localStorage.currentSong))
             song.currentTime = parseFloat(window.localStorage.currentTime)
         }
