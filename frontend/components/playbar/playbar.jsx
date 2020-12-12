@@ -38,7 +38,7 @@ class Playbar extends React.Component {
             let background = document.getElementById(parseInt(window.localStorage.currentSong) + 1000)
             let glow = document.getElementById(parseInt(window.localStorage.currentSong) + 2000)
 
-
+            debugger
             song.currentTime = parseFloat(window.localStorage.currentTime)
 
             this.currentTimeInterval = setInterval(()=> {
@@ -79,8 +79,10 @@ class Playbar extends React.Component {
 
         let song = document.getElementById(this.props.currentSong.id)
 
+
         localStorage.setItem('currentSong', song.id)
-        localStorage.setItem('currentTime', this.state.currentTime)
+        localStorage.setItem('currentTime', window.localStorage.currentTime)
+
     }
 
     prevSong() {

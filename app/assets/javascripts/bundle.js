@@ -1617,6 +1617,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         var song = document.getElementById(parseInt(window.localStorage.currentSong));
         var background = document.getElementById(parseInt(window.localStorage.currentSong) + 1000);
         var glow = document.getElementById(parseInt(window.localStorage.currentSong) + 2000);
+        debugger;
         song.currentTime = parseFloat(window.localStorage.currentTime);
         this.currentTimeInterval = setInterval(function () {
           var scrubber = document.getElementById('scrubber');
@@ -1659,7 +1660,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
       localStorage.setItem('currentSong', song.id);
-      localStorage.setItem('currentTime', this.state.currentTime);
+      localStorage.setItem('currentTime', window.localStorage.currentTime);
     }
   }, {
     key: "prevSong",
@@ -3680,13 +3681,11 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     value: function shuffle(array) {
       var currentIndex = array.length,
           temporaryValue,
-          randomIndex; // While there remain elements to shuffle...
+          randomIndex;
 
       while (0 !== currentIndex) {
-        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1; // And swap it with the current element.
-
+        currentIndex -= 1;
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;

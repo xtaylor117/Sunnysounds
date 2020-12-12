@@ -22,7 +22,7 @@ class SongIndexItem extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.currentTimeInterval)
-        
+
         if (this.props.currentSong) {
             if (window.localStorage.isPlaying === 'true') {
                 let song = document.getElementById(this.props.currentSong.id)
