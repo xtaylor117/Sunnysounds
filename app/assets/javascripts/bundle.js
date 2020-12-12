@@ -1590,7 +1590,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       prevSong: _this.props.prevSong,
       currentSong: _this.props.currentSong,
       nextSong: _this.props.nextSong,
-      currentTime: parseFloat(window.localStorage.currentTime)
+      currentTime: 0
     };
     _this.playSong = _this.playSong.bind(_assertThisInitialized(_this));
     _this.prevSong = _this.prevSong.bind(_assertThisInitialized(_this));
@@ -1604,6 +1604,8 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   _createClass(Playbar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       if (!this.props.currentSong) return null;
 
       if (window.localStorage.isPlaying === 'true') {
@@ -1615,11 +1617,15 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         var song = document.getElementById(parseInt(window.localStorage.currentSong));
         var background = document.getElementById(parseInt(window.localStorage.currentSong) + 1000);
         var glow = document.getElementById(parseInt(window.localStorage.currentSong) + 2000);
-        song.currentTime = parseFloat(window.localStorage.currentTime); // this.currentTimeInterval = setInterval(()=> {
-        //     let scrubber = document.getElementById('scrubber')
-        //     scrubber.value = song.currentTime;
-        //     this.setState({ currentTime: song.currentTime})
-        // },50);
+        song.currentTime = parseFloat(window.localStorage.currentTime);
+        this.currentTimeInterval = setInterval(function () {
+          var scrubber = document.getElementById('scrubber');
+          scrubber.value = song.currentTime;
+
+          _this2.setState({
+            currentTime: song.currentTime
+          });
+        }, 50);
 
         if (background) {
           background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')";
@@ -1658,7 +1664,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "prevSong",
     value: function prevSong() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (document.getElementById("pause-button").classList.contains("hidden")) {
         document.getElementById("play-button").classList.toggle("hidden");
@@ -1669,11 +1675,11 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         var latestSong = this.props.prevSong.pop().id;
         var song = document.getElementById(latestSong);
         this.currentTimeInterval = setInterval(function () {
-          var song = document.getElementById(_this2.props.currentSong.id);
+          var song = document.getElementById(_this3.props.currentSong.id);
           var scrubber = document.getElementById('scrubber');
           scrubber.value = song.currentTime;
 
-          _this2.setState({
+          _this3.setState({
             currentTime: song.currentTime
           });
         }, 50);
@@ -1708,7 +1714,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "playSong",
     value: function playSong() {
-      var _this3 = this;
+      var _this4 = this;
 
       document.getElementById("pause-button").classList.remove("hidden");
       document.getElementById("play-button").classList.add("hidden");
@@ -1724,11 +1730,11 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
 
       localStorage.setItem('isPlaying', true);
       this.currentTimeInterval = setInterval(function () {
-        var song = document.getElementById(_this3.props.currentSong.id);
+        var song = document.getElementById(_this4.props.currentSong.id);
         var scrubber = document.getElementById('scrubber');
         scrubber.value = song.currentTime;
 
-        _this3.setState({
+        _this4.setState({
           currentTime: song.currentTime
         });
       }, 50);
@@ -1737,7 +1743,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "pauseSong",
     value: function pauseSong() {
-      var _this4 = this;
+      var _this5 = this;
 
       document.getElementById("pause-button").classList.add("hidden");
       document.getElementById("play-button").classList.remove("hidden");
@@ -1752,11 +1758,11 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
 
       localStorage.setItem('isPlaying', false);
       this.currentTimeInterval = setInterval(function () {
-        var song = document.getElementById(_this4.props.currentSong.id);
+        var song = document.getElementById(_this5.props.currentSong.id);
         var scrubber = document.getElementById('scrubber');
         scrubber.value = song.currentTime;
 
-        _this4.setState({
+        _this5.setState({
           currentTime: song.currentTime
         });
       }, 50);
@@ -1765,7 +1771,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "nextSong",
     value: function nextSong() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (document.getElementById("pause-button").classList.contains("hidden")) {
         document.getElementById("play-button").classList.toggle("hidden");
@@ -1802,11 +1808,11 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
             }
 
             this.currentTimeInterval = setInterval(function () {
-              var song = document.getElementById(_this5.props.currentSong.id);
+              var song = document.getElementById(_this6.props.currentSong.id);
               var scrubber = document.getElementById('scrubber');
               scrubber.value = song.currentTime;
 
-              _this5.setState({
+              _this6.setState({
                 currentTime: song.currentTime
               });
             }, 50);
@@ -1842,11 +1848,11 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         }
 
         this.currentTimeInterval = setInterval(function () {
-          var song = document.getElementById(_this5.props.currentSong.id);
+          var song = document.getElementById(_this6.props.currentSong.id);
           var scrubber = document.getElementById('scrubber');
           scrubber.value = song.currentTime;
 
-          _this5.setState({
+          _this6.setState({
             currentTime: song.currentTime
           });
         }, 50);
@@ -1874,7 +1880,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this7 = this;
 
       if (!this.props.currentSong) return null;
       var song = document.getElementById(this.props.currentSong.id);
@@ -1890,14 +1896,14 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "playbar-controls play"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.prevSong();
+          return _this7.prevSong();
         },
         className: "playbar-prev-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-backward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.playSong();
+          return _this7.playSong();
         },
         className: "playbar-play-button hidden",
         id: "play-button"
@@ -1905,7 +1911,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "fas fa-play"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.pauseSong();
+          return _this7.pauseSong();
         },
         className: "playbar-pause-button",
         id: "pause-button"
@@ -1913,14 +1919,14 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
         className: "fas fa-pause"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.nextSong();
+          return _this7.nextSong();
         },
         className: "playbar-next-song-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-forward"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.muteSong();
+          return _this7.muteSong();
         },
         className: "playbar-volume-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1943,7 +1949,7 @@ var Playbar = /*#__PURE__*/function (_React$Component) {
       }, this.props.currentSong.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/artists/".concat(this.props.currentSong.artist_id)
       }, this.props.artists.filter(function (artist) {
-        return artist.id === _this6.props.currentSong.artist_id;
+        return artist.id === _this7.props.currentSong.artist_id;
       }).map(function (artist) {
         return artist.username;
       })))));
@@ -2433,6 +2439,15 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       clearInterval(this.currentTimeInterval);
+
+      if (this.props.currentSong) {
+        if (window.localStorage.isPlaying === 'true') {
+          var song = document.getElementById(this.props.currentSong.id);
+          if (!song) return null;
+          localStorage.setItem('currentSong', song.id);
+          localStorage.setItem('currentTime', song.currentTime);
+        }
+      }
     }
   }, {
     key: "playSong",
@@ -3659,18 +3674,6 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.receiveAllSongs();
       this.props.receiveAllArtists();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this.props.currentSong) {
-        var song = document.getElementById(this.props.currentSong.id);
-        localStorage.setItem('currentTime', song.currentTime);
-        localStorage.setItem('currentSong', song.id);
-      } else {
-        localStorage.setItem('currentTime', 0);
-        localStorage.setItem('currentSong', undefined);
-      }
     }
   }, {
     key: "shuffle",

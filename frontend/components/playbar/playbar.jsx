@@ -12,7 +12,7 @@ class Playbar extends React.Component {
             prevSong: this.props.prevSong,
             currentSong: this.props.currentSong,
             nextSong: this.props.nextSong,
-            currentTime: parseFloat(window.localStorage.currentTime)
+            currentTime: 0
         }
         
         this.playSong = this.playSong.bind(this)
@@ -41,12 +41,13 @@ class Playbar extends React.Component {
 
             song.currentTime = parseFloat(window.localStorage.currentTime)
 
-            // this.currentTimeInterval = setInterval(()=> {
-            //     let scrubber = document.getElementById('scrubber')
+            this.currentTimeInterval = setInterval(()=> {
+                let scrubber = document.getElementById('scrubber')
+                scrubber.value = song.currentTime;
 
-            //     scrubber.value = song.currentTime;
-            //     this.setState({ currentTime: song.currentTime})
-            // },50);
+                this.setState({ currentTime: song.currentTime})
+            },50);
+
 
             if (background) {
                 background.style.backgroundImage = "url('https://sunnysounds-seed.s3-us-west-1.amazonaws.com/pause_button.png')"

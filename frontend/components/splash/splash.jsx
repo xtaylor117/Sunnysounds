@@ -14,17 +14,6 @@ class Splash extends React.Component {
         this.props.receiveAllArtists()
     }
 
-    componentWillUnmount() {
-        if (this.props.currentSong) {
-            let song = document.getElementById(this.props.currentSong.id)
-            localStorage.setItem('currentTime', song.currentTime)
-            localStorage.setItem('currentSong', song.id)
-        } else {
-            localStorage.setItem('currentTime', 0)
-            localStorage.setItem('currentSong', undefined)
-        }
-    }
-
     shuffle(array) {
         let currentIndex = array.length, temporaryValue, randomIndex;
 
