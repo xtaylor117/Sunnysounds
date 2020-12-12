@@ -2428,16 +2428,12 @@ var SongIndexItem = /*#__PURE__*/function (_React$Component) {
           audio.pause();
         });
       });
-    } // componentWillUnmount() {
-    //     clearInterval(this.currentTimeInterval)
-    //     if (window.localStorage.isPlaying === 'true') {
-    //         let song = document.getElementById(this.props.currentSong.id)
-    //         if (!song) return null
-    //         localStorage.setItem('currentSong', song.id)
-    //         localStorage.setItem('currentTime', song.currentTime)
-    //     }
-    // }
-
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.currentTimeInterval);
+    }
   }, {
     key: "playSong",
     value: function playSong() {

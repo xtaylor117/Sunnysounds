@@ -20,17 +20,9 @@ class SongIndexItem extends React.Component {
         });
     }
 
-    // componentWillUnmount() {
-    //     clearInterval(this.currentTimeInterval)
-    //     if (window.localStorage.isPlaying === 'true') {
-    //         let song = document.getElementById(this.props.currentSong.id)
-
-    //         if (!song) return null
-
-    //         localStorage.setItem('currentSong', song.id)
-    //         localStorage.setItem('currentTime', song.currentTime)
-    //     }
-    // }
+    componentWillUnmount() {
+        clearInterval(this.currentTimeInterval)
+    }
 
     playSong() {
         let song = document.getElementById(this.props.song.id);

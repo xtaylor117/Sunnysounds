@@ -40,6 +40,7 @@ class Playbar extends React.Component {
 
 
             song.currentTime = parseFloat(window.localStorage.currentTime)
+
             // this.currentTimeInterval = setInterval(()=> {
             //     let scrubber = document.getElementById('scrubber')
 
