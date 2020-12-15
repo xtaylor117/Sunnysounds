@@ -638,7 +638,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           key: song.id,
           audioUrl: song.audioUrl,
           photoUrl: song.photoUrl,
-          currentUser: currentUser,
+          currentUser: _this.props.currentUser,
           openModal: _this.props.openModal,
           deleteSong: _this.props.deleteSong,
           artists: _this.props.artists,
